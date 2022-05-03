@@ -2,13 +2,18 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [/*
+  routes: [
     {
       path: '/',
-      name: 'home',
-      component: HomeView
+      name: 'Home',
+      component: () => import("../Home.component.vue")
     },
     {
+      path: '/Shipments',
+      name: 'Shipments',
+      component: () => import("../Shipments/Shipments.component.vue")
+    }
+    /*{
       path: '/about',
       name: 'about',
       // route level code-splitting
