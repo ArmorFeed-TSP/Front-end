@@ -11,6 +11,7 @@ import Column from 'primevue/column';
 import ColumnGroup from 'primevue/columngroup';     //optional for column grouping
 import Row from 'primevue/row';
 import Button from 'primevue/button';
+import Dialog from 'primevue/dialog';
 
 //PrimeVue Styles
 import "primevue/resources/primevue.min.css";
@@ -37,4 +38,5 @@ app.component('Column',Column);
 app.component('ColumnGroup',ColumnGroup);
 app.component('Row',Row);
 app.component('Button',Button);
+app.component('Dialog',Dialog);
 app.mount("#app");

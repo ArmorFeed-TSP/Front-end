@@ -2,7 +2,22 @@
   <div class="my-7 flex flex-column">
     <DataTable :value="currentShipments" responsiveLayout="stack" :paginator="true" :rows="10">
       <Column v-for="col in columns" :field="col.field" :header="col.header" :key="col.field"></Column>
+      <Column :exportable="false" style="min-width: 8rem">
+        <template #body="slotProps">
+          <Button icon="pi pi-car" class="p-button-text p-button-rounded"/>
+          <Button icon="pi pi-eye" class="p-button-text p-button-rounded" @click="dialogEnabled = !dialogEnabled"/>
+        </template>
+      </Column>
     </DataTable>
+    <Dialog v-model:visible="dialogEnabled">
+      <template #header>
+        <h3>Current Location</h3>
+        <!-- Google Api content goes here -->
+      </template>
+      <template #footer>
+        <Button label="Ok" autofocus @click="dialogEnabled = !dialogEnabled"/>
+      </template>
+    </Dialog>
     <Button icon="pi pi-plus" label="New Shipment" iconPos="right" class="my-5 mx-auto"/>
   </div>
 </template>
@@ -24,7 +39,8 @@ export default {
         {field: 'deliveryDate', header: 'Delivery Date'},
         {field: 'status', header: 'Status'}
       ],
-      currentShipments: []
+      currentShipments: [],
+      dialogEnabled: false
     }
   },
   created(){
@@ -43,6 +59,9 @@ export default {
       this.currentShipments = this.shipments.filter( shipment => {
         return shipment.status === selected.code;
       });
+    },
+    showLocationDialog(){
+
     }
   }
 }
