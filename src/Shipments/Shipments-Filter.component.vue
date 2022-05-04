@@ -1,5 +1,5 @@
 <template>
-<DropDown class="w-30rem text-center py-3 px-7 text-1xl mt-7" v-model="selectedItem" :options="options" optionLabel="name">
+<DropDown class="w-30rem text-center py-3 px-7 text-1xl mt-7" v-model="selectedItem" :options="options" optionLabel="name" @change="handleClick">
 <template #option="slotProps">
   <div class="p-dropdown-car-option text-center py-3 px-7 text-1xl">
     <span>{{ slotProps.option.name }}</span>
@@ -16,15 +16,19 @@ export default {
       options: [
         {
           name: 'Todos los envíos',
-          code: 'ALL'
+          code: 'Todo'
         },
         {
           name: 'Envíos pendientes',
-          code: 'PENDING'
+          code: 'Pendiente'
         },
         {
           name: 'Envíos realizados',
-          code: 'FINISHED'
+          code: 'Finalizado'
+        },
+        {
+          name: 'Envios en curso',
+          code: 'En curso'
         }
       ],
       selectedItem: null
@@ -32,6 +36,11 @@ export default {
   },
   mounted() {
     this.selectedItem = this.options[0];
+  },
+  methods: {
+    handleClick() {
+      this.$emit('click');
+    }
   }
 }
 </script>

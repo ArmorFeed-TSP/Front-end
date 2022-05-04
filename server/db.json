@@ -1,3 +1,124 @@
 {
-
+  "shipments": [
+    {
+      "id": "00002518",
+      "origin": "Lima",
+      "pickUpDate": "25/10/2022",
+      "destiny": "Piura",
+      "deliveryDate": "27/10/2022",
+      "status": "Finalizado",
+      "products": [
+        {
+          "id": "000189",
+          "contentDescrpition": "Anillo Dragon Miss",
+          "cost": 920.00
+        },
+        {
+          "id": "000190",
+          "contentDescrpition": "Collar Madonna Classic",
+          "cost": 1020.00
+        }
+      ]
+    },
+    {
+      "id": "00002519",
+      "origin": "Lima",
+      "pickUpDate": "25/10/2022",
+      "destiny": "Trujillo",
+      "deliveryDate": "27/10/2022",
+      "status": "Pendiente",
+      "products": [
+        {
+          "id": "000189",
+          "contentDescrpition": "Anillo Dragon Miss",
+          "cost": 920.00
+        },
+        {
+          "id": "000190",
+          "contentDescrpition": "Collar Madonna Classic",
+          "cost": 1020.00
+        }
+      ]
+    },
+    {
+      "id": "00002520",
+      "origin": "Piura",
+      "pickUpDate": "25/10/2022",
+      "destiny": "Lima",
+      "deliveryDate": "27/10/2022",
+      "status": "Pendiente",
+      "products": [
+        {
+          "id": "000189",
+          "contentDescrpition": "Anillo Dragon Miss",
+          "cost": 920.00
+        },
+        {
+          "id": "000190",
+          "contentDescrpition": "Collar Madonna Classic",
+          "cost": 1020.00
+        }
+      ]
+    },
+    {
+      "id": "00002521",
+      "origin": "Trujillo",
+      "pickUpDate": "25/10/2022",
+      "destiny": "Lima",
+      "deliveryDate": "27/10/2022",
+      "status": "En curso",
+      "products": [
+        {
+          "id": "000189",
+          "contentDescrpition": "Anillo Dragon Miss",
+          "cost": 920.00
+        },
+        {
+          "id": "000190",
+          "contentDescrpition": "Collar Madonna Classic",
+          "cost": 1020.00
+        }
+      ]
+    },
+    {
+      "id": "00002522",
+      "origin": "Chiclayo",
+      "pickUpDate": "25/10/2022",
+      "destiny": "Piura",
+      "deliveryDate": "27/10/2022",
+      "status": "En curso",
+      "products": [
+        {
+          "id": "000189",
+          "contentDescrpition": "Anillo Dragon Miss",
+          "cost": 920.00
+        },
+        {
+          "id": "000190",
+          "contentDescrpition": "Collar Madonna Classic",
+          "cost": 1020.00
+        }
+      ]
+    },
+    {
+      "id": "00002523",
+      "origin": "Lima",
+      "pickUpDate": "25/10/2022",
+      "destiny": "Chiclayo",
+      "deliveryDate": "27/10/2022",
+      "status": "Finalizado",
+      "products": [
+        {
+          "id": "000189",
+          "contentDescrpition": "Anillo Dragon Miss",
+          "cost": 920.00
+        },
+        {
+          "id": "000190",
+          "contentDescrpition": "Collar Madonna Classic",
+          "cost": 1020.00
+        }
+      ]
+    }
+  ]
 }

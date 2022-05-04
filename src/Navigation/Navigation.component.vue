@@ -1,5 +1,5 @@
 <template>
-  <TabMenu :model="items" class="my-6 mx-4"/>
+  <TabMenu :model="items" class="mt-6 mx-4"/>
 </template>
 
 <script>
