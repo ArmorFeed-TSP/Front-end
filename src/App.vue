@@ -1,10 +1,16 @@
-<script setup>
+<template>
+  <router-view></router-view>
+</template>
 
+<script>
+export default {
+  name: "App",
+  components: {},
+};
 </script>
 
-<template>
-  <div>
-    <p>Here will be navbar, main content and footer</p>
-  </div>
-  <RouterView />
-</template>
+<style>
+body {
+  margin: 0 0;
+}
+</style>
