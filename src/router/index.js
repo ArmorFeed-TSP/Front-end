@@ -30,6 +30,13 @@ const router = createRouter({
               "../customers/pages/steps-quotation/destination-detail.step.vue"
             ),
         },
+        {
+          path: "/steps/payment",
+          component: () =>
+            import(
+              "../customers/pages/steps-quotation/payment-shipment.step.vue"
+            ),
+        },
       ],
     },
   ],

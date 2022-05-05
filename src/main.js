@@ -21,6 +21,7 @@ import Dropdown from "primevue/dropdown";
 import Column from "primevue/column";
 import Rating from "primevue/rating";
 import Toast from "primevue/toast";
+import Avatar from "primevue/avatar";
 
 const app = createApp(App);
 
@@ -42,5 +43,6 @@ app.component("pv-card", Card);
 app.component("pv-input-text", InputText);
 app.component("pv-input-number", InputNumber);
 app.component("pv-dropdown", Dropdown);
+app.component("pv-avatar", Avatar);
 
 app.mount("#app");
