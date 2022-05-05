@@ -12,6 +12,8 @@ import ColumnGroup from 'primevue/columngroup';     //optional for column groupi
 import Row from 'primevue/row';
 import Button from 'primevue/button';
 import Dialog from 'primevue/dialog';
+import Calendar from 'primevue/calendar';
+import InputText from 'primevue/inputtext';
 
 //PrimeVue Styles
 import "primevue/resources/primevue.min.css";
@@ -39,4 +41,6 @@ app.component('ColumnGroup',ColumnGroup);
 app.component('Row',Row);
 app.component('Button',Button);
 app.component('Dialog',Dialog);
+app.component('Calendar',Calendar);
+app.component('InputText',InputText);
 app.mount("#app");

@@ -4,29 +4,29 @@
       <Column v-for="col in columns" :field="col.field" :header="col.header" :key="col.field"></Column>
       <Column :exportable="false" style="min-width: 8rem">
         <template #body="slotProps">
-          <Button icon="pi pi-car" class="p-button-text p-button-rounded"/>
-          <Button icon="pi pi-eye" class="p-button-text p-button-rounded" @click="dialogEnabled = !dialogEnabled"/>
+          <Button v-if="enableListDialogs" icon="pi pi-car" class="p-button-text p-button-rounded"/>
+          <Button icon="pi pi-eye" class="p-button-text p-button-rounded" @click="showDialog"/>
         </template>
       </Column>
     </DataTable>
     <Dialog v-model:visible="dialogEnabled">
       <template #header>
         <h3>Current Location</h3>
-        <!-- Google Api content goes here -->
       </template>
+      <!-- Google Api content goes here -->
       <template #footer>
-        <Button label="Ok" autofocus @click="dialogEnabled = !dialogEnabled"/>
+        <Button label="Ok" autofocus @click="showDialog"/>
       </template>
     </Dialog>
-    <Button icon="pi pi-plus" label="New Shipment" iconPos="right" class="my-5 mx-auto"/>
+    <Button v-if="enableListDialogs" icon="pi pi-plus" label="New Shipment" iconPos="right" class="my-5 mx-auto" @click="this.$emit('showDialog')"/>
   </div>
 </template>
 
 <script>
-import { ShipmentsApiService } from "./service/Shipments-api.service"
+import { ShipmentsApiService } from "../service/Shipments-api.service"
 
 export default {
-  name: "ShipmentsList",
+  name: "shipments-list",
   data(){
     return {
       shipmentsService: null,
@@ -50,18 +50,30 @@ export default {
       this.currentShipments = this.shipments;
     });
   },
+  props: {
+    enableListDialogs: Boolean
+  },
   methods: {
-    filterContent(selected) {
-      if(selected.code === 'Todo'){
+    filterContent(status) {
+      if(status === 'All'){
         this.currentShipments = this.shipments;
         return;
       }
       this.currentShipments = this.shipments.filter( shipment => {
-        return shipment.status === selected.code;
+        return shipment.status === status;
       });
     },
-    showLocationDialog(){
-
+    addNewItem(item,condition){
+      if(!condition)
+        return false;
+      this.shipmentsService.create(item).then(response => {
+        this.shipments = [...this.shipments,response.data];
+        this.currentShipments = this.shipments;
+      });
+      return true;
+    },
+    showDialog(){
+      this.dialogEnabled = !this.dialogEnabled;
     }
   }
 }

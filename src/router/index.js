@@ -1,4 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import ShipmentsComponent from "../Shipments/pages/shipments.component.vue"
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -9,9 +11,16 @@ const router = createRouter({
       component: () => import("../Home.component.vue")
     },
     {
-      path: '/Shipments',
-      name: 'Shipments',
-      component: () => import("../Shipments/Shipments.component.vue")
+      path: '/shipments/client',
+      name: 'Client shipments',
+      component: () => import("../Shipments/pages/shipments.component.vue"),
+      props: { enableListDialogs: false }
+    },
+    {
+      path: '/shipments/enterprise',
+      name: 'Enterprise shipments',
+      component: () => import("../Shipments/pages/shipments.component.vue"),
+      props: { enableListDialogs: true }
     }
     /*{
       path: '/about',

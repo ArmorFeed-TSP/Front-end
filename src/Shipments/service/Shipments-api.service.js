@@ -4,4 +4,7 @@ export class ShipmentsApiService {
     getAll(){
         return http.get("/shipments");
     }
+    create(data){
+        return http.post("/shipments",data);
+    }
 }
