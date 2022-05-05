@@ -1,4 +1,4 @@
-import http from "../../core/services/http-common";
+import http from "../../core/services/http-comoon"
 
 export class VehiclesApiService {
     getAll() {
