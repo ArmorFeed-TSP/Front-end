@@ -23,6 +23,13 @@ const router = createRouter({
           component: () =>
             import("../customers/pages/steps-quotation/pick-up-detail.vue"),
         },
+        {
+          path: "/steps/destination-detail",
+          component: () =>
+            import(
+              "../customers/pages/steps-quotation/destination-detail.step.vue"
+            ),
+        },
       ],
     },
   ],

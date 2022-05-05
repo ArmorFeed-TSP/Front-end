@@ -25,11 +25,11 @@ export default {
         },
         {
           label: "",
-          to: "/pick-up-detail",
+          to: "/steps/pick-up-detail",
         },
         {
           label: "",
-          to: "/destination-detail",
+          to: "/steps/destination-detail",
         },
         {
           label: "",
