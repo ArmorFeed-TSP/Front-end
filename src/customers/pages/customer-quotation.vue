@@ -2,7 +2,7 @@
   <div class="flex justify-content-center bg-armor-feed">
     <div>
       <div class="p-card px-2 border-none shadow-none bg-armor-feed" style="max-width: 35rem; width: 100%">
-        <pv-step :model="steps" class="p-steps-title"></pv-step>
+        <pv-step :model="steps"></pv-step>
       </div>
       <router-view :formData="formObject" @next-page="nextPage($event)"></router-view>
     </div>

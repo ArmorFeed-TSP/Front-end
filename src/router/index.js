@@ -18,6 +18,11 @@ const router = createRouter({
           component: () =>
             import("../customers/pages/steps-quotation/business-shipping.vue"),
         },
+        {
+          path: "/steps/pick-up-detail",
+          component: () =>
+            import("../customers/pages/steps-quotation/pick-up-detail.vue"),
+        },
       ],
     },
   ],

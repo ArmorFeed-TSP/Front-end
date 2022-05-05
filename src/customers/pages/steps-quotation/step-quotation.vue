@@ -1,5 +1,5 @@
 <template>
-  <div class="stepsdemo-content flex justify-content-center">
+  <div class="flex justify-content-center">
     <pv-card
       class="card-quotation-size p-2 bg-armor-feed border-none shadow-none"
     >
