@@ -4,7 +4,7 @@
       "id": 1,
       "brand": "Toyota",
       "licensePlate": "BBT-231",
-      "year": "2031",
+      "year": "2020",
       "model": "TEF25",
       "maintenanceDate": "20/02/2021"
     },
@@ -50,35 +50,27 @@
     },
     {
       "id": 7,
-      "brand": "Toyota",
-      "licensePlate": "TYU-895",
-      "year": 2020,
-      "model": "TEF25",
-      "maintenanceDate": "12/06/2021"
+      "brand": "Suzuki",
+      "licensePlate": "TYP-123",
+      "year": "2020",
+      "model": "212",
+      "maintenanceDate": "1212-02-12"
     },
     {
       "id": 8,
-      "brand": "Chevrolet",
-      "licensePlate": "FTA-526",
-      "year": 2019,
-      "model": "RE2",
-      "maintenanceDate": "08/07/2021"
+      "brand": "Nissan",
+      "licensePlate": "nss-1",
+      "year": "2019",
+      "model": "tt8",
+      "maintenanceDate": "2020-04-05"
     },
     {
       "id": 9,
-      "brand": "Hyundai",
-      "licensePlate": "YUA-666",
-      "year": 2021,
-      "model": "RER3",
-      "maintenanceDate": "09/08/2021"
-    },
-    {
-      "id": 10,
-      "brand": "123",
-      "licensePlate": "123",
-      "year": "123",
-      "model": "123",
-      "maintenanceDate": "2022-05-13"
+      "brand": "Mazda",
+      "licensePlate": "GHV-543",
+      "year": "2020",
+      "model": "YIU1",
+      "maintenanceDate": "2020-03-01"
     }
   ]
 }
