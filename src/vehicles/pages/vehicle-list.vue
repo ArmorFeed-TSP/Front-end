@@ -1,6 +1,6 @@
 <template>
   <div class="container flex flex-column space-between align-items-center">
-    <div class="card flex-column my-7 flex ">
+    <div class="card flex-column my-5 flex">
       <pv-data-table
           ref="dt"
           :value="vehicles"
@@ -23,7 +23,6 @@
               label="New vehicle"
               icon="pi pi-plus"
               class="p-button-success mr-2"
-
               @click="openNew()"
           />
         </template>
@@ -64,6 +63,7 @@
             <pv-button
                 icon="pi pi-pencil"
                 class="p-button-text p-button-rounded"
+                @click="editVehicle(slotProps.data)"
             />
             <pv-button
                 icon="pi pi-trash"
@@ -71,14 +71,122 @@
             />
           </template>
         </pv-column>
+
+        <pv-dialog
+            v-model:visible="vehicleDialog"
+            :style="{ width: '450px' }"
+            header="Vehicle Information"
+            :modal="true"
+            class="p-fluid"
+        >
+          <div class="field mt-3">
+            <span class="p-float-label">
+              <pv-input-text
+                  type="text"
+                  id="brand"
+                  v-model.trim="vehicle.brand"
+                  required="true"
+                  autofocus
+                  :class="{ 'p-invalid': submitted && !vehicle.brand }"
+              />
+              <label for="brand">Brand</label>
+              <small class="p-error" v-if="submitted && !vehicle.brand"
+              >Brand is required</small
+              >
+            </span>
+          </div>
+
+          <div class="field">
+            <span class="p-float-label">
+              <pv-input-text
+                  type="text"
+                  id="licensePlate"
+                  v-model="vehicle.licensePlate"
+                  required="false"
+                  rows="2"
+                  cols="20"
+              />
+              <label for="licensePlate">License Plate</label>
+              <small class="p-error" v-if="submitted && !vehicle.licensePlate"
+              >License Plate is required</small
+              >
+            </span>
+          </div>
+
+          <div class="field">
+            <span class="p-float-label">
+              <pv-input-text
+                  type="number"
+                  id="year"
+                  v-model="vehicle.year"
+                  required="false"
+                  rows="2"
+                  cols="20"
+              />
+              <label for="year">Year</label>
+              <small class="p-error" v-if="submitted && !vehicle.licensePlate"
+              >Year is required</small
+              >
+            </span>
+          </div>
+
+          <div class="field">
+            <span class="p-float-label">
+              <pv-input-text
+                  type="textarea"
+                  id="model"
+                  v-model="vehicle.model"
+                  required="false"
+                  rows="2"
+                  cols="20"
+              />
+              <label for="model">Model</label>
+              <small class="p-error" v-if="submitted && !vehicle.model"
+              >Model is required</small
+              >
+            </span>
+          </div>
+          <div class="field">
+            <span class="p-float-label">
+              <pv-input-text
+                  type="date"
+                  id="maintenanceDate"
+                  v-model="vehicle.maintenanceDate"
+                  required="false"
+                  rows="2"
+                  cols="20"
+              />
+
+              <small
+                  class="p-error"
+                  v-if="submitted && !vehicle.maintenanceDate"
+              >Date is required</small
+              >
+            </span>
+          </div>
+
+          <template #footer>
+            <pv-button
+                :label="'Cancel'.toUpperCase()"
+                icon="pi pi-times"
+                class="p-button-text"
+                @click="hideDialog"
+            />
+            <pv-button
+                :label="'Save'.toUpperCase()"
+                icon="pi pi-check"
+                class="p-button-text"
+                @click="saveVehicle"
+            />
+          </template>
+        </pv-dialog>
       </pv-data-table>
     </div>
   </div>
 </template>
 
-
 <script>
-import {VehiclesApiService} from "../services/vehicle-api.service";
+import { VehiclesApiService } from "../services/vehicle-api.service";
 import { FilterMatchMode } from "primevue/api";
 
 export default {
@@ -91,7 +199,7 @@ export default {
       filters: {},
       submitted: false,
       vehicleService: null,
-    };s
+    };
   },
   created() {
     this.vehiclesService = new VehiclesApiService();
@@ -101,7 +209,7 @@ export default {
     });
     this.initFilters();
   },
-  methods:{
+  methods: {
     getDisplayableVehicle(vehicle) {
       this.vehicle.id = vehicle.id;
       return vehicle;
@@ -116,8 +224,6 @@ export default {
         maintenanceDate: displayableVehicle.maintenanceDate,
       };
     },
-
-
     openNew() {
       this.vehicles = {};
       this.submitted = false;
@@ -168,18 +274,29 @@ export default {
         this.vehicle = {};
       }
     },
+    editVehicle(vehicle) {
+      console.log(vehicle);
+      this.vehicle = { ...vehicle };
+      console.log(this.vehicle);
+      this.vehicleDialog = true;
+    },
 
     initFilters() {
       this.filters = {
         global: { value: null, matchMode: FilterMatchMode.CONTAINS },
       };
-    }
-
-  }
-}
+    },
+  },
+};
 </script>
 
-
-<style scoped>
-
+<style>
+.p-button-success {
+  position: relative;
+  left: 90%;
+}
+.container {
+  background-color: #e5eced;
+  color: #fff;
+}
 </style>

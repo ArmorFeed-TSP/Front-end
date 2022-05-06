@@ -6,8 +6,17 @@ const router = createRouter({
     {
       path: '/vehicles',
       name: 'Vehicles',
-      component: ()=> import("../vehicles/pages/vehicle-list.vue")
-    },
+      component: () => import("../vehicles/pages/vehicle-list.vue"),
+      props: { enableListDialogs: true }
+    }
+    /*{
+      path: '/about',
+      name: 'about',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import('../views/AboutView.vue')
+    }*/
   ]
 })
 
