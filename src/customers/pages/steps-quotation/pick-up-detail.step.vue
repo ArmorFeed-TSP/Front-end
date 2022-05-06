@@ -1,7 +1,7 @@
 <template>
-  <pv-card class="border-none shadow-none bg-transparent w-full">
+  <pv-card class="border-none shadow-none bg-transparent">
     <template v-slot:title>
-      <div class="text-center">Where do we send it?</div>
+      <div class="text-center">Where do we pick it up?</div>
     </template>
     <template v-slot:subtitle>
       <div class="text-center">clearly details the address</div>
@@ -9,7 +9,7 @@
     <template v-slot:content>
       <div class="p-fluid">
         <div class="field m-2 mb-4">
-          <label class="font-bold" for="destination">Destination</label>
+          <label for="origin" class="font-bold">Origin</label>
           <span class="p-input-icon-left">
             <i class="pi pi-map"></i>
             <pv-input-text
@@ -21,25 +21,28 @@
         </div>
         <div class="details">
           <div class="m-2">
-            <label class="font-bold" for="details">Details</label>
+            <label for="details" class="font-bold">Details</label>
           </div>
           <div class="field m-2">
-            <label class="font-bold" for="type-address">Direction Type</label>
+            <label for="type-address" class="font-bold">Address type</label>
             <pv-dropdown
               id="type-address"
+              v-model="selectedAddressType"
+              :options="addressTypes"
+              optionLabel="name"
               placeholder="Enter the address type"
             ></pv-dropdown>
           </div>
           <div class="field m-2">
-            <label class="font-bold" for="address">Address</label>
+            <label for="address" class="font-bold">Address</label>
             <pv-input-text id="address"></pv-input-text>
           </div>
           <div class="field m-2">
-            <label class="font-bold" for="urbanization">Urbanization</label>
+            <label for="urbanization" class="font-bold">Urbanization</label>
             <pv-input-text id="urbanization"></pv-input-text>
           </div>
           <div class="field m-2">
-            <label class="font-bold" for="reference">Reference</label>
+            <label for="reference" class="font-bold">Reference</label>
             <pv-input-text id="reference"></pv-input-text>
           </div>
         </div>
@@ -68,10 +71,16 @@
 
 <script>
 export default {
-  name: "destination-detail",
+  name: "pick-up-detail",
   data: () => {
     return {
       validationErrors: {},
+      selectedAddressType: null,
+      addressTypes: [
+        { id: 1, name: "Department"},
+        { id: 2, name: "House" },
+        { id: 3, name: "Condominium"},
+      ],
     };
   },
   methods: {
@@ -80,12 +89,12 @@ export default {
       if (this.validateForm()) {
         this.$emit("next-page", {
           formData: {},
-          pageIndex: 3,
+          pageIndex: 2,
         });
       }
     },
     prevPage() {
-      this.$emit("prev-page", { pageIndex: 3 });
+      this.$emit("prev-page", { pageIndex: 2 });
     },
     validateForm() {
       /*
@@ -95,15 +104,8 @@ export default {
       else delete this.validationErrors["destination"];*/
       return !Object.keys(this.validationErrors).length;
     },
-  },
+  }
 };
 </script>
 
-<style>
-.card-quotation-size {
-  width: 100%;
-}
-.bg-armor-feed {
-  background-color: #e5eced;
-}
-</style>
+<style></style>

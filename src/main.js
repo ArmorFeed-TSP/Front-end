@@ -22,6 +22,7 @@ import Column from "primevue/column";
 import Rating from "primevue/rating";
 import Toast from "primevue/toast";
 import Avatar from "primevue/avatar";
+import InputMask from "primevue/inputmask";
 
 const app = createApp(App);
 
@@ -42,6 +43,7 @@ app.component("pv-step", Steps);
 app.component("pv-card", Card);
 app.component("pv-input-text", InputText);
 app.component("pv-input-number", InputNumber);
+app.component("pv-input-mask", InputMask);
 app.component("pv-dropdown", Dropdown);
 app.component("pv-avatar", Avatar);
 

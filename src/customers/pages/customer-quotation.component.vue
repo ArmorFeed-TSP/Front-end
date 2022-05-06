@@ -1,10 +1,8 @@
 <template>
-  <div class="flex justify-content-center bg-armor-feed">
-    <div>
-      <div class="p-card px-2 border-none shadow-none bg-armor-feed" style="max-width: 35rem; width: 100%">
-        <pv-step :model="steps"></pv-step>
-      </div>
-      <router-view :formData="formObject" @next-page="nextPage($event)"></router-view>
+  <div class="bg-armor-feed">
+    <div style="max-width: 45rem; width: 100%; margin: 0 auto">
+      <pv-step :model="steps"></pv-step>
+      <router-view :formData="formObject" @next-page="nextPage($event)" @prev-page="prevPage($event)"></router-view>
     </div>
   </div>
 </template>
@@ -44,7 +42,10 @@ export default {
       for (let field in event.formData) {
         this.formObject[field] = event.formData[field];
       }
-      this.$router.push(this.items[event.pageIndex + 1].to);
+      this.$router.push(this.steps[event.pageIndex + 1].to);
+    },
+    prevPage(event) {
+      this.$router.push(this.steps[event.pageIndex - 1].to);
     },
   }
 };
