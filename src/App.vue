@@ -4,7 +4,7 @@ const items = [
   {label: 'Quotation', icon: 'pi pi-fw pi-home', to:'/'},
   {label: 'Client shipments', icon: 'pi pi-fw pi-calendar', to:'/shipments/client'},
   {label: 'Enterprise shipments', icon: 'pi pi-fw pi-pencil', to: '/shipments/enterprise'},
-  {label: 'My vehicles', icon: 'pi pi-fw pi-file', to: '/'}
+  {label: 'My vehicles', icon: 'pi pi-fw pi-file', to: '/vehicles'}
 ];
 </script>
 <template>

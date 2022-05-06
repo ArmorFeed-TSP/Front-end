@@ -1,27 +1,26 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import ShipmentsComponent from "../Shipments/pages/shipments.component.vue"
-
+import { createRouter, createWebHistory } from "vue-router";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-    {
-      path: '/',
-      name: 'Home',
-      component: () => import("../Home.component.vue")
+      {
+      path: "/shipments/client",
+      name: "Client shipments",
+      component: () => import("../Shipments/pages/shipments.component.vue"),
+      props: { enableListDialogs: false },
     },
     {
-      path: '/shipments/client',
-      name: 'Client shipments',
+      path: "/shipments/enterprise",
+      name: "Enterprise shipments",
       component: () => import("../Shipments/pages/shipments.component.vue"),
-      props: { enableListDialogs: false }
+      props: { enableListDialogs: true },
     },
     {
-      path: '/shipments/enterprise',
-      name: 'Enterprise shipments',
-      component: () => import("../Shipments/pages/shipments.component.vue"),
-      props: { enableListDialogs: true }
-    }
+      path: "/vehicles",
+      name: "Vehicles",
+      component: () => import("../Vehicles/pages/vehicles.component.vue"),
+      props: { enableListDialogs: true },
+    },
     /*{
       path: '/about',
       name: 'about',
@@ -30,7 +29,7 @@ const router = createRouter({
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/AboutView.vue')
     }*/
-  ]
-})
+  ],
+});
 
-export default router
+export default router;

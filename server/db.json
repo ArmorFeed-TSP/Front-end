@@ -126,5 +126,89 @@
       "id": "9493000",
       "apiId": "v1"
     }
+  ],
+  "vehicles": [
+    {
+      "id": 1,
+      "brand": "Toyota",
+      "licensePlate": "BBT-231",
+      "year": "2020",
+      "model": "TEF25",
+      "maintenanceDate": "20/02/2021"
+    },
+    {
+      "id": 2,
+      "brand": "Chevrolet",
+      "licensePlate": "DDE-251",
+      "year": 2020,
+      "model": "RE2",
+      "maintenanceDate": "12/07/2021"
+    },
+    {
+      "id": 3,
+      "brand": "Toyota",
+      "licensePlate": "VET-965",
+      "year": 2017,
+      "model": "TEF25",
+      "maintenanceDate": "21/05/2021"
+    },
+    {
+      "id": 4,
+      "brand": "Hyundai",
+      "licensePlate": "SFF-232",
+      "year": 2021,
+      "model": "RER3",
+      "maintenanceDate": "02/12/2021"
+    },
+    {
+      "id": 5,
+      "brand": "Suzuki",
+      "licensePlate": "WSA-332",
+      "year": 2019,
+      "model": "TTA",
+      "maintenanceDate": "10/11/2021"
+    },
+    {
+      "id": 6,
+      "brand": "Nissan",
+      "licensePlate": "GTA-431",
+      "year": 2021,
+      "model": "NSA1",
+      "maintenanceDate": "24/10/2021"
+    },
+    {
+      "id": 7,
+      "brand": "Suzuki",
+      "licensePlate": "TYP-123",
+      "year": "2020",
+      "model": "212",
+      "maintenanceDate": "1212-02-12"
+    },
+    {
+      "id": 8,
+      "brand": "Mazda",
+      "licensePlate": "GHV-543",
+      "year": "1223",
+      "model": "YIU1",
+      "maintenanceDate": "2022-05-20"
+    },
+    {
+      "status": " ",
+      "id": "9",
+      "brand": "Toyota",
+      "licensePlate": "asd",
+      "year": "2",
+      "model": "asd",
+      "maintenanceDate": "2022-05-17T05:00:00.000Z"
+    },
+    {
+      "status": " ",
+      "id": "10",
+      "brand": "nose",
+      "licensePlate": "12",
+      "maintenanceDate": "2022-05-18T05:00:00.000Z",
+      "model": "asd",
+      "year": "2019"
+    }
   ]
 }
