@@ -1,12 +1,31 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import ShipmentsComponent from "../Shipments/pages/shipments.component.vue"
+import VehiclesComponent from "../Vehicles/pages/vehicles.component.vue"
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
+      path: '/',
+      name: 'Home',
+      component: () => import("../Home.component.vue")
+    },
+    {
+      path: '/shipments/client',
+      name: 'Client shipments',
+      component: () => import("../Shipments/pages/shipments.component.vue"),
+      props: { enableListDialogs: false }
+    },
+    {
+      path: '/shipments/enterprise',
+      name: 'Enterprise shipments',
+      component: () => import("../Shipments/pages/shipments.component.vue"),
+      props: { enableListDialogs: true }
+    },
+    {
       path: '/vehicles',
       name: 'Vehicles',
-      component: () => import("../vehicles/pages/vehicle-list.vue"),
+      component: () => import("../Vehicles/pages/vehicles.component.vue"),
       props: { enableListDialogs: true }
     }
     /*{

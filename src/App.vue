@@ -1,12 +1,14 @@
-
 <script setup>
-const items = [  {label: 'My vehicles', icon: 'pi pi-fw pi-car', to: '/vehicles'}
+import navigation from './shared/navigation/navigation.component.vue';
+
+const items = [
+  {label: 'My vehicles', icon: 'pi pi-fw pi-car', to: '/vehicles'}
 ];
 </script>
 
 <template>
   <div>
-    <p>Here will be navbar, main content and footer</p>
+    <p>Navigation</p>
   </div>
   <RouterView />
 </template>
