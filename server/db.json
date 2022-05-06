@@ -210,5 +210,68 @@
       "model": "asd",
       "year": "2019"
     }
-  ]
+  ],
+  "enterprise": [
+    {
+      "id": 1,
+      "name": "Ups S.A.C",
+      "ruc": "789654321",
+      "phone": "987654321",
+      "email": "ups@correo.com",
+      "priceBase": 12.5,
+      "factorWeight": 0.2,
+      "shippingTime": 48,
+      "ratingService": 3.2,
+      "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/United_Parcel_Service_logo_2014.svg/1200px-United_Parcel_Service_logo_2014.svg.png"
+    },
+    {
+      "id": 2,
+      "name": "DHL Express Peru S.A.C",
+      "ruc": "879765432",
+      "phone": "978654321",
+      "email": "dhl@correo.com",
+      "priceBase": 13.5,
+      "factorWeight": 0.4,
+      "shippingTime": 36,
+      "ratingService": 4.2,
+      "photo": "https://logos-world.net/wp-content/uploads/2020/08/DHL-Symbol.png"
+    },
+    {
+      "id": 3,
+      "name": "Olva Courier S.A.C",
+      "ruc": "678543123",
+      "phone": "765432198",
+      "email": "olva@correo.com",
+      "priceBase": 12.1,
+      "factorWeight": 0.3,
+      "shippingTime": 54,
+      "ratingService": 4.1,
+      "photo": "https://play-lh.googleusercontent.com/MeXv_OgOVC6MRdlgC4SPjQWzsDvLr47N-28mwWvPnrXgI_tskMVA5lSxxFJ1BOIVeFha"
+    },
+    {
+      "id": 4,
+      "name": "Urbano Peru S.A.C",
+      "ruc": "567543123",
+      "phone": "876543211",
+      "email": "urbano@correo.com",
+      "priceBase": 16.1,
+      "factorWeight": 0.4,
+      "shippingTime": 48,
+      "ratingService": 4.5,
+      "photo": "https://play-lh.googleusercontent.com/yUS_LIjrQ5blHXmcwiMqGEXaJSArsTNMJ-U5531CGlObUCtzk4us-GGfYXN9lmQjRzY"
+    },
+    {
+      "id": 5,
+      "name": "Ransa Peru S.A.C",
+      "ruc": "678543123",
+      "phone": "787654355",
+      "email": "ransa@correo.com",
+      "priceBase": 13.7,
+      "factorWeight": 0.5,
+      "shippingTime": 64,
+      "ratingService": 3.3,
+      "photo": "https://www.practicas.pe/organizaciones/practicas-ransa.png"
+    }
+  ],
+  "addresses": []
 }

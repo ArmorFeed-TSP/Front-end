@@ -1,19 +1,27 @@
-<script setup>
+<script>
 import navigation from "./shared/navigation/navigation.component.vue";
-const items = [
-  { label: "Quotation", icon: "pi pi-fw pi-home", to: "/" },
-  {
-    label: "Client shipments",
-    icon: "pi pi-fw pi-calendar",
-    to: "/shipments/client",
+export default {
+  name: "App",
+  components: { navigation },
+  data() {
+    return {
+      items: [
+        { label: "Quotation", icon: "pi pi-fw pi-home", to: "/quotations" },
+        {
+          label: "Client shipments",
+          icon: "pi pi-fw pi-calendar",
+          to: "/shipments/client",
+        },
+        {
+          label: "Enterprise shipments",
+          icon: "pi pi-fw pi-pencil",
+          to: "/shipments/enterprise",
+        },
+        { label: "My vehicles", icon: "pi pi-fw pi-file", to: "/vehicles" },
+      ],
+    };
   },
-  {
-    label: "Enterprise shipments",
-    icon: "pi pi-fw pi-pencil",
-    to: "/shipments/enterprise",
-  },
-  { label: "My vehicles", icon: "pi pi-fw pi-file", to: "/vehicles" },
-];
+};
 </script>
 <template>
   <header>
@@ -42,3 +50,8 @@ const items = [
     <router-view />
   </div>
 </template>
+<style>
+body {
+  margin: 0 0;
+}
+</style>

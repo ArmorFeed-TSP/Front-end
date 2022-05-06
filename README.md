@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 # armor-feed
 
 This template should help get you started developing with Vue 3 in Vite.
@@ -36,6 +37,9 @@ npm run lint
 ```
 =======
 # armor-feed
+=======
+np# armor-feed
+>>>>>>> feature/customer-quotation
 
 This template should help get you started developing with Vue 3 in Vite.
 

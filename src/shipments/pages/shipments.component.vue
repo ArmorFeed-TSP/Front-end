@@ -14,7 +14,7 @@ import ShipmentsList from "./shipments-list.component.vue";
 import ShipmentsForm from "./shipments-form.component.vue";
 
 export default {
-  name: "shipments",
+  name: "shipments-customer",
   components: {
     ShipmentsFilter,
     ShipmentsList,
