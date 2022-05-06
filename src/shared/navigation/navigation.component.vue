@@ -1,5 +1,5 @@
 <template>
-  <pv-tab-menu :model="items" class="mt-6 mx-4"/>
+  <pv-tab-menu :model="items"/>
 </template>
 
 <script>

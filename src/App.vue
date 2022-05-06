@@ -9,15 +9,18 @@ const items = [
 </script>
 <template>
   <header>
-    <pv-toolbar class="bg-primary">
+    <pv-toolbar class="bg-primary-reverse">
       <template #start>
-        <h3>ArmorFeed</h3>
+        <pv-avatar class="m-auto">
+          <img src="./assets/Logo.png" alt="Logo">
+        </pv-avatar>
+        <h3 class="text-500">ArmorFeed</h3>
       </template>
       <template #end>
         <div class="flex-column">
-          <pv-button><i class="pi pi-bell"></i></pv-button>
-          <pv-button><i class="pi pi-cog"></i></pv-button>
-          <pv-button>User Name</pv-button>
+          <pv-button class="bg-white border-0"><i class="pi pi-bell text-500"></i></pv-button>
+          <pv-button class="bg-white border-0"><i class="pi pi-cog text-500"></i></pv-button>
+          <pv-button class="text-500 bg-white border-0">Italo Silva</pv-button>
         </div>
       </template>
     </pv-toolbar>
