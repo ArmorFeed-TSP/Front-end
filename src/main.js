@@ -21,6 +21,7 @@ import "primevue/resources/themes/md-light-indigo/theme.css";
 import "primevue/resources/themes/mdc-dark-indigo/theme.css";
 import "primevue/resources/themes/bootstrap4-light-blue/theme.css";
 import "/node_modules/primeflex/primeflex.css";
+import Toolbar from "primevue/toolbar";
 
 const app = createApp(App);
 
@@ -41,4 +42,5 @@ app.component('pv-button',Button);
 app.component('pv-dialog',Dialog);
 app.component('pv-calendar',Calendar);
 app.component('pv-input-text',InputText);
+app.component('pv-toolbar', Toolbar);
 app.mount("#app");

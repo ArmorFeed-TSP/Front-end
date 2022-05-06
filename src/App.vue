@@ -8,6 +8,20 @@ const items = [
 ];
 </script>
 <template>
+  <header>
+    <pv-toolbar class="bg-primary">
+      <template #start>
+        <h3>ArmorFeed</h3>
+      </template>
+      <template #end>
+        <div class="flex-column">
+          <pv-button><i class="pi pi-bell"></i></pv-button>
+          <pv-button><i class="pi pi-cog"></i></pv-button>
+          <pv-button>User Name</pv-button>
+        </div>
+      </template>
+    </pv-toolbar>
+  </header>
   <div class="w-full">
     <navigation :items="items" :paramActiveTab="0"></navigation>
     <router-view/>
