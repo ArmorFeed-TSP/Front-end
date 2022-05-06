@@ -80,6 +80,8 @@ export default {
       creditCardNumber: null,
       creditCardCvv: null,
       creditCardExpiration: null,
+      payment: {},
+      dataObject: {},
     };
   },
   methods: {
@@ -98,6 +100,9 @@ export default {
       return !Object.keys(this.validationErrors).length;
     },
   },
+  mounted() {
+    this.dataObject = JSON.parse(localStorage.getItem("formObject"));
+  }
 };
 </script>
 

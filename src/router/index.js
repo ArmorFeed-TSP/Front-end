@@ -9,35 +9,36 @@ const router = createRouter({
       component: CustomerQuotation,
       children: [
         {
-          path: "/steps",
+          path: "/quotations",
+          name: "customer-quotation",
           component: () =>
             import(
               "../customers/pages/steps-quotation/quotation-shipment.step.vue"
             ),
         },
         {
-          path: "/steps/business-shipping",
+          path: "/quotations/business-shipping",
           component: () =>
             import(
-              "../customers/pages/steps-quotation/business-shipping.step.vue"
+              "../customers/pages/steps-quotation/enterprise-shipping.step.vue"
             ),
         },
         {
-          path: "/steps/pick-up-detail",
+          path: "/quotations/pick-up-detail",
           component: () =>
             import(
               "../customers/pages/steps-quotation/pick-up-detail.step.vue"
             ),
         },
         {
-          path: "/steps/destination-detail",
+          path: "/quotations/destination-detail",
           component: () =>
             import(
               "../customers/pages/steps-quotation/destination-detail.step.vue"
             ),
         },
         {
-          path: "/steps/payment",
+          path: "/quotations/payment",
           component: () =>
             import(
               "../customers/pages/steps-quotation/payment-shipment.step.vue"

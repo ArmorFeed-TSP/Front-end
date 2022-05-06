@@ -40,9 +40,8 @@
             <label for="business" class="font-bold">Business</label>
           </div>
           <div>
-            <pv-toast></pv-toast>
             <pv-data-table
-              :value="businessShipment"
+              :value="enterprises"
               :paginator="true"
               :rows="5"
               class="m-2 border-round"
@@ -69,7 +68,7 @@
                   </div>
                 </template>
               </pv-column>
-              <pv-column field="date" header="Date"></pv-column>
+              <pv-column field="dateShipmentShow" header="Date"></pv-column>
               <pv-column field="price" header="Price">
                 <template #body="slotProps">
                   {{ formatCurrency(slotProps.data.price) }}
@@ -111,15 +110,35 @@
 </template>
 
 <script>
+import EnterpriseService from "../../services/enterprise.service";
+
 export default {
   name: "business-shipping",
   data() {
     return {
+      quantity: null,
+      weight: null,
       selectedFilter: null,
       sortOrder: null,
       sortField: null,
       selectedCompany: null,
       validationErrors: {},
+      enterprises: [],
+      errors: [],
+      months: [
+        "January",
+        "February",
+        "March",
+        "April",
+        "April",
+        "April",
+        "April",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December",
+      ],
       priceFilter: [
         {
           label: "High prices",
@@ -142,52 +161,6 @@ export default {
           label: "Low quality service",
           code: "LQ",
           value: "ratingService",
-        },
-      ],
-      businessShipment: [
-        {
-          id: 1,
-          name: "Ups S.A.C",
-          photo:
-            "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/United_Parcel_Service_logo_2014.svg/1200px-United_Parcel_Service_logo_2014.svg.png",
-          date: "27 of december",
-          price: 24.0,
-          ratingService: 4.5,
-        },
-        {
-          id: 2,
-          name: "DHL Express Peru S.A.C",
-          photo:
-            "https://logos-world.net/wp-content/uploads/2020/08/DHL-Symbol.png",
-          date: "27 of december",
-          price: 23.9,
-          ratingService: 3.8,
-        },
-        {
-          id: 4,
-          name: "Olva Courier S.A.C",
-          photo:
-            "https://play-lh.googleusercontent.com/MeXv_OgOVC6MRdlgC4SPjQWzsDvLr47N-28mwWvPnrXgI_tskMVA5lSxxFJ1BOIVeFha",
-          date: "28 of december",
-          price: 22.9,
-          ratingService: 2.9,
-        },
-        {
-          id: 5,
-          name: "Urbano Peru S.A.C",
-          photo:
-            "https://play-lh.googleusercontent.com/yUS_LIjrQ5blHXmcwiMqGEXaJSArsTNMJ-U5531CGlObUCtzk4us-GGfYXN9lmQjRzY",
-          date: "26 of december",
-          price: 22.9,
-          ratingService: 2.8,
-        },
-        {
-          id: 6,
-          name: "Ransa Peru S.A.C",
-          photo: "https://www.practicas.pe/organizaciones/practicas-ransa.png",
-          date: "28 of december",
-          price: 20.9,
-          ratingService: 2.8,
         },
       ],
     };
@@ -232,8 +205,16 @@ export default {
     nextPage() {
       this.submitted = true;
       if (this.validateForm()) {
+        let formData = JSON.parse(localStorage.getItem("formObject"));
         this.$emit("next-page", {
-          formData: {},
+          formData: {
+            origin: formData.origin,
+            destination: formData.destination,
+            enterpriseId: this.selectedCompany.id,
+            deliveryDate: this.selectedCompany.dateShipment,
+            amount: this.selectedCompany.price,
+            status: "pending",
+          },
           pageIndex: 1,
         });
       }
@@ -249,14 +230,50 @@ export default {
       else delete this.validationErrors["destination"];*/
       return !Object.keys(this.validationErrors).length;
     },
+    async getAllEnterprises() {
+      await EnterpriseService.getAll()
+        .then((response) => {
+          response.data.forEach((enterprise) => {
+            enterprise.price = this.getPrice(enterprise);
+            enterprise.dateShipment = this.getDateShipment(enterprise);
+            enterprise.dateShipmentShow = this.getDateShipmentInFormat(
+              enterprise.dateShipment
+            );
+          });
+          this.enterprises = response.data;
+        })
+        .catch((error) => {
+          this.errors.push(error);
+        });
+    },
+    getPrice(enterprise) {
+      let price =
+        this.quantity *
+        (enterprise.priceBase + enterprise.factorWeight * this.weight);
+      return Number(price.toFixed(2));
+    },
+    getDateShipment(enterprise) {
+      let today = new Date();
+      today.setSeconds(enterprise.shippingTime * 3600);
+      return (
+        today.getFullYear() + "/" + today.getMonth() + "/" + today.getDate()
+      );
+    },
+    getDateShipmentInFormat(date) {
+      let newDate = new Date(date);
+      return newDate.getDate() + " of " + this.months[newDate.getMonth()];
+    },
+  },
+  mounted() {
+    let formObject = JSON.parse(localStorage.getItem("formObject"));
+    this.weight = formObject.weight;
+    this.quantity = formObject.quantity;
+    this.getAllEnterprises();
   },
 };
 </script>
 
 <style scoped>
-.bg-armor-feed {
-  background-color: #e5eced;
-}
 .product-image {
   max-width: 24px;
   max-height: 24px;

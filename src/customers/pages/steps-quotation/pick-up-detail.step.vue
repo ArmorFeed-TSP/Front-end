@@ -14,7 +14,7 @@
             <i class="pi pi-map"></i>
             <pv-input-text
               class="p-disabled"
-              v-model="origin"
+              v-model="dataObject.origin"
               placeholder="City or Code Postal"
             ></pv-input-text>
           </span>
@@ -35,15 +35,24 @@
           </div>
           <div class="field m-2">
             <label for="address" class="font-bold">Address</label>
-            <pv-input-text id="address"></pv-input-text>
+            <pv-input-text
+              id="address"
+              v-model="originAddress.address"
+            ></pv-input-text>
           </div>
           <div class="field m-2">
             <label for="urbanization" class="font-bold">Urbanization</label>
-            <pv-input-text id="urbanization"></pv-input-text>
+            <pv-input-text
+              id="urbanization"
+              v-model="originAddress.urbanization"
+            ></pv-input-text>
           </div>
           <div class="field m-2">
             <label for="reference" class="font-bold">Reference</label>
-            <pv-input-text id="reference"></pv-input-text>
+            <pv-input-text
+              id="reference"
+              v-model="originAddress.reference"
+            ></pv-input-text>
           </div>
         </div>
       </div>
@@ -76,19 +85,36 @@ export default {
     return {
       validationErrors: {},
       selectedAddressType: null,
+      pickUpDate: null,
+      dataObject: {},
       addressTypes: [
-        { id: 1, name: "Department"},
+        { id: 1, name: "Department" },
         { id: 2, name: "House" },
-        { id: 3, name: "Condominium"},
+        { id: 3, name: "Condominium" },
       ],
+      originAddress: {
+        department: null,
+        typeAddress: null,
+        address: null,
+        urbanization: null,
+        reference: null,
+      },
     };
   },
   methods: {
     nextPage() {
       this.submitted = true;
       if (this.validateForm()) {
+        this.createAddressOrigin();
         this.$emit("next-page", {
-          formData: {},
+          formData: {
+            origin: this.originAddress,
+            destinationDepartment: this.dataObject.destination,
+            deliveryDate: this.dataObject.deliveryDate,
+            pickUpDate: this.getPickUpDate(),
+            enterpriseId: this.dataObject.enterpriseId,
+            amount: this.dataObject.amount,
+          },
           pageIndex: 2,
         });
       }
@@ -104,7 +130,19 @@ export default {
       else delete this.validationErrors["destination"];*/
       return !Object.keys(this.validationErrors).length;
     },
-  }
+    getPickUpDate() {
+      let date = new Date();
+      date.setSeconds(1*86400);
+      return date.getFullYear()+'/'+date.getMonth()+'/'+date.getDate();
+    },
+    createAddressOrigin() {
+      this.originAddress.typeAddress = this.selectedAddressType.name;
+      this.originAddress.department = this.dataObject.origin;
+    },
+  },
+  mounted() {
+    this.dataObject = JSON.parse(localStorage.getItem("formObject"));
+  },
 };
 </script>
 

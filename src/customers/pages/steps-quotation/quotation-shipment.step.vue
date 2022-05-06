@@ -47,6 +47,7 @@
               id="quantity"
               v-model="valueQuantity"
               mode="decimal"
+              class="bg-button"
               showButtons
               :min="1"
               :max="100"
@@ -57,6 +58,7 @@
             <pv-input-number
               id="weight"
               v-model="valueWeight"
+              placeholder="Example: 10 kg"
               :min="0.01"
               :max="1000.0"
               suffix=" kg"
@@ -71,6 +73,7 @@
             <pv-input-number
               :min="0.01"
               :max="2100"
+              placeholder="Example: 5 cm"
               id="large"
               suffix=" cm"
               v-model="valueLarge"
@@ -82,9 +85,10 @@
             <pv-input-number
               :min="0.01"
               :max="2100"
+              placeholder="Example: 2 cm"
               id="witch"
               suffix=" cm"
-              v-model="valueWeight"
+              v-model="valueWitch"
             >
             </pv-input-number>
           </div>
@@ -93,6 +97,7 @@
             <pv-input-number
               :min="0.01"
               :max="2100"
+              placeholder="Example: 3 cm"
               id="height"
               suffix=" cm"
               v-model="valueHeight"
@@ -104,7 +109,7 @@
     <template v-slot:footer>
       <div style="width: 100%">
         <pv-button
-          class="p-button-info text-white"
+          class="p-button-info text-white bg-button"
           label="Quotation"
           icon="pi pi-angle-right"
           iconPos="right"
@@ -152,10 +157,10 @@ export default {
       ],
       submitted: false,
       valueQuantity: 1,
-      valueWeight: 0.01,
-      valueLarge: 0.01,
-      valueWitch: 0.01,
-      valueHeight: 0.01,
+      valueWeight: null,
+      valueLarge: null,
+      valueWitch: null,
+      valueHeight: null,
       validationErrors: {},
     };
   },
@@ -163,8 +168,19 @@ export default {
     nextPage() {
       this.submitted = true;
       if (this.validateForm()) {
+        let weightDimensional =
+          (this.valueHeight + this.valueWitch + this.valueLarge) / 5000;
+        let weight =
+          weightDimensional > this.valueWeight
+            ? weightDimensional
+            : this.valueWeight;
         this.$emit("next-page", {
-          formData: { origin: this.origin, destination: this.destination },
+          formData: {
+            origin: this.selectedDepartmentOrigin.name,
+            destination: this.selectedDepartmentDestination.name,
+            quantity: this.valueQuantity,
+            weight,
+          },
           pageIndex: 0,
         });
       }
@@ -181,4 +197,8 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.bg-button {
+  background-color: #5D5FEF;
+}
+</style>
