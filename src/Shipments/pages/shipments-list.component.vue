@@ -22,7 +22,7 @@
       <template #header>
         <h3>Current Location</h3>
       </template>
-      <!-- Google Api content goes here -->
+      <img src="https://www.esedeerre.com/wp-content/uploads/2012/06/geolocalizacion-google-maps.jpg">
       <template #footer>
         <pv-button label="Ok" autofocus @click="showDialog"/>
       </template>
