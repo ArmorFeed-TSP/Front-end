@@ -78,11 +78,12 @@ export default {
         enterpriseId: this.formObject.enterpriseId,
         origin: this.departmentOrigin,
         addressOriginId: this.addressOriginId,
-        destination: this.departmentDestination,
+        destiny: this.departmentDestination,
         addressDestinationId: this.addressDestinationId,
         pickUpDate: this.formObject.pickUpDate,
         deliveryDate: this.formObject.deliveryDate,
         amount: this.formObject.amount,
+        status: "Pending",
       };
       await ShipmentsService.create(shipment)
         .then((response) => {

@@ -1,5 +1,7 @@
 <template>
-  <pv-tab-menu :model="items" class="mt-6 mx-4" />
+  <div class="flex justify-content-center">
+    <pv-tab-menu :model="items" class="mt-6 mx-4" />
+  </div>
 </template>
 
 <script>
