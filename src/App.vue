@@ -9,7 +9,7 @@ const items = [
 </script>
 <template>
   <header>
-    <pv-toolbar class="bg-primary-reverse">
+    <pv-toolbar class="bg-white">
       <template #start>
         <pv-avatar class="m-auto">
           <img src="./assets/Logo.png" alt="Logo">
