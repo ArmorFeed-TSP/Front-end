@@ -1,14 +1,28 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import ShipmentsComponent from "../Shipments/pages/shipments.component.vue"
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [/*
+  routes: [
     {
       path: '/',
-      name: 'home',
-      component: HomeView
+      name: 'Home',
+      component: () => import("../Home.component.vue")
     },
     {
+      path: '/shipments/client',
+      name: 'Client shipments',
+      component: () => import("../Shipments/pages/shipments.component.vue"),
+      props: { enableListDialogs: false }
+    },
+    {
+      path: '/shipments/enterprise',
+      name: 'Enterprise shipments',
+      component: () => import("../Shipments/pages/shipments.component.vue"),
+      props: { enableListDialogs: true }
+    }
+    /*{
       path: '/about',
       name: 'about',
       // route level code-splitting

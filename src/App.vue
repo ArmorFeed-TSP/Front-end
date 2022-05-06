@@ -1,10 +1,15 @@
 <script setup>
-
+import navigation from './shared/navigation/navigation.component.vue';
+const items = [
+  {label: 'Quotation', icon: 'pi pi-fw pi-home', to:'/'},
+  {label: 'Client shipments', icon: 'pi pi-fw pi-calendar', to:'/shipments/client'},
+  {label: 'Enterprise shipments', icon: 'pi pi-fw pi-pencil', to: '/shipments/enterprise'},
+  {label: 'My vehicles', icon: 'pi pi-fw pi-file', to: '/'}
+];
 </script>
-
 <template>
-  <div>
-    <p>Here will be navbar, main content and footer</p>
+  <div class="w-full">
+    <navigation :items="items" :paramActiveTab="0"></navigation>
+    <router-view/>
   </div>
-  <RouterView />
 </template>
