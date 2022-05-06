@@ -13,6 +13,9 @@ import Button from "primevue/button";
 import Dialog from "primevue/dialog";
 import Calendar from "primevue/calendar";
 import InputText from "primevue/inputtext";
+import Card from "primevue/card";
+import Toolbar from "primevue/toolbar";
+import Avatar from "primevue/avatar";
 
 //PrimeVue Styles
 import "primevue/resources/primevue.min.css";
@@ -21,7 +24,6 @@ import "primevue/resources/themes/md-light-indigo/theme.css";
 import "primevue/resources/themes/mdc-dark-indigo/theme.css";
 import "primevue/resources/themes/bootstrap4-light-blue/theme.css";
 import "/node_modules/primeflex/primeflex.css";
-import Card from "primevue/card";
 
 const app = createApp(App);
 
@@ -43,4 +45,7 @@ app.component("pv-dialog", Dialog);
 app.component("pv-calendar", Calendar);
 app.component("pv-input-text", InputText);
 app.component("pv-card", Card);
+app.component("pv-tool-bar", Toolbar);
+app.component("pv-avatar", Avatar);
+
 app.mount("#app");

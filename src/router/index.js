@@ -3,7 +3,7 @@ import { createRouter, createWebHistory } from "vue-router";
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-      {
+    {
       path: "/shipments/client",
       name: "Client shipments",
       component: () => import("../Shipments/pages/shipments.component.vue"),
