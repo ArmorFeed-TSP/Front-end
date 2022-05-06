@@ -1,22 +1,22 @@
 <template>
-  <Dialog v-model:visible="enabled" :style="{width: '450px'}" header="New Shipment" :modal="true" class="p-fluid">
+  <pv-dialog v-model:visible="enabled" :style="{width: '450px'}" header="New Shipment" :modal="true" class="p-fluid">
     <div v-for="field in fields" class="field">
       <label>{{field.label}}</label>
       <div v-if="field.type === 1" class="field">
-        <InputText v-model.trim="shipment[field.name]" required="true" autofocus :class="{'p-invalid': submitted && !shipment[field.name]}" />
+        <pv-input-text v-model.trim="shipment[field.name]" required="true" autofocus :class="{'p-invalid': submitted && !shipment[field.name]}" />
         <small class="p-error" v-if="submitted && !shipment[field.name]">{{field.label}} is required</small>
       </div>
       <div v-else-if="field.type === 2">
-        <Calendar v-model="shipment[field.name]" dateFormat="dd/mm/yy"/>
+        <pv-calendar v-model="shipment[field.name]" dateFormat="dd/mm/yy"/>
       </div>
       <div v-else>
         <p>Pending</p>
       </div>
     </div>
     <template #footer>
-      <Button label="Submit" autofocus @click="handleSubmit"/>
+      <pv-button label="Submit" autofocus @click="handleSubmit"/>
     </template>
-  </Dialog>
+  </pv-dialog>
 </template>
 
 <script>

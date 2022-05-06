@@ -8,7 +8,6 @@ import TabPanel from 'primevue/tabpanel';
 import TabMenu from 'primevue/tabmenu';
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
-import ColumnGroup from 'primevue/columngroup';     //optional for column grouping
 import Row from 'primevue/row';
 import Button from 'primevue/button';
 import Dialog from 'primevue/dialog';
@@ -31,16 +30,15 @@ app.use(router);
 app.use(PrimeVue, { ripple: true });
 
 //PrimeVue Components
-app.component('DropDown',Dropdown);
-app.component('TabView',TabView);
-app.component('TabPanel',TabPanel);
-app.component('TabMenu',TabMenu);
-app.component('DataTable',DataTable);
-app.component('Column',Column);
-app.component('ColumnGroup',ColumnGroup);
-app.component('Row',Row);
-app.component('Button',Button);
-app.component('Dialog',Dialog);
-app.component('Calendar',Calendar);
-app.component('InputText',InputText);
+app.component('pv-drop-down',Dropdown);
+app.component('pv-tab-view',TabView);
+app.component('pv-tab-panel',TabPanel);
+app.component('pv-tab-menu',TabMenu);
+app.component('pv-data-table',DataTable);
+app.component('pv-column',Column);
+app.component('pv-row',Row);
+app.component('pv-button',Button);
+app.component('pv-dialog',Dialog);
+app.component('pv-calendar',Calendar);
+app.component('pv-input-text',InputText);
 app.mount("#app");

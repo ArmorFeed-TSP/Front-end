@@ -1,11 +1,11 @@
 <template>
-<DropDown class="w-30rem text-center py-3 px-4 text-1xl mt-7" v-model="selectedItem" :options="options" @change="handleClick">
+<pv-drop-down class="w-30rem text-center py-3 px-4 text-1xl mt-7" v-model="selectedItem" :options="options" @change="handleClick">
 <template #option="slotProps">
   <div class="p-dropdown-car-option text-center py-3 px-7 text-1xl">
     <span>{{ slotProps.option}}</span>
   </div>
 </template>
-</DropDown>
+</pv-drop-down>
 </template>
 
 <script>

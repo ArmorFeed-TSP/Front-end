@@ -1,24 +1,24 @@
 <template>
   <div class="my-7 flex flex-column">
-    <DataTable :value="currentShipments" responsiveLayout="stack" :paginator="true" :rows="10">
-      <Column v-for="col in columns" :field="col.field" :header="col.header" :key="col.field"></Column>
-      <Column :exportable="false" style="min-width: 8rem">
+    <pv-data-table :value="currentShipments" responsiveLayout="stack" :paginator="true" :rows="10">
+      <pv-column v-for="col in columns" :field="col.field" :header="col.header" :key="col.field"></pv-column>
+      <pv-column :exportable="false" style="min-width: 8rem">
         <template #body="slotProps">
-          <Button v-if="enableListDialogs" icon="pi pi-car" class="p-button-text p-button-rounded"/>
-          <Button icon="pi pi-eye" class="p-button-text p-button-rounded" @click="showDialog"/>
+          <pv-button v-if="enableListDialogs" icon="pi pi-car" class="p-button-text p-button-rounded"/>
+          <pv-button icon="pi pi-eye" class="p-button-text p-button-rounded" @click="showDialog"/>
         </template>
-      </Column>
-    </DataTable>
-    <Dialog v-model:visible="dialogEnabled">
+      </pv-column>
+    </pv-data-table>
+    <pv-dialog v-model:visible="dialogEnabled">
       <template #header>
         <h3>Current Location</h3>
       </template>
       <!-- Google Api content goes here -->
       <template #footer>
-        <Button label="Ok" autofocus @click="showDialog"/>
+        <pv-button label="Ok" autofocus @click="showDialog"/>
       </template>
-    </Dialog>
-    <Button v-if="enableListDialogs" icon="pi pi-plus" label="New Shipment" iconPos="right" class="my-5 mx-auto" @click="this.$emit('showDialog')"/>
+    </pv-dialog>
+    <pv-button v-if="enableListDialogs" icon="pi pi-plus" label="New Shipment" iconPos="right" class="my-5 mx-auto" @click="this.$emit('showDialog')"/>
   </div>
 </template>
 
