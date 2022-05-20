@@ -1,7 +1,7 @@
 import http from "../../core/services/http-common";
 
 export class ShipmentsApiService {
-    endPoint = 'http://localhost:3001/shipments';
+    endPoint = '/shipments';
     getAll(){
         return http.get("/shipments");
     }
@@ -12,3 +12,4 @@ export class ShipmentsApiService {
         return http.put(`${this.endPoint}/${id}`, updateShipmentStatus);
     }
 }
+export default new ShipmentsApiService();

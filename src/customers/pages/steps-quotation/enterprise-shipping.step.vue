@@ -2,7 +2,7 @@
   <div class="flex justify-content-center">
     <pv-card class="border-none shadow-none bg-transparent w-full">
       <template v-slot:title>
-        <div class="text-center">Select a company</div>
+        <div class="text-center">Select a enterprise</div>
       </template>
       <template v-slot:subtitle>
         <div class="text-center">
@@ -37,7 +37,15 @@
         </div>
         <div class="pb-4">
           <div class="m-2">
-            <label for="business" class="font-bold">Business</label>
+            <label
+              for="business"
+              class="font-bold"
+              :class="{ 'p-error': !enterprise && submitted }"
+              >Business
+              <small v-show="!enterprise && submitted" class="p-error"
+                >(*)</small
+              >
+            </label>
           </div>
           <div>
             <pv-data-table
@@ -45,11 +53,9 @@
               :paginator="true"
               :rows="5"
               class="m-2 border-round"
-              v-model:selection="selectedCompany"
+              v-model:selection="enterprise"
               selectionMode="single"
               dataKey="id"
-              @rowSelect="onRowSelect"
-              @rowUnselect="onRowUnselect"
               responsiveLayout="scroll"
               :sortOrder="sortOrder"
               :sortField="sortField"
@@ -68,7 +74,11 @@
                   </div>
                 </template>
               </pv-column>
-              <pv-column field="dateShipmentShow" header="Date"></pv-column>
+              <pv-column header="Date">
+                <template #body="slotProps">
+                  {{ getDateShipmentInFormat(slotProps.data.dateShipment) }}
+                </template>
+              </pv-column>
               <pv-column field="price" header="Price">
                 <template #body="slotProps">
                   {{ formatCurrency(slotProps.data.price) }}
@@ -84,25 +94,28 @@
                 </template>
               </pv-column>
             </pv-data-table>
+            <div class="flex justify-content-end m-2">
+              <small v-show="!enterprise && submitted" class="p-error"
+                >*Select a enterprise please</small
+              >
+            </div>
+            <div class="flex justify-content-between my-2">
+              <pv-button
+                class="p-button-success text-white w-full m-2"
+                label="Come Back"
+                icon="pi pi-angle-left"
+                iconPos="left"
+                @click="prevPage"
+              ></pv-button>
+              <pv-button
+                class="p-button-info text-white w-full m-2"
+                label="Continue"
+                icon="pi pi-angle-right"
+                iconPos="right"
+                @click="nextPage"
+              ></pv-button>
+            </div>
           </div>
-        </div>
-      </template>
-      <template v-slot:footer>
-        <div style="width: 100%" class="flex justify-content-between">
-          <pv-button
-            class="p-button-success text-white w-full m-2"
-            label="Come Back"
-            icon="pi pi-angle-left"
-            iconPos="left"
-            @click="prevPage"
-          ></pv-button>
-          <pv-button
-            class="p-button-info text-white w-full m-2"
-            label="Continue"
-            icon="pi pi-angle-right"
-            iconPos="right"
-            @click="nextPage"
-          ></pv-button>
         </div>
       </template>
     </pv-card>
@@ -111,18 +124,20 @@
 
 <script>
 import EnterpriseService from "../../services/enterprise.service";
-
+import { useVuelidate } from "@vuelidate/core";
 export default {
   name: "business-shipping",
+  setup: () => ({ v$: useVuelidate() }),
   data() {
     return {
+      submitted: false,
       quantity: null,
       weight: null,
       selectedFilter: null,
       sortOrder: null,
       sortField: null,
-      selectedCompany: null,
-      validationErrors: {},
+      formObject: {},
+      enterprise: null,
       enterprises: [],
       errors: [],
       months: [
@@ -166,12 +181,6 @@ export default {
     };
   },
   methods: {
-    formatCurrency(value) {
-      return value.toLocaleString("en-US", {
-        style: "currency",
-        currency: "USD",
-      });
-    },
     onRowSelect(event) {
       this.$toast.add({
         severity: "info",
@@ -205,14 +214,12 @@ export default {
     nextPage() {
       this.submitted = true;
       if (this.validateForm()) {
-        let formData = JSON.parse(localStorage.getItem("formObject"));
         this.$emit("next-page", {
           formData: {
-            origin: formData.origin,
-            destination: formData.destination,
-            enterpriseId: this.selectedCompany.id,
-            deliveryDate: this.selectedCompany.dateShipment,
-            amount: this.selectedCompany.price,
+            enterpriseId: this.enterprise.id,
+            pickUpDate: this.getPickUpDate(),
+            deliveryDate: this.enterprise.dateShipment,
+            amount: this.enterprise.price,
             status: "pending",
           },
           pageIndex: 1,
@@ -220,15 +227,11 @@ export default {
       }
     },
     prevPage() {
+      this.submitted = false;
       this.$emit("prev-page", { pageIndex: 1 });
     },
     validateForm() {
-      /*
-      if (!this.origin.trim()) this.validationErrors["origin"] = true;
-      else delete this.validationErrors["origin"];
-      if (!this.destination.trim()) this.validationErrors["destination"] = true;
-      else delete this.validationErrors["destination"];*/
-      return !Object.keys(this.validationErrors).length;
+      return this.enterprise != null;
     },
     async getAllEnterprises() {
       await EnterpriseService.getAll()
@@ -236,9 +239,6 @@ export default {
           response.data.forEach((enterprise) => {
             enterprise.price = this.getPrice(enterprise);
             enterprise.dateShipment = this.getDateShipment(enterprise);
-            enterprise.dateShipmentShow = this.getDateShipmentInFormat(
-              enterprise.dateShipment
-            );
           });
           this.enterprises = response.data;
         })
@@ -246,10 +246,19 @@ export default {
           this.errors.push(error);
         });
     },
+    getWeight() {
+      const height = this.formObject.height;
+      const width = this.formObject.width;
+      const length = this.formObject.length;
+      const weight = this.formObject.weight;
+      let weightDimensional = (height * width * length) / 5000;
+      return weight > weightDimensional ? weight : weightDimensional;
+    },
     getPrice(enterprise) {
-      let price =
-        this.quantity *
-        (enterprise.priceBase + enterprise.factorWeight * this.weight);
+      const quantity = this.formObject.quantity;
+      const priceBase = enterprise.priceBase;
+      const factorWeight = enterprise.factorWeight;
+      let price = quantity * (priceBase + factorWeight * this.weight);
       return Number(price.toFixed(2));
     },
     getDateShipment(enterprise) {
@@ -259,17 +268,26 @@ export default {
         today.getFullYear() + "/" + today.getMonth() + "/" + today.getDate()
       );
     },
+    getPickUpDate() {
+      let date = new Date();
+      date.setSeconds(1 * 86400);
+      return date.getFullYear() + "/" + date.getMonth() + "/" + date.getDate();
+    },
     getDateShipmentInFormat(date) {
       let newDate = new Date(date);
       return newDate.getDate() + " of " + this.months[newDate.getMonth()];
     },
+    formatCurrency(value) {
+      return value.toLocaleString("en-US", {
+        style: "currency",
+        currency: "USD",
+      });
+    },
   },
   mounted() {
-    let formObject = JSON.parse(localStorage.getItem("formObject"));
-    this.weight = formObject.weight;
-    this.quantity = formObject.quantity;
+    this.weight = this.getWeight();
     this.getAllEnterprises();
-  },
+  }
 };
 </script>
 

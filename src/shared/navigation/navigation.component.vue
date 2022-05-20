@@ -1,6 +1,38 @@
 <template>
+  <div class="navigation-container">
+    <pv-tool-bar>
+      <template #start>
+        <a href="/" class="no-underline">
+          <div class="flex align-items-center">
+            <img
+              class="logo"
+              src="https://i.ibb.co/XkF6Dx6/Logo.png"
+              alt="Logo of ArmorFeed"
+            />
+            <h1 class="text-lg text-black-alpha-70">ArmorFeed</h1>
+          </div>
+        </a>
+      </template>
+      <template #end>
+        <pv-button
+          icon="pi pi-bell"
+          class="p-button-rounded p-button-text"
+        ></pv-button>
+        <pv-button
+          icon="pi pi-cog"
+          class="p-button-rounded p-button-text p-toolbar-separator"
+        ></pv-button>
+        <pv-button
+          class="p-button-rounded p-button-text"
+          icon="pi pi-user"
+          icon-pos="left"
+          label="User Name"
+        ></pv-button>
+      </template>
+    </pv-tool-bar>
+  </div>
   <div class="flex justify-content-center">
-    <pv-tab-menu :model="items" class="mt-6 mx-4" />
+    <pv-tab-menu :model="items" :exact="false" />
   </div>
 </template>
 
@@ -21,3 +53,14 @@ export default {
   },
 };
 </script>
+
+<style>
+.navigation-container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.logo {
+  height: 45px;
+}
+</style>

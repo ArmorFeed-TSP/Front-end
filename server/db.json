@@ -1,130 +1,109 @@
 {
   "shipments": [
     {
-      "apiId": "v1",
-      "id": "00002518",
-      "origin": "Lima",
-      "pickUpDate": "25/10/2022",
-      "destiny": "Piura",
-      "deliveryDate": "27/10/2022",
-      "status": "Finished"
+      "status": "pending",
+      "pickUpDate": "2022/4/20",
+      "deliveryDate": "2022/4/21",
+      "id": 1
     },
     {
-      "apiId": "v1",
-      "id": "00002519",
-      "origin": "Lima",
-      "pickUpDate": "25/10/2022",
-      "destiny": "Trujillo",
-      "deliveryDate": "27/10/2022",
-      "status": "Pending"
+      "originId": 21,
+      "originDepartment": "Amazonas",
+      "destinationId": 22,
+      "destinationDepartment": "Ancash",
+      "paymentId": 7,
+      "status": "pending",
+      "pickUpDate": "2022/4/21",
+      "deliveryDate": "2022/4/21",
+      "id": 2
     },
     {
-      "apiId": "v1",
-      "id": "00002520",
-      "origin": "Piura",
-      "pickUpDate": "25/10/2022",
-      "destiny": "Lima",
-      "deliveryDate": "27/10/2022",
-      "status": "Pending"
+      "originId": 23,
+      "originDepartment": "Amazonas",
+      "destinationId": 24,
+      "destinationDepartment": "Ancash",
+      "paymentId": 8,
+      "status": "pending",
+      "pickUpDate": "2022/4/21",
+      "deliveryDate": "2022/4/21",
+      "id": 3
     },
     {
-      "apiId": "v1",
-      "id": "00002521",
-      "origin": "Trujillo",
-      "pickUpDate": "25/10/2022",
-      "destiny": "Lima",
-      "deliveryDate": "27/10/2022",
-      "status": "In progress"
+      "originId": 25,
+      "originDepartment": "Amazonas",
+      "destinationId": 26,
+      "destinationDepartment": "Ancash",
+      "paymentId": 9,
+      "status": "pending",
+      "pickUpDate": "2022/4/21",
+      "deliveryDate": "2022/4/22",
+      "id": 4
     },
     {
-      "apiId": "v1",
-      "id": "00002522",
-      "origin": "Chiclayo",
-      "pickUpDate": "25/10/2022",
-      "destiny": "Piura",
-      "deliveryDate": "27/10/2022",
-      "status": "In progress"
+      "originId": 27,
+      "originDepartment": "Amazonas",
+      "destinationId": 28,
+      "destinationDepartment": "Ancash",
+      "paymentId": 10,
+      "status": "pending",
+      "pickUpDate": "2022/4/21",
+      "deliveryDate": "2022/4/22",
+      "id": 5
     },
     {
-      "apiId": "v1",
-      "id": "00002523",
-      "origin": "Lima",
-      "pickUpDate": "25/10/2022",
-      "destiny": "Chiclayo",
-      "deliveryDate": "27/10/2022",
-      "status": "Finished"
+      "originId": 29,
+      "originDepartment": "Amazonas",
+      "destinationId": 30,
+      "destinationDepartment": "Ancash",
+      "paymentId": 11,
+      "status": "pending",
+      "pickUpDate": "2022/4/21",
+      "deliveryDate": "2022/4/22",
+      "id": 6
     },
     {
-      "id": "000025894",
-      "origin": "Lima",
-      "destiny": "Cusco",
-      "pickUpDate": "2022/05/05",
-      "deliveryDate": "2022/05/10",
-      "status": "Pending",
-      "apiId": "v1"
+      "originId": 31,
+      "originDepartment": "Amazonas",
+      "destinationId": 32,
+      "destinationDepartment": "Ancash",
+      "paymentId": 12,
+      "status": "pending",
+      "pickUpDate": "2022/4/21",
+      "deliveryDate": "2022/4/22",
+      "id": 7
     },
     {
-      "status": "Pending",
-      "id": "00001267",
-      "origin": "Cusco",
-      "destiny": "Tacna",
-      "pickUpDate": "09/05/2022, 00:00:00",
-      "deliveryDate": "17/05/2022, 00:00:00",
-      "apiId": "v1"
+      "originId": 33,
+      "originDepartment": "Amazonas",
+      "destinationId": 34,
+      "destinationDepartment": "Ancash",
+      "paymentId": 13,
+      "status": "pending",
+      "pickUpDate": "2022/4/21",
+      "deliveryDate": "2022/4/22",
+      "id": 8
     },
     {
-      "status": "Pending",
-      "id": "0004507",
-      "origin": "Ayacucho",
-      "destiny": "Ica",
-      "pickUpDate": "11/05/2022, 00:00:00",
-      "deliveryDate": "15/05/2022, 00:00:00",
-      "apiId": "v1"
+      "originId": 35,
+      "originDepartment": "Amazonas",
+      "destinationId": 36,
+      "destinationDepartment": "Ancash",
+      "paymentId": 14,
+      "status": "pending",
+      "pickUpDate": "2022/4/21",
+      "deliveryDate": "2022/4/22",
+      "id": 9
     },
     {
-      "status": "Pending",
-      "origin": "Ancash",
-      "id": "748003",
-      "pickUpDate": "13/05/2022, 00:00:00",
-      "deliveryDate": "17/05/2022, 00:00:00",
-      "destiny": "Lima",
-      "apiId": "v1"
-    },
-    {
-      "status": "Pending",
-      "id": "556690",
-      "origin": "Lima",
-      "destiny": "Tumbes",
-      "pickUpDate": "15/05/2022, 00:00:00",
-      "deliveryDate": "22/05/2022, 00:00:00",
-      "apiId": "v1"
-    },
-    {
-      "status": "Pending",
-      "id": "009483",
-      "origin": "Lima",
-      "destiny": "Arequipa",
-      "pickUpDate": "12/05/2022, 00:00:00",
-      "deliveryDate": "20/05/2022, 00:00:00",
-      "apiId": "v1"
-    },
-    {
-      "status": "Pending",
-      "id": "48389",
-      "origin": "Junin",
-      "pickUpDate": "24/05/2022, 00:00:00",
-      "deliveryDate": "31/05/2022, 00:00:00",
-      "destiny": "Lima",
-      "apiId": "v1"
-    },
-    {
-      "status": "Pending",
-      "origin": "Apurimac",
-      "destiny": "Ica",
-      "pickUpDate": "24/05/2022, 00:00:00",
-      "deliveryDate": "26/05/2022, 00:00:00",
-      "id": "9493000",
-      "apiId": "v1"
+      "originId": 39,
+      "originDepartment": "Amazonas",
+      "destinationId": 40,
+      "destinationDepartment": "Ancash",
+      "paymentId": 15,
+      "status": "pending",
+      "pickUpDate": "2022/4/21",
+      "deliveryDate": "2022/4/22",
+      "id": 10
     }
   ],
   "vehicles": [
@@ -209,6 +188,15 @@
       "maintenanceDate": "2022-05-18T05:00:00.000Z",
       "model": "asd",
       "year": "2019"
+    },
+    {
+      "status": " ",
+      "id": "13",
+      "brand": "Toyota",
+      "licensePlate": "XZB178",
+      "year": "2019",
+      "model": "SM-2019",
+      "maintenanceDate": "2022-05-11T05:00:00.000Z"
     }
   ],
   "enterprise": [
@@ -273,5 +261,396 @@
       "photo": "https://www.practicas.pe/organizaciones/practicas-ransa.png"
     }
   ],
-  "addresses": []
+  "addresses": [
+    {
+      "department": "Amazonas",
+      "typeAddress": "House",
+      "address": "as",
+      "urbanization": "as",
+      "reference": "as",
+      "id": 1
+    },
+    {
+      "department": "Cajamarca",
+      "typeAddress": "House",
+      "address": "as",
+      "urbanization": "as",
+      "reference": "as",
+      "id": 2
+    },
+    {
+      "department": "Amazonas",
+      "typeAddress": "Department",
+      "address": "description",
+      "urbanization": "description",
+      "reference": "description",
+      "id": 3
+    },
+    {
+      "department": "Ancash",
+      "typeAddress": "Department",
+      "address": "description2",
+      "urbanization": "description2",
+      "reference": "description2",
+      "id": 4
+    },
+    {
+      "department": "Amazonas",
+      "typeAddress": "Department",
+      "address": "asd",
+      "urbanization": "asd",
+      "reference": "asd",
+      "id": 5
+    },
+    {
+      "department": "Ancash",
+      "typeAddress": "Department",
+      "address": "dsa",
+      "urbanization": "dsa",
+      "reference": "dsa",
+      "id": 6
+    },
+    {
+      "department": "Amazonas",
+      "typeAddress": "Department",
+      "address": "asd",
+      "urbanization": "asd",
+      "reference": "asd",
+      "id": 7
+    },
+    {
+      "department": "Ancash",
+      "typeAddress": "Department",
+      "address": "asd",
+      "urbanization": "asd",
+      "reference": "asd",
+      "id": 8
+    },
+    {
+      "department": "Amazonas",
+      "typeAddress": "Department",
+      "address": "asd",
+      "urbanization": "asd",
+      "reference": "asd",
+      "id": 9
+    },
+    {
+      "department": "Ancash",
+      "typeAddress": "Department",
+      "address": "asd",
+      "urbanization": "asd",
+      "reference": "asd",
+      "id": 10
+    },
+    {
+      "department": "Amazonas",
+      "typeAddress": "Department",
+      "address": "asd",
+      "urbanization": "asd",
+      "reference": "asd",
+      "id": 11
+    },
+    {
+      "department": "Ancash",
+      "typeAddress": "Department",
+      "address": "asd",
+      "urbanization": "asd",
+      "reference": "asd",
+      "id": 12
+    },
+    {
+      "department": "Amazonas",
+      "typeAddress": "Department",
+      "address": "asd",
+      "urbanization": "asd",
+      "reference": "asd",
+      "id": 13
+    },
+    {
+      "department": "Ancash",
+      "typeAddress": "Department",
+      "address": "asd",
+      "urbanization": "asd",
+      "reference": "asd",
+      "id": 14
+    },
+    {
+      "department": "Amazonas",
+      "typeAddress": "Department",
+      "address": "asd",
+      "urbanization": "asd",
+      "reference": "asd",
+      "id": 15
+    },
+    {
+      "department": "Ancash",
+      "typeAddress": "Department",
+      "address": "asd",
+      "urbanization": "asd",
+      "reference": "asd",
+      "id": 16
+    },
+    {
+      "department": "Amazonas",
+      "typeAddress": "Department",
+      "address": "asd",
+      "urbanization": "asd",
+      "reference": "asd",
+      "id": 17
+    },
+    {
+      "department": "Ancash",
+      "typeAddress": "Department",
+      "address": "asd",
+      "urbanization": "asd",
+      "reference": "asd",
+      "id": 18
+    },
+    {
+      "id": 19
+    },
+    {
+      "id": 20
+    },
+    {
+      "department": "Amazonas",
+      "typeAddress": "Department",
+      "address": "asd",
+      "urbanization": "asd",
+      "reference": "asd",
+      "id": 21
+    },
+    {
+      "department": "Ancash",
+      "typeAddress": "Department",
+      "address": "asd",
+      "urbanization": "asd",
+      "reference": "asd",
+      "id": 22
+    },
+    {
+      "department": "Amazonas",
+      "typeAddress": "Department",
+      "address": "asd",
+      "urbanization": "asd",
+      "reference": "asd",
+      "id": 23
+    },
+    {
+      "department": "Ancash",
+      "typeAddress": "Department",
+      "address": "asd",
+      "urbanization": "asd",
+      "reference": "asd",
+      "id": 24
+    },
+    {
+      "department": "Amazonas",
+      "typeAddress": "Department",
+      "address": "asd",
+      "urbanization": "asd",
+      "reference": "asd",
+      "id": 25
+    },
+    {
+      "department": "Ancash",
+      "typeAddress": "Department",
+      "address": "asd",
+      "urbanization": "asd",
+      "reference": "asd",
+      "id": 26
+    },
+    {
+      "department": "Amazonas",
+      "typeAddress": "Department",
+      "address": "ads",
+      "urbanization": "ads",
+      "reference": "ads",
+      "id": 27
+    },
+    {
+      "department": "Ancash",
+      "typeAddress": "Department",
+      "address": "ads",
+      "urbanization": "ads",
+      "reference": "ads",
+      "id": 28
+    },
+    {
+      "department": "Amazonas",
+      "typeAddress": "Department",
+      "address": "asd",
+      "urbanization": "asd",
+      "reference": "asd",
+      "id": 29
+    },
+    {
+      "department": "Ancash",
+      "typeAddress": "Department",
+      "address": "asd",
+      "urbanization": "asd",
+      "reference": "asd",
+      "id": 30
+    },
+    {
+      "department": "Amazonas",
+      "typeAddress": "Department",
+      "address": "asd",
+      "urbanization": "asd",
+      "reference": "asd",
+      "id": 31
+    },
+    {
+      "department": "Ancash",
+      "typeAddress": "Department",
+      "address": "asd",
+      "urbanization": "asd",
+      "reference": "asd",
+      "id": 32
+    },
+    {
+      "department": "Amazonas",
+      "typeAddress": "Department",
+      "address": "asd",
+      "urbanization": "asd",
+      "reference": "asd",
+      "id": 33
+    },
+    {
+      "department": "Ancash",
+      "typeAddress": "Department",
+      "address": "asd",
+      "urbanization": "asd",
+      "reference": "asd",
+      "id": 34
+    },
+    {
+      "department": "Amazonas",
+      "typeAddress": "Department",
+      "address": "asd",
+      "urbanization": "asd",
+      "reference": "asd",
+      "id": 35
+    },
+    {
+      "department": "Ancash",
+      "typeAddress": "Department",
+      "address": "asd",
+      "urbanization": "asd",
+      "reference": "asd",
+      "id": 36
+    },
+    {
+      "department": "Amazonas",
+      "typeAddress": "Department",
+      "address": "asd",
+      "urbanization": "asd",
+      "reference": "asd",
+      "id": 37
+    },
+    {
+      "department": "Ancash",
+      "typeAddress": "House",
+      "address": "asd",
+      "urbanization": "asd",
+      "reference": "asd",
+      "id": 38
+    },
+    {
+      "department": "Amazonas",
+      "typeAddress": "Department",
+      "address": "asd",
+      "urbanization": "asd",
+      "reference": "asd",
+      "id": 39
+    },
+    {
+      "department": "Ancash",
+      "typeAddress": "House",
+      "address": "asd",
+      "urbanization": "asd",
+      "reference": "asd",
+      "id": 40
+    }
+  ],
+  "payments": [
+    {
+      "id": 1
+    },
+    {
+      "id": 2
+    },
+    {
+      "id": 3
+    },
+    {
+      "id": 4
+    },
+    {
+      "enterpriseId": 1,
+      "amount": 12.7,
+      "date": "2022/4/21",
+      "id": 5
+    },
+    {
+      "enterpriseId": 1,
+      "amount": 12.7,
+      "date": "2022/4/21",
+      "id": 6
+    },
+    {
+      "enterpriseId": 2,
+      "amount": 13.9,
+      "date": "2022/4/21",
+      "id": 7
+    },
+    {
+      "enterpriseId": 2,
+      "amount": 13.9,
+      "date": "2022/4/21",
+      "id": 8
+    },
+    {
+      "enterpriseId": 1,
+      "amount": 12.7,
+      "date": "2022/4/21",
+      "id": 9
+    },
+    {
+      "enterpriseId": 1,
+      "amount": 12.7,
+      "date": "2022/4/21",
+      "id": 10
+    },
+    {
+      "enterpriseId": 1,
+      "amount": 12.7,
+      "date": "2022/4/21",
+      "id": 11
+    },
+    {
+      "enterpriseId": 1,
+      "amount": 12.7,
+      "date": "2022/4/21",
+      "id": 12
+    },
+    {
+      "enterpriseId": 1,
+      "amount": null,
+      "date": "2022/4/21",
+      "id": 13
+    },
+    {
+      "enterpriseId": 1,
+      "amount": null,
+      "date": "2022/4/21",
+      "id": 14
+    },
+    {
+      "enterpriseId": 1,
+      "amount": null,
+      "date": "2022/4/21",
+      "id": 15
+    }
+  ]
 }

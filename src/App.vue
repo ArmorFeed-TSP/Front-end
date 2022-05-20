@@ -24,27 +24,6 @@ export default {
 };
 </script>
 <template>
-  <header>
-    <pv-toolbar class="bg-white">
-      <template #start>
-        <pv-avatar class="m-auto">
-          <img src="./assets/Logo.png" alt="Logo" />
-        </pv-avatar>
-        <h3 class="text-500">ArmorFeed</h3>
-      </template>
-      <template #end>
-        <div class="flex-column">
-          <pv-button class="bg-white border-0"
-            ><i class="pi pi-bell text-500"></i
-          ></pv-button>
-          <pv-button class="bg-white border-0"
-            ><i class="pi pi-cog text-500"></i
-          ></pv-button>
-          <pv-button class="text-500 bg-white border-0">Italo Silva</pv-button>
-        </div>
-      </template>
-    </pv-toolbar>
-  </header>
   <div class="w-full">
     <navigation :items="items" :paramActiveTab="0"></navigation>
     <router-view />
