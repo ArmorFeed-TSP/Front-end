@@ -15,6 +15,7 @@
       </template>
       <template #end>
         <pv-button
+          v-if="userId"
           icon="pi pi-bell"
           class="p-button-rounded p-button-text"
         ></pv-button>
@@ -23,6 +24,7 @@
           class="p-button-rounded p-button-text p-toolbar-separator"
         ></pv-button>
         <pv-button
+            v-if="userId"
           class="p-button-rounded p-button-text"
           icon="pi pi-user"
           icon-pos="left"
@@ -31,7 +33,7 @@
       </template>
     </pv-tool-bar>
   </div>
-  <div class="flex justify-content-center">
+  <div v-if="userId" class="flex justify-content-center">
     <pv-tab-menu :model="items" :exact="false" />
   </div>
 </template>
@@ -42,6 +44,7 @@ export default {
   data() {
     return {
       activeTab: 0,
+      userId: null,
     };
   },
   props: {

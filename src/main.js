@@ -30,6 +30,8 @@ import "primevue/resources/themes/mdc-dark-indigo/theme.css";
 import "primevue/resources/themes/md-light-indigo/theme.css";
 import "primevue/resources/primevue.min.css";
 import "primeicons/primeicons.css";
+import Password from "primevue/password";
+import Divider from "primevue/divider";
 
 const app = createApp(App);
 
@@ -61,5 +63,6 @@ app.component("pv-input-number", InputNumber);
 app.component("pv-input-mask", InputMask);
 app.component("pv-dropdown", Dropdown);
 app.component("pv-avatar", Avatar);
-
+app.component("pv-password", Password);
+app.component("pv-divider", Divider);
 app.mount("#app");

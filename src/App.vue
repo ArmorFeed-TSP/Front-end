@@ -7,6 +7,7 @@ export default {
   data() {
     return {
       typeUser: "customer",
+      userId: null,
       navigationEnterprise: [
         {
           label: "My Shipments",
