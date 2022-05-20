@@ -1,8 +1,9 @@
 <script>
-import navigation from "./shared/navigation/navigation.component.vue";
+import AppNavigation from "./shared/navigation/navigation.component.vue";
+import AppFooter from "./shared/footer/footer.component.vue";
 export default {
   name: "App",
-  components: { navigation },
+  components: { AppNavigation, AppFooter },
   data() {
     return {
       items: [
@@ -25,8 +26,9 @@ export default {
 </script>
 <template>
   <div class="w-full">
-    <navigation :items="items" :paramActiveTab="0"></navigation>
+    <app-navigation :items="items" :paramActiveTab="0"></app-navigation>
     <router-view />
+    <app-footer></app-footer>
   </div>
 </template>
 <style>
