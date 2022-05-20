@@ -6,19 +6,20 @@ export default {
   components: { AppNavigation, AppFooter },
   data() {
     return {
-      items: [
-        { label: "Quotation", icon: "pi pi-fw pi-home", to: "/quotations" },
+      typeUser: "customer",
+      navigationEnterprise: [
         {
-          label: "Client shipments",
+          label: "My Shipments",
           icon: "pi pi-fw pi-calendar",
-          to: "/shipments/client",
-        },
-        {
-          label: "Enterprise shipments",
-          icon: "pi pi-fw pi-pencil",
           to: "/shipments/enterprise",
         },
-        { label: "My vehicles", icon: "pi pi-fw pi-file", to: "/vehicles" },
+        { label: "My Vehicles", icon: "pi pi-car", to: "/vehicles" },
+        { label: "My Payments", icon: "pi pi-money-bill", to: "" },
+      ],
+      navigationCustomer: [
+        { label: "Quotation", icon: "pi pi-fw pi-home", to: "/quotations" },
+        { label: "My Shipments", icon: "pi pi-fw pi-calendar" },
+        { label: "My Payments", icon: "pi pi-money-bill", to: "" },
       ],
     };
   },
@@ -26,7 +27,16 @@ export default {
 </script>
 <template>
   <div class="w-full">
-    <app-navigation :items="items" :paramActiveTab="0"></app-navigation>
+    <app-navigation
+      v-if="typeUser === 'customer'"
+      :items="navigationCustomer"
+      :paramActiveTab="0"
+    ></app-navigation>
+    <app-navigation
+      v-else-if="typeUser === 'enterprise'"
+      :items="navigationEnterprise"
+      :paramActiveTab="0"
+    ></app-navigation>
     <router-view />
     <app-footer></app-footer>
   </div>
