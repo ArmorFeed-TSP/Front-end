@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import { ShipmentsApiService } from "../service/Shipments-api.service"
+import { ShipmentsApiService } from "../service/shipments-api.service"
 import ShipmentsStatus from "./shipments-status.component.vue";
 
 export default {

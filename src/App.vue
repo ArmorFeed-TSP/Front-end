@@ -1,6 +1,6 @@
 <script>
-import AppNavigation from "./shared/navigation/navigation.component.vue";
-import AppFooter from "./shared/footer/footer.component.vue";
+import AppNavigation from "./shared/pages/navigation/navigation.component.vue";
+import AppFooter from "./shared/pages/footer/footer.component.vue";
 export default {
   name: "App",
   components: { AppNavigation, AppFooter },
@@ -10,7 +10,7 @@ export default {
       userId: null,
       navigationEnterprise: [
         {
-          label: "My Shipments",
+          label: "My shipments",
           icon: "pi pi-fw pi-calendar",
           to: "/shipments/enterprise",
         },
@@ -19,7 +19,7 @@ export default {
       ],
       navigationCustomer: [
         { label: "Quotation", icon: "pi pi-fw pi-home", to: "/quotations" },
-        { label: "My Shipments", icon: "pi pi-fw pi-calendar" },
+        { label: "My shipments", icon: "pi pi-fw pi-calendar" },
         { label: "My Payments", icon: "pi pi-money-bill", to: "" },
       ],
     };
