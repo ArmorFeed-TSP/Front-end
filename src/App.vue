@@ -1,6 +1,6 @@
 <script>
-import AppNavigation from "./shared/navigation/navigation.component.vue";
-import AppFooter from "./shared/footer/footer.component.vue";
+import AppNavigation from "./shared/pages/navigation/navigation.component.vue";
+import AppFooter from "./shared/pages/footer/footer.component.vue";
 export default {
   name: "App",
   components: { AppNavigation, AppFooter },

@@ -2,7 +2,7 @@
   <div class="navigation-container">
     <pv-tool-bar>
       <template #start>
-        <a href="/" class="no-underline">
+        <a href="/public" class="no-underline">
           <div class="flex align-items-center">
             <img
               class="logo"
