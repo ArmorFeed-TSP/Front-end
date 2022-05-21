@@ -68,6 +68,11 @@ const routes = [
     path: "/sign-up",
     name: "sign-up",
     component: () => import("../shared/sign-up/sign-up.component.vue")
+  },
+  {
+    path: "/sign-in",
+    name: "sign-in",
+    component: () => import("../shared/sign-in/sign-in.component.vue")
   }
 ];
 
