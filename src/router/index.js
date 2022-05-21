@@ -8,20 +8,20 @@ const routes = [
   },
   {
     path: "/shipments/client",
-    name: "Client shipments",
-    component: () => import("../Shipments/pages/shipments.component.vue"),
+    name: "client-shipments",
+    component: () => import("../shipments/pages/shipments-form.component.vue"),
     props: { enableListDialogs: false },
   },
   {
     path: "/shipments/enterprise",
-    name: "Enterprise shipments",
-    component: () => import("../Shipments/pages/shipments.component.vue"),
+    name: "enterprise-shipments",
+    component: () => import("../shipments/pages/shipments-form.component.vue"),
     props: { enableListDialogs: true },
   },
   {
     path: "/vehicles",
-    name: "Vehicles",
-    component: () => import("../Vehicles/pages/vehicles.component.vue"),
+    name: "vehicles",
+    component: () => import("../vehicles/pages/vehicles.component.vue"),
     props: { enableListDialogs: true },
   },
   {
@@ -67,12 +67,12 @@ const routes = [
   {
     path: "/sign-up",
     name: "sign-up",
-    component: () => import("../shared/sign-up/sign-up.component.vue")
+    component: () => import("../shared/pages/sign-up/sign-up.component.vue")
   },
   {
     path: "/sign-in",
     name: "sign-in",
-    component: () => import("../shared/sign-in/sign-in.component.vue")
+    component: () => import("../shared/pages/sign-in/sign-in.component.vue")
   }
 ];
 
