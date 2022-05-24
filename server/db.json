@@ -157,6 +157,127 @@
   ],
   "customers": [],
   "addresses": [],
-  "payments": [],
+  "transactions": [
+    {
+      "id": 1,
+      "credit_card": 5106359056009527,
+      "amount": 30,
+      "currency": "soles",
+      "payment_date": "2022-04-13",
+      "shipments_id": 1
+    },
+    {
+      "id": 2,
+      "credit_card": 4901033815303980,
+      "amount": 80,
+      "currency": "soles",
+      "payment_date": "2022-04-15",
+      "shipments_id": 2
+    },
+    {
+      "id": 3,
+      "credit_card":348025428219123,
+      "amount": 54,
+      "currency": "soles",
+      "payment_date": "2022-02-19",
+      "shipments_id": 3
+    },
+    {
+      "id": 4,
+      "credit_card": 4901033815303980,
+      "amount": 50,
+      "currency": "soles",
+      "payment_date": "2022-03-21",
+      "shipments_id": 4
+    },
+    {
+      "id": 5,
+      "credit_card": 3901033815303980,
+      "amount": 30,
+      "currency": "soles",
+      "payment_date": "2022-04-15",
+      "shipments_id": 5
+    },
+    {
+      "id": 6,
+      "credit_card": 4901033815303980,
+      "amount": 50,
+      "currency": "soles",
+      "payment_date": "2022-01-30",
+      "shipments_id": 6
+    },
+    {
+      "id": 7,
+      "credit_card": 3901033815303980,
+      "amount": 80,
+      "currency": "soles",
+      "payment_date": "2022-04-08",
+      "shipments_id": 7
+    },
+    {
+      "id": 8,
+      "credit_card": 4901033815303980,
+      "amount": 69,
+      "currency": "soles",
+      "payment_date": "2022-02-09",
+      "shipments_id": 8
+    },
+    {
+      "id": 9,
+      "credit_card": 4901033815303980,
+      "amount": 120,
+      "currency": "soles",
+      "payment_date": "2022-05-01",
+      "shipments_id": 9
+    },
+    {
+      "id": 10,
+      "credit_card": 5901033815303980,
+      "amount": 75,
+      "currency": "soles",
+      "payment_date": "2022-03-08",
+      "shipments_id": 10
+    },
+    {
+      "id": 11,
+      "credit_card": 3901033815303980,
+      "amount": 100,
+      "currency": "soles",
+      "payment_date": "2022-01-04",
+      "shipments_id": 11
+    },
+    {
+      "id": 12,
+      "credit_card": 4901033815303980,
+      "amount": 70,
+      "currency": "soles",
+      "payment_date": "2022-01-28",
+      "shipments_id": 12
+    },
+    {
+      "id": 13,
+      "credit_card": 5901033815303980,
+      "amount": 93,
+      "currency": "soles",
+      "payment_date": "2022-01-28",
+      "shipments_id": 13
+    },
+    {
+      "id": 14,
+      "credit_card": 4901033815303980,
+      "amount": 95,
+      "currency": "soles",
+      "payment_date": "2022-01-22",
+      "shipments_id": 14
+    },
+    {
+      "id": 12,
+      "credit_card": 4901033815303980,
+      "amount": 12,
+      "currency": "soles",
+      "payment_date": "2022-01-28",
+      "shipments_id": 12
+    }
+  ],
   "users": []
 }
