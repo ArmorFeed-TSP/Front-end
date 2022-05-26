@@ -1,25 +1,29 @@
 <template>
-  <div class="card">
-    <pv-data-table :value="transactions" row-group-mode="subheader" group-rows-by="transactionMonthYearDate"
-                   sort-mode="single" sort-field="date" :sort-order="-1" responsive-layout="scroll"
-                   :expandable-row-groups="true" v-model:expanded-row-groups="expandedRowGroups"
-                   @rowgroup-expand="onRowGroupExpand" @rowgroup-collapse="onRowGroupCollapse">
-      <pv-column field="transactionMonthYearDate" header="Date"></pv-column>
-      <pv-column field="shipmentId" header="Code Shipping"></pv-column>
-      <pv-column field="paymentDate" header="Payment Date"></pv-column>
-<!--      <pv-column field="companyName" header="Business"></pv-column>-->
-      <pv-column field="amount" header="amount">
-        <template #body="slotProps">
-          {{ formatCurrency(slotProps.data.amount) }}
-        </template>
-      </pv-column>
-      <template #groupheader="slotProps">
-        <span>{{ slotProps.data.transactionMonthYearDate }} </span>
-        <span>  {{ calculateTransactionTotal(slotProps.data.transactionMonthYearDate) }} payments  </span>
-        <span>  S/. {{ calculateTransactionTotalAmount(slotProps.data.transactionMonthYearDate) }}</span>
+  <div>
+    <div class="card">
+      <pv-data-table :value="transactions" row-group-mode="subheader" group-rows-by="transactionMonthYearDate"
+                     sort-mode="single" sort-field="date" :sort-order="-1" responsive-layout="scroll"
+                     :expandable-row-groups="true" v-model:expanded-row-groups="expandedRowGroups"
+                     @rowgroup-expand="onRowGroupExpand" @rowgroup-collapse="onRowGroupCollapse"
 
-      </template>
-    </pv-data-table>
+      >
+        <pv-column field="transactionMonthYearDate" header="Date"></pv-column>
+        <pv-column field="shipmentId" header="Code Shipping"></pv-column>
+        <pv-column field="paymentDate" header="Payment Date"></pv-column>
+        <pv-column field="companyName" header="Enterprise"></pv-column>
+        <pv-column field="amount" header="amount">
+          <template #body="slotProps">
+            {{ formatCurrency(slotProps.data.amount) }}
+          </template>
+        </pv-column>
+        <template #groupheader="slotProps">
+          <span>{{ slotProps.data.transactionMonthYearDate }} </span>
+          <span>  {{ calculateTransactionTotal(slotProps.data.transactionMonthYearDate) }} payments  </span>
+          <span>  S/. {{ calculateTransactionTotalAmount(slotProps.data.transactionMonthYearDate) }}</span>
+
+        </template>
+      </pv-data-table>
+    </div>
   </div>
 
 
@@ -68,7 +72,9 @@ export default {
     },
     getDisplayableTransaction(transaction) {
       transaction.transactionMonthYearDate = this.getLongMonthName(new Date(transaction.paymentDate));
-
+      this.transactionsService.getEnterpriseAsociatedById(transaction.id, transaction.enterpriseId).then(
+        (response) => transaction.companyName = response.data.name
+      );
       transaction.date = transaction.paymentDate.substring(0, 7);
       return transaction;
     },
@@ -114,7 +120,5 @@ export default {
 </script>
 
 <style scoped>
-groupheader {
-  display: inline-block;
-}
+
 </style>
