@@ -1,4 +1,4 @@
-import http from "../../core/http-common.js";
+import http from "./http-common";
 
 class SignUpService {
     endPoint = "/signup";

@@ -6,11 +6,11 @@ export default {
   components: { AppNavigation, AppFooter },
   data() {
     return {
-      typeUser: "customer",
+      userType: "customer",
       userId: null,
       navigationEnterprise: [
         {
-          label: "My Shipments",
+          label: "My shipments",
           icon: "pi pi-fw pi-calendar",
           to: "/shipments/enterprise",
         },
@@ -19,26 +19,37 @@ export default {
       ],
       navigationCustomer: [
         { label: "Quotation", icon: "pi pi-fw pi-home", to: "/quotations" },
-        { label: "My Shipments", icon: "pi pi-fw pi-calendar" },
+        { label: "My shipments", icon: "pi pi-fw pi-calendar" },
         { label: "My Payments", icon: "pi pi-money-bill", to: "" },
       ],
     };
+  },
+  mounted() {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (user) {
+      this.userId = user.id;
+      this.userType = user.userType;
+    }
   },
 };
 </script>
 <template>
   <div class="w-full">
     <app-navigation
-      v-if="typeUser === 'customer'"
+      v-bind:user-id="userId"
+      v-bind:user-type="userType"
+      v-if="userType === 'customer'"
       :items="navigationCustomer"
       :paramActiveTab="0"
     ></app-navigation>
     <app-navigation
-      v-else-if="typeUser === 'enterprise'"
+      v-bind:user-id="userId"
+      v-bind:user-type="userType"
+      v-else-if="userType === 'enterprise'"
       :items="navigationEnterprise"
       :paramActiveTab="0"
     ></app-navigation>
-    <router-view />
+    <router-view></router-view>
     <app-footer></app-footer>
   </div>
 </template>

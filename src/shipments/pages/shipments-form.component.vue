@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import { ShipmentsApiService } from "../service/Shipments-api.service"
+import { ShipmentsApiService } from "../service/shipments-api.service"
 
 export default {
   name: "shipments-form",
