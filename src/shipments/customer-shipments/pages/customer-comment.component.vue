@@ -4,8 +4,7 @@
       <pv-tool-bar class="mb-4">
         <template #start>
           <pv-button
-            label="New"
-            icon="pi pi-plus"
+            label="Write review"
             class="p-button-success mr-2"
             @click="openNew"
           />
@@ -87,7 +86,7 @@
 import { CommentsApiService } from "../service/comments-api.service";
 import { FilterMatchMode } from "primevue/api";
 export default {
-  name: "comment-list",
+  name: "customer-comments",
   data() {
     return {
       comments: [],
@@ -182,4 +181,16 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.p-inputtext-lg {
+  height: 200px;
+}
+.card-comment {
+  margin: 1px 0;
+}
+.scroll-comment {
+  margin: 0 auto;
+  border-radius: 6px;
+  border: 2px solid #5d5fef;
+}
+</style>
