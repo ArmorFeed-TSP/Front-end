@@ -25,6 +25,15 @@ const routes = [
     props: { enableListDialogs: true },
   },
   {
+    path: "/comments",
+    name: "customer-comments",
+    component: () =>
+      import(
+        "../shipments/customer-shipments/pages/customer-comment.component.vue"
+      ),
+    props: { enableListDialogs: true },
+  },
+  {
     path: "/quotations",
     name: "customer-quotation",
     component: CustomerQuotation,
@@ -67,13 +76,13 @@ const routes = [
   {
     path: "/sign-up",
     name: "sign-up",
-    component: () => import("../shared/pages/sign-up/sign-up.component.vue")
+    component: () => import("../shared/pages/sign-up/sign-up.component.vue"),
   },
   {
     path: "/sign-in",
     name: "sign-in",
-    component: () => import("../shared/pages/sign-in/sign-in.component.vue")
-  }
+    component: () => import("../shared/pages/sign-in/sign-in.component.vue"),
+  },
 ];
 
 const router = createRouter({
