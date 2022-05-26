@@ -4,8 +4,8 @@
       <pv-column v-for="col in columns" :field="col.field" :header="col.header" :key="col.field"></pv-column>
       <pv-column :exportable="false" style="min-width: 8rem">
         <template #body="slotProps">
-          <pv-button v-if="enableListDialogs" icon="pi pi-car" class="p-button-text p-button-rounded"/>
-          <pv-button icon="pi pi-eye" class="p-button-text p-button-rounded" @click="showDialog"/>
+          <pv-button icon="pi pi-car" class="p-button-text p-button-rounded"/>
+          <router-link :to="`/shipments/enterprise/shipmentDetail/${slotProps.data.id}`"><pv-button icon="pi pi-eye" class="p-button-text p-button-rounded"/></router-link>
         </template>
       </pv-column>
     </pv-data-table>
@@ -18,18 +18,17 @@
         <pv-button label="Ok" autofocus @click="showDialog"/>
       </template>
     </pv-dialog>
-    <pv-button v-if="enableListDialogs" icon="pi pi-plus" label="New Shipment" iconPos="right" class="my-5 mx-auto" @click="this.$emit('showDialog')"/>
   </div>
 </template>
 
 <script>
-import { ShipmentsApiService } from "../service/Shipments-api.service"
+import { EnterpriseShipmentsService } from "../services/enterprise-shipments.service"
 
 export default {
-  name: "shipments-list",
+  name: "enterprise-shipments-list",
   data(){
     return {
-      shipmentsService: null,
+      enterpriseShipmentsService: null,
       shipments: [],
       columns: [
         {field: 'id', header: 'Code'},
@@ -44,14 +43,11 @@ export default {
     }
   },
   created(){
-    this.shipmentsService = new ShipmentsApiService();
-    this.shipmentsService.getAll().then(response => {
+    this.enterpriseShipmentsService = new EnterpriseShipmentsService();
+    this.enterpriseShipmentsService.getShipmentsById(this.id).then(response => {
       this.shipments = response.data;
       this.currentShipments = this.shipments;
     });
-  },
-  props: {
-    enableListDialogs: Boolean
   },
   methods: {
     filterContent(status) {
@@ -63,18 +59,12 @@ export default {
         return shipment.status === status;
       });
     },
-    addNewItem(item,condition){
-      if(!condition)
-        return false;
-      this.shipmentsService.create(item).then(response => {
-        this.shipments = [...this.shipments,response.data];
-        this.currentShipments = this.shipments;
-      });
-      return true;
-    },
     showDialog(){
       this.dialogEnabled = !this.dialogEnabled;
     }
+  },
+  props: {
+    id: Number
   }
 }
 </script>

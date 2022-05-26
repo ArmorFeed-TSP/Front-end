@@ -13,6 +13,8 @@ import Button from 'primevue/button';
 import Dialog from 'primevue/dialog';
 import Calendar from 'primevue/calendar';
 import InputText from 'primevue/inputtext';
+import Card from 'primevue/card';
+import Timeline from 'primevue/timeline';
 
 //PrimeVue Styles
 import "primevue/resources/primevue.min.css";
@@ -41,4 +43,6 @@ app.component('pv-button',Button);
 app.component('pv-dialog',Dialog);
 app.component('pv-calendar',Calendar);
 app.component('pv-input-text',InputText);
+app.component('pv-card', Card);
+app.component('pv-timeline', Timeline);
 app.mount("#app");

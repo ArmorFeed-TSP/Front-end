@@ -7,7 +7,9 @@
       "pickUpDate": "25/10/2022",
       "destiny": "Piura",
       "deliveryDate": "27/10/2022",
-      "status": "Finished"
+      "status": "Finished",
+      "customerId": 1,
+      "enterpriseId": 1
     },
     {
       "apiId": "v1",
@@ -16,7 +18,9 @@
       "pickUpDate": "25/10/2022",
       "destiny": "Trujillo",
       "deliveryDate": "27/10/2022",
-      "status": "Pending"
+      "status": "Pending",
+      "customerId": 1,
+      "enterpriseId": 2
     },
     {
       "apiId": "v1",
@@ -25,7 +29,9 @@
       "pickUpDate": "25/10/2022",
       "destiny": "Lima",
       "deliveryDate": "27/10/2022",
-      "status": "Pending"
+      "status": "Pending",
+      "customerId": 1,
+      "enterpriseId": 2
     },
     {
       "apiId": "v1",
@@ -34,7 +40,9 @@
       "pickUpDate": "25/10/2022",
       "destiny": "Lima",
       "deliveryDate": "27/10/2022",
-      "status": "In progress"
+      "status": "In progress",
+      "customerId": 1,
+      "enterpriseId": 1
     },
     {
       "apiId": "v1",
@@ -43,7 +51,9 @@
       "pickUpDate": "25/10/2022",
       "destiny": "Piura",
       "deliveryDate": "27/10/2022",
-      "status": "In progress"
+      "status": "In progress",
+      "customerId": 2,
+      "enterpriseId": 3
     },
     {
       "apiId": "v1",
@@ -52,7 +62,9 @@
       "pickUpDate": "25/10/2022",
       "destiny": "Chiclayo",
       "deliveryDate": "27/10/2022",
-      "status": "Finished"
+      "status": "Finished",
+      "customerId": 3,
+      "enterpriseId": 1
     },
     {
       "id": "000025894",
@@ -61,7 +73,9 @@
       "pickUpDate": "2022/05/05",
       "deliveryDate": "2022/05/10",
       "status": "Pending",
-      "apiId": "v1"
+      "apiId": "v1",
+      "customerId": 2,
+      "enterpriseId": 1
     },
     {
       "status": "Pending",
@@ -70,7 +84,9 @@
       "destiny": "Tacna",
       "pickUpDate": "09/05/2022, 00:00:00",
       "deliveryDate": "17/05/2022, 00:00:00",
-      "apiId": "v1"
+      "apiId": "v1",
+      "customerId": 3,
+      "enterpriseId": 3
     },
     {
       "status": "Pending",
@@ -79,7 +95,9 @@
       "destiny": "Ica",
       "pickUpDate": "11/05/2022, 00:00:00",
       "deliveryDate": "15/05/2022, 00:00:00",
-      "apiId": "v1"
+      "apiId": "v1",
+      "customerId": 1,
+      "enterpriseId": 2
     },
     {
       "status": "Pending",
@@ -88,7 +106,9 @@
       "pickUpDate": "13/05/2022, 00:00:00",
       "deliveryDate": "17/05/2022, 00:00:00",
       "destiny": "Lima",
-      "apiId": "v1"
+      "apiId": "v1",
+      "customerId": 1,
+      "enterpriseId": 2
     },
     {
       "status": "Pending",
@@ -97,7 +117,9 @@
       "destiny": "Tumbes",
       "pickUpDate": "15/05/2022, 00:00:00",
       "deliveryDate": "22/05/2022, 00:00:00",
-      "apiId": "v1"
+      "apiId": "v1",
+      "customerId": 1,
+      "enterpriseId": 3
     },
     {
       "status": "Pending",
@@ -106,7 +128,9 @@
       "destiny": "Arequipa",
       "pickUpDate": "12/05/2022, 00:00:00",
       "deliveryDate": "20/05/2022, 00:00:00",
-      "apiId": "v1"
+      "apiId": "v1",
+      "customerId": 2,
+      "enterpriseId": 1
     },
     {
       "status": "Pending",
@@ -115,7 +139,9 @@
       "pickUpDate": "24/05/2022, 00:00:00",
       "deliveryDate": "31/05/2022, 00:00:00",
       "destiny": "Lima",
-      "apiId": "v1"
+      "apiId": "v1",
+      "customerId": 3,
+      "enterpriseId": 1
     },
     {
       "status": "Pending",
@@ -124,7 +150,172 @@
       "pickUpDate": "24/05/2022, 00:00:00",
       "deliveryDate": "26/05/2022, 00:00:00",
       "id": "9493000",
-      "apiId": "v1"
+      "apiId": "v1",
+      "customerId": 3,
+      "enterpriseId": 2
+    },
+    {
+      "status": "Pending",
+      "id": "959484",
+      "origin": "Lima",
+      "destiny": "Huaraz",
+      "pickUpDate": "17/05/2022, 00:00:00",
+      "deliveryDate": "30/05/2022, 00:00:00",
+      "apiId": "v1",
+      "customerId": 1,
+      "enterpriseId": 2
+    },
+    {
+      "id": "_uVgOvj"
+    }
+  ],
+  "enterprises": [
+    {
+      "id": 1,
+      "email": "fgtor@italoSilva.com",
+      "password": "12131415",
+      "name": "Blindados S.A.C",
+      "phoneNumber": "579031268",
+      "ruc": "Closed Limited Company",
+      "serviceDescription": "Some description",
+      "score": 120
+    },
+    {
+      "id": 2,
+      "email": "fgtor@italoSilva.com",
+      "password": "12131415",
+      "name": "ProteMax S.A.C",
+      "phoneNumber": "579031268",
+      "ruc": "Closed Limited Company",
+      "serviceDescription": "Some description",
+      "score": 10
+    },
+    {
+      "id": 3,
+      "email": "fgtor@italoSilva.com",
+      "password": "12131415",
+      "name": "Hermes S.A.C",
+      "phoneNumber": "579031268",
+      "ruc": "Closed Limited Company",
+      "serviceDescription": "Some description",
+      "subscriptionPlan": 2,
+      "score": 50
+    }
+  ],
+  "customers": [
+    {
+      "id": 1,
+      "email": "gnsnav@italoSilva.com",
+      "password": "123456",
+      "name": "Italo Silva S.A.C",
+      "phoneNumber": "893903458",
+      "ruc": "Closed Limited Company",
+      "customerDescription": "Some description",
+      "subscriptionPlan": 0
+    },
+    {
+      "id": 2,
+      "email": "csvfac@italoSilva.com",
+      "password": "7891011",
+      "name": "Uber",
+      "phoneNumber": "456756681",
+      "ruc": "Anonymous society",
+      "customerDescription": "Some description",
+      "subscriptionPlan": 1
+    },
+    {
+      "id": 3,
+      "email": "fgtor@italoSilva.com",
+      "password": "12131415",
+      "name": "Netflix",
+      "phoneNumber": "579031268",
+      "ruc": "Closed Limited Company",
+      "customerDescription": "Some description",
+      "subscriptionPlan": 2
+    }
+  ],
+  "vehicles": [
+    {
+      "id": 1,
+      "brand": "Toyota",
+      "licensePlate": "BBT-231",
+      "year": "2020",
+      "model": "TEF25",
+      "maintenanceDate": "20/02/2021"
+    },
+    {
+      "id": 2,
+      "brand": "Chevrolet",
+      "licensePlate": "DDE-251",
+      "year": 2020,
+      "model": "RE2",
+      "maintenanceDate": "12/07/2021"
+    },
+    {
+      "id": 3,
+      "brand": "Toyota",
+      "licensePlate": "VET-965",
+      "year": 2017,
+      "model": "TEF25",
+      "maintenanceDate": "21/05/2021"
+    },
+    {
+      "id": 4,
+      "brand": "Hyundai",
+      "licensePlate": "SFF-232",
+      "year": 2021,
+      "model": "RER3",
+      "maintenanceDate": "02/12/2021"
+    },
+    {
+      "id": 5,
+      "brand": "Suzuki",
+      "licensePlate": "WSA-332",
+      "year": 2019,
+      "model": "TTA",
+      "maintenanceDate": "10/11/2021"
+    },
+    {
+      "id": 6,
+      "brand": "Nissan",
+      "licensePlate": "GTA-431",
+      "year": 2021,
+      "model": "NSA1",
+      "maintenanceDate": "24/10/2021"
+    },
+    {
+      "id": 7,
+      "brand": "Suzuki",
+      "licensePlate": "TYP-123",
+      "year": "2020",
+      "model": "212",
+      "maintenanceDate": "1212-02-12"
+    },
+    {
+      "id": 8,
+      "brand": "Mazda",
+      "licensePlate": "GHV-543",
+      "year": "1223",
+      "model": "YIU1",
+      "maintenanceDate": "2022-05-20"
+    },
+    {
+      "status": " ",
+      "id": "9",
+      "brand": "Toyota",
+      "licensePlate": "asd",
+      "year": "2",
+      "model": "asd",
+      "maintenanceDate": "2022-05-17T05:00:00.000Z"
+    },
+    {
+      "status": " ",
+      "id": "10",
+      "brand": "nose",
+      "licensePlate": "12",
+      "maintenanceDate": "2022-05-18T05:00:00.000Z",
+      "model": "asd",
+      "year": "2019"
     }
   ]
 }
