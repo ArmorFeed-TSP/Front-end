@@ -32,6 +32,7 @@ import "primevue/resources/primevue.min.css";
 import "primeicons/primeicons.css";
 import Password from "primevue/password";
 import Divider from "primevue/divider";
+import ScrollPanel from "primevue/scrollpanel";
 
 const app = createApp(App);
 
@@ -65,4 +66,6 @@ app.component("pv-dropdown", Dropdown);
 app.component("pv-avatar", Avatar);
 app.component("pv-password", Password);
 app.component("pv-divider", Divider);
+app.component("pv-scroll-panel", ScrollPanel);
+
 app.mount("#app");
