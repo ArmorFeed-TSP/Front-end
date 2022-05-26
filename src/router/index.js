@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import ShipmentsComponent from "../Shipments/pages/shipments.component.vue"
 
 
 const router = createRouter({
@@ -13,15 +12,26 @@ const router = createRouter({
     {
       path: '/shipments/client',
       name: 'Client shipments',
-      component: () => import("../Shipments/pages/shipments.component.vue"),
-      props: { enableListDialogs: false }
+      component: () => import("../Shipments/customer-shipments/pages/customer-shipments.component.vue"),
+      props: { id: 1 }
     },
     {
       path: '/shipments/enterprise',
       name: 'Enterprise shipments',
-      component: () => import("../Shipments/pages/shipments.component.vue"),
-      props: { enableListDialogs: true }
+      component: () => import("../Shipments/enterprise-shipments/pages/enterprise-shipments.component.vue"),
+      props: { id: 1 }
+    },
+    {
+      path: "/shipments/customer/shipmentDetail/:id",
+      name: 'Customer shipment detail',
+      component: () => import("../Shipments/customer-shipments/pages/customer-shipments-detail.component.vue")
+    },
+    {
+      path: "/shipments/enterprise/shipmentDetail/:id",
+      name: "Enterprise shipment detail",
+      component: () => import("../Shipments/enterprise-shipments/pages/enterprise-shipments-detail.component.vue")
     }
+
     /*{
       path: '/about',
       name: 'about',
