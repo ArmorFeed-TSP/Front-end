@@ -94,6 +94,9 @@ import { CommentsApiService } from "../service/comments-api.service";
 import { FilterMatchMode } from "primevue/api";
 export default {
   name: "customer-comments",
+  props: {
+    enterpriseId: Number,
+  },
   data() {
     return {
       comments: [],
@@ -133,6 +136,7 @@ export default {
         id: displayableComment.id,
         title: displayableComment.title,
         content: displayableComment.content,
+        enterpriseId: displayableComment.enterpriseId,
       };
     },
     openNew() {
@@ -167,6 +171,7 @@ export default {
             });
         } else {
           this.comment.id = 0;
+          this.comment.enterpriseId = this.enterpriseId;
           console.log(this.comment);
           this.comment = this.getStorableComment(this.comment);
           this.commentsService.create(this.comment).then((response) => {
@@ -203,7 +208,7 @@ export default {
   margin: 1px 0;
 }
 .scroll-comment {
-  margin: 0 auto;
+  margin: 5px;
   border-radius: 6px;
   border: 2px solid #5d5fef;
 }

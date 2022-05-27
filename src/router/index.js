@@ -7,18 +7,6 @@ const routes = [
     redirect: "/quotations",
   },
   {
-    path: "/shipments/client",
-    name: "client-shipments",
-    component: () => import("../shipments/pages/shipments-form.component.vue"),
-    props: { enableListDialogs: false },
-  },
-  {
-    path: "/shipments/enterprise",
-    name: "enterprise-shipments",
-    component: () => import("../shipments/pages/shipments-form.component.vue"),
-    props: { enableListDialogs: true },
-  },
-  {
     path: "/vehicles",
     name: "vehicles",
     component: () => import("../vehicles/pages/vehicles.component.vue"),
