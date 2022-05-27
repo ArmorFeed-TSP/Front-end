@@ -1,43 +1,53 @@
 <template>
   <div class="bg-sign-in">
     <div class="sign-in bg-white">
-      <h1 class="text-center font-bold mb-5">Sign in</h1>
-      <div class="p-fluid">
-        <div class="field">
-          <p v-if="error" class="text-lg line-height-3 p-error">
-            The account or password is incorrect. If you don't remember the
-            account,
-            <router-link class="no-underline" to="">reset it now.</router-link>
-          </p>
-          <div class="p-float-label p-input-icon-right">
-            <i class="pi pi-envelope" />
-            <pv-input-text
-              id="email"
-              v-model="email"
-              :class="{ 'p-invalid': v$.email.$invalid && submitted }"
-              aria-describedby="email-error"
-              placeholder="Email"
-            ></pv-input-text>
+      <form @submit.prevent="handleSubmit(!v$.$invalid)">
+        <h1 class="text-center font-bold mb-5">Sign in</h1>
+        <div class="p-fluid">
+          <div class="field">
+            <p v-if="notFound" class="text-lg line-height-3 p-error">
+              The account or password is incorrect. If you don't remember the
+              account,
+              <router-link class="no-underline" to=""
+                >reset it now.</router-link
+              >
+            </p>
+            <div class="p-float-label p-input-icon-right">
+              <i class="pi pi-envelope" />
+              <pv-input-text
+                id="email"
+                v-model="v$.email.$model"
+                aria-describedby="email-error"
+                placeholder="Email"
+              ></pv-input-text>
+            </div>
+            <small v-show="!v$.email.$model && submitted" class="p-error"
+              >Enter the email please.</small
+            >
+          </div>
+          <div class="field">
+            <pv-password
+              id="password"
+              placeholder="Password"
+              v-model="password"
+              :feedback="false"
+              :class="{ 'p-error': submitted }"
+            ></pv-password>
+            <small v-show="!v$.password.$model && submitted" class="p-error"
+              >Enter the password please.</small
+            >
+          </div>
+          <div class="field">
+            <p>
+              Don't have an account?
+              <router-link to="/sign-up">Click here.</router-link>
+            </p>
+          </div>
+          <div class="field pt-4">
+            <pv-button label="Start" type="submit"></pv-button>
           </div>
         </div>
-        <div class="field">
-          <pv-password
-            placeholder="Password"
-            v-model="password"
-            :feedback="false"
-            :showIcon="true"
-          ></pv-password>
-        </div>
-        <div class="field">
-          <p>
-            Don't have an account?
-            <router-link to="/sign-up">Click here.</router-link>
-          </p>
-        </div>
-        <div class="field pt-4">
-          <pv-button label="Start"></pv-button>
-        </div>
-      </div>
+      </form>
     </div>
   </div>
 </template>
@@ -45,6 +55,7 @@
 <script>
 import { required } from "@vuelidate/validators";
 import { useVuelidate } from "@vuelidate/core";
+import SignInService from "../../services/sign-in.service";
 export default {
   name: "sign-in",
   setup: () => ({ v$: useVuelidate() }),
@@ -53,7 +64,7 @@ export default {
       email: null,
       submitted: false,
       password: null,
-      error: false,
+      notFound: false,
     };
   },
   validations() {
@@ -65,6 +76,39 @@ export default {
         required,
       },
     };
+  },
+  methods: {
+    async handleSubmit(isFormValid) {
+      this.submitted = true;
+      this.notFound = false;
+      if (isFormValid) {
+        const loginResource = this.loginDto();
+        await SignInService.login(loginResource)
+          .then((response) => {
+            localStorage.setItem("auth", JSON.stringify(response.data));
+            this.$emit("user-logged");
+          })
+          .catch((error) => {
+            if (error.request.status === 400) {
+              this.notFound = true;
+              this.submitted = false;
+              this.password = "";
+              document.getElementById("password").focus();
+            } else if (
+              error.request.status === 0 ||
+              error.request.status === 500
+            )
+              alert("Service not available");
+            else alert("An error has occurred, contact the area in charge");
+          });
+      }
+    },
+    loginDto() {
+      return {
+        email: this.email,
+        password: this.password,
+      };
+    },
   },
 };
 </script>

@@ -6,30 +6,33 @@ export default {
   components: { AppNavigation, AppFooter },
   data() {
     return {
-      userType: "customer",
       userId: null,
-      navigationEnterprise: [
-        {
-          label: "My shipments",
-          icon: "pi pi-fw pi-calendar",
-          to: "/shipments/enterprise",
-        },
-        { label: "My Vehicles", icon: "pi pi-car", to: "/vehicles" },
-        { label: "My Payments", icon: "pi pi-money-bill", to: "" },
-      ],
-      navigationCustomer: [
-        { label: "Quotation", icon: "pi pi-fw pi-home", to: "/quotations" },
-        { label: "My shipments", icon: "pi pi-fw pi-calendar" },
-        { label: "My Payments", icon: "pi pi-money-bill", to: "" },
-      ],
+      userType: null,
     };
   },
-  mounted() {
-    const user = JSON.parse(localStorage.getItem("user"));
-    if (user) {
-      this.userId = user.id;
-      this.userType = user.userType;
+  methods: {
+    userLogged() {
+      const auth = JSON.parse(localStorage.getItem("auth"));
+      if (auth) {
+        this.userId = auth.user.id;
+        this.userType = auth.user.userType;
+        this.hireLogin = true;
+        if (this.userType === "customer")
+          this.$router.push({
+            name: "customer-quotations",
+            params: { id: this.userId },
+          });
+        else if (this.userType === "enterprise")
+          this.$router.push({ name: "enterprise-shipments" });
+      }
+    },
+    signOff() {
+      this.userId = null;
+      this.userType = null;
     }
+  },
+  mounted() {
+    this.userLogged();
   },
 };
 </script>
@@ -38,18 +41,10 @@ export default {
     <app-navigation
       v-bind:user-id="userId"
       v-bind:user-type="userType"
-      v-if="userType === 'customer'"
-      :items="navigationCustomer"
       :paramActiveTab="0"
+      v-on:sign-off="signOff"
     ></app-navigation>
-    <app-navigation
-      v-bind:user-id="userId"
-      v-bind:user-type="userType"
-      v-else-if="userType === 'enterprise'"
-      :items="navigationEnterprise"
-      :paramActiveTab="0"
-    ></app-navigation>
-    <router-view></router-view>
+    <router-view v-on:user-logged="userLogged"></router-view>
     <app-footer></app-footer>
   </div>
 </template>

@@ -4,6 +4,8 @@ import CustomerQuotation from "../customers/pages/customer-quotation.component.v
 const routes = [
   {
     path: "/",
+    name: "root",
+    redirect: { name: "sign-in" }
   },
   {
     path: "/shipments/client",
@@ -70,15 +72,15 @@ const routes = [
     ],
   },
   {
+    path: "/sign-in",
+    name: "sign-in",
+    component: () => import("../shared/pages/sign-in/sign-in.component.vue")
+  },
+  {
     path: "/sign-up",
     name: "sign-up",
     component: () => import("../shared/pages/sign-up/sign-up.component.vue")
   },
-  {
-    path: "/sign-in",
-    name: "sign-in",
-    component: () => import("../shared/pages/sign-in/sign-in.component.vue")
-  }
 ];
 
 const router = createRouter({

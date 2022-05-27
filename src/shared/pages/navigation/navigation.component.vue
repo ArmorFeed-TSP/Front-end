@@ -55,7 +55,7 @@
     </pv-overlay-panel>
   </div>
   <div v-if="userId" class="flex justify-content-center">
-    <pv-tab-menu :model="items" :exact="false" />
+    <pv-tab-menu :model="navigationList" :exact="false" />
   </div>
 </template>
 
@@ -68,6 +68,20 @@ export default {
       user: null,
       userName: "User Name",
       isDark: null,
+      navigationEnterprise: [
+        {
+          label: "My shipments",
+          icon: "pi pi-fw pi-calendar",
+          to: "/shipments/enterprise",
+        },
+        { label: "My Vehicles", icon: "pi pi-car", to: "/vehicles" },
+        { label: "My Payments", icon: "pi pi-money-bill", to: "" },
+      ],
+      navigationCustomer: [
+        { label: "Quotation", icon: "pi pi-fw pi-home", to: "/quotations" },
+        { label: "My shipments", icon: "pi pi-fw pi-calendar" },
+        { label: "My Payments", icon: "pi pi-money-bill", to: "" },
+      ],
     };
   },
   methods: {
@@ -76,9 +90,17 @@ export default {
       this.$refs.op.toggle(event);
     },
     async logOut() {
-      await localStorage.removeItem("user");
-      await localStorage.removeItem("accessToken");
-      await this.$router.push({ name: "sign-in" });
+      await localStorage.removeItem("auth");
+      await this.$emit("sign-off");
+      await this.$router.push({ name: "root" });
+      this.$refs.op.hide();
+    },
+  },
+  computed: {
+    navigationList() {
+      return this.userType === "customer"
+        ? this.navigationCustomer
+        : this.navigationEnterprise;
     },
   },
   props: {
@@ -89,8 +111,10 @@ export default {
   },
   mounted() {
     this.activeTab = this.paramActiveTab;
-    const user = JSON.parse(localStorage.getItem("user"));
-    if (user) this.userName = user.name;
+    const auth = JSON.parse(localStorage.getItem("auth"));
+    if (auth) {
+      this.userName = auth.user.name;
+    }
   },
 };
 </script>
