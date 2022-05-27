@@ -7,6 +7,7 @@ export default {
   data() {
     return {
       userId: null,
+      userName: "User Name",
       userType: null,
     };
   },
@@ -16,6 +17,7 @@ export default {
       if (auth) {
         this.userId = auth.user.id;
         this.userType = auth.user.userType;
+        this.userName = auth.user.name;
         this.hireLogin = true;
         if (this.userType === "customer")
           this.$router.push({
@@ -29,6 +31,7 @@ export default {
     signOff() {
       this.userId = null;
       this.userType = null;
+      this.userName = "User Name";
     }
   },
   mounted() {
@@ -41,6 +44,7 @@ export default {
     <app-navigation
       v-bind:user-id="userId"
       v-bind:user-type="userType"
+      v-bind:user-name="userName"
       :paramActiveTab="0"
       v-on:sign-off="signOff"
     ></app-navigation>

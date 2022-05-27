@@ -160,112 +160,40 @@
   "payments": [],
   "users": [
     {
-      "email": "upcsac@gmail.com",
-      "password": "$2a$10$PRDyd4w.6Yk7QBo/LhvzNe2V9/ete69soB92j5uIPzHqV9XzMyywy",
-      "userType": "enterprise",
-      "name": null,
-      "ruc": null,
-      "cellPhone": null,
+      "email": "hbcordova10@gmail.com",
+      "password": "$2a$10$uTb4/T04j4uRPr/MLYbhNueafT8zYZLxXBVFoxZKDkBc32afMjse.",
+      "userType": "customer",
+      "name": "Heber Cordova",
+      "ruc": "988 765 432 111",
+      "cellPhone": "902 952 757",
       "id": 1
     },
     {
-      "email": "hbcordova10@gmail.com",
-      "password": "$2a$10$/CwSpNCMUzgmZXrPTGFu5ulmw.QrU1xEgzB1iYkjPOuw8JVsbNLVC",
-      "userType": "customer",
-      "name": "Ransa SAC",
-      "ruc": "123 423 434 343",
-      "cellPhone": "902 952 757",
+      "email": "upc-peru@gmail.com",
+      "password": "$2a$10$B7OLhFbjQj3Kehb2l/atleSbo6XYArr9p4LAMHl9/nqH9NVREYqmG",
+      "userType": "enterprise",
+      "name": "UPC",
+      "ruc": "764 545 674 657",
+      "cellPhone": "987 654 321",
       "id": 2
     },
     {
-      "email": "2019200162@ucss.pe",
-      "password": "$2a$10$2rwacLGrm2HocpqWQUO88umyOCgMHiMsIEvJ8gAFWo4Yg69XoStBK",
-      "userType": "customer",
-      "name": "asd",
-      "ruc": "123 413 241 234",
-      "cellPhone": "123 412 341",
+      "email": "ups-shipments@gmail.com",
+      "password": "$2a$10$j0lcPlFUvZ5yNfcR95C1K.hhDxiAuaVgCwlVDk08UfG0EUgSwfjiW",
+      "userType": "enterprise",
+      "name": "UPS SAC",
+      "ruc": "546 546 543 634",
+      "cellPhone": "987 654 321",
       "id": 3
     },
     {
-      "email": "cordovajimenez9827@gmail.com",
-      "password": "$2a$10$.ok3QBeEDdPwK3NwCeRLUOn6xOtXRpjM8QkAbMd4YAmkA3BSF6rsi",
+      "email": "urbanoperu@gmail.com",
+      "password": "$2a$10$efmZnNs9I6yiwIy7riXsfeBzd6Em3fVUP6VHMvkg5zBAyqjDej.3G",
       "userType": "customer",
-      "name": "heber cordova",
-      "ruc": "765 234 324 324",
-      "cellPhone": "123 543 423",
+      "name": "Urbano Peru",
+      "ruc": "878 765 435 634",
+      "cellPhone": "976 423 432",
       "id": 4
-    },
-    {
-      "email": "correo@correo.com",
-      "password": "$2a$10$fWgGOXBWxWhK2kFavDgUC.e3l6LKkprEQAl8HJpD7nifbdgRsfo.u",
-      "userType": "customer",
-      "name": "joel",
-      "ruc": "122 222 222 333",
-      "cellPhone": "988 887 766",
-      "id": 5
-    },
-    {
-      "email": "hb@correo.com",
-      "password": "$2a$10$Z98jTW7mq4HPBULXSAzHwunUtTWolvvNdzVUNJk3npGSHS08nvNNy",
-      "userType": "customer",
-      "name": "adf",
-      "ruc": "123 423 443 214",
-      "cellPhone": "123 434 343",
-      "id": 6
-    },
-    {
-      "email": "juan@correo.com",
-      "password": "$2a$10$8UbSsK1PgHRTKnOIekMKPuDNN8z1z9A/YcG.k5I4vZEQz7H0u0ecC",
-      "userType": "customer",
-      "name": "asd",
-      "ruc": "123 456 745 435",
-      "cellPhone": "122 222 222",
-      "id": 7
-    },
-    {
-      "email": "heber2@correo.com",
-      "password": "$2a$10$izh6mFYY99Snh2fV57Lh5utjICyuW/lveaLAZHgvtVSK4FQ4/FmqG",
-      "userType": "customer",
-      "name": "heber",
-      "ruc": "111 111 111 111",
-      "cellPhone": "111 111 111",
-      "id": 8
-    },
-    {
-      "email": "pedro@gmail.com",
-      "password": "$2a$10$E1aSJJitnM2UvyaU3Fy7Ludyi0Qg22mr2OwX9b50eCaFFGC3RBxle",
-      "userType": "customer",
-      "name": "pedro",
-      "ruc": "111 111 111 111",
-      "cellPhone": "111 111 111",
-      "id": 9
-    },
-    {
-      "email": "elena@gmail.com",
-      "password": "$2a$10$w.yzDRo7odqqlweC.ow98uUXezThF2jxVKJMyOYhnlo31PiZyN.qe",
-      "userType": "customer",
-      "name": "elena",
-      "ruc": "122 222 222 222",
-      "cellPhone": "987 654 321",
-      "id": 10
-    },
-    {
-      "email": "misael@gmail.com",
-      "password": "$2a$10$iK7ohZeme0A1gyuB2Kbr1.b6N9LQow.hrBet0wtV28geOCTbws6CO",
-      "userType": "customer",
-      "name": "heber",
-      "ruc": "111 111 111 111",
-      "cellPhone": "111 111 111",
-      "id": 11
-    },
-    {
-      "email": "mariacordova@gmail.com",
-      "password": "$2a$10$ViVS5AUljZYpgFv9NgHAz.cnIcZVrkMc3VNr8pXh.KjggldJdZBqS",
-      "userType": "customer",
-      "name": "UPS",
-      "ruc": "324 234 324 324",
-      "cellPhone": "987 654 321",
-      "id": 12
     }
   ]
 }

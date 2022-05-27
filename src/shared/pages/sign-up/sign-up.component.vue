@@ -3,7 +3,26 @@
     <div class="bg-white sign-up">
       <h1 class="text-center mb-2">Sign Up</h1>
       <p class="text-center mb-4 mt-0">Join and start ordering or shipping.</p>
-      <form @submit.prevent="handleSubmit(!v$.$invalid)">
+      <div v-if="isConfirm">
+        <div class="p-fluid">
+          <div>
+            <p class="font-bold success-color">
+              Congratulation {{ name }}, your account has been created!
+            </p>
+            <p>
+              A confirmation message has been sent to your email
+              <span class="text-primary email-style">{{ email }}</span>.
+            </p>
+          </div>
+          <div class="field mt-8">
+            <pv-button label="Come back" @click="comeBack"></pv-button>
+          </div>
+          <div class="field">
+            <pv-button label="Sign In" @click="goToSignIn"></pv-button>
+          </div>
+        </div>
+      </div>
+      <form v-else @submit.prevent="handleSubmit(!v$.$invalid)">
         <div class="p-fluid">
           <div class="field mx-2">
             <pv-dropdown
@@ -134,6 +153,7 @@
               class="p-error"
               >Password is required.</small
             >
+            <p v-if="notMatch" class="p-error">Passwords do not match.</p>
           </div>
           <div class="field-checkbox m-2 my-4">
             <pv-checkbox
@@ -177,6 +197,7 @@ export default {
           type: "enterprise",
         },
       ],
+      isConfirm: false,
       submitted: false,
       userType: null,
       name: null,
@@ -186,6 +207,7 @@ export default {
       password: null,
       passwordRepeat: null,
       accept: null,
+      notMatch: false,
     };
   },
   computed: {
@@ -228,22 +250,20 @@ export default {
     async signUpUser(newUser) {
       await SignUpService.create(newUser)
         .then((response) => {
-          console.log(response.data.user);
-          localStorage.setItem("user", JSON.stringify(response.data.user));
-          localStorage.setItem(
-            "accessToken",
-            JSON.stringify(response.data.accessToken)
-          );
-          this.$toast.add({
-            severity: "success",
-            summary: "Registered User",
-            detail: "We welcome you " + response.data.user.name + " !",
-            life: 6000,
-          });
+          localStorage.setItem("auth", JSON.stringify(response.data));
         })
         .catch((error) => {
           this.errors.push(error);
         });
+    },
+    comeBack() {
+      this.isConfirm = false;
+      this.resetForm();
+    },
+    goToSignIn() {
+      this.isConfirm = false;
+      this.resetForm();
+      this.$router.push({ name: "sign-in" });
     },
     createNewUser() {
       return {
@@ -258,21 +278,12 @@ export default {
     async handleSubmit(isFormValid) {
       this.submitted = true;
       if (isFormValid) {
-        const newUser = this.createNewUser();
-        await this.signUpUser(newUser);
-        this.resetForm();
-        const user = JSON.parse(localStorage.getItem("user"));
-        console.log(user);
-        if (user.userType === "customer")
-          await this.$router.push({
-            name: "customer-quotations",
-            params: { id: user.id },
-          });
-        else if (user.userType === "enterprise")
-          await this.$router.push({
-            name: "enterprise-shipments",
-            params: { id: user.id },
-          });
+        if (this.password === this.passwordRepeat) {
+          this.notMatch = false;
+          const newUser = this.createNewUser();
+          await this.signUpUser(newUser);
+          this.isConfirm = true;
+        } else this.notMatch = true;
       }
     },
     resetForm() {
@@ -311,6 +322,17 @@ export default {
 @media (min-width: 720px) {
   .sign-up {
     padding: 40px 67px;
+  }
+  .email-style:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  .success-color {
+    color: #28a745;
+    text-align: center;
+    padding: 2px 2px;
+    border-style: dashed;
+    border-width: 3px;
   }
 }
 </style>

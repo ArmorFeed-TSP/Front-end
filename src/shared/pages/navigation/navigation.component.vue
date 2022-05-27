@@ -42,15 +42,15 @@
           <pv-button class="ml-1" icon="pi pi-moon" label="Dark"></pv-button>
         </div>
         <pv-divider></pv-divider>
-        <div class="field">
+        <div class="field" v-if="userId">
           <pv-button
             @click="logOut"
             icon="pi pi-power-off"
             class="p-button-text p-button-danger"
             label="Log Out"
           ></pv-button>
+          <pv-divider></pv-divider>
         </div>
-        <pv-divider></pv-divider>
       </div>
     </pv-overlay-panel>
   </div>
@@ -65,8 +65,6 @@ export default {
   data() {
     return {
       activeTab: 0,
-      user: null,
-      userName: "User Name",
       isDark: null,
       navigationEnterprise: [
         {
@@ -108,13 +106,10 @@ export default {
     paramActiveTab: Number,
     userId: Number,
     userType: String,
+    userName: String,
   },
   mounted() {
     this.activeTab = this.paramActiveTab;
-    const auth = JSON.parse(localStorage.getItem("auth"));
-    if (auth) {
-      this.userName = auth.user.name;
-    }
   },
 };
 </script>
