@@ -14,14 +14,21 @@
         class="scroll-comment"
         style="width: 40rem; height: 170px"
       >
-        <pv-card v-for="comment in comments" class="card-comment">
-          <template #title>
-            {{ comment.title }}
-          </template>
-          <template #content>
-            {{ comment.content }}
-          </template>
-        </pv-card>
+        <div v-if="displayBoxComment">
+          <pv-card v-for="comment in comments" class="card-comment">
+            <template #title>
+              {{ comment.title }}
+            </template>
+            <template #content>
+              {{ comment.content }}
+            </template>
+          </pv-card>
+        </div>
+        <div v-else>
+          <pv-card>
+            <template #title> has no comments </template>
+          </pv-card>
+        </div>
       </pv-scroll-panel>
       <pv-dialog
         v-model:visible="commentDialog"
@@ -98,6 +105,8 @@ export default {
       submitted: false,
       commentsService: null,
       selectedComments: null,
+      sizeComments: 0,
+      displayBoxComment: true,
     };
   },
   created() {
@@ -105,8 +114,13 @@ export default {
     this.commentsService.getAll().then((response) => {
       this.comments = response.data;
       this.comments.forEach((comment) => this.getDisplayableComment(comment));
-      console.log("created");
+      this.sizeComments = this.comments.length;
+      console.log(this.sizeComments, "size");
+      if (this.sizeComments === 0) {
+        this.displayBoxComment = false;
+      }
     });
+    console.log("hola", this.response);
     this.initFilters();
   },
   methods: {
