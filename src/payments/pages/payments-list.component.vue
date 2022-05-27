@@ -1,38 +1,54 @@
 <template>
-  <div>
-    <div class="card">
-      <pv-data-table :value="transactions" row-group-mode="subheader" group-rows-by="transactionMonthYearDate"
-                     sort-mode="single" sort-field="date" :sort-order="-1" responsive-layout="scroll"
-                     :expandable-row-groups="true" v-model:expanded-row-groups="expandedRowGroups"
-                     @rowgroup-expand="onRowGroupExpand" @rowgroup-collapse="onRowGroupCollapse"
+  <div class="card">
+    <h1>Payments received</h1>
+    <div class="card-container">
+      <pv-data-table
+        :value="transactions"
+        row-group-mode="subheader"
+        group-rows-by="transactionMonthYearDate"
+        sort-mode="single"
+        sort-field="date"
+        :sort-order="-1"
+        :expandable-row-groups="true"
 
+        expanded-row-icon="pi-eye-slash"
+        collapsed-row-icon="pi-eye"
+        v-model:expanded-row-groups="expandedRowGroups"
+        @rowgroup-expand="onRowGroupExpand"
+        @rowgroup-collapse="onRowGroupCollapse"
       >
         <pv-column field="transactionMonthYearDate" header="Date"></pv-column>
-        <pv-column field="shipmentId" header="Code Shipping"></pv-column>
-        <pv-column field="paymentDate" header="Payment Date"></pv-column>
-        <pv-column field="companyName" header="Enterprise"></pv-column>
-        <pv-column field="amount" header="amount">
+        <pv-column field="shipmentId" header="Code Shipping" class="bg-gray-200 border-primary hover:bg-gray-500"></pv-column>
+        <pv-column field="paymentDate" header="Payment Date" class="bg-gray-200 border-primary"></pv-column>
+        <pv-column field="companyName" header="Enterprise" class="bg-gray-200 border-primary"></pv-column>
+        <pv-column field="amount" header="Amount" class="bg-gray-200 border-primary">
           <template #body="slotProps">
             {{ formatCurrency(slotProps.data.amount) }}
           </template>
         </pv-column>
-        <template #groupheader="slotProps">
-          <span>{{ slotProps.data.transactionMonthYearDate }} </span>
-          <span>  {{ calculateTransactionTotal(slotProps.data.transactionMonthYearDate) }} payments  </span>
-          <span>  S/. {{ calculateTransactionTotalAmount(slotProps.data.transactionMonthYearDate) }}</span>
-
+        <template #groupheader="slotProps" >
+          <div class="group-header">
+            <div class="group-header-container">
+              <td class="group-header-container-item"> {{ slotProps.data.transactionMonthYearDate }} </td>
+              <td
+                class="group-header-container-item">  {{ calculateTransactionTotal(slotProps.data.transactionMonthYearDate)
+                }} payments  </td>
+              <td
+                class="group-header-container-item">  S/. {{ calculateTransactionTotalAmount(slotProps.data.transactionMonthYearDate)
+                }}</td>
+            </div>
+          </div>
         </template>
+
+
       </pv-data-table>
     </div>
   </div>
-
-
 </template>
 
 <script>
 import { TransactionsApiService } from "../services/transactions-api.service";
-// import { EnterpriseService } from "../../customers/services/enterprise.service";
-// import { FilterMatchMode } from "primevue/api";
+
 
 export default {
   name: "payments-list",
@@ -62,11 +78,6 @@ export default {
     );
   },
   methods: {
-    // initFilters() {
-    //   this.filters = {
-    //     global: { value: null, matchMode: FilterMatchMode.CONTAINS },
-    //   }
-    // }
     getLongMonthName(date) {
       return this.monthNames[date.getMonth()] + "-" + date.getFullYear();
     },
@@ -120,5 +131,48 @@ export default {
 </script>
 
 <style scoped>
+
+
+.group-header-container-item {
+  display: block;
+}
+
+.group-header-container {
+  width: 50%;
+  /*margin: 0 25% 25%;*/
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  min-width:300px;
+}
+
+.group-header {
+  display: inline-block;
+}
+.card-container{
+  margin: 0 16% 0 16%;
+  padding: 2% 0 10% 0;
+}
+
+@media (max-width: 500px){
+  .card-container{
+    margin: 0 0 0 0;
+  }
+}
+h1{
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  text-align: center;
+  color: #5D5FEF;
+  padding-top: 40px;
+  letter-spacing: 0.03em;
+}
+.card{
+  background-color: #EEEEEE;
+}
+
 
 </style>

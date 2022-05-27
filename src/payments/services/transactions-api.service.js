@@ -4,10 +4,12 @@ export class TransactionsApiService {
   getAll() {
     return http.get("/transactions");
   }
+
   getById(id) {
     return http.get(`/transactions/${id}`);
   }
-  getEnterpriseAsociatedById(transactionId,enterpriseId){
+
+  getEnterpriseAsociatedById(transactionId, enterpriseId) {
     return http.get(`/transactions/${transactionId}/enterprise/${enterpriseId}`);
   }
 
