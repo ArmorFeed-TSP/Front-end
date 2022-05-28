@@ -14,18 +14,14 @@
       ></pv-column>
       <pv-column :exportable="false" style="min-width: 8rem">
         <template #body="slotProps">
-<<<<<<< HEAD
           <pv-button icon="pi pi-car" class="p-button-text p-button-rounded" />
-=======
           <pv-button icon="pi pi-pencil" class="p-button-text p-button-rounded" @click="editStatus(slotProps.data)" />
->>>>>>> feature/vehicles
           <router-link
             :to="`/shipments/enterprise/shipmentDetail/${slotProps.data.id}`"
             ><pv-button icon="pi pi-eye" class="p-button-text p-button-rounded"
           /></router-link>
         </template>
       </pv-column>
-<<<<<<< HEAD
     </pv-data-table>
     <pv-dialog v-model:visible="statusEnabled">
       <template #header>
@@ -36,7 +32,6 @@
         <pv-button label="Submit" autofocus @click="showStatus" />
       </template>
     </pv-dialog>
-=======
       <pv-dialog
         v-model:visible="statusEnabled"
         :style="{ widht: '450px' }"
@@ -86,8 +81,6 @@
           />
         </template>
       </pv-dialog>
-    </pv-data-table>
->>>>>>> feature/vehicles
     <pv-dialog v-model:visible="dialogEnabled">
       <template #header>
         <h3>Current Location</h3>
@@ -122,8 +115,6 @@ export default {
       currentShipments: [],
       dialogEnabled: false,
       statusEnabled: false,
-<<<<<<< HEAD
-=======
       statusses: [
         { label: "Pending", value: "Pending" },
         { label: "Finished", value: "Finished" },
@@ -132,7 +123,6 @@ export default {
       selectedStatus: null,
       shipment: {},
       submitted: false,
->>>>>>> feature/vehicles
     };
   },
   created() {
@@ -164,8 +154,6 @@ export default {
     showStatus() {
       this.statusEnabled = !this.statusEnabled;
     },
-<<<<<<< HEAD
-=======
     hideStatusDialog() {
       this.statusEnabled = false;
       this.submitted = false;
@@ -199,7 +187,6 @@ export default {
       console.log(this.shipment);
       this.statusEnabled = !this.statusEnabled;
     },
->>>>>>> feature/vehicles
   },
 };
 </script>

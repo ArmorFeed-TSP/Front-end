@@ -371,10 +371,9 @@
       "id": "10",
       "brand": "nose",
       "licensePlate": "12",
-      "maintenanceDate": "2022-05-18T05:00:00.000Z",
+      "maintenanceDate": "2022-05-17T05:00:00.000Z",
       "model": "asd",
       "year": "2019",
-      "maintenanceDate": "2022-05-17T05:00:00.000Z",
       "vehicleType": "Free"
     },
     {
@@ -480,7 +479,7 @@
     },
     {
       "id": 3,
-      "creditCard":348025428219123,
+      "creditCard": 348025428219123,
       "amount": 54,
       "currency": "soles",
       "paymentDate": "2022-02-19",
@@ -633,6 +632,15 @@
       "ruc": "878 765 435 634",
       "cellPhone": "976 423 432",
       "id": 4
+    },
+    {
+      "email": "ransa-peru@gmail.com",
+      "password": "$2a$10$XlMfQZI6uKKECxAj9Flkv.XebHRNg/Yc9sdXEBMt70y7nC/2wr9Hi",
+      "userType": "enterprise",
+      "name": "Ransa Peru SAC",
+      "ruc": "978 673 443 343",
+      "cellPhone": "987 654 321",
+      "id": 5
     }
   ],
   "notifications": [
