@@ -1,14 +1,59 @@
-<script setup>
-import navigation from './shared/navigation/navigation.component.vue';
-
-const items = [
-  {label: 'My vehicles', icon: 'pi pi-fw pi-car', to: '/vehicles'}
-];
+<script>
+import AppNavigation from "./shared/pages/navigation/navigation.component.vue";
+import AppFooter from "./shared/pages/footer/footer.component.vue";
+export default {
+  name: "App",
+  components: { AppNavigation, AppFooter },
+  data() {
+    return {
+      userId: null,
+      userName: "User Name",
+      userType: null,
+    };
+  },
+  methods: {
+    userLogged() {
+      const auth = JSON.parse(localStorage.getItem("auth"));
+      if (auth) {
+        this.userId = auth.user.id;
+        this.userType = auth.user.userType;
+        this.userName = auth.user.name;
+        this.hireLogin = true;
+        if (this.userType === "customer")
+          this.$router.push({
+            name: "customer-quotations",
+            params: { id: this.userId },
+          });
+        else if (this.userType === "enterprise")
+          this.$router.push({ name: "enterprise-shipments" });
+      }
+    },
+    signOff() {
+      this.userId = null;
+      this.userType = null;
+      this.userName = "User Name";
+    }
+  },
+  mounted() {
+    this.userLogged();
+  },
+};
 </script>
-
 <template>
-  <div>
-    <p>Navigation</p>
+  <div class="w-full">
+    <app-navigation
+      v-bind:user-id="userId"
+      v-bind:user-type="userType"
+      v-bind:user-name="userName"
+      :paramActiveTab="0"
+      v-on:sign-off="signOff"
+    ></app-navigation>
+    <router-view v-on:user-logged="userLogged"></router-view>
+    <app-footer></app-footer>
   </div>
-  <RouterView />
 </template>
+<style>
+body {
+  margin: 0 0;
+}
+</style>

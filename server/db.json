@@ -1,4 +1,239 @@
 {
+  "shipments": [
+    {
+      "apiId": "v1",
+      "id": "00002518",
+      "origin": "Lima",
+      "pickUpDate": "25/10/2022",
+      "destiny": "Piura",
+      "deliveryDate": "27/10/2022",
+      "status": "Finished",
+      "customerId": 1,
+      "enterpriseId": 1
+    },
+    {
+      "apiId": "v1",
+      "id": "00002519",
+      "origin": "Lima",
+      "pickUpDate": "25/10/2022",
+      "destiny": "Trujillo",
+      "deliveryDate": "27/10/2022",
+      "status": "Pending",
+      "customerId": 1,
+      "enterpriseId": 2
+    },
+    {
+      "apiId": "v1",
+      "id": "00002520",
+      "origin": "Piura",
+      "pickUpDate": "25/10/2022",
+      "destiny": "Lima",
+      "deliveryDate": "27/10/2022",
+      "status": "Pending",
+      "customerId": 1,
+      "enterpriseId": 2
+    },
+    {
+      "apiId": "v1",
+      "id": "00002521",
+      "origin": "Trujillo",
+      "pickUpDate": "25/10/2022",
+      "destiny": "Lima",
+      "deliveryDate": "27/10/2022",
+      "status": "In progress",
+      "customerId": 1,
+      "enterpriseId": 1
+    },
+    {
+      "apiId": "v1",
+      "id": "00002522",
+      "origin": "Chiclayo",
+      "pickUpDate": "25/10/2022",
+      "destiny": "Piura",
+      "deliveryDate": "27/10/2022",
+      "status": "In progress",
+      "customerId": 2,
+      "enterpriseId": 3
+    },
+    {
+      "apiId": "v1",
+      "id": "00002523",
+      "origin": "Lima",
+      "pickUpDate": "25/10/2022",
+      "destiny": "Chiclayo",
+      "deliveryDate": "27/10/2022",
+      "status": "Finished",
+      "customerId": 3,
+      "enterpriseId": 1
+    },
+    {
+      "id": "000025894",
+      "origin": "Lima",
+      "destiny": "Cusco",
+      "pickUpDate": "2022/05/05",
+      "deliveryDate": "2022/05/10",
+      "status": "Pending",
+      "apiId": "v1",
+      "customerId": 2,
+      "enterpriseId": 1
+    },
+    {
+      "status": "Pending",
+      "id": "00001267",
+      "origin": "Cusco",
+      "destiny": "Tacna",
+      "pickUpDate": "09/05/2022, 00:00:00",
+      "deliveryDate": "17/05/2022, 00:00:00",
+      "apiId": "v1",
+      "customerId": 3,
+      "enterpriseId": 3
+    },
+    {
+      "status": "Pending",
+      "id": "0004507",
+      "origin": "Ayacucho",
+      "destiny": "Ica",
+      "pickUpDate": "11/05/2022, 00:00:00",
+      "deliveryDate": "15/05/2022, 00:00:00",
+      "apiId": "v1",
+      "customerId": 1,
+      "enterpriseId": 2
+    },
+    {
+      "status": "Pending",
+      "origin": "Ancash",
+      "id": "748003",
+      "pickUpDate": "13/05/2022, 00:00:00",
+      "deliveryDate": "17/05/2022, 00:00:00",
+      "destiny": "Lima",
+      "apiId": "v1",
+      "customerId": 1,
+      "enterpriseId": 2
+    },
+    {
+      "status": "Pending",
+      "id": "556690",
+      "origin": "Lima",
+      "destiny": "Tumbes",
+      "pickUpDate": "15/05/2022, 00:00:00",
+      "deliveryDate": "22/05/2022, 00:00:00",
+      "apiId": "v1",
+      "customerId": 1,
+      "enterpriseId": 3
+    },
+    {
+      "status": "Pending",
+      "id": "009483",
+      "origin": "Lima",
+      "destiny": "Arequipa",
+      "pickUpDate": "12/05/2022, 00:00:00",
+      "deliveryDate": "20/05/2022, 00:00:00",
+      "apiId": "v1",
+      "customerId": 2,
+      "enterpriseId": 1
+    },
+    {
+      "status": "Pending",
+      "id": "48389",
+      "origin": "Junin",
+      "pickUpDate": "24/05/2022, 00:00:00",
+      "deliveryDate": "31/05/2022, 00:00:00",
+      "destiny": "Lima",
+      "apiId": "v1",
+      "customerId": 3,
+      "enterpriseId": 1
+    },
+    {
+      "status": "Pending",
+      "origin": "Apurimac",
+      "destiny": "Ica",
+      "pickUpDate": "24/05/2022, 00:00:00",
+      "deliveryDate": "26/05/2022, 00:00:00",
+      "id": "9493000",
+      "apiId": "v1",
+      "customerId": 3,
+      "enterpriseId": 2
+    },
+    {
+      "status": "Pending",
+      "id": "959484",
+      "origin": "Lima",
+      "destiny": "Huaraz",
+      "pickUpDate": "17/05/2022, 00:00:00",
+      "deliveryDate": "30/05/2022, 00:00:00",
+      "apiId": "v1",
+      "customerId": 1,
+      "enterpriseId": 2
+    },
+    {
+      "id": "_uVgOvj"
+    }
+  ],
+  "enterprises": [
+    {
+      "id": 1,
+      "email": "fgtor@italoSilva.com",
+      "password": "12131415",
+      "name": "Blindados S.A.C",
+      "phoneNumber": "579031268",
+      "ruc": "Closed Limited Company",
+      "serviceDescription": "Some description",
+      "score": 120
+    },
+    {
+      "id": 2,
+      "email": "fgtor@italoSilva.com",
+      "password": "12131415",
+      "name": "ProteMax S.A.C",
+      "phoneNumber": "579031268",
+      "ruc": "Closed Limited Company",
+      "serviceDescription": "Some description",
+      "score": 10
+    },
+    {
+      "id": 3,
+      "email": "fgtor@italoSilva.com",
+      "password": "12131415",
+      "name": "Hermes S.A.C",
+      "phoneNumber": "579031268",
+      "ruc": "Closed Limited Company",
+      "serviceDescription": "Some description",
+      "subscriptionPlan": 2,
+      "score": 50
+    }
+  ],
+  "customers": [
+    {
+      "id": 1,
+      "email": "gnsnav@italoSilva.com",
+      "password": "123456",
+      "name": "Italo Silva S.A.C",
+      "phoneNumber": "893903458",
+      "ruc": "Closed Limited Company",
+      "customerDescription": "Some description",
+      "subscriptionPlan": 0
+    },
+    {
+      "id": 2,
+      "email": "csvfac@italoSilva.com",
+      "password": "7891011",
+      "name": "Uber",
+      "phoneNumber": "456756681",
+      "ruc": "Anonymous society",
+      "customerDescription": "Some description",
+      "subscriptionPlan": 1
+    },
+    {
+      "id": 3,
+      "email": "fgtor@italoSilva.com",
+      "password": "12131415",
+      "name": "Netflix",
+      "phoneNumber": "579031268",
+      "ruc": "Closed Limited Company",
+      "customerDescription": "Some description",
+      "subscriptionPlan": 2
+    }
+  ],
   "vehicles": [
     {
       "id": 1,
@@ -6,7 +241,8 @@
       "licensePlate": "BBT-231",
       "year": "2020",
       "model": "TEF25",
-      "maintenanceDate": "20/02/2021"
+      "maintenanceDate": "20/02/2021",
+      "vehicleType": "Free"
     },
     {
       "id": 2,
@@ -14,7 +250,8 @@
       "licensePlate": "DDE-251",
       "year": 2020,
       "model": "RE2",
-      "maintenanceDate": "12/07/2021"
+      "maintenanceDate": "12/07/2021",
+      "vehicleType": "Free"
     },
     {
       "id": 3,
@@ -22,7 +259,8 @@
       "licensePlate": "VET-965",
       "year": 2017,
       "model": "TEF25",
-      "maintenanceDate": "21/05/2021"
+      "maintenanceDate": "21/05/2021",
+      "vehicleType": "Free"
     },
     {
       "id": 4,
@@ -30,7 +268,8 @@
       "licensePlate": "SFF-232",
       "year": 2021,
       "model": "RER3",
-      "maintenanceDate": "02/12/2021"
+      "maintenanceDate": "02/12/2021",
+      "vehicleType": "Free"
     },
     {
       "id": 5,
@@ -38,7 +277,8 @@
       "licensePlate": "WSA-332",
       "year": 2019,
       "model": "TTA",
-      "maintenanceDate": "10/11/2021"
+      "maintenanceDate": "10/11/2021",
+      "vehicleType": "Free"
     },
     {
       "id": 6,
@@ -46,7 +286,8 @@
       "licensePlate": "GTA-431",
       "year": 2021,
       "model": "NSA1",
-      "maintenanceDate": "24/10/2021"
+      "maintenanceDate": "24/10/2021",
+      "vehicleType": "Free"
     },
     {
       "id": 7,
@@ -54,7 +295,8 @@
       "licensePlate": "TYP-123",
       "year": "2020",
       "model": "212",
-      "maintenanceDate": "1212-02-12"
+      "maintenanceDate": "1212-02-12",
+      "vehicleType": "Free"
     },
     {
       "id": 8,
@@ -62,7 +304,175 @@
       "licensePlate": "GHV-543",
       "year": "1223",
       "model": "YIU1",
-      "maintenanceDate": "2022-05-20"
+      "maintenanceDate": "2022-05-20",
+      "vehicleType": "Free"
+    },
+    {
+      "id": "9",
+      "brand": "Toyota",
+      "licensePlate": "asd",
+      "year": "2",
+      "model": "asd",
+      "maintenanceDate": "2022-05-17T05:00:00.000Z",
+      "vehicleType": "Free"
+    },
+    {
+      "id": "10",
+      "brand": "nose",
+      "licensePlate": "12",
+      "year": "2019",
+      "model": "asd",
+      "maintenanceDate": "2022-05-18T05:00:00.000Z",
+      "vehicleType": "Free"
+    },
+    {
+      "status": " ",
+      "id": "13",
+      "brand": "Toyota",
+      "licensePlate": "XZB178",
+      "year": "2019",
+      "model": "SM-2019",
+      "maintenanceDate": "2022-05-11T05:00:00.000Z"
+    }
+  ],
+  "enterprise": [
+    {
+      "id": 1,
+      "name": "Ups S.A.C",
+      "ruc": "789654321",
+      "phone": "987654321",
+      "email": "ups@correo.com",
+      "priceBase": 12.5,
+      "factorWeight": 0.2,
+      "shippingTime": 48,
+      "ratingService": 3.2,
+      "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/United_Parcel_Service_logo_2014.svg/1200px-United_Parcel_Service_logo_2014.svg.png"
+    },
+    {
+      "id": 2,
+      "name": "DHL Express Peru S.A.C",
+      "ruc": "879765432",
+      "phone": "978654321",
+      "email": "dhl@correo.com",
+      "priceBase": 13.5,
+      "factorWeight": 0.4,
+      "shippingTime": 36,
+      "ratingService": 4.2,
+      "photo": "https://logos-world.net/wp-content/uploads/2020/08/DHL-Symbol.png"
+    },
+    {
+      "id": 3,
+      "name": "Olva Courier S.A.C",
+      "ruc": "678543123",
+      "phone": "765432198",
+      "email": "olva@correo.com",
+      "priceBase": 12.1,
+      "factorWeight": 0.3,
+      "shippingTime": 54,
+      "ratingService": 4.1,
+      "photo": "https://play-lh.googleusercontent.com/MeXv_OgOVC6MRdlgC4SPjQWzsDvLr47N-28mwWvPnrXgI_tskMVA5lSxxFJ1BOIVeFha"
+    },
+    {
+      "id": 4,
+      "name": "Urbano Peru S.A.C",
+      "ruc": "567543123",
+      "phone": "876543211",
+      "email": "urbano@correo.com",
+      "priceBase": 16.1,
+      "factorWeight": 0.4,
+      "shippingTime": 48,
+      "ratingService": 4.5,
+      "photo": "https://play-lh.googleusercontent.com/yUS_LIjrQ5blHXmcwiMqGEXaJSArsTNMJ-U5531CGlObUCtzk4us-GGfYXN9lmQjRzY"
+    },
+    {
+      "id": 5,
+      "name": "Ransa Peru S.A.C",
+      "ruc": "678543123",
+      "phone": "787654355",
+      "email": "ransa@correo.com",
+      "priceBase": 13.7,
+      "factorWeight": 0.5,
+      "shippingTime": 64,
+      "ratingService": 3.3,
+      "photo": "https://www.practicas.pe/organizaciones/practicas-ransa.png"
+    }
+  ],
+  "addresses": [],
+  "payments": [],
+  "users": [
+    {
+      "email": "hbcordova10@gmail.com",
+      "password": "$2a$10$uTb4/T04j4uRPr/MLYbhNueafT8zYZLxXBVFoxZKDkBc32afMjse.",
+      "userType": "customer",
+      "name": "Heber Cordova",
+      "ruc": "988 765 432 111",
+      "cellPhone": "902 952 757",
+      "id": 1
+    },
+    {
+      "email": "upc-peru@gmail.com",
+      "password": "$2a$10$B7OLhFbjQj3Kehb2l/atleSbo6XYArr9p4LAMHl9/nqH9NVREYqmG",
+      "userType": "enterprise",
+      "name": "UPC",
+      "ruc": "764 545 674 657",
+      "cellPhone": "987 654 321",
+      "id": 2
+    },
+    {
+      "email": "ups-shipments@gmail.com",
+      "password": "$2a$10$j0lcPlFUvZ5yNfcR95C1K.hhDxiAuaVgCwlVDk08UfG0EUgSwfjiW",
+      "userType": "enterprise",
+      "name": "UPS SAC",
+      "ruc": "546 546 543 634",
+      "cellPhone": "987 654 321",
+      "id": 3
+    },
+    {
+      "email": "urbanoperu@gmail.com",
+      "password": "$2a$10$efmZnNs9I6yiwIy7riXsfeBzd6Em3fVUP6VHMvkg5zBAyqjDej.3G",
+      "userType": "customer",
+      "name": "Urbano Peru",
+      "ruc": "878 765 435 634",
+      "cellPhone": "976 423 432",
+      "id": 4
+    }
+  ],
+  "notifications": [
+    {
+      "id": 1,
+      "name": "Ups S.A.C",
+      "content": "Shipment 00002520 is finished",
+      "date": "16:30"
+    },
+    {
+      "id": 2,
+      "name": "Ups S.A.C",
+      "content": "Shipment 00002520 in route",
+      "date": "11:00"
+    },
+    {
+      "id": 3,
+      "name": "DHL Express Peru S.A.C",
+      "content": "Shipment 00002519 is finished",
+      "date": "Yesterday"
+    },
+    {
+      "id": 4,
+      "name": "DHL Express Peru S.A.C",
+      "content": "Shipment 00002519 in route",
+      "date": "2 days ago"
+    },
+    {
+      "id": 5,
+      "name": "Olva Courier S.A.C",
+      "content": "Shipment 00002518 is finished",
+      "date": "6 days ago"
+    },
+    {
+      "id": 6,
+      "name": "Olva Courier S.A.C",
+      "content": "Shipment 00002518 in route",
+      "date": "6 days ago"
     }
   ]
 }
