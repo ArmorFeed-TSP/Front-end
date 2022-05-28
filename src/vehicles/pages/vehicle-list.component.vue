@@ -1,6 +1,6 @@
 <template>
-  <div class="container">
-    <div class="flex flex-column space-between align-items-center">
+  <div>
+    <div class="flex justify-content-center">
       <div class="my-7 flex flex-column">
         <pv-tool-bar class="toolbarButton mb-4">
           <template #start>
@@ -12,8 +12,8 @@
             />
           </template>
         </pv-tool-bar>
-
         <pv-data-table
+            style="max-width: 90rem"
             ref="dt"
             :value="vehicles"
             v-model:selection="selectedVehicles"
