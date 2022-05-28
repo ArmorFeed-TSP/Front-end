@@ -14,13 +14,18 @@
       ></pv-column>
       <pv-column :exportable="false" style="min-width: 8rem">
         <template #body="slotProps">
+<<<<<<< HEAD
           <pv-button icon="pi pi-car" class="p-button-text p-button-rounded" />
+=======
+          <pv-button icon="pi pi-pencil" class="p-button-text p-button-rounded" @click="editStatus(slotProps.data)" />
+>>>>>>> feature/vehicles
           <router-link
             :to="`/shipments/enterprise/shipmentDetail/${slotProps.data.id}`"
             ><pv-button icon="pi pi-eye" class="p-button-text p-button-rounded"
           /></router-link>
         </template>
       </pv-column>
+<<<<<<< HEAD
     </pv-data-table>
     <pv-dialog v-model:visible="statusEnabled">
       <template #header>
@@ -31,6 +36,58 @@
         <pv-button label="Submit" autofocus @click="showStatus" />
       </template>
     </pv-dialog>
+=======
+      <pv-dialog
+        v-model:visible="statusEnabled"
+        :style="{ widht: '450px' }"
+        header="Status information"
+        :modal="true"
+        class="p-fluid"
+      >
+        <div class="field">
+          <pv-dropdown
+            id="status"
+            v-model="shipment.status"
+            :options="statusses"
+            optionLabel="label"
+            placeholder="Select a new status"
+          >
+            <template #value="slotProps">
+              <div v-if="slotProps.value && slotProps.value.value">
+                <span
+                  :class="'shipment-badge status-' + slotProps.value.value"
+                >{{ slotProps.value.label }}</span
+                >
+              </div>
+              <div v-else-if="slotProps.value && !slotProps.value.value">
+                <span
+                  :class="
+                    'shipment-badge status-' + slotProps.value.toLowerCase()
+                  "
+                >{{ slotProps.value }}</span
+                >
+              </div>
+              <span v-else>{{ slotProps.placeholder }}</span>
+            </template>
+          </pv-dropdown>
+        </div>
+        <template #footer>
+          <pv-button
+            :label="'Cancel'.toUpperCase()"
+            icon="pi pi-times"
+            class="p-button-text"
+            @click="hideStatusDialog"
+          />
+          <pv-button
+            :label="'Save'.toUpperCase()"
+            icon="pi pi-check"
+            class="p-button-text"
+            @click="saveShipment"
+          />
+        </template>
+      </pv-dialog>
+    </pv-data-table>
+>>>>>>> feature/vehicles
     <pv-dialog v-model:visible="dialogEnabled">
       <template #header>
         <h3>Current Location</h3>
@@ -65,6 +122,17 @@ export default {
       currentShipments: [],
       dialogEnabled: false,
       statusEnabled: false,
+<<<<<<< HEAD
+=======
+      statusses: [
+        { label: "Pending", value: "Pending" },
+        { label: "Finished", value: "Finished" },
+        { label: "In progress", value: "In progress" },
+      ],
+      selectedStatus: null,
+      shipment: {},
+      submitted: false,
+>>>>>>> feature/vehicles
     };
   },
   created() {
@@ -96,6 +164,42 @@ export default {
     showStatus() {
       this.statusEnabled = !this.statusEnabled;
     },
+<<<<<<< HEAD
+=======
+    hideStatusDialog() {
+      this.statusEnabled = false;
+      this.submitted = false;
+    },
+    findIndexById(id) {
+      return this.shipments.findIndex((shipment) => shipment.id === id);
+    },
+    saveShipment() {
+      this.submitted = true;
+      if (this.shipment.id) {
+        //this.shipment = this.getStorableShipment(this.shipment);
+        this.shipment.status = this.shipment.status.value
+          ? this.shipment.status.value
+          : this.shipment.status;
+        this.shipmentsService
+          .update(this.shipment.id, this.shipment)
+          .then((response) => {
+            this.shipments[this.findIndexById(response.data.id)] =
+              this.shipment;
+            //puedo agregar el toast si sale esta vaina
+            console.log(response);
+          });
+      }
+      this.statusEnabled = false;
+      this.shipment = {};
+      window.location.reload();
+    },
+    editStatus(shipment) {
+      console.log(shipment);
+      this.shipment = { ...shipment };
+      console.log(this.shipment);
+      this.statusEnabled = !this.statusEnabled;
+    },
+>>>>>>> feature/vehicles
   },
 };
 </script>

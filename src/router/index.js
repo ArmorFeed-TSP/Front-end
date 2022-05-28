@@ -31,7 +31,7 @@ const routes = [
   {
     path: "/vehicles",
     name: "vehicles",
-    component: () => import("../vehicles/pages/vehicles.component.vue"),
+    component: () => import("../vehicles/pages/vehicle-list.component.vue"),
     props: { enableListDialogs: true },
   },
   {

@@ -249,7 +249,38 @@
       "score": 50
     }
   ],
-  "customers": [],
+  "customers": [
+    {
+      "id": 1,
+      "email": "gnsnav@italoSilva.com",
+      "password": "123456",
+      "name": "Italo Silva S.A.C",
+      "phoneNumber": "893903458",
+      "ruc": "Closed Limited Company",
+      "customerDescription": "Some description",
+      "subscriptionPlan": 0
+    },
+    {
+      "id": 2,
+      "email": "csvfac@italoSilva.com",
+      "password": "7891011",
+      "name": "Uber",
+      "phoneNumber": "456756681",
+      "ruc": "Anonymous society",
+      "customerDescription": "Some description",
+      "subscriptionPlan": 1
+    },
+    {
+      "id": 3,
+      "email": "fgtor@italoSilva.com",
+      "password": "12131415",
+      "name": "Netflix",
+      "phoneNumber": "579031268",
+      "ruc": "Closed Limited Company",
+      "customerDescription": "Some description",
+      "subscriptionPlan": 2
+    }
+  ],
   "vehicles": [
     {
       "id": 1,
@@ -257,7 +288,8 @@
       "licensePlate": "BBT-231",
       "year": "2020",
       "model": "TEF25",
-      "maintenanceDate": "20/02/2021"
+      "maintenanceDate": "20/02/2021",
+      "vehicleType": "Free"
     },
     {
       "id": 2,
@@ -265,7 +297,8 @@
       "licensePlate": "DDE-251",
       "year": 2020,
       "model": "RE2",
-      "maintenanceDate": "12/07/2021"
+      "maintenanceDate": "12/07/2021",
+      "vehicleType": "Free"
     },
     {
       "id": 3,
@@ -273,7 +306,8 @@
       "licensePlate": "VET-965",
       "year": 2017,
       "model": "TEF25",
-      "maintenanceDate": "21/05/2021"
+      "maintenanceDate": "21/05/2021",
+      "vehicleType": "Free"
     },
     {
       "id": 4,
@@ -281,7 +315,8 @@
       "licensePlate": "SFF-232",
       "year": 2021,
       "model": "RER3",
-      "maintenanceDate": "02/12/2021"
+      "maintenanceDate": "02/12/2021",
+      "vehicleType": "Free"
     },
     {
       "id": 5,
@@ -289,7 +324,8 @@
       "licensePlate": "WSA-332",
       "year": 2019,
       "model": "TTA",
-      "maintenanceDate": "10/11/2021"
+      "maintenanceDate": "10/11/2021",
+      "vehicleType": "Free"
     },
     {
       "id": 6,
@@ -297,7 +333,8 @@
       "licensePlate": "GTA-431",
       "year": 2021,
       "model": "NSA1",
-      "maintenanceDate": "24/10/2021"
+      "maintenanceDate": "24/10/2021",
+      "vehicleType": "Free"
     },
     {
       "id": 7,
@@ -305,7 +342,8 @@
       "licensePlate": "TYP-123",
       "year": "2020",
       "model": "212",
-      "maintenanceDate": "1212-02-12"
+      "maintenanceDate": "1212-02-12",
+      "vehicleType": "Free"
     },
     {
       "id": 8,
@@ -317,6 +355,10 @@
     },
     {
       "status": " ",
+      "maintenanceDate": "2022-05-20",
+      "vehicleType": "Free"
+    },
+    {
       "id": "9",
       "brand": "Toyota",
       "licensePlate": "asd",
@@ -331,7 +373,18 @@
       "licensePlate": "12",
       "maintenanceDate": "2022-05-18T05:00:00.000Z",
       "model": "asd",
-      "year": "2019"
+      "year": "2019",
+      "maintenanceDate": "2022-05-17T05:00:00.000Z",
+      "vehicleType": "Free"
+    },
+    {
+      "id": "10",
+      "brand": "nose",
+      "licensePlate": "12",
+      "year": "2019",
+      "model": "asd",
+      "maintenanceDate": "2022-05-18T05:00:00.000Z",
+      "vehicleType": "Free"
     },
     {
       "status": " ",
@@ -443,6 +496,44 @@
       "ruc": "878 765 435 634",
       "cellPhone": "976 423 432",
       "id": 4
+    }
+  ],
+  "notifications": [
+    {
+      "id": 1,
+      "name": "Ups S.A.C",
+      "content": "Shipment 00002520 is finished",
+      "date": "16:30"
+    },
+    {
+      "id": 2,
+      "name": "Ups S.A.C",
+      "content": "Shipment 00002520 in route",
+      "date": "11:00"
+    },
+    {
+      "id": 3,
+      "name": "DHL Express Peru S.A.C",
+      "content": "Shipment 00002519 is finished",
+      "date": "Yesterday"
+    },
+    {
+      "id": 4,
+      "name": "DHL Express Peru S.A.C",
+      "content": "Shipment 00002519 in route",
+      "date": "2 days ago"
+    },
+    {
+      "id": 5,
+      "name": "Olva Courier S.A.C",
+      "content": "Shipment 00002518 is finished",
+      "date": "6 days ago"
+    },
+    {
+      "id": 6,
+      "name": "Olva Courier S.A.C",
+      "content": "Shipment 00002518 in route",
+      "date": "6 days ago"
     }
   ]
 }

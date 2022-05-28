@@ -51,7 +51,10 @@
             <p><span class="font-bold">Total price: </span> $100.00</p>
           </div>
           <pv-button label="Write a review" class="card-btn"></pv-button>
+<<<<<<< HEAD
           <customer-comments></customer-comments>
+=======
+>>>>>>> feature/vehicles
         </template>
       </pv-card>
     </div>
@@ -69,10 +72,15 @@
 
 <script>
 import { CustomerShipmentsApiService } from "../services/customer-shipments-api.service.js";
+<<<<<<< HEAD
 import CustomerComments from "./customer-comment.component.vue";
 export default {
   name: "customer-shipments-detail",
   components: {CustomerComments},
+=======
+export default {
+  name: "customer-shipments-detail",
+>>>>>>> feature/vehicles
   data() {
     return {
       customerShipmentsApiService: null,
