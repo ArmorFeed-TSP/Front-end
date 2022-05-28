@@ -19,13 +19,13 @@ const routes = [
   {
     path: "/shipments/client",
     name: "client-shipments",
-    component: () => import("../shipments/pages/shipments-form.component.vue"),
+    component: () => import("../shipments/customer-shipments/pages/customer-shipments.component.vue"),
     props: { enableListDialogs: false },
   },
   {
     path: "/shipments/enterprise",
     name: "enterprise-shipments",
-    component: () => import("../shipments/pages/shipments-form.component.vue"),
+    component: () => import("../shipments/enterprise-shipments/pages/enterprise-shipments.component.vue"),
     props: { enableListDialogs: true },
   },
   {

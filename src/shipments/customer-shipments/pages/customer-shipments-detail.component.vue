@@ -51,6 +51,7 @@
             <p><span class="font-bold">Total price: </span> $100.00</p>
           </div>
           <pv-button label="Write a review" class="card-btn"></pv-button>
+          <customer-comments></customer-comments>
         </template>
       </pv-card>
     </div>
@@ -68,8 +69,10 @@
 
 <script>
 import { CustomerShipmentsApiService } from "../services/customer-shipments-api.service.js";
+import CustomerComments from "./customer-comment.component";
 export default {
   name: "customer-shipments-detail",
+  components: {CustomerComments},
   data() {
     return {
       customerShipmentsApiService: null,
