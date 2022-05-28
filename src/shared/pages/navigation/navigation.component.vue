@@ -82,9 +82,9 @@ export default {
         { label: "My Payments", icon: "pi pi-money-bill", to: "/enterprise/1/payments" },
       ],
       navigationCustomer: [
-        { label: "Quotation", icon: "pi pi-fw pi-home", to: "/quotations" },
-        { label: "My shipments", icon: "pi pi-fw pi-calendar" },
-        { label: "My Payments", icon: "pi pi-money-bill", to: "" },
+        { label: "Quotation", icon: "pi pi-fw pi-home", to: "quotations/"},
+        { label: "My shipments", icon: "pi pi-fw pi-calendar", to: "shipments/" },
+        { label: "My Payments", icon: "pi pi-money-bill", to: "payments" },
       ],
     };
   },
@@ -110,16 +110,18 @@ export default {
         ? this.navigationCustomer
         : this.navigationEnterprise;
     },
+    routeShipments() {
+      return `/customers/${this.userId}/shipments`;
+    }
   },
   props: {
     items: Array,
-    paramActiveTab: Number,
     userId: Number,
     userType: String,
     userName: String,
   },
   mounted() {
-    this.activeTab = this.paramActiveTab;
+    this.activeTab = 1
   },
 };
 </script>

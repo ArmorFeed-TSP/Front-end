@@ -3,7 +3,7 @@
     <div
       style="max-width: 45rem; width: 100%; margin: 0 auto; min-height: 90vh"
     >
-      <pv-step :model="steps"></pv-step>
+      <pv-step :model="steps" :exact="false"></pv-step>
       <router-view
         v-slot="{ Component }"
         :formData="formObject"
@@ -36,19 +36,19 @@ export default {
         },
         {
           label: "Enterprise",
-          to: "/quotations/business-shipping",
+          to: "business-shipping",
         },
         {
           label: "Pick Up",
-          to: "/quotations/pick-up-detail",
+          to: "pick-up-detail",
         },
         {
           label: "Destination",
-          to: "/quotations/destination-detail",
+          to: "destination-detail",
         },
         {
           label: "Payment",
-          to: "/quotations/payment",
+          to: "payment",
         },
       ],
       formObject: {},

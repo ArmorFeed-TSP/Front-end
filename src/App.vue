@@ -18,7 +18,6 @@ export default {
         this.userId = auth.user.id;
         this.userType = auth.user.userType;
         this.userName = auth.user.name;
-        this.hireLogin = true;
         if (this.userType === "customer")
           this.$router.push({
             name: "customer-quotations",
@@ -37,6 +36,9 @@ export default {
   mounted() {
     this.userLogged();
   },
+  updated() {
+    this.userLogged();
+  }
 };
 </script>
 <template>

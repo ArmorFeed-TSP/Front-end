@@ -1,6 +1,6 @@
 <template>
   <div class="detail-main-content" role="main">
-    <router-link to="/shipments/customer" class="no-underline"><pv-button label="Go back" icon="pi pi-chevron-left" class="p-button-text p-button-rounded router-btn"/></router-link>
+    <router-link to="./" class="no-underline"><pv-button label="Go back" icon="pi pi-chevron-left" class="p-button-text p-button-rounded router-btn"/></router-link>
     <div class="grid-list" role="contentinfo">
       <pv-card class="card-info">
         <template #header>
@@ -51,10 +51,7 @@
             <p><span class="font-bold">Total price: </span> $100.00</p>
           </div>
           <pv-button label="Write a review" class="card-btn"></pv-button>
-<<<<<<< HEAD
           <customer-comments></customer-comments>
-=======
->>>>>>> feature/vehicles
         </template>
       </pv-card>
     </div>
@@ -72,15 +69,10 @@
 
 <script>
 import { CustomerShipmentsApiService } from "../services/customer-shipments-api.service.js";
-<<<<<<< HEAD
 import CustomerComments from "./customer-comment.component.vue";
 export default {
   name: "customer-shipments-detail",
   components: {CustomerComments},
-=======
-export default {
-  name: "customer-shipments-detail",
->>>>>>> feature/vehicles
   data() {
     return {
       customerShipmentsApiService: null,
@@ -93,7 +85,7 @@ export default {
     }
   },
   created() {
-    this.shipmentId = this.$route.params.id;
+    this.shipmentId = this.$route.params.idShipment;
     this.customerShipmentsApiService = new CustomerShipmentsApiService();
     this.customerShipmentsApiService.getShipmentById(this.shipmentId).then( response => {
       this.customerShipment = response.data;

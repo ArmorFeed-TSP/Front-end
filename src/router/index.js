@@ -17,13 +17,13 @@ const routes = [
     props: { enableListDialogs: true },
   },
   {
-    path: "/shipments/client",
+    path: "/customers/:id/shipments",
     name: "client-shipments",
     component: () =>
       import(
         "../shipments/customer-shipments/pages/customer-shipments.component.vue"
       ),
-    props: { enableListDialogs: false },
+    props: true,
   },
   {
     path: "/shipments/enterprise",
@@ -55,7 +55,7 @@ const routes = [
           ),
       },
       {
-        path: "/customer/:id/business-shipping",
+        path: "/customers/:id/business-shipping",
         props: true,
         component: () =>
           import(
@@ -63,13 +63,13 @@ const routes = [
           ),
       },
       {
-        path: "/customer/:id/pick-up-detail",
+        path: "/customers/:id/pick-up-detail",
         props: true,
         component: () =>
           import("../customers/pages/steps-quotation/pick-up-detail.step.vue"),
       },
       {
-        path: "/customer/:id/destination-detail",
+        path: "/customers/:id/destination-detail",
         props: true,
         component: () =>
           import(
@@ -77,7 +77,7 @@ const routes = [
           ),
       },
       {
-        path: "/customer/:id/payment",
+        path: "/customers/:id/payment",
         props: true,
         component: () =>
           import(
@@ -119,7 +119,7 @@ const routes = [
     props: { id: 1 },
   },
   {
-    path: "/shipments/customer/shipmentDetail/:id",
+    path: "/customers/:idCustomer/shipments/:idShipment/",
     name: "Customer shipment detail",
     component: () =>
       import(

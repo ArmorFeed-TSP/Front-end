@@ -4,7 +4,7 @@
       <pv-column v-for="col in columns" :field="col.field" :header="col.header" :key="col.field"></pv-column>
       <pv-column :exportable="false" style="min-width: 8rem">
         <template #body="slotProps">
-          <router-link :to="`/shipments/customer/shipmentDetail/${slotProps.data.id}`"><pv-button icon="pi pi-eye" class="p-button-text p-button-rounded"/></router-link>
+          <router-link :to="slotProps.data.id"><pv-button icon="pi pi-eye" class="p-button-text p-button-rounded"/></router-link>
         </template>
       </pv-column>
     </pv-data-table>
