@@ -1,7 +1,7 @@
 <template>
   <div class="bg-sign-up">
     <div class="bg-white sign-up">
-      <h1 class="text-center mb-2">Sign Up</h1>
+      <h2 class="text-center mb-2">Create an ArmorFeed account</h2>
       <p class="text-center mb-4 mt-0">Join and start ordering or shipping.</p>
       <div v-if="isConfirm">
         <div class="p-fluid">
@@ -11,7 +11,8 @@
             </p>
             <p>
               A confirmation message has been sent to your email
-              <span class="text-primary email-style">{{ email }}</span>.
+              <span class="text-primary email-style">{{ email }}</span
+              >.
             </p>
           </div>
           <div class="field mt-8">
@@ -169,8 +170,17 @@
               >I agree to the terms and conditions*</label
             >
           </div>
-          <div class="field mx-2">
-            <pv-button label="Continue" type="submit"></pv-button>
+          <div class="field mx-2 md:flex">
+            <pv-button
+              label="Come back"
+              class="mb-2 md:mb-0 md:mr-2 p-button-info"
+              @click="goToSignIn"
+            ></pv-button>
+            <pv-button
+              label="Sign Up"
+              type="submit"
+              class="p-button-success"
+            ></pv-button>
           </div>
         </div>
       </form>

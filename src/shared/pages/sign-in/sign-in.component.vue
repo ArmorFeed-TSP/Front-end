@@ -2,7 +2,7 @@
   <div class="bg-sign-in">
     <div class="sign-in bg-white">
       <form @submit.prevent="handleSubmit(!v$.$invalid)">
-        <h1 class="text-center font-bold mb-5">Sign in</h1>
+        <h1 class="text-center font-bold mb-5">ArmorFeed</h1>
         <div class="p-fluid">
           <div class="field">
             <p v-if="notFound" class="text-lg line-height-3 p-error">
@@ -25,7 +25,7 @@
               >Enter the email please.</small
             >
           </div>
-          <div class="field">
+          <div class="field mb-2">
             <pv-password
               id="password"
               placeholder="Password"
@@ -37,14 +37,15 @@
               >Enter the password please.</small
             >
           </div>
-          <div class="field">
+          <div class="field pt-4">
+            <pv-button label="Sign In" type="submit"></pv-button>
+          </div>
+          <div class="text-center pt-2">
+            <router-link to="/" class="mt-0 no-underline">Forgot your password?</router-link>
             <p>
               Don't have an account?
-              <router-link to="/sign-up">Click here.</router-link>
+              <router-link class="no-underline" to="/sign-up">Click here.</router-link>
             </p>
-          </div>
-          <div class="field pt-4">
-            <pv-button label="Start" type="submit"></pv-button>
           </div>
         </div>
       </form>
