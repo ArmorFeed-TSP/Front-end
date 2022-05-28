@@ -389,7 +389,6 @@
       "photo": "https://www.practicas.pe/organizaciones/practicas-ransa.png"
     }
   ],
-  "customers": [],
   "addresses": [],
   "payments": [],
   "users": [
@@ -428,6 +427,44 @@
       "ruc": "878 765 435 634",
       "cellPhone": "976 423 432",
       "id": 4
+    }
+  ],
+  "notifications": [
+    {
+      "id": 1,
+      "name": "Ups S.A.C",
+      "content": "Shipment 00002520 is finished",
+      "date": "16:30"
+    },
+    {
+      "id": 2,
+      "name": "Ups S.A.C",
+      "content": "Shipment 00002520 in route",
+      "date": "11:00"
+    },
+    {
+      "id": 3,
+      "name": "DHL Express Peru S.A.C",
+      "content": "Shipment 00002519 is finished",
+      "date": "Yesterday"
+    },
+    {
+      "id": 4,
+      "name": "DHL Express Peru S.A.C",
+      "content": "Shipment 00002519 in route",
+      "date": "2 days ago"
+    },
+    {
+      "id": 5,
+      "name": "Olva Courier S.A.C",
+      "content": "Shipment 00002518 is finished",
+      "date": "6 days ago"
+    },
+    {
+      "id": 6,
+      "name": "Olva Courier S.A.C",
+      "content": "Shipment 00002518 in route",
+      "date": "6 days ago"
     }
   ]
 }
