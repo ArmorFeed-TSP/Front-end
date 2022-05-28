@@ -1,5 +1,276 @@
 {
-  "shipments": [],
+  "comments": [
+  {
+    "id": 1,
+    "title": "Title comment1",
+    "content": "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. p",
+    "enterpriseId": 1
+  },
+  {
+    "id": 2,
+    "title": "Title Comment2",
+    "content": " Lorem ipsu Lorem ipsuLorem ipsuLorem ipsuvvvvLorem ipsu",
+    "enterpriseId": 0
+  },
+  {
+    "id": 3,
+    "title": "Hola",
+    "content": "ASDOLASDASDASDFASDFASD",
+    "enterpriseId": 0
+  },
+  {
+    "id": 4,
+    "title": "asdasd",
+    "content": "asdasd",
+    "enterpriseId": 0
+  },
+  {
+    "id": 5,
+    "title": "sdasdasdrasd",
+    "content": "SDasdasdasd",
+    "enterpriseId": 0
+  },
+  {
+    "id": 6,
+    "title": "DSSDAS",
+    "content": "ASDASDASD"
+  }
+],
+  "shipments": [
+    {
+      "apiId": "v1",
+      "id": "00002518",
+      "origin": "Lima",
+      "pickUpDate": "25/10/2022",
+      "destiny": "Piura",
+      "deliveryDate": "27/10/2022",
+      "status": "Finished",
+      "customerId": 1,
+      "enterpriseId": 1
+    },
+    {
+      "apiId": "v1",
+      "id": "00002519",
+      "origin": "Lima",
+      "pickUpDate": "25/10/2022",
+      "destiny": "Trujillo",
+      "deliveryDate": "27/10/2022",
+      "status": "Pending",
+      "customerId": 1,
+      "enterpriseId": 2
+    },
+    {
+      "apiId": "v1",
+      "id": "00002520",
+      "origin": "Piura",
+      "pickUpDate": "25/10/2022",
+      "destiny": "Lima",
+      "deliveryDate": "27/10/2022",
+      "status": "Pending",
+      "customerId": 1,
+      "enterpriseId": 2
+    },
+    {
+      "apiId": "v1",
+      "id": "00002521",
+      "origin": "Trujillo",
+      "pickUpDate": "25/10/2022",
+      "destiny": "Lima",
+      "deliveryDate": "27/10/2022",
+      "status": "In progress",
+      "customerId": 1,
+      "enterpriseId": 1
+    },
+    {
+      "apiId": "v1",
+      "id": "00002522",
+      "origin": "Chiclayo",
+      "pickUpDate": "25/10/2022",
+      "destiny": "Piura",
+      "deliveryDate": "27/10/2022",
+      "status": "In progress",
+      "customerId": 2,
+      "enterpriseId": 3
+    },
+    {
+      "apiId": "v1",
+      "id": "00002523",
+      "origin": "Lima",
+      "pickUpDate": "25/10/2022",
+      "destiny": "Chiclayo",
+      "deliveryDate": "27/10/2022",
+      "status": "Finished",
+      "customerId": 3,
+      "enterpriseId": 1
+    },
+    {
+      "id": "000025894",
+      "origin": "Lima",
+      "destiny": "Cusco",
+      "pickUpDate": "2022/05/05",
+      "deliveryDate": "2022/05/10",
+      "status": "Pending",
+      "apiId": "v1",
+      "customerId": 2,
+      "enterpriseId": 1
+    },
+    {
+      "status": "Pending",
+      "id": "00001267",
+      "origin": "Cusco",
+      "destiny": "Tacna",
+      "pickUpDate": "09/05/2022, 00:00:00",
+      "deliveryDate": "17/05/2022, 00:00:00",
+      "apiId": "v1",
+      "customerId": 3,
+      "enterpriseId": 3
+    },
+    {
+      "status": "Pending",
+      "id": "0004507",
+      "origin": "Ayacucho",
+      "destiny": "Ica",
+      "pickUpDate": "11/05/2022, 00:00:00",
+      "deliveryDate": "15/05/2022, 00:00:00",
+      "apiId": "v1",
+      "customerId": 1,
+      "enterpriseId": 2
+    },
+    {
+      "status": "Pending",
+      "origin": "Ancash",
+      "id": "748003",
+      "pickUpDate": "13/05/2022, 00:00:00",
+      "deliveryDate": "17/05/2022, 00:00:00",
+      "destiny": "Lima",
+      "apiId": "v1",
+      "customerId": 1,
+      "enterpriseId": 2
+    },
+    {
+      "status": "Pending",
+      "id": "556690",
+      "origin": "Lima",
+      "destiny": "Tumbes",
+      "pickUpDate": "15/05/2022, 00:00:00",
+      "deliveryDate": "22/05/2022, 00:00:00",
+      "apiId": "v1",
+      "customerId": 1,
+      "enterpriseId": 3
+    },
+    {
+      "status": "Pending",
+      "id": "009483",
+      "origin": "Lima",
+      "destiny": "Arequipa",
+      "pickUpDate": "12/05/2022, 00:00:00",
+      "deliveryDate": "20/05/2022, 00:00:00",
+      "apiId": "v1",
+      "customerId": 2,
+      "enterpriseId": 1
+    },
+    {
+      "status": "Pending",
+      "id": "48389",
+      "origin": "Junin",
+      "pickUpDate": "24/05/2022, 00:00:00",
+      "deliveryDate": "31/05/2022, 00:00:00",
+      "destiny": "Lima",
+      "apiId": "v1",
+      "customerId": 3,
+      "enterpriseId": 1
+    },
+    {
+      "status": "Pending",
+      "origin": "Apurimac",
+      "destiny": "Ica",
+      "pickUpDate": "24/05/2022, 00:00:00",
+      "deliveryDate": "26/05/2022, 00:00:00",
+      "id": "9493000",
+      "apiId": "v1",
+      "customerId": 3,
+      "enterpriseId": 2
+    },
+    {
+      "status": "Pending",
+      "id": "959484",
+      "origin": "Lima",
+      "destiny": "Huaraz",
+      "pickUpDate": "17/05/2022, 00:00:00",
+      "deliveryDate": "30/05/2022, 00:00:00",
+      "apiId": "v1",
+      "customerId": 1,
+      "enterpriseId": 2
+    },
+    {
+      "id": "_uVgOvj"
+    }
+  ],
+  "enterprises": [
+    {
+      "id": 1,
+      "email": "fgtor@italoSilva.com",
+      "password": "12131415",
+      "name": "Blindados S.A.C",
+      "phoneNumber": "579031268",
+      "ruc": "Closed Limited Company",
+      "serviceDescription": "Some description",
+      "score": 120
+    },
+    {
+      "id": 2,
+      "email": "fgtor@italoSilva.com",
+      "password": "12131415",
+      "name": "ProteMax S.A.C",
+      "phoneNumber": "579031268",
+      "ruc": "Closed Limited Company",
+      "serviceDescription": "Some description",
+      "score": 10
+    },
+    {
+      "id": 3,
+      "email": "fgtor@italoSilva.com",
+      "password": "12131415",
+      "name": "Hermes S.A.C",
+      "phoneNumber": "579031268",
+      "ruc": "Closed Limited Company",
+      "serviceDescription": "Some description",
+      "subscriptionPlan": 2,
+      "score": 50
+    }
+  ],
+  "customers": [
+    {
+      "id": 1,
+      "email": "gnsnav@italoSilva.com",
+      "password": "123456",
+      "name": "Italo Silva S.A.C",
+      "phoneNumber": "893903458",
+      "ruc": "Closed Limited Company",
+      "customerDescription": "Some description",
+      "subscriptionPlan": 0
+    },
+    {
+      "id": 2,
+      "email": "csvfac@italoSilva.com",
+      "password": "7891011",
+      "name": "Uber",
+      "phoneNumber": "456756681",
+      "ruc": "Anonymous society",
+      "customerDescription": "Some description",
+      "subscriptionPlan": 1
+    },
+    {
+      "id": 3,
+      "email": "fgtor@italoSilva.com",
+      "password": "12131415",
+      "name": "Netflix",
+      "phoneNumber": "579031268",
+      "ruc": "Closed Limited Company",
+      "customerDescription": "Some description",
+      "subscriptionPlan": 2
+    }
+  ],
   "vehicles": [
     {
       "id": 1,
@@ -155,45 +426,45 @@
       "photo": "https://www.practicas.pe/organizaciones/practicas-ransa.png"
     }
   ],
-  "comments": [
-    {
-      "id": 1,
-      "title": "Title comment1",
-      "content": "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. p",
-      "enterpriseId": 1
-    },
-    {
-      "id": 2,
-      "title": "Title Comment2",
-      "content": " Lorem ipsu Lorem ipsuLorem ipsuLorem ipsuvvvvLorem ipsu",
-      "enterpriseId": 0
-    },
-    {
-      "id": 3,
-      "title": "Hola",
-      "content": "ASDOLASDASDASDFASDFASD",
-      "enterpriseId": 0
-    },
-    {
-      "id": 4,
-      "title": "asdasd",
-      "content": "asdasd",
-      "enterpriseId": 0
-    },
-    {
-      "id": 5,
-      "title": "sdasdasdrasd",
-      "content": "SDasdasdasd",
-      "enterpriseId": 0
-    },
-    {
-      "id": 6,
-      "title": "DSSDAS",
-      "content": "ASDASDASD"
-    }
-  ],
   "customers": [],
   "addresses": [],
   "payments": [],
-  "users": []
+  "users": [
+    {
+      "email": "hbcordova10@gmail.com",
+      "password": "$2a$10$uTb4/T04j4uRPr/MLYbhNueafT8zYZLxXBVFoxZKDkBc32afMjse.",
+      "userType": "customer",
+      "name": "Heber Cordova",
+      "ruc": "988 765 432 111",
+      "cellPhone": "902 952 757",
+      "id": 1
+    },
+    {
+      "email": "upc-peru@gmail.com",
+      "password": "$2a$10$B7OLhFbjQj3Kehb2l/atleSbo6XYArr9p4LAMHl9/nqH9NVREYqmG",
+      "userType": "enterprise",
+      "name": "UPC",
+      "ruc": "764 545 674 657",
+      "cellPhone": "987 654 321",
+      "id": 2
+    },
+    {
+      "email": "ups-shipments@gmail.com",
+      "password": "$2a$10$j0lcPlFUvZ5yNfcR95C1K.hhDxiAuaVgCwlVDk08UfG0EUgSwfjiW",
+      "userType": "enterprise",
+      "name": "UPS SAC",
+      "ruc": "546 546 543 634",
+      "cellPhone": "987 654 321",
+      "id": 3
+    },
+    {
+      "email": "urbanoperu@gmail.com",
+      "password": "$2a$10$efmZnNs9I6yiwIy7riXsfeBzd6Em3fVUP6VHMvkg5zBAyqjDej.3G",
+      "userType": "customer",
+      "name": "Urbano Peru",
+      "ruc": "878 765 435 634",
+      "cellPhone": "976 423 432",
+      "id": 4
+    }
+  ]
 }

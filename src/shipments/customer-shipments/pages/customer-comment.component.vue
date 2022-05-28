@@ -90,7 +90,7 @@
 </template>
 
 <script>
-import { CommentsApiService } from "../service/comments-api.service";
+import { CommentsApiService } from "../services/comments-api.service";
 import { FilterMatchMode } from "primevue/api";
 export default {
   name: "customer-comments",
