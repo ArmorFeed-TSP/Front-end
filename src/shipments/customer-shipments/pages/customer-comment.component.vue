@@ -12,7 +12,7 @@
       </pv-tool-bar>
       <pv-scroll-panel
         class="scroll-comment"
-        style="width: 40rem; height: 170px"
+        style="width: 27rem; height: 170px"
       >
         <div v-if="displayBoxComment">
           <pv-card v-for="comment in comments" class="card-comment">
@@ -123,7 +123,6 @@ export default {
         this.displayBoxComment = false;
       }
     });
-    console.log("hola", this.response);
     this.initFilters();
   },
   methods: {
