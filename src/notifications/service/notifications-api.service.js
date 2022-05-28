@@ -1,4 +1,4 @@
-import http from "../../core/services/http-common";
+import http from "../../shared/services/http-common.js";
 
 export class NotificationsApiService {
   getAll() {

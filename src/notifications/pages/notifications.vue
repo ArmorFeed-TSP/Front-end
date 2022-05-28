@@ -2,35 +2,17 @@
   <div class="grid">
     <div class="col-12 lg:col-20">
       <div class="p-3 h-full">
-        <div class="shadow-2 p-3 h-full flex flex-column surface-card" style="border-radius: 6px">
+        <div class="p-3 h-full flex flex-column" style="border-radius: 6px">
           <div class="text-900 font-medium text-xl mb-2">Notifications</div>
           <hr class="my-3 mx-0 border-top-1 border-none surface-border" />
-          <div class="flex align-items-center">
-            <span class="font-bold font-medium text-900">Ups S.A.C:</span>
-            <span class="ml-2 font-medium text-600">Shipment 00002519 is finished</span>
-            <span class="ml-1 font-light text-400">16:30</span>
+          <div v-for="(notification, index) in currentNotifications" v-bind:key="index">
+            <div class="flex align-items-center">
+              <span class="font-bold font-medium text-900">{{notification.name}}</span>
+              <span class="ml-2 font-medium text-600">{{notification.content}}</span>
+              <span class="ml-1 font-light text-400">{{notification.date}}</span>
+            </div>
+            <pv-divider></pv-divider>
           </div>
-          <hr class="my-3 mx-0 border-top-1 border-none surface-border" />
-          <div class="flex align-items-center">
-            <span class="font-bold font-medium text-900">Ups S.A.C:</span>
-            <span class="ml-2 font-medium text-600">Shipment 00002519 in route</span>
-            <span class="ml-1 font-light text-400">11:00</span>
-          </div>
-          <hr class="my-3 mx-0 border-top-1 border-none surface-border" />
-          <div class="flex align-items-center">
-            <span class="font-bold font-medium text-900">DHL Express Peru S.A.C:</span>
-            <span class="ml-2 font-medium text-600">Shipment 00002518 is finished</span>
-            <span class="ml-1 font-light text-400">Yesterday</span>
-          </div>
-          <hr class="my-3 mx-0 border-top-1 border-none surface-border" />
-          <div class="flex align-items-center">
-            <span class="font-bold font-medium text-900">DHL Express Peru S.A.C:</span>
-            <span class="ml-2 font-medium text-600">Shipment 00002518 in route</span>
-            <span class="ml-1 font-light text-400">2 days ago</span>
-          </div>
-
-
-
         </div>
       </div>
     </div>
