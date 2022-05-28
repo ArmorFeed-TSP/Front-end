@@ -1,6 +1,6 @@
 <template>
   <pv-dialog v-model:visible="enabled" :style="{width: '450px'}" header="New Shipment" :modal="true" class="p-fluid">
-    <div v-for="field in fields" class="field">
+    <div v-for="(field, index) in fields" class="field" v-bind:key="index">
       <label>{{field.label}}</label>
       <div v-if="field.type === 1" class="field">
         <pv-input-text v-model.trim="shipment[field.name]" required="true" autofocus :class="{'p-invalid': submitted && !shipment[field.name]}" />
@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import { ShipmentsApiService } from "../service/Shipments-api.service"
+import { ShipmentsApiService } from "../service/shipments-api.service"
 
 export default {
   name: "shipments-form",

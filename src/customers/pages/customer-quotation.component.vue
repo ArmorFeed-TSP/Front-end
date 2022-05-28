@@ -1,13 +1,20 @@
 <template>
   <div class="bg-armor-feed">
-    <div style="max-width: 45rem; width: 100%; margin: 0 auto">
-      <pv-step :model="steps"></pv-step>
+    <div
+      style="max-width: 45rem; width: 100%; margin: 0 auto; min-height: 90vh"
+    >
+      <pv-step :model="steps" :exact="false"></pv-step>
       <router-view
+        v-slot="{ Component }"
         :formData="formObject"
         @next-page="nextPage($event)"
         @prev-page="prevPage($event)"
         @complete="complete"
-      ></router-view>
+      >
+        <KeepAlive>
+          <component :is="Component"></component>
+        </KeepAlive>
+      </router-view>
       <pv-toast></pv-toast>
     </div>
   </div>
@@ -16,6 +23,7 @@
 <script>
 import AddressesService from "../services/addresses.service";
 import ShipmentsService from "../services/shipments.service";
+import PaymentsService from "../services/payments.service";
 
 export default {
   name: "customer-quotation",
@@ -23,32 +31,27 @@ export default {
     return {
       steps: [
         {
-          label: "",
+          label: "Quotation",
           to: "/quotations",
         },
         {
-          label: "",
-          to: "/quotations/business-shipping",
+          label: "Enterprise",
+          to: "business-shipping",
         },
         {
-          label: "",
-          to: "/quotations/pick-up-detail",
+          label: "Pick Up",
+          to: "pick-up-detail",
         },
         {
-          label: "",
-          to: "/quotations/destination-detail",
+          label: "Destination",
+          to: "destination-detail",
         },
         {
-          label: "",
-          to: "/quotations/payment",
+          label: "Payment",
+          to: "payment",
         },
       ],
       formObject: {},
-      addressOriginId: null,
-      departmentOrigin: null,
-      addressDestinationId: null,
-      departmentDestination: null,
-      address: [],
       errors: [],
     };
   },
@@ -63,53 +66,88 @@ export default {
     prevPage(event) {
       this.$router.push(this.steps[event.pageIndex - 1].to);
     },
-    async complete() {
-      await this.saveAddress(this.formObject.origin);
-      await this.saveAddress(this.formObject.destination);
-      this.departmentOrigin = this.address[0].department;
-      this.addressOriginId = this.address[0].id;
-      this.departmentDestination = this.address[1].department;
-      this.addressDestinationId = this.address[1].id;
-      console.log(this.address);
-      await this.createShipment();
+    async complete(event) {
+      // Registered the last payment
+      for (let field in event.formData) {
+        this.formObject[field] = event.formData[field];
+      }
+      // Registered the address origin in the persistence
+      const originDetail = await this.createAddress(
+        this.formObject.originDetail
+      );
+      // Registered the address destination in the persistence
+      const destinationDetail = await this.createAddress(
+        this.formObject.destinationDetail
+      );
+      // Registered the payment in the persistence
+      const payment = await this.createPayment(this.formObject.payment);
+      // Create the object shipment
+      const shipment = this.createShipmentObject(
+        originDetail,
+        destinationDetail,
+        payment
+      );
+      // Registered shipment in the persistence
+      const shipmentRegistered = await this.createShipment(shipment);
+      // Verification ok
+      if (shipmentRegistered) {
+        this.$toast.add({
+          severity: "success",
+          summary: "Order submitted",
+          detail:
+            "New shipping order was registered from " +
+            this.formObject.origin +
+            " to " +
+            this.formObject.destination +
+            "",
+          life: 4000,
+        });
+        localStorage.removeItem("formObject");
+        await this.$router.push({ path: "/quotations" });
+        return;
+      }
+      // Verification error
+      this.$toast.add({
+        severity: "error",
+        summary: "Failed to register",
+        detail: "Registration could not be completed",
+        life: 4000,
+      });
     },
-    async createShipment() {
-      let shipment = {
-        enterpriseId: this.formObject.enterpriseId,
-        origin: this.departmentOrigin,
-        addressOriginId: this.addressOriginId,
-        destiny: this.departmentDestination,
-        addressDestinationId: this.addressDestinationId,
-        pickUpDate: this.formObject.pickUpDate,
-        deliveryDate: this.formObject.deliveryDate,
-        amount: this.formObject.amount,
-        status: "Pending",
-      };
-      await ShipmentsService.create(shipment)
+    async createShipment(shipment) {
+      return await ShipmentsService.create(shipment)
         .then((response) => {
-          shipment = response.data;
-          this.$toast.add({
-            severity: "success",
-            summary: "Order submitted",
-            detail: "New shipping order was registered",
-          });
-          this.address.splice(0, 2);
-          this.$router.push({ name: "customer-quotation" });
+          return response.data;
         })
         .catch((error) => {
           this.errors.push(error);
-          console.log(error);
-          this.$toast.add({
-            severity: "error",
-            summary: "Failed to register",
-            detail: "Registration could not be completed",
-          });
         });
     },
-    async saveAddress(address) {
-      await AddressesService.create(address)
+    createShipmentObject(origin, destination, payment) {
+      return {
+        originId: origin.id,
+        originDepartment: origin.department,
+        destinationId: destination.id,
+        destinationDepartment: destination.department,
+        paymentId: payment.id,
+        status: this.formObject.status,
+        pickUpDate: this.formObject.pickUpDate,
+        deliveryDate: this.formObject.deliveryDate,
+      };
+    },
+    async createAddress(address) {
+      return await AddressesService.create(address)
         .then((response) => {
-          this.address.push(response.data);
+          return response.data;
+        })
+        .catch((error) => {
+          this.errors.push(error);
+        });
+    },
+    async createPayment(payment) {
+      return await PaymentsService.create(payment)
+        .then((response) => {
+          return response.data;
         })
         .catch((error) => {
           this.errors.push(error);

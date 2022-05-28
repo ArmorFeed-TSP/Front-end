@@ -30,6 +30,12 @@ import "primevue/resources/themes/mdc-dark-indigo/theme.css";
 import "primevue/resources/themes/md-light-indigo/theme.css";
 import "primevue/resources/primevue.min.css";
 import "primeicons/primeicons.css";
+import Password from "primevue/password";
+import Divider from "primevue/divider";
+import Checkbox from "primevue/checkbox";
+import OverlayPanel from "primevue/overlaypanel";
+import Timeline from "primevue/timeline";
+import ScrollPanel from "primevue/scrollpanel";
 
 const app = createApp(App);
 
@@ -61,5 +67,10 @@ app.component("pv-input-number", InputNumber);
 app.component("pv-input-mask", InputMask);
 app.component("pv-dropdown", Dropdown);
 app.component("pv-avatar", Avatar);
-
+app.component("pv-password", Password);
+app.component("pv-divider", Divider);
+app.component("pv-checkbox", Checkbox);
+app.component("pv-overlay-panel", OverlayPanel);
+app.component("pv-timeline", Timeline);
+app.component("pv-scroll-panel", ScrollPanel);
 app.mount("#app");
