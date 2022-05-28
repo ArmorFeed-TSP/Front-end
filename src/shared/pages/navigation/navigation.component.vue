@@ -17,6 +17,7 @@
         <pv-button
           v-if="userId"
           icon="pi pi-bell"
+          @click="openNotification"
           class="p-button-rounded p-button-text"
         ></pv-button>
         <pv-button
@@ -53,6 +54,9 @@
         </div>
       </div>
     </pv-overlay-panel>
+    <pv-overlay-panel ref="nt" style="width: 400px" :dismissable="true" el="el">
+        <Notifications></Notifications>
+    </pv-overlay-panel>
   </div>
   <div v-if="userId" class="flex justify-content-center">
     <pv-tab-menu :model="navigationList" :exact="false" />
@@ -60,8 +64,10 @@
 </template>
 
 <script>
+import Notifications from "../../../notifications/pages/notifications.vue";
 export default {
   name: "navigation-shipment",
+  components: { Notifications },
   data() {
     return {
       activeTab: 0,
@@ -86,6 +92,10 @@ export default {
     toggle(event) {
       event.preventDefault();
       this.$refs.op.toggle(event);
+    },
+    openNotification(event) {
+      event.preventDefault();
+      this.$refs.nt.toggle(event);
     },
     async logOut() {
       await localStorage.removeItem("auth");

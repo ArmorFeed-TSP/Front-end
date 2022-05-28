@@ -69,7 +69,7 @@
 
 <script>
 import { CustomerShipmentsApiService } from "../services/customer-shipments-api.service.js";
-import CustomerComments from "./customer-comment.component";
+import CustomerComments from "./customer-comment.component.vue";
 export default {
   name: "customer-shipments-detail",
   components: {CustomerComments},

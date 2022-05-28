@@ -15,7 +15,7 @@
         style="width: 27rem; height: 170px"
       >
         <div v-if="displayBoxComment">
-          <pv-card v-for="comment in comments" class="card-comment">
+          <pv-card v-for="(comment, index) in comments" v-bind:key="index" class="card-comment">
             <template #title>
               {{ comment.title }}
             </template>
