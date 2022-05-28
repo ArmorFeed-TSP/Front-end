@@ -6,39 +6,49 @@ export default {
   components: { AppNavigation, AppFooter },
   data() {
     return {
-      typeUser: "customer",
       userId: null,
-      navigationEnterprise: [
-        {
-          label: "My shipments",
-          icon: "pi pi-fw pi-calendar",
-          to: "/shipments/enterprise",
-        },
-        { label: "My Vehicles", icon: "pi pi-car", to: "/vehicles" },
-        { label: "My Payments", icon: "pi pi-money-bill", to: "" },
-      ],
-      navigationCustomer: [
-        { label: "Quotation", icon: "pi pi-fw pi-home", to: "/quotations" },
-        { label: "My shipments", icon: "pi pi-fw pi-calendar" },
-        { label: "My Payments", icon: "pi pi-money-bill", to: "" },
-      ],
+      userName: "User Name",
+      userType: null,
     };
+  },
+  methods: {
+    userLogged() {
+      const auth = JSON.parse(localStorage.getItem("auth"));
+      if (auth) {
+        this.userId = auth.user.id;
+        this.userType = auth.user.userType;
+        this.userName = auth.user.name;
+        this.hireLogin = true;
+        if (this.userType === "customer")
+          this.$router.push({
+            name: "customer-quotations",
+            params: { id: this.userId },
+          });
+        else if (this.userType === "enterprise")
+          this.$router.push({ name: "enterprise-shipments" });
+      }
+    },
+    signOff() {
+      this.userId = null;
+      this.userType = null;
+      this.userName = "User Name";
+    }
+  },
+  mounted() {
+    this.userLogged();
   },
 };
 </script>
 <template>
   <div class="w-full">
     <app-navigation
-      v-if="typeUser === 'customer'"
-      :items="navigationCustomer"
+      v-bind:user-id="userId"
+      v-bind:user-type="userType"
+      v-bind:user-name="userName"
       :paramActiveTab="0"
+      v-on:sign-off="signOff"
     ></app-navigation>
-    <app-navigation
-      v-else-if="typeUser === 'enterprise'"
-      :items="navigationEnterprise"
-      :paramActiveTab="0"
-    ></app-navigation>
-    <router-view />
+    <router-view v-on:user-logged="userLogged"></router-view>
     <app-footer></app-footer>
   </div>
 </template>

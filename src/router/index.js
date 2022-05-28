@@ -4,59 +4,81 @@ import CustomerQuotation from "../customers/pages/customer-quotation.component.v
 const routes = [
   {
     path: "/",
-    redirect: "/quotations",
+    name: "root",
+    redirect: { name: "sign-in" },
+  },
+  {
+    path: "/comments",
+    name: "customer-comments",
+    component: () =>
+      import(
+        "../shipments/customer-shipments/pages/customer-comment.component.vue"
+      ),
+    props: { enableListDialogs: true },
   },
   {
     path: "/shipments/client",
     name: "client-shipments",
-    component: () => import("../shipments/pages/shipments-form.component.vue"),
+    component: () =>
+      import(
+        "../shipments/customer-shipments/pages/customer-shipments.component.vue"
+      ),
     props: { enableListDialogs: false },
   },
   {
     path: "/shipments/enterprise",
     name: "enterprise-shipments",
-    component: () => import("../shipments/pages/shipments-form.component.vue"),
+    component: () =>
+      import(
+        "../shipments/enterprise-shipments/pages/enterprise-shipments.component.vue"
+      ),
     props: { enableListDialogs: true },
   },
   {
-    path: "/vehicles",
+    path: "/enterprise/1/vehicles",
     name: "vehicles",
-    component: () => import("../vehicles/pages/vehicles.component.vue"),
+    component: () => import("../vehicles/pages/vehicle-list.component.vue"),
     props: { enableListDialogs: true },
   },
   {
-    path: "/quotations",
-    name: "customer-quotation",
+    path: "/customers/:id/quotations",
+    props: true,
     component: CustomerQuotation,
     children: [
       {
-        path: "/quotations",
+        path: "/customers/:id/quotations",
+        name: "customer-quotations",
+        props: true,
         component: () =>
           import(
             "../customers/pages/steps-quotation/quotation-shipment.step.vue"
           ),
       },
       {
-        path: "business-shipping",
+        path: "/customer/:id/business-shipping",
+        props: true,
         component: () =>
           import(
             "../customers/pages/steps-quotation/enterprise-shipping.step.vue"
           ),
       },
       {
-        path: "pick-up-detail",
+        path: "/customer/:id/pick-up-detail",
+        props: true,
         component: () =>
           import("../customers/pages/steps-quotation/pick-up-detail.step.vue"),
       },
       {
-        path: "destination-detail",
+        path: "/customer/:id/destination-detail",
+        props: true,
         component: () =>
           import(
             "../customers/pages/steps-quotation/destination-detail.step.vue"
           ),
       },
       {
-        path: "payment",
+        path: "/customer/:id/payment",
+        props: true,
         component: () =>
           import(
             "../customers/pages/steps-quotation/payment-shipment.step.vue"
@@ -65,21 +87,53 @@ const routes = [
     ],
   },
   {
-    path: "/sign-up",
-    name: "sign-up",
-    component: () => import("../shared/pages/sign-up/sign-up.component.vue")
-  },
-  {
     path: "/sign-in",
     name: "sign-in",
-    component: () => import("../shared/pages/sign-in/sign-in.component.vue")
+    component: () => import("../shared/pages/sign-in/sign-in.component.vue"),
   },
   {
-    path: "/payments",
+    path: "/sign-up",
+    name: "sign-up",
+    component: () => import("../shared/pages/sign-up/sign-up.component.vue"),
+  },
+  {
+    path: "/enterprise/1/payments",
+    component: () => import("../payments/pages/payments-list.component.vue"),
+  },
+  {
+    path: "/shipments/customer",
+    name: "Client shipments",
     component: () =>
       import(
-        "../payments/pages/payments-list.component.vue"),
-  }
+        "../Shipments/customer-shipments/pages/customer-shipments.component.vue"
+      ),
+    props: { id: 1 },
+  },
+  {
+    path: "/shipments/enterprise",
+    name: "Enterprise shipments",
+    component: () =>
+      import(
+        "../Shipments/enterprise-shipments/pages/enterprise-shipments.component.vue"
+      ),
+    props: { id: 1 },
+  },
+  {
+    path: "/shipments/customer/shipmentDetail/:id",
+    name: "Customer shipment detail",
+    component: () =>
+      import(
+        "../Shipments/customer-shipments/pages/customer-shipments-detail.component.vue"
+      ),
+  },
+  {
+    path: "/shipments/enterprise/shipmentDetail/:id",
+    name: "Enterprise shipment detail",
+    component: () =>
+      import(
+        "../Shipments/enterprise-shipments/pages/enterprise-shipments-detail.component.vue"
+      ),
+  },
 ];
 
 const router = createRouter({
