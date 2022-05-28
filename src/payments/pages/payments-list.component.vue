@@ -18,7 +18,8 @@
         @rowgroup-collapse="onRowGroupCollapse"
       >
         <pv-column field="transactionMonthYearDate" header="Date"></pv-column>
-        <pv-column field="shipmentId" header="Code Shipping" class="bg-gray-200 border-primary hover:bg-gray-500"></pv-column>
+        <pv-column field="shipmentId" header="Code Shipping"
+                   class="bg-gray-200 border-primary hover:bg-gray-500"></pv-column>
         <pv-column field="paymentDate" header="Payment Date" class="bg-gray-200 border-primary"></pv-column>
         <pv-column field="companyName" header="Enterprise" class="bg-gray-200 border-primary"></pv-column>
         <pv-column field="amount" header="Amount" class="bg-gray-200 border-primary">
@@ -26,16 +27,20 @@
             {{ formatCurrency(slotProps.data.amount) }}
           </template>
         </pv-column>
-        <template #groupheader="slotProps" >
+        <template #groupheader="slotProps">
           <div class="group-header">
             <div class="group-header-container">
-              <td class="group-header-container-item"> {{ slotProps.data.transactionMonthYearDate }} </td>
+              <td class="group-header-container-item"> {{ slotProps.data.transactionMonthYearDate }}</td>
               <td
-                class="group-header-container-item">  {{ calculateTransactionTotal(slotProps.data.transactionMonthYearDate)
-                }} payments  </td>
+                class="group-header-container-item">
+                {{ calculateTransactionTotal(slotProps.data.transactionMonthYearDate)
+                }} payments
+              </td>
               <td
-                class="group-header-container-item">  S/. {{ calculateTransactionTotalAmount(slotProps.data.transactionMonthYearDate)
-                }}</td>
+                class="group-header-container-item"> S/.
+                {{ calculateTransactionTotalAmount(slotProps.data.transactionMonthYearDate)
+                }}
+              </td>
             </div>
           </div>
         </template>
@@ -138,29 +143,33 @@ export default {
 }
 
 .group-header-container {
-  width: 50%;
-  /*margin: 0 25% 25%;*/
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  min-width:300px;
+  min-width: 300px;
+  padding-left: 25%;
 }
 
 .group-header {
   display: inline-block;
+  width: 85%;
+
 }
-.card-container{
+
+.card-container {
   margin: 0 16% 0 16%;
   padding: 2% 0 10% 0;
 }
 
-@media (max-width: 500px){
-  .card-container{
+@media (max-width: 500px) {
+  .card-container {
     margin: 0 0 0 0;
   }
 }
-h1{
+
+h1 {
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 500;
@@ -170,7 +179,8 @@ h1{
   padding-top: 40px;
   letter-spacing: 0.03em;
 }
-.card{
+
+.card {
   background-color: #EEEEEE;
 }
 
