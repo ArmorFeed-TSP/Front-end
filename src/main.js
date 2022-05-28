@@ -34,6 +34,7 @@ import Password from "primevue/password";
 import Divider from "primevue/divider";
 import Checkbox from "primevue/checkbox";
 import OverlayPanel from "primevue/overlaypanel";
+import Timeline from "primevue/timeline";
 
 const app = createApp(App);
 
@@ -69,4 +70,5 @@ app.component("pv-password", Password);
 app.component("pv-divider", Divider);
 app.component("pv-checkbox", Checkbox);
 app.component("pv-overlay-panel", OverlayPanel);
+app.component("pv-timeline", Timeline);
 app.mount("#app");

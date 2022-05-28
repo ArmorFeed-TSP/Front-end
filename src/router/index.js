@@ -5,7 +5,7 @@ const routes = [
   {
     path: "/",
     name: "root",
-    redirect: { name: "sign-in" }
+    redirect: { name: "sign-in" },
   },
   {
     path: "/shipments/client",
@@ -74,12 +74,46 @@ const routes = [
   {
     path: "/sign-in",
     name: "sign-in",
-    component: () => import("../shared/pages/sign-in/sign-in.component.vue")
+    component: () => import("../shared/pages/sign-in/sign-in.component.vue"),
   },
   {
     path: "/sign-up",
     name: "sign-up",
-    component: () => import("../shared/pages/sign-up/sign-up.component.vue")
+    component: () => import("../shared/pages/sign-up/sign-up.component.vue"),
+  },
+  {
+    path: "/shipments/customer",
+    name: "Client shipments",
+    component: () =>
+      import(
+        "../Shipments/customer-shipments/pages/customer-shipments.component.vue"
+      ),
+    props: { id: 1 },
+  },
+  {
+    path: "/shipments/enterprise",
+    name: "Enterprise shipments",
+    component: () =>
+      import(
+        "../Shipments/enterprise-shipments/pages/enterprise-shipments.component.vue"
+      ),
+    props: { id: 1 },
+  },
+  {
+    path: "/shipments/customer/shipmentDetail/:id",
+    name: "Customer shipment detail",
+    component: () =>
+      import(
+        "../Shipments/customer-shipments/pages/customer-shipments-detail.component.vue"
+      ),
+  },
+  {
+    path: "/shipments/enterprise/shipmentDetail/:id",
+    name: "Enterprise shipment detail",
+    component: () =>
+      import(
+        "../Shipments/enterprise-shipments/pages/enterprise-shipments-detail.component.vue"
+      ),
   },
 ];
 
