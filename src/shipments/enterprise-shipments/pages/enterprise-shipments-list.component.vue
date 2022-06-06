@@ -15,7 +15,11 @@
       <pv-column :exportable="false" style="min-width: 8rem">
         <template #body="slotProps">
           <pv-button icon="pi pi-car" class="p-button-text p-button-rounded" />
-          <pv-button icon="pi pi-pencil" class="p-button-text p-button-rounded" @click="editStatus(slotProps.data)" />
+          <pv-button
+            icon="pi pi-pencil"
+            class="p-button-text p-button-rounded"
+            @click="editStatus(slotProps.data)"
+          />
           <router-link
             :to="`/shipments/enterprise/shipmentDetail/${slotProps.data.id}`"
             ><pv-button icon="pi pi-eye" class="p-button-text p-button-rounded"
@@ -32,55 +36,54 @@
         <pv-button label="Submit" autofocus @click="showStatus" />
       </template>
     </pv-dialog>
-      <pv-dialog
-        v-model:visible="statusEnabled"
-        :style="{ widht: '450px' }"
-        header="Status information"
-        :modal="true"
-        class="p-fluid"
-      >
-        <div class="field">
-          <pv-dropdown
-            id="status"
-            v-model="shipment.status"
-            :options="statusses"
-            optionLabel="label"
-            placeholder="Select a new status"
-          >
-            <template #value="slotProps">
-              <div v-if="slotProps.value && slotProps.value.value">
-                <span
-                  :class="'shipment-badge status-' + slotProps.value.value"
-                >{{ slotProps.value.label }}</span
-                >
-              </div>
-              <div v-else-if="slotProps.value && !slotProps.value.value">
-                <span
-                  :class="
-                    'shipment-badge status-' + slotProps.value.toLowerCase()
-                  "
+    <pv-dialog
+      v-model:visible="statusEnabled"
+      :style="{ widht: '450px' }"
+      header="Status information"
+      :modal="true"
+      class="p-fluid"
+    >
+      <div class="field">
+        <pv-dropdown
+          id="status"
+          v-model="shipment.status"
+          :options="statusses"
+          optionLabel="label"
+          placeholder="Select a new status"
+        >
+          <template #value="slotProps">
+            <div v-if="slotProps.value && slotProps.value.value">
+              <span :class="'shipment-badge status-' + slotProps.value.value">{{
+                slotProps.value.label
+              }}</span>
+            </div>
+            <div v-else-if="slotProps.value && !slotProps.value.value">
+              <span
+                :class="
+                  'shipment-badge status-' + slotProps.value.toLowerCase()
+                "
                 >{{ slotProps.value }}</span
-                >
-              </div>
-              <span v-else>{{ slotProps.placeholder }}</span>
-            </template>
-          </pv-dropdown>
-        </div>
-        <template #footer>
-          <pv-button
-            :label="'Cancel'.toUpperCase()"
-            icon="pi pi-times"
-            class="p-button-text"
-            @click="hideStatusDialog"
-          />
-          <pv-button
-            :label="'Save'.toUpperCase()"
-            icon="pi pi-check"
-            class="p-button-text"
-            @click="saveShipment"
-          />
-        </template>
-      </pv-dialog>
+              >
+            </div>
+            <span v-else>{{ slotProps.placeholder }}</span>
+          </template>
+        </pv-dropdown>
+      </div>
+      <template #footer>
+        <pv-button
+          :label="'Cancel'.toUpperCase()"
+          icon="pi pi-times"
+          class="p-button-text"
+          @click="hideStatusDialog"
+        />
+        <pv-button
+          :label="'Save'.toUpperCase()"
+          icon="pi pi-check"
+          class="p-button-text"
+          @click="saveShipment"
+        />
+      </template>
+    </pv-dialog>
     <pv-dialog v-model:visible="dialogEnabled">
       <template #header>
         <h3>Current Location</h3>
