@@ -12,11 +12,7 @@ import EnterpriseShipmentsFilter from './enterprise-shipments-filter.component.v
 import EnterpriseShipmentsList from './enterprise-shipments-list.component.vue';
 
 export default {
-<<<<<<< HEAD
-  name: "shipments",
-=======
   name: "shipments-component",
->>>>>>> feature/vehicles
   components: {
     EnterpriseShipmentsFilter,
     EnterpriseShipmentsList

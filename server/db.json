@@ -44,6 +44,11 @@
       "id": 8,
       "title": "asdf",
       "content": "asdf"
+    },
+    {
+      "id": 9,
+      "title": "www",
+      "content": "wwww"
     }
   ],
   "shipments": [
@@ -394,6 +399,15 @@
       "year": "2019",
       "model": "SM-2019",
       "maintenanceDate": "2022-05-11T05:00:00.000Z"
+    },
+    {
+      "id": "ThfONO9",
+      "brand": "asd",
+      "licensePlate": "23123",
+      "year": "2019",
+      "model": "sdf",
+      "maintenanceDate": "2022-05-24",
+      "vehicleType": "Free"
     }
   ],
   "enterprise": [
@@ -633,6 +647,24 @@
       "ruc": "878 765 435 634",
       "cellPhone": "976 423 432",
       "id": 4
+    },
+    {
+      "email": "ransa-peru@gmail.com",
+      "password": "$2a$10$XlMfQZI6uKKECxAj9Flkv.XebHRNg/Yc9sdXEBMt70y7nC/2wr9Hi",
+      "userType": "enterprise",
+      "name": "Ransa Peru SAC",
+      "ruc": "978 673 443 343",
+      "cellPhone": "987 654 321",
+      "id": 5
+    },
+    {
+      "email": "urbano@gmail.com",
+      "password": "$2a$10$VyCQ6x4M1BQlWUuTPEO.4e4Zl2lxb25kW9XmyDkNkHa2MAs.IPYfO",
+      "userType": "enterprise",
+      "name": "Urbano SAC",
+      "ruc": "565 565 645 654",
+      "cellPhone": "987 676 666",
+      "id": 6
     }
   ],
   "notifications": [
