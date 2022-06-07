@@ -160,15 +160,16 @@
                 />
                 <label for="model">Model</label>
                 <small class="p-error" v-if="submitted && !vehicle.model"
-                  >model is required</small
+                  >Model is required</small
                 >
               </span>
             </div>
             <div class="field">
               <span class="p-float-label">
-                <pv-input-text
-                  type="date"
+                <pv-calendar
+
                   id="maintenanceDate"
+                  dateFormat="dd.mm.yy"
                   v-model="vehicle.maintenanceDate"
                   required="false"
                   rows="2"
@@ -178,7 +179,7 @@
                 <small
                   class="p-error"
                   v-if="submitted && !vehicle.maintenanceDate"
-                  >Maintenance Date Type is required</small
+                  >Maintenance Date is required</small
                 >
               </span>
             </div>
@@ -433,4 +434,5 @@ export default {
   background-color: #e5eced;
   color: #fff;
 }
+
 </style>
