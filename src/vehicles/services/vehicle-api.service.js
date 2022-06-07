@@ -13,4 +13,10 @@ export class VehiclesApiService  {
   delete(id) {
     return http.delete(`/vehicles/${id}`);
   }
+  getById(id) {
+    return http.get(`/vehicles/${id}`);
+  }
+  getVehiclesByEnterpriseId( enterpriseId) {
+    return http.get(`/vehicles?enterpriseId=${enterpriseId}`);
+  }
 }

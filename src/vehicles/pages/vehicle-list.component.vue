@@ -1,267 +1,276 @@
 <template>
-  <div>
-    <div class="flex justify-content-center">
+  <div class="container">
+    <div class="flex flex-column space-between align-items-center">
       <div class="my-7 flex flex-column">
         <pv-tool-bar class="toolbarButton mb-4">
           <template #start>
             <pv-button
-                label="New"
-                icon="pi pi-plus"
-                class="p-button-success mr-2"
-                @click="openNew"
+              label="New"
+              icon="pi pi-plus"
+              class="p-button-error mr-2"
+              @click="openNew"
             />
           </template>
         </pv-tool-bar>
         <pv-data-table
-            style="max-width: 90rem"
-            ref="dt"
-            :value="vehicles"
-            v-model:selection="selectedVehicles"
-            datakey="id"
-            :paginator="true"
-            :rows="10"
-            :filters="filters"
-            paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
-            :rowsPerPageOptions="[5, 10, 15]"
-            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} vehicles"
-            responsiveLayout="scroll"
+          style="max-width: 90rem"
+          ref="dt"
+          :value="vehicles"
+          v-model:selection="selectedVehicles"
+          datakey="id"
+          :paginator="true"
+          :rows="10"
+          :filters="filters"
+          paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
+          :rowsPerPageOptions="[5, 10, 15]"
+          currentPageReportTemplate="Showing {first} to {last} of {totalRecords} vehicles"
+          responsiveLayout="scroll"
         >
           <template #header>
             <div
-                class="table-header flex flex-column md:flex-row md:justify-content-between"
+              class="table-header flex flex-column md:flex-row md:justify-content-between"
             >
-              <h5 class="mb-2 md:m-0 p-as-md-center text-xl">Manage vehicles</h5>
+              <h5 class="mb-2 md:m-0 p-as-md-center text-xl">
+                Manage vehicles
+              </h5>
               <span class="p-input-icon-left">
-            <i class="pi pi-search" />
-            <pv-input-text
-                v-model="filters['global'].value"
-                placeholder="Search..."
-            />
-          </span>
+                <i class="pi pi-search" />
+                <pv-input-text
+                  v-model="filters['global'].value"
+                  placeholder="Search..."
+                />
+              </span>
             </div>
           </template>
           <pv-column
-              field="brand"
-              header="Brand"
-              :sortable="true"
-              style="min-width: 16rem"
+            field="brand"
+            header="Brand"
+            :sortable="true"
+            style="min-width: 16rem"
           ></pv-column>
           <pv-column
-              field="licensePlate"
-              header="License Plate"
-              :sortable="true"
-              style="min-width: 16rem"
+            field="licensePlate"
+            header="License Plate"
+            :sortable="true"
+            style="min-width: 16rem"
           ></pv-column>
           <pv-column
-              field="year"
-              header="Year"
-              :sortable="true"
-              style="min-width: 16rem"
+            field="year"
+            header="Year"
+            :sortable="true"
+            style="min-width: 16rem"
           ></pv-column>
           <pv-column
-              field="model"
-              header="Model"
-              :sortable="true"
-              style="min-width: 16rem"
+            field="model"
+            header="Model"
+            :sortable="true"
+            style="min-width: 16rem"
           ></pv-column>
           <pv-column
-              field="maintenanceDate"
-              header="Year"
-              :sortable="true"
-              style="min-width: 16rem"
+            field="maintenanceDate"
+            header="Maintenance Date"
+            :sortable="true"
+            style="min-width: 16rem"
           ></pv-column>
           <pv-column
-              field="vehicleType"
-              header="Vehicle Status"
-              :sortable="true"
-              style="min-width: 16rem"
+            field="vehicleType"
+            header="Vehicle Status"
+            :sortable="true"
+            style="min-width: 16rem"
           ></pv-column>
           <pv-column :exportable="false" style="min-width: 8rem">
             <template #body="slotProps">
               <pv-button
-                  icon="pi pi-pencil"
-                  class="p-button-text p-button-rounded"
-                  @click="editVehicle(slotProps.data)"
+                icon="pi pi-pencil"
+                class="p-button-text p-button-rounded"
+                @click="editVehicle(slotProps.data)"
               />
               <pv-button
-                  icon="pi pi-trash"
-                  class="p-button-text p-button-rounded"
-                  @click="confirmDeleteVehicle(slotProps.data)"
+                icon="pi pi-trash"
+                class="p-button-text p-button-rounded"
+                @click="confirmDeleteVehicle(slotProps.data)"
               />
             </template>
           </pv-column>
 
           <pv-dialog
-              v-model:visible="vehicleDialog"
-              :style="{ width: '450px' }"
-              header="vehicle Information"
-              :modal="true"
-              class="p-fluid"
+            v-model:visible="vehicleDialog"
+            :style="{ width: '450px' }"
+            header="vehicle Information"
+            :modal="true"
+            class="p-fluid"
           >
             <div class="field mt-3">
-          <span class="p-float-label">
-            <pv-input-text
-                type="text"
-                id="brand"
-                v-model.trim="vehicle.brand"
-                required="true"
-                autofocus
-                :class="{ 'p-invalid': submitted && !vehicle.title }"
-            />
-            <label for="brand">Brand</label>
-            <small class="p-error" v-if="submitted && !vehicle.brand"
-            >Brand is required</small
-            >
-          </span>
+              <span class="p-float-label">
+                <pv-input-text
+                  type="text"
+                  id="brand"
+                  v-model.trim="vehicle.brand"
+                  required="true"
+                  autofocus
+                  :class="{ 'p-invalid': submitted && !vehicle.title }"
+                />
+                <label for="brand">Brand</label>
+                <small class="p-error" v-if="submitted && !vehicle.brand"
+                  >Brand is required</small
+                >
+              </span>
             </div>
             <div class="field">
-          <span class="p-float-label">
-            <pv-input-text
-                type="text"
-                id="licensePlate"
-                v-model="vehicle.licensePlate"
-                required="false"
-                rows="2"
-                cols="20"
-            />
-            <label for="licensePlate">License Plate</label>
-            <small class="p-error" v-if="submitted && !vehicle.licensePlate"
-            >License Plate is required</small
-            >
-          </span>
+              <span class="p-float-label">
+                <pv-input-text
+                  type="text"
+                  id="licensePlate"
+                  v-model="vehicle.licensePlate"
+                  required="false"
+                  rows="2"
+                  cols="20"
+                />
+                <label for="licensePlate">License Plate</label>
+                <small class="p-error" v-if="submitted && !vehicle.licensePlate"
+                  >License Plate is required</small
+                >
+              </span>
             </div>
             <div class="field">
-          <span class="p-float-label">
-            <pv-input-text
-                type="number"
-                id="year"
-                v-model="vehicle.year"
-                required="false"
-                rows="2"
-                cols="20"
-            />
-            <label for="year">Year</label>
-            <small class="p-error" v-if="submitted && !vehicle.year"
-            >Year is required</small
-            >
-          </span>
+              <span class="p-float-label">
+                <pv-input-text
+                  type="number"
+                  id="year"
+                  v-model="vehicle.year"
+                  required="false"
+                  rows="2"
+                  cols="20"
+                />
+                <label for="year">Year</label>
+                <small class="p-error" v-if="submitted && !vehicle.year"
+                  >Year is required</small
+                >
+              </span>
             </div>
             <div class="field">
-          <span class="p-float-label">
-            <pv-input-text
-                type="textarea"
-                id="model"
-                v-model="vehicle.model"
-                required="false"
-                rows="2"
-                cols="20"
-            />
-            <label for="model">Model</label>
-            <small class="p-error" v-if="submitted && !vehicle.model"
-            >model is required</small
-            >
-          </span>
+              <span class="p-float-label">
+                <pv-input-text
+                  type="textarea"
+                  id="model"
+                  v-model="vehicle.model"
+                  required="false"
+                  rows="2"
+                  cols="20"
+                />
+                <label for="model">Model</label>
+                <small class="p-error" v-if="submitted && !vehicle.model"
+                  >model is required</small
+                >
+              </span>
             </div>
             <div class="field">
-          <span class="p-float-label">
-            <pv-input-text
-                type="date"
-                id="maintenanceDate"
-                v-model="vehicle.maintenanceDate"
-                required="false"
-                rows="2"
-                cols="20"
-            />
-            <label for="maintenanceDate">Maintenance Date Type Image</label>
-            <small class="p-error" v-if="submitted && !vehicle.maintenanceDate"
-            >Maintenance Date Type is required</small
-            >
-          </span>
+              <span class="p-float-label">
+                <pv-input-text
+                  type="date"
+                  id="maintenanceDate"
+                  v-model="vehicle.maintenanceDate"
+                  required="false"
+                  rows="2"
+                  cols="20"
+                />
+                <label for="maintenanceDate">Maintenance Date</label>
+                <small
+                  class="p-error"
+                  v-if="submitted && !vehicle.maintenanceDate"
+                  >Maintenance Date Type is required</small
+                >
+              </span>
             </div>
             <div class="field">
               <pv-dropdown
-                  v-model="vehicle.vehicleType"
-                  :options="types"
-                  optionLabel="type"
-                  optionValue="code"
-                  placeholder="Vehicle Status"
+                v-model="vehicle.vehicleType"
+                :options="types"
+                optionLabel="type"
+                optionValue="code"
+                placeholder="Vehicle Status"
               />
             </div>
             <template #footer>
               <pv-button
-                  :label="'Cancel'.toUpperCase()"
-                  icon="pi pi-times"
-                  class="p-button-text"
-                  @click="hideDialog"
+                :label="'Cancel'.toUpperCase()"
+                icon="pi pi-times"
+                class="p-button-text"
+                @click="hideDialog"
               />
               <pv-button
-                  :label="'Save'.toUpperCase()"
-                  icon="pi pi-check"
-                  class="p-button-text"
-                  @click="saveVehicle"
+                :label="'Save'.toUpperCase()"
+                icon="pi pi-check"
+                class="p-button-text"
+                @click="saveVehicle"
               />
             </template>
           </pv-dialog>
 
           <pv-dialog
-              v-model:visible="deleteVehicleDialog"
-              :style="{ width: '450px' }"
-              header="Confirm"
-              :modal="true"
+            v-model:visible="deleteVehicleDialog"
+            :style="{ width: '450px' }"
+            header="Confirm"
+            :modal="true"
           >
             <div class="confirmation-content">
-              <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem" />
+              <i
+                class="pi pi-exclamation-triangle mr-3"
+                style="font-size: 2rem"
+              />
               <span v-if="vehicle"
-              >Are you sure you want to delete <b>{{ vehicle.title }}</b
-              >?</span
+                >Are you sure you want to delete <b>{{ vehicle.title }}</b
+                >?</span
               >
             </div>
             <template #footer>
               <pv-button
-                  :label="'No'.toUpperCase()"
-                  icon="pi pi-times"
-                  class="p-button-text"
-                  @click="deleteVehicleDialog = false"
+                :label="'No'.toUpperCase()"
+                icon="pi pi-times"
+                class="p-button-text"
+                @click="deleteVehicleDialog = false"
               />
               <pv-button
-                  :label="'Yes'.toUpperCase()"
-                  icon="pi pi-check"
-                  class="p-button-text"
-                  @click="deleteVehicle"
+                :label="'Yes'.toUpperCase()"
+                icon="pi pi-check"
+                class="p-button-text"
+                @click="deleteVehicle"
               />
             </template>
           </pv-dialog>
 
           <pv-dialog
-              v-model:visible="deleteVehiclesDialog"
-              :style="{ width: '450px' }"
-              header="Confirm"
-              :modal="true"
+            v-model:visible="deleteVehiclesDialog"
+            :style="{ width: '450px' }"
+            header="Confirm"
+            :modal="true"
           >
             <div class="confirmation-content">
-              <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem" />
+              <i
+                class="pi pi-exclamation-triangle mr-3"
+                style="font-size: 2rem"
+              />
               <span v-if="vehicle"
-              >Are you sure you want to delete the selected vehicles?</span
+                >Are you sure you want to delete the selected vehicles?</span
               >
             </div>
             <template #footer>
               <pv-button
-                  :label="'No'.toUpperCase()"
-                  icon="pi pi-times"
-                  class="p-button-text"
-                  @click="deleteVehiclesDialog = false"
+                :label="'No'.toUpperCase()"
+                icon="pi pi-times"
+                class="p-button-text"
+                @click="deleteVehiclesDialog = false"
               />
               <pv-button
-                  :label="'Yes'.toUpperCase()"
-                  icon="pi pi-check"
-                  class="p-button-text"
-                  @click="deleteSelectedVehicles"
+                :label="'Yes'.toUpperCase()"
+                icon="pi pi-check"
+                class="p-button-text"
+                @click="deleteSelectedVehicles"
               />
             </template>
           </pv-dialog>
         </pv-data-table>
       </div>
-
     </div>
   </div>
 </template>
@@ -271,6 +280,9 @@ import { FilterMatchMode } from "primevue/api";
 import { VehiclesApiService } from "../services/vehicle-api.service";
 export default {
   name: "vehicle-list",
+  props: {
+    enterpriseId: Number,
+  },
   data() {
     return {
       vehicles: [],
@@ -292,11 +304,13 @@ export default {
 
   created() {
     this.vehiclesService = new VehiclesApiService();
-    this.vehiclesService.getAll().then((response) => {
-      this.vehicles = response.data;
-      this.vehicles.forEach((vehicle) => this.getDisplayableVehicle(vehicle));
-      console.log("created");
-    });
+    this.vehiclesService
+      .getVehiclesByEnterpriseId(this.enterpriseId)
+      .then((response) => {
+        this.vehicles = response.data;
+        this.vehicles.forEach((vehicle) => this.getDisplayableVehicle(vehicle));
+        console.log("created");
+      });
     this.initFilters();
   },
   methods: {
@@ -313,6 +327,7 @@ export default {
         model: displayableVehicle.model,
         maintenanceDate: displayableVehicle.maintenanceDate,
         vehicleType: displayableVehicle.vehicleType,
+        enterpriseId: displayableVehicle.enterpriseId,
       };
     },
     openNew() {
@@ -347,6 +362,7 @@ export default {
             });
         } else {
           this.vehicle.id = 0;
+          this.vehicle.enterpriseId = this.enterpriseId;
           console.log(this.vehicle);
           this.vehicle = this.getStorableVehicle(this.vehicle);
           this.vehiclesService.create(this.vehicle).then((response) => {
@@ -410,11 +426,11 @@ export default {
 
 <style>
 .container {
-  background-color: #E5ECED;
+  background-color: #e5eced;
   color: #fff;
 }
 .toolbarButton {
-  background-color: #E5ECED;
+  background-color: #e5eced;
   color: #fff;
 }
 </style>
