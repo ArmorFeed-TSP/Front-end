@@ -22,6 +22,7 @@ import InputNumber from "primevue/inputnumber";
 import Rating from "primevue/rating";
 import Toast from "primevue/toast";
 import InputMask from "primevue/inputmask";
+import $dataTransfer from "./shared/services/data-transfer.service";
 
 //PrimeVue Styles
 import "/node_modules/primeflex/primeflex.css";
@@ -38,6 +39,8 @@ import Timeline from "primevue/timeline";
 import ScrollPanel from "primevue/scrollpanel";
 
 const app = createApp(App);
+
+app.config.globalProperties.$dataTransfer = $dataTransfer;
 
 app.use(router);
 

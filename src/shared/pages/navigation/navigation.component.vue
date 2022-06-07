@@ -82,10 +82,15 @@ export default {
         { label: "My Payments", icon: "pi pi-money-bill", to: "/enterprise/1/payments" },
       ],
       navigationCustomer: [
-        { label: "Quotation", icon: "pi pi-fw pi-home", to: "quotations/"},
-        { label: "My shipments", icon: "pi pi-fw pi-calendar", to: "shipments/" },
+        { label: "Quotation", icon: "pi pi-fw pi-home", to: `/customers/${this.$dataTransfer.userId}/quotations` },
+        { label: "My shipments", icon: "pi pi-fw pi-calendar", to: `/customers/${this.$dataTransfer.userId}/shipments` },
         { label: "My Payments", icon: "pi pi-money-bill", to: "payments" },
       ],
+      selectedTabs: {
+        shipments: false,
+        quotations: false
+
+      }
     };
   },
   methods: {

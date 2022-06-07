@@ -52,7 +52,7 @@ const routes = [
         component: () =>
           import(
             "../customers/pages/steps-quotation/quotation-shipment.step.vue"
-          ),
+          )
       },
       {
         path: "/customers/:id/business-shipping",
@@ -60,13 +60,13 @@ const routes = [
         component: () =>
           import(
             "../customers/pages/steps-quotation/enterprise-shipping.step.vue"
-          ),
+          )
       },
       {
         path: "/customers/:id/pick-up-detail",
         props: true,
         component: () =>
-          import("../customers/pages/steps-quotation/pick-up-detail.step.vue"),
+          import("../customers/pages/steps-quotation/pick-up-detail.step.vue")
       },
       {
         path: "/customers/:id/destination-detail",
@@ -74,7 +74,7 @@ const routes = [
         component: () =>
           import(
             "../customers/pages/steps-quotation/destination-detail.step.vue"
-          ),
+          )
       },
       {
         path: "/customers/:id/payment",

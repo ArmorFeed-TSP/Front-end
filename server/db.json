@@ -219,6 +219,17 @@
     },
     {
       "id": "_uVgOvj"
+    },
+    {
+      "originId": 1,
+      "originDepartment": "Ancash",
+      "destinationId": 2,
+      "destinationDepartment": "Amazonas",
+      "paymentId": 1,
+      "status": "pending",
+      "pickUpDate": "2022/5/8",
+      "deliveryDate": "2022/5/9",
+      "id": "5cMCSpC"
     }
   ],
   "enterprises": [
@@ -376,10 +387,9 @@
       "id": "10",
       "brand": "nose",
       "licensePlate": "12",
-      "maintenanceDate": "2022-05-18T05:00:00.000Z",
+      "maintenanceDate": "2022-05-17T05:00:00.000Z",
       "model": "asd",
       "year": "2019",
-      "maintenanceDate": "2022-05-17T05:00:00.000Z",
       "vehicleType": "Free"
     },
     {
@@ -472,7 +482,24 @@
       "photo": "https://www.practicas.pe/organizaciones/practicas-ransa.png"
     }
   ],
-  "addresses": [],
+  "addresses": [
+    {
+      "department": "Ancash",
+      "typeAddress": "Department",
+      "address": "dont know",
+      "urbanization": "This urbanization",
+      "reference": "This building",
+      "id": 1
+    },
+    {
+      "department": "Amazonas",
+      "typeAddress": "Department",
+      "address": "njnidffvvjndkjnnbjdfjbdbk",
+      "urbanization": "kfsmvkmffmvmofmkkodfmofkmb",
+      "reference": "opfdvdfomokfmbkfmbodfmbkdkfmf",
+      "id": 2
+    }
+  ],
   "transactions": [
     {
       "id": 1,
@@ -494,7 +521,7 @@
     },
     {
       "id": 3,
-      "creditCard":348025428219123,
+      "creditCard": 348025428219123,
       "amount": 54,
       "currency": "soles",
       "paymentDate": "2022-02-19",
@@ -610,7 +637,14 @@
       "enterpriseId": 4
     }
   ],
-  "payments": [],
+  "payments": [
+    {
+      "enterpriseId": 3,
+      "amount": null,
+      "date": "2022/5/8",
+      "id": 1
+    }
+  ],
   "users": [
     {
       "email": "hbcordova10@gmail.com",
@@ -665,6 +699,15 @@
       "ruc": "565 565 645 654",
       "cellPhone": "987 676 666",
       "id": 6
+    },
+    {
+      "email": "qtal@gmail.com",
+      "password": "$2a$10$eZdgjLgdPJQlpA3ehSD0gudNcJf53G/I41CE8geVzHr3Ad7K8Iqri",
+      "userType": "customer",
+      "name": "No se",
+      "ruc": "345 555 677 832",
+      "cellPhone": "959 530 030",
+      "id": 7
     }
   ],
   "notifications": [

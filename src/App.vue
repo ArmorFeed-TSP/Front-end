@@ -1,6 +1,7 @@
 <script>
 import AppNavigation from "./shared/pages/navigation/navigation.component.vue";
 import AppFooter from "./shared/pages/footer/footer.component.vue";
+
 export default {
   name: "App",
   components: { AppNavigation, AppFooter },
@@ -18,6 +19,7 @@ export default {
         this.userId = auth.user.id;
         this.userType = auth.user.userType;
         this.userName = auth.user.name;
+        this.$dataTransfer.userId = this.userId;
         if (this.userType === "customer")
           this.$router.push({
             name: "customer-quotations",
