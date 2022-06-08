@@ -15,7 +15,7 @@
       </template>
       <template #end>
         <pv-button
-          v-if="userId"
+          v-if="this.userId"
           icon="pi pi-bell"
           @click="openNotification"
           class="p-button-rounded p-button-text"
@@ -26,11 +26,11 @@
           @click="toggle"
         ></pv-button>
         <pv-button
-          v-if="userId"
+          v-if="this.userId"
           class="p-button-rounded p-button-text"
           icon="pi pi-user"
           icon-pos="left"
-          :label="userName"
+          :label="this.userName"
         ></pv-button>
       </template>
     </pv-tool-bar>
@@ -43,7 +43,7 @@
           <pv-button class="ml-1" icon="pi pi-moon" label="Dark"></pv-button>
         </div>
         <pv-divider></pv-divider>
-        <div class="field" v-if="userId">
+        <div class="field" v-if="this.userId">
           <pv-button
             @click="logOut"
             icon="pi pi-power-off"
@@ -58,7 +58,7 @@
         <Notifications></Notifications>
     </pv-overlay-panel>
   </div>
-  <div v-if="userId" class="flex justify-content-center">
+  <div v-if="this.userId" class="flex justify-content-center">
     <pv-tab-menu :model="navigationList" :exact="false" />
   </div>
 </template>
@@ -78,12 +78,12 @@ export default {
           icon: "pi pi-fw pi-calendar",
           to: "/enterprise/1/shipments",
         },
-        { label: "My Vehicles", icon: "pi pi-car", to: "/enterprise/1/vehicles" },
-        { label: "My Payments", icon: "pi pi-money-bill", to: "/enterprise/1/payments" },
+        { label: "My Vehicles", icon: "pi pi-car", to: "vehicles" },
+        { label: "My Payments", icon: "pi pi-money-bill", to: "payments" },
       ],
       navigationCustomer: [
-        { label: "Quotation", icon: "pi pi-fw pi-home", to: "quotations/"},
-        { label: "My shipments", icon: "pi pi-fw pi-calendar", to: "shipments/" },
+        { label: "Quotation", icon: "pi pi-fw pi-home", to: "quotations"},
+        { label: "My shipments", icon: "pi pi-fw pi-calendar", to: "shipments" },
         { label: "My Payments", icon: "pi pi-money-bill", to: "payments" },
       ],
     };
@@ -110,18 +110,12 @@ export default {
         ? this.navigationCustomer
         : this.navigationEnterprise;
     },
-    routeShipments() {
-      return `/customers/${this.userId}/shipments`;
-    }
   },
   props: {
     items: Array,
     userId: Number,
-    userType: String,
     userName: String,
-  },
-  mounted() {
-    this.activeTab = 1
+    userType: String,
   },
 };
 </script>
