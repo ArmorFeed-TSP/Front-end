@@ -38,7 +38,7 @@ const routes = [
     path: "/enterprise/:id/vehicles",
     name: "vehicles",
     component: () => import("../vehicles/pages/vehicle-list.component.vue"),
-    props: { enterpriseId: 2 }
+    props: { enterpriseId: 1 }
   },
   {
     path: "/customers/:id/quotations",
