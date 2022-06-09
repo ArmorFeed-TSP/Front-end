@@ -143,8 +143,10 @@ export default {
     complete() {
       const payment = {
         enterpriseId: this.formObject.enterpriseId,
+        creditCard: this.creditCardNumber,
         amount: this.formObject.amount,
-        date: this.formObject.pickUpDate,
+        currency: "USD",
+        date: this.formObject.pickUpDate
       };
       this.$emit("complete", {
         formData: {

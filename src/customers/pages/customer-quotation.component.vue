@@ -29,10 +29,11 @@ export default {
   name: "customer-quotation",
   data() {
     return {
+      userId: null,
       steps: [
         {
           label: "Quotation",
-          to: "/quotations",
+          to: "quotations",
         },
         {
           label: "Enterprise",
@@ -154,6 +155,12 @@ export default {
         });
     },
   },
+  mounted() {
+    this.$nextTick(() => {
+      const auth = JSON.parse(localStorage.getItem("auth"));
+      this.userId = auth.user.id;
+    });
+  }
 };
 </script>
 

@@ -87,7 +87,7 @@
               <pv-column field="ratingService" header="Rating Service">
                 <template #body="slotProps">
                   <pv-rating
-                    :modelValue="slotProps.data.ratingService"
+                    :modelValue="slotProps.data.score"
                     :readonly="true"
                     :cancel="false"
                   ></pv-rating>
@@ -285,8 +285,11 @@ export default {
     },
   },
   mounted() {
-    this.weight = this.getWeight();
-    this.getAllEnterprises();
+    this.$nextTick(() => {
+      this.formObject = JSON.parse(localStorage.getItem("formObject"));
+      this.weight = this.getWeight();
+      this.getAllEnterprises();
+    });
   }
 };
 </script>
