@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="flex flex-column space-between align-items-center">
+    <div class="flex flex-column space-between align-items-center" style="max-width: 45rem; width: 100%; margin: 0 auto; min-height: 90vh">
       <customer-shipments-filter ref="customerShipmentFilter" @click="filterData"></customer-shipments-filter>
       <customer-shipments-list ref="customerShipmentList" :id="this.id"></customer-shipments-list>
     </div>
