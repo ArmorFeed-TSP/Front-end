@@ -17,6 +17,7 @@ export class VehiclesApiService  {
     return http.get(`/vehicles/${id}`);
   }
   getVehiclesByEnterpriseId( enterpriseId) {
-    return http.get(`/vehicles?enterpriseId=${enterpriseId}`);
+    return http.get(`/enterprise/${enterpriseId}/vehicles`);
+   // return http.get(`/vehicles?enterpriseId=${enterpriseId}`);
   }
 }
