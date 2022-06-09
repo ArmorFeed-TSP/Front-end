@@ -65,6 +65,9 @@
 
 <script>
 import Notifications from "../../../notifications/pages/notifications.vue";
+import { CustomerShipmentsApiService } from "../../../shipments/customer-shipments/services/customer-shipments-api.service";
+import { EnterpriseShipmentsService } from "../../../shipments/enterprise-shipments/services/enterprise-shipments.service";
+
 export default {
   name: "navigation-shipment",
   components: { Notifications },
@@ -76,21 +79,22 @@ export default {
         {
           label: "My shipments",
           icon: "pi pi-fw pi-calendar",
-          to: "/enterprise/1/shipments",
+          to: `/enterprise/${this.user.id}/shipments`,
         },
         { label: "My Vehicles", icon: "pi pi-car", to: "/enterprise/1/vehicles" },
         { label: "My Payments", icon: "pi pi-money-bill", to: "/enterprise/1/payments" },
       ],
       navigationCustomer: [
-        { label: "Quotation", icon: "pi pi-fw pi-home", to: `/customers/${this.$dataTransfer.userId}/quotations` },
-        { label: "My shipments", icon: "pi pi-fw pi-calendar", to: `/customers/${this.$dataTransfer.userId}/shipments` },
-        { label: "My Payments", icon: "pi pi-money-bill", to: "payments" },
+        { label: "Quotation", icon: "pi pi-fw pi-home", to: `/customers/${this.user.id}/quotations` },
+        { label: "My shipments", icon: "pi pi-fw pi-calendar", to: `/customers/${this.user.id}/shipments` },
+        { label: "My Payments", icon: "pi pi-money-bill", to: `/customers/${this.user.id}/payments` },
       ],
       selectedTabs: {
         shipments: false,
         quotations: false
 
-      }
+      },
+      user: null
     };
   },
   methods: {
@@ -108,6 +112,20 @@ export default {
       await this.$router.push({ name: "root" });
       this.$refs.op.hide();
     },
+    getAllShipmentsById(id){
+      const customerShipmentsService = new CustomerShipmentsApiService();
+      customerShipmentsService.findByCustomerId(id).then( response => {
+        response.data.forEach( shipment => {
+          this.$dataTransfer.addCustomerShipmentId(shipment.id);
+        });
+      });
+      const enterpriseShipmentsService = new EnterpriseShipmentsService();
+      enterpriseShipmentsService.getShipmentsById(id).then( response => {
+        response.data.forEach( shipment => {
+          this.$dataTransfer.addEnterpriseShipmentId(shipment.id);
+        });
+      });
+    }
   },
   computed: {
     navigationList() {
@@ -115,8 +133,9 @@ export default {
         ? this.navigationCustomer
         : this.navigationEnterprise;
     },
-    routeShipments() {
-      return `/customers/${this.userId}/shipments`;
+    routeQuotations() {
+      const user = localStorage.getItem("auth");
+      return `/customers/${user.id}/quotations`
     }
   },
   props: {
@@ -126,8 +145,11 @@ export default {
     userName: String,
   },
   mounted() {
-    this.activeTab = 1
+    this.activeTab = 1;
   },
+  beforeCreate() {
+    this.user = JSON.parse(localStorage.getItem("auth")).user;
+  }
 };
 </script>
 

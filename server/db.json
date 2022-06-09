@@ -64,105 +64,6 @@
       "enterpriseId": 1
     },
     {
-      "apiId": "v1",
-      "id": "00002519",
-      "origin": "Lima",
-      "pickUpDate": "25/10/2022",
-      "destiny": "Trujillo",
-      "deliveryDate": "27/10/2022",
-      "status": "Pending",
-      "customerId": 1,
-      "enterpriseId": 2
-    },
-    {
-      "apiId": "v1",
-      "id": "00002520",
-      "origin": "Piura",
-      "pickUpDate": "25/10/2022",
-      "destiny": "Lima",
-      "deliveryDate": "27/10/2022",
-      "status": "Pending",
-      "customerId": 1,
-      "enterpriseId": 2
-    },
-    {
-      "apiId": "v1",
-      "id": "00002521",
-      "origin": "Trujillo",
-      "pickUpDate": "25/10/2022",
-      "destiny": "Lima",
-      "deliveryDate": "27/10/2022",
-      "status": "In progress",
-      "customerId": 1,
-      "enterpriseId": 1
-    },
-    {
-      "apiId": "v1",
-      "id": "00002522",
-      "origin": "Chiclayo",
-      "pickUpDate": "25/10/2022",
-      "destiny": "Piura",
-      "deliveryDate": "27/10/2022",
-      "status": "In progress",
-      "customerId": 2,
-      "enterpriseId": 3
-    },
-    {
-      "apiId": "v1",
-      "id": "00002523",
-      "origin": "Lima",
-      "pickUpDate": "25/10/2022",
-      "destiny": "Chiclayo",
-      "deliveryDate": "27/10/2022",
-      "status": "Finished",
-      "customerId": 3,
-      "enterpriseId": 1
-    },
-    {
-      "id": "000025894",
-      "origin": "Lima",
-      "destiny": "Cusco",
-      "pickUpDate": "2022/05/05",
-      "deliveryDate": "2022/05/10",
-      "status": "Pending",
-      "apiId": "v1",
-      "customerId": 2,
-      "enterpriseId": 1
-    },
-    {
-      "status": "Pending",
-      "id": "00001267",
-      "origin": "Cusco",
-      "destiny": "Tacna",
-      "pickUpDate": "09/05/2022, 00:00:00",
-      "deliveryDate": "17/05/2022, 00:00:00",
-      "apiId": "v1",
-      "customerId": 3,
-      "enterpriseId": 3
-    },
-    {
-      "status": "Pending",
-      "id": "0004507",
-      "origin": "Ayacucho",
-      "destiny": "Ica",
-      "pickUpDate": "11/05/2022, 00:00:00",
-      "deliveryDate": "15/05/2022, 00:00:00",
-      "apiId": "v1",
-      "customerId": 1,
-      "enterpriseId": 2
-    },
-    {
-      "status": "Pending",
-      "origin": "Ancash",
-      "id": "748003",
-      "pickUpDate": "13/05/2022, 00:00:00",
-      "deliveryDate": "17/05/2022, 00:00:00",
-      "destiny": "Lima",
-      "apiId": "v1",
-      "customerId": 1,
-      "enterpriseId": 2
-    },
-    {
       "status": "Pending",
       "id": "556690",
       "origin": "Lima",
@@ -196,7 +97,7 @@
       "enterpriseId": 1
     },
     {
-      "status": "Pending",
+      "status": "In progress",
       "origin": "Apurimac",
       "destiny": "Ica",
       "pickUpDate": "24/05/2022, 00:00:00",
@@ -207,7 +108,7 @@
       "enterpriseId": 2
     },
     {
-      "status": "Pending",
+      "status": "In progress",
       "id": "959484",
       "origin": "Lima",
       "destiny": "Huaraz",
@@ -221,48 +122,74 @@
       "id": "_uVgOvj"
     },
     {
-      "originId": 1,
-      "originDepartment": "Ancash",
-      "destinationId": 2,
-      "destinationDepartment": "Amazonas",
-      "paymentId": 1,
-      "status": "pending",
+      "status": "Pending",
       "pickUpDate": "2022/5/8",
       "deliveryDate": "2022/5/9",
+      "customerId": 1,
+      "enterpriseId": 2,
       "id": "5cMCSpC"
     }
   ],
   "enterprises": [
     {
       "id": 1,
-      "email": "fgtor@italoSilva.com",
-      "password": "12131415",
-      "name": "Blindados S.A.C",
-      "phoneNumber": "579031268",
-      "ruc": "Closed Limited Company",
-      "serviceDescription": "Some description",
-      "score": 120
+      "name": "Ups S.A.C",
+      "ruc": "789654321",
+      "phone": "987654321",
+      "email": "ups@correo.com",
+      "priceBase": 12.5,
+      "factorWeight": 0.2,
+      "shippingTime": 48,
+      "ratingService": 3.2,
+      "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/United_Parcel_Service_logo_2014.svg/1200px-United_Parcel_Service_logo_2014.svg.png"
     },
     {
       "id": 2,
-      "email": "fgtor@italoSilva.com",
-      "password": "12131415",
-      "name": "ProteMax S.A.C",
-      "phoneNumber": "579031268",
-      "ruc": "Closed Limited Company",
-      "serviceDescription": "Some description",
-      "score": 10
+      "name": "DHL Express Peru S.A.C",
+      "ruc": "879765432",
+      "phone": "978654321",
+      "email": "dhl@correo.com",
+      "priceBase": 13.5,
+      "factorWeight": 0.4,
+      "shippingTime": 36,
+      "ratingService": 4.2,
+      "photo": "https://logos-world.net/wp-content/uploads/2020/08/DHL-Symbol.png"
     },
     {
       "id": 3,
-      "email": "fgtor@italoSilva.com",
-      "password": "12131415",
-      "name": "Hermes S.A.C",
-      "phoneNumber": "579031268",
-      "ruc": "Closed Limited Company",
-      "serviceDescription": "Some description",
-      "subscriptionPlan": 2,
-      "score": 50
+      "name": "Olva Courier S.A.C",
+      "ruc": "678543123",
+      "phone": "765432198",
+      "email": "olva@correo.com",
+      "priceBase": 12.1,
+      "factorWeight": 0.3,
+      "shippingTime": 54,
+      "ratingService": 4.1,
+      "photo": "https://play-lh.googleusercontent.com/MeXv_OgOVC6MRdlgC4SPjQWzsDvLr47N-28mwWvPnrXgI_tskMVA5lSxxFJ1BOIVeFha"
+    },
+    {
+      "id": 4,
+      "name": "Urbano Peru S.A.C",
+      "ruc": "567543123",
+      "phone": "876543211",
+      "email": "urbano@correo.com",
+      "priceBase": 16.1,
+      "factorWeight": 0.4,
+      "shippingTime": 48,
+      "ratingService": 4.5,
+      "photo": "https://play-lh.googleusercontent.com/yUS_LIjrQ5blHXmcwiMqGEXaJSArsTNMJ-U5531CGlObUCtzk4us-GGfYXN9lmQjRzY"
+    },
+    {
+      "id": 5,
+      "name": "Ransa Peru S.A.C",
+      "ruc": "678543123",
+      "phone": "787654355",
+      "email": "ransa@correo.com",
+      "priceBase": 13.7,
+      "factorWeight": 0.5,
+      "shippingTime": 64,
+      "ratingService": 3.3,
+      "photo": "https://www.practicas.pe/organizaciones/practicas-ransa.png"
     }
   ],
   "customers": [
@@ -418,68 +345,6 @@
       "model": "sdf",
       "maintenanceDate": "2022-05-24",
       "vehicleType": "Free"
-    }
-  ],
-  "enterprise": [
-    {
-      "id": 1,
-      "name": "Ups S.A.C",
-      "ruc": "789654321",
-      "phone": "987654321",
-      "email": "ups@correo.com",
-      "priceBase": 12.5,
-      "factorWeight": 0.2,
-      "shippingTime": 48,
-      "ratingService": 3.2,
-      "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/United_Parcel_Service_logo_2014.svg/1200px-United_Parcel_Service_logo_2014.svg.png"
-    },
-    {
-      "id": 2,
-      "name": "DHL Express Peru S.A.C",
-      "ruc": "879765432",
-      "phone": "978654321",
-      "email": "dhl@correo.com",
-      "priceBase": 13.5,
-      "factorWeight": 0.4,
-      "shippingTime": 36,
-      "ratingService": 4.2,
-      "photo": "https://logos-world.net/wp-content/uploads/2020/08/DHL-Symbol.png"
-    },
-    {
-      "id": 3,
-      "name": "Olva Courier S.A.C",
-      "ruc": "678543123",
-      "phone": "765432198",
-      "email": "olva@correo.com",
-      "priceBase": 12.1,
-      "factorWeight": 0.3,
-      "shippingTime": 54,
-      "ratingService": 4.1,
-      "photo": "https://play-lh.googleusercontent.com/MeXv_OgOVC6MRdlgC4SPjQWzsDvLr47N-28mwWvPnrXgI_tskMVA5lSxxFJ1BOIVeFha"
-    },
-    {
-      "id": 4,
-      "name": "Urbano Peru S.A.C",
-      "ruc": "567543123",
-      "phone": "876543211",
-      "email": "urbano@correo.com",
-      "priceBase": 16.1,
-      "factorWeight": 0.4,
-      "shippingTime": 48,
-      "ratingService": 4.5,
-      "photo": "https://play-lh.googleusercontent.com/yUS_LIjrQ5blHXmcwiMqGEXaJSArsTNMJ-U5531CGlObUCtzk4us-GGfYXN9lmQjRzY"
-    },
-    {
-      "id": 5,
-      "name": "Ransa Peru S.A.C",
-      "ruc": "678543123",
-      "phone": "787654355",
-      "email": "ransa@correo.com",
-      "priceBase": 13.7,
-      "factorWeight": 0.5,
-      "shippingTime": 64,
-      "ratingService": 3.3,
-      "photo": "https://www.practicas.pe/organizaciones/practicas-ransa.png"
     }
   ],
   "addresses": [
@@ -653,7 +518,9 @@
       "name": "Heber Cordova",
       "ruc": "988 765 432 111",
       "cellPhone": "902 952 757",
-      "id": 1
+      "id": 1,
+      "customerId": 1,
+      "enterpriseId": null
     },
     {
       "email": "upc-peru@gmail.com",
@@ -662,7 +529,9 @@
       "name": "UPC",
       "ruc": "764 545 674 657",
       "cellPhone": "987 654 321",
-      "id": 2
+      "id": 2,
+      "customerId": null,
+      "enterpriseId": 1
     },
     {
       "email": "ups-shipments@gmail.com",
@@ -671,43 +540,9 @@
       "name": "UPS SAC",
       "ruc": "546 546 543 634",
       "cellPhone": "987 654 321",
-      "id": 3
-    },
-    {
-      "email": "urbanoperu@gmail.com",
-      "password": "$2a$10$efmZnNs9I6yiwIy7riXsfeBzd6Em3fVUP6VHMvkg5zBAyqjDej.3G",
-      "userType": "customer",
-      "name": "Urbano Peru",
-      "ruc": "878 765 435 634",
-      "cellPhone": "976 423 432",
-      "id": 4
-    },
-    {
-      "email": "ransa-peru@gmail.com",
-      "password": "$2a$10$XlMfQZI6uKKECxAj9Flkv.XebHRNg/Yc9sdXEBMt70y7nC/2wr9Hi",
-      "userType": "enterprise",
-      "name": "Ransa Peru SAC",
-      "ruc": "978 673 443 343",
-      "cellPhone": "987 654 321",
-      "id": 5
-    },
-    {
-      "email": "urbano@gmail.com",
-      "password": "$2a$10$VyCQ6x4M1BQlWUuTPEO.4e4Zl2lxb25kW9XmyDkNkHa2MAs.IPYfO",
-      "userType": "enterprise",
-      "name": "Urbano SAC",
-      "ruc": "565 565 645 654",
-      "cellPhone": "987 676 666",
-      "id": 6
-    },
-    {
-      "email": "qtal@gmail.com",
-      "password": "$2a$10$eZdgjLgdPJQlpA3ehSD0gudNcJf53G/I41CE8geVzHr3Ad7K8Iqri",
-      "userType": "customer",
-      "name": "No se",
-      "ruc": "345 555 677 832",
-      "cellPhone": "959 530 030",
-      "id": 7
+      "id": 3,
+      "customerId": null,
+      "enterpriseId": 2
     }
   ],
   "notifications": [

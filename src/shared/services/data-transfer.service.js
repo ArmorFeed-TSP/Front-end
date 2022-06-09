@@ -1,13 +1,25 @@
-class DataTransferService {
+export class DataTransferService {
   constructor() {
-    this._userId = null;
+    this._customerShipmentsIds = [];
+    this._enterpriseShipmentsIds = [];
   }
-  get userId(){
-    return this._userId;
+
+  get customerShipmentsIds() {
+    return this._customerShipmentsIds;
   }
-  set userId(userId) {
-    this._userId = userId;
+  addCustomerShipmentId(customerShipmentId) {
+    this._customerShipmentsIds.push(customerShipmentId);
   }
+
+  get enterpriseShipmentsIds() {
+    return this._enterpriseShipmentsIds;
+  }
+  addEnterpriseShipmentId(customerShipmentId) {
+    this._enterpriseShipmentsIds.push(customerShipmentId);
+  }
+
 }
 
-export default new DataTransferService();
+const $dataTransfer = new DataTransferService();
+
+export default $dataTransfer;

@@ -1,7 +1,7 @@
 import http from "../../shared/services/http-common.js";
 
 class EnterpriseService {
-  endPoint = "/enterprise";
+  endPoint = "/enterprises";
 
   getAll() {
     return http.get(this.endPoint);

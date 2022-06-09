@@ -19,14 +19,13 @@ export default {
         this.userId = auth.user.id;
         this.userType = auth.user.userType;
         this.userName = auth.user.name;
-        this.$dataTransfer.userId = this.userId;
         if (this.userType === "customer")
           this.$router.push({
             name: "customer-quotations",
             params: { id: this.userId },
           });
         else if (this.userType === "enterprise")
-          this.$router.push({ name: "enterprise-shipments" });
+          this.$router.push({ name: "enterprise-shipments", params: {id: parseInt(this.userId) } });
       }
     },
     signOff() {
