@@ -10,6 +10,7 @@
               class="p-button-error mr-2"
               @click="openNew"
             />
+            <view-comment></view-comment>
           </template>
         </pv-tool-bar>
         <pv-data-table
@@ -279,8 +280,10 @@
 <script>
 import { FilterMatchMode } from "primevue/api";
 import { VehiclesApiService } from "../services/vehicle-api.service";
+import ViewComment from "../../shipments/customer-shipments/pages/comments/view-comment.component.vue";
 export default {
   name: "vehicle-list",
+  components: {ViewComment},
   props: {
     enterpriseId: Number,
   },
@@ -296,6 +299,7 @@ export default {
       submitted: false,
       vehiclesService: null,
       selectedType: null,
+      userId: null,
       types: [
         { type: "In use", code: "In use" },
         { type: "Free", code: "Free" },
@@ -304,9 +308,14 @@ export default {
   },
 
   created() {
+    const auth=JSON.parse(localStorage.getItem("auth"));
+    if(auth) {
+      this.userId = auth.user.id
+    }
+    console.log(this.userId)
     this.vehiclesService = new VehiclesApiService();
     this.vehiclesService
-      .getVehiclesByEnterpriseId(this.enterpriseId)
+      .getVehiclesByEnterpriseId(this.userId)
       .then((response) => {
         this.vehicles = response.data;
         this.vehicles.forEach((vehicle) => this.getDisplayableVehicle(vehicle));
