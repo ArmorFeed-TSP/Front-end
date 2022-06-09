@@ -2,24 +2,34 @@
   "comments": [
     {
       "id": 1,
-      "customerId": 1,
-      "enterpriseId": 1,
       "title": "Title comment1",
-      "content": "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. p"
+      "content": "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. p",
+      "customerId": 1,
+      "enterpriseId": 2
     },
     {
       "id": 2,
-      "customerId": 1,
-      "enterpriseId": 1,
       "title": "Title comment1",
-      "content": "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. p"
+      "content": "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. p",
+      "customerId": 1,
+      "enterpriseId": 3
     }
   ],
   "shipments": [
     {
       "id": "00002518",
       "customerId": 1,
-      "enterpriseId": 1,
+      "enterpriseId": 3,
+      "origin": "Amazonas",
+      "destiny": "Lima",
+      "pickUpDate": "25/10/2022",
+      "deliveryDate": "27/10/2022",
+      "status": "Finished"
+    },
+    {
+      "id": "00002510",
+      "customerId": 1,
+      "enterpriseId": 2,
       "origin": "Amazonas",
       "destiny": "Lima",
       "pickUpDate": "25/10/2022",
@@ -94,7 +104,7 @@
     },
     {
       "id": 4,
-      "enterpriseId": 1,
+      "enterpriseId": 2,
       "brand": "Hyundai",
       "licensePlate": "SFF-232",
       "year": 2021,
@@ -104,7 +114,7 @@
     },
     {
       "id": 5,
-      "enterpriseId": 1,
+      "enterpriseId": 2,
       "brand": "Suzuki",
       "licensePlate": "WSA-332",
       "year": 2019,
@@ -114,7 +124,7 @@
     },
     {
       "id": 6,
-      "enterpriseId": 1,
+      "enterpriseId": 2,
       "brand": "Nissan",
       "licensePlate": "GTA-431",
       "year": 2021,
@@ -128,6 +138,7 @@
       "id": 1,
       "shipmentId": 1,
       "typeAddress": "Department",
+      "typeDomicile": "Department",
       "address": "dont know",
       "urbanization": "This urbanization",
       "reference": "This building"
@@ -136,6 +147,7 @@
       "id": 2,
       "shipmentId": 1,
       "typeAddress": "Department",
+      "typeDomicile": "Department",
       "address": "dont know",
       "urbanization": "This urbanization",
       "reference": "This building"
@@ -162,7 +174,7 @@
     },
     {
       "id": 3,
-      "creditCard":348025428219123,
+      "creditCard": 348025428219123,
       "amount": 54,
       "currency": "soles",
       "paymentDate": "2022-02-19",
@@ -278,7 +290,17 @@
       "enterpriseId": 4
     }
   ],
-  "payments": [],
+  "payments": [
+    {
+      "id": 1,
+      "creditCard": 5106359056009527,
+      "amount": 30,
+      "currency": "soles",
+      "date": "2022-04-08",
+      "shipmentId": "00002532",
+      "enterpriseId": 1
+    }
+  ],
   "users": [
     {
       "id": 1,
