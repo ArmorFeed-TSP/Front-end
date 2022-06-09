@@ -47,7 +47,8 @@
       "priceBase": 12.5,
       "factorWeight": 0.2,
       "shippingTime": 48,
-      "score": 3.2
+      "score": 3.2,
+      "photo":"http://www.empresadeseguridad.pe/wp-content/uploads/2020/04/perfil-blindados.jpf"
     },
     {
       "id": 3,
@@ -58,7 +59,8 @@
       "priceBase": 12.3,
       "factorWeight": 0.3,
       "shippingTime": 72,
-      "score": 2.8
+      "score": 2.8,
+      "photo":"http://www.empresadeseguridad.pe/wp-content/uploads/2020/04/perfil-blindados.jpf"
     }
   ],
   "customers": [
@@ -68,13 +70,13 @@
       "name": "Italo Silva S.A.C",
       "phoneNumber": "902 952 757",
       "ruc": "888 2651 4421",
-      "subscriptionPlan": 0
+      "subscriptionPlan": 0,
     }
   ],
   "vehicles": [
     {
       "id": 1,
-      "enterpriseId": 1,
+      "enterpriseId": 3,
       "brand": "Toyota",
       "licensePlate": "BBT-231",
       "year": "2020",
