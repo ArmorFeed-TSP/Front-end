@@ -74,6 +74,7 @@ import { CommentsApiService } from "../../services/comments-api.service";
 import { CustomerShipmentsApiService } from "../../services/customer-shipments-api.service";
 
 import { FilterMatchMode } from "primevue/api";
+
 export default {
   name: "customer-comments",
   data() {
@@ -97,19 +98,8 @@ export default {
     };
   },
   created() {
-    const auth=JSON.parse(localStorage.getItem("auth"));
-    if(auth) {
-      this.userId = auth.user.id
-    }
-    this.shipmentId = this.$route.params.idShipment;
-    this.customerShipmentsApiService = new CustomerShipmentsApiService();
-    this.customerShipmentsApiService.getShipmentById(this.shipmentId).then( response => {
-      this.customerShipment = response.data;
-      this.customerShipmentsApiService.getEnterpriseById(this.customerShipment.enterpriseId).then( response => {
-        this.enterprise = response.data;
-      });
-    });
-
+    this.getCustomerId();
+    this.getEnterpriseId();
       this.commentsService = new CommentsApiService();
       this.commentsService.getAll().then((response) => {
         this.comments = response.data;
@@ -135,6 +125,22 @@ export default {
         enterpriseId: displayableComment.enterpriseId,
         customerId: displayableComment.customerId,
       };
+    },
+    getEnterpriseId(){
+      this.shipmentId = this.$route.params.idShipment;
+      this.customerShipmentsApiService = new CustomerShipmentsApiService();
+      this.customerShipmentsApiService.getShipmentById(this.shipmentId).then( response => {
+        this.customerShipment = response.data;
+        this.customerShipmentsApiService.getEnterpriseById(this.customerShipment.enterpriseId).then( response => {
+          this.enterprise = response.data;
+        });
+      });
+    },
+    getCustomerId(){
+      const auth=JSON.parse(localStorage.getItem("auth"));
+      if(auth) {
+        this.userId = auth.user.id
+      }
     },
     openNew() {
       this.comment = {};

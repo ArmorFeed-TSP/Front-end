@@ -25,7 +25,6 @@
 <script>
 import { CommentsApiService } from "../../services/comments-api.service";
 
-
 export default {
   name: "view-comment",
   props: {
@@ -48,10 +47,8 @@ export default {
     };
   },
   created() {
-    const auth=JSON.parse(localStorage.getItem("auth"));
-    if(auth) {
-      this.userId = auth.user.id
-    }
+
+    this.getCustomerId();
     this.commentsService = new CommentsApiService();
     this.commentsService
       .getCommentsByEnterpriseId(this.userId)
@@ -78,6 +75,12 @@ export default {
         enterpriseId: displayableComment.enterpriseId,
         customerId: displayableComment.customerId,
       };
+    },
+    getCustomerId(){
+      const auth=JSON.parse(localStorage.getItem("auth"));
+      if(auth) {
+        this.userId = auth.user.id
+      }
     },
   },
 };

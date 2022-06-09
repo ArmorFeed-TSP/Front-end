@@ -15,7 +15,7 @@ const routes = [
     props: true,
   },
   {
-    path: "/enterprise/:id/comments",
+    path: "/enterprise/comments",
     name: "view-comments",
     component: () => import("../shipments/customer-shipments/pages/comments/view-comment.component.vue"),
     props: true,

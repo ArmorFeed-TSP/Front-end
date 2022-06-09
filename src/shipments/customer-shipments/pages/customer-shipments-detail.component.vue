@@ -74,6 +74,7 @@
 import { CustomerShipmentsApiService } from "../services/customer-shipments-api.service.js";
 import CustomerComments from "./comments/customer-comment.component.vue";
 import ViewComments from "./comments/view-comment.component.vue";
+//linea 55 llamo a customer comments
 export default {
   name: "customer-shipments-detail",
   components: {CustomerComments,ViewComments},
