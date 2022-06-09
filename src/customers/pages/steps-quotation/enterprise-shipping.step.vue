@@ -60,7 +60,7 @@
               :sortOrder="sortOrder"
               :sortField="sortField"
             >
-              <pv-column field="name" header="Company">
+              <pv-column field="name" header="Enterprise">
                 <template #body="slotProps">
                   <div
                     class="inline-flex justify-content-center align-items-center"

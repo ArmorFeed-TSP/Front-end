@@ -133,7 +133,6 @@ export default {
         urbanization: this.urbanization,
         reference: this.reference,
       };
-      console.log(destinationDetail);
       this.$emit("next-page", {
         formData: {
           destinationDetail: destinationDetail,

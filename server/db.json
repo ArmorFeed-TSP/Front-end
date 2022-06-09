@@ -130,7 +130,7 @@
       "id": 1,
       "shipmentId": 1,
       "typeAddress": "origin",
-	  "typeDomicile": "Department",
+      "typeDomicile": "Department",
       "address": "dont know",
       "urbanization": "This urbanization",
       "reference": "This building"
@@ -138,7 +138,7 @@
     {
       "id": 2,
       "shipmentId": 1,
-	  "typeAddress": "destiny",
+      "typeAddress": "destiny",
       "typeDomicile": "Department",
       "address": "dont know",
       "urbanization": "This urbanization",
@@ -166,7 +166,7 @@
     },
     {
       "id": 3,
-      "creditCard":348025428219123,
+      "creditCard": 348025428219123,
       "amount": 54,
       "currency": "soles",
       "date": "2022-02-19",
@@ -265,7 +265,7 @@
     },
     {
       "id": 14,
-      "creditCard": 4901033815303980,
+      "creditCard": "4901033815303980",
       "amount": 95,
       "currency": "dollars",
       "date": "2022-01-29",
@@ -280,6 +280,15 @@
       "date": "2022-01-30",
       "shipmentId": "00002518",
       "enterpriseId": 4
+    },
+    {
+      "enterpriseId": 2,
+      "creditCard": "1234 1242 3432 4324",
+      "amount": 12.7,
+      "currency": "USD",
+      "date": "2022/5/9",
+      "shipmentId": "ZutCGbZ",
+      "id": 16
     }
   ],
   "users": [
