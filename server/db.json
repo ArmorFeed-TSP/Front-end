@@ -25,6 +25,16 @@
       "pickUpDate": "25/10/2022",
       "deliveryDate": "27/10/2022",
       "status": "Finished"
+    },
+    {
+      "customerId": 1,
+      "enterpriseId": 2,
+      "origin": "Amazonas",
+      "destiny": "Apurimac",
+      "pickUpDate": "2022/5/10",
+      "deliveryDate": "2022/5/11",
+      "status": "Pending",
+      "id": "5QOSfJU"
     }
   ],
   "enterprises": [
@@ -143,9 +153,54 @@
       "address": "dont know",
       "urbanization": "This urbanization",
       "reference": "This building"
+    },
+    {
+      "typeAddress": "origin",
+      "typeDomicile": "House",
+      "address": "asd",
+      "urbanization": "asd",
+      "reference": "asd",
+      "shipmentId": "5QOSfJU",
+      "id": 3
+    },
+    {
+      "typeAddress": "destiny",
+      "typeDomicile": "House",
+      "address": "asd",
+      "urbanization": "asd",
+      "reference": "asd",
+      "shipmentId": "5QOSfJU",
+      "id": 4
     }
   ],
   "payments": [
+    {
+      "department": "Ancash",
+      "typeAddress": "Department",
+      "address": "dont know",
+      "urbanization": "This urbanization",
+      "reference": "This building",
+      "id": 1
+    },
+    {
+      "department": "Amazonas",
+      "typeAddress": "Department",
+      "address": "njnidffvvjndkjnnbjdfjbdbk",
+      "urbanization": "kfsmvkmffmvmofmkkodfmofkmb",
+      "reference": "opfdvdfomokfmbkfmbodfmbkdkfmf",
+      "id": 2
+    },
+    {
+      "enterpriseId": 2,
+      "creditCard": "1234 3243 2434 3434",
+      "amount": 12.7,
+      "currency": "USD",
+      "date": "2022/5/10",
+      "shipmentId": "5QOSfJU",
+      "id": 3
+    }
+  ],
+  "transactions": [
     {
       "id": 1,
       "creditCard": 5106359056009527,

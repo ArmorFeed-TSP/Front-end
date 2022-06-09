@@ -36,8 +36,11 @@ import Checkbox from "primevue/checkbox";
 import OverlayPanel from "primevue/overlaypanel";
 import Timeline from "primevue/timeline";
 import ScrollPanel from "primevue/scrollpanel";
+import $dataTransfer from "./shared/services/data-transfer.service";
 
 const app = createApp(App);
+
+app.config.globalProperties.$dataTransfer = $dataTransfer;
 
 app.use(router);
 

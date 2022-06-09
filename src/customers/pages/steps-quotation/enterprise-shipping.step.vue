@@ -220,7 +220,7 @@ export default {
             pickUpDate: this.getPickUpDate(),
             deliveryDate: this.enterprise.dateShipment,
             amount: this.enterprise.price,
-            status: "pending",
+            status: "Pending",
           },
           pageIndex: 1,
         });

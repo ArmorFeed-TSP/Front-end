@@ -13,4 +13,8 @@ export class TransactionsApiService {
     return http.get(`/transactions/${transactionId}/enterprise/${enterpriseId}`);
   }
 
+  getAllPaymentsByCustomerId(customerId) {
+
+  }
+
 }

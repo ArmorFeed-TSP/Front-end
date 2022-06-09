@@ -1,6 +1,7 @@
 <script>
 import AppNavigation from "./shared/pages/navigation/navigation.component.vue";
 import AppFooter from "./shared/pages/footer/footer.component.vue";
+
 export default {
   name: "App",
   components: { AppNavigation, AppFooter },
@@ -24,7 +25,7 @@ export default {
             params: { id: this.userId },
           });
         else if (this.userType === "enterprise")
-          this.$router.push({ name: "enterprise-shipments" });
+          this.$router.push({ name: "enterprise-shipments", params: {id: parseInt(this.userId) } });
       }
     },
     signOff() {

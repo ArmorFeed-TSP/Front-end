@@ -1,6 +1,6 @@
 <template>
   <div class="detail-main-content" role="main">
-    <router-link to="/shipments/enterprise" class="no-underline"><pv-button label="Go back" icon="pi pi-chevron-left" class="p-button-text p-button-rounded router-btn"/></router-link>
+    <router-link :to="`/enterprise/${this.enterpriseId}/shipments`" class="no-underline"><pv-button label="Go back" icon="pi pi-chevron-left" class="p-button-text p-button-rounded router-btn"/></router-link>
     <div class="grid-list" role="contentinfo">
       <pv-card class="card-info">
         <template #header>
@@ -50,7 +50,6 @@
             <p><span class="font-bold">Total weight: </span> 200 kg</p>
             <p><span class="font-bold">Total price: </span> $100.00</p>
           </div>
-          <pv-button label="Write a review" class="card-btn"></pv-button>
         </template>
       </pv-card>
     </div>
@@ -79,11 +78,13 @@ export default {
       enterpriseShipmentApiService: null,
       currentColor: '#0712e8',
       enterpriseShipmentEvents: ['Pending', 'In progress', 'Finished'],
-      dialogEnabled: false
+      dialogEnabled: false,
+      enterpriseId: null
     }
   },
   created() {
-    this.shipmentId = this.$route.params.id;
+    this.shipmentId = this.$route.params.id2;
+    this.enterpriseId = this.$route.params.id;
     this.enterpriseShipmentApiService = new EnterpriseShipmentsService();
     this.enterpriseShipmentApiService.getShipmentById(this.shipmentId).then( r1 => {
       this.enterpriseShipment = r1.data;

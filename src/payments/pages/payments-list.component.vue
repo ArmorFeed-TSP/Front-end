@@ -81,6 +81,7 @@ export default {
         );
       }
     );
+    console.log(this.$dataTransfer.shipmentsIds);
   },
   methods: {
     getLongMonthName(date) {

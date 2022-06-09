@@ -1,6 +1,6 @@
 <template>
   <div class="detail-main-content" role="main">
-    <router-link to="./" class="no-underline"><pv-button label="Go back" icon="pi pi-chevron-left" class="p-button-text p-button-rounded router-btn"/></router-link>
+    <router-link :to="`/customers/${this.customerId}/shipments`" class="no-underline"><pv-button label="Go back" icon="pi pi-chevron-left" class="p-button-text p-button-rounded router-btn"/></router-link>
     <div class="grid-list" role="contentinfo">
       <pv-card class="card-info">
         <template #header>
@@ -81,11 +81,13 @@ export default {
       customerShipment: {},
       currentColor: '#0712e8',
       customerShipmentEvents: ['Pending', 'In progress', 'Finished'],
-      dialogEnabled: false
+      dialogEnabled: false,
+      customerId: null
     }
   },
   created() {
-    this.shipmentId = this.$route.params.idShipment;
+    this.shipmentId = this.$route.params.id2;
+    this.customerId = this.$route.params.id;
     this.customerShipmentsApiService = new CustomerShipmentsApiService();
     this.customerShipmentsApiService.getShipmentById(this.shipmentId).then( response => {
       this.customerShipment = response.data;
