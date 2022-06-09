@@ -49,9 +49,12 @@
           <div class="w-full flex flex-row justify-content-between flex-wrap">
             <p><span class="font-bold">Total weight: </span> 200 kg</p>
             <p><span class="font-bold">Total price: </span> $100.00</p>
+
           </div>
-          <pv-button label="Write a review" class="card-btn"></pv-button>
+          <div class="flex flex-column space-between align-items-center">
           <customer-comments></customer-comments>
+          </div>
+
         </template>
       </pv-card>
     </div>
@@ -69,10 +72,11 @@
 
 <script>
 import { CustomerShipmentsApiService } from "../services/customer-shipments-api.service.js";
-import CustomerComments from "./customer-comment.component.vue";
+import CustomerComments from "./comments/customer-comment.component.vue";
+import ViewComments from "./comments/view-comment.component.vue";
 export default {
   name: "customer-shipments-detail",
-  components: {CustomerComments},
+  components: {CustomerComments,ViewComments},
   data() {
     return {
       customerShipmentsApiService: null,
@@ -121,7 +125,9 @@ export default {
   -moz-border-radius: 50%;
   border-radius: 50%;
 }
-
+.comment{
+  margin: 0 auto;
+}
 .card-btn {
   margin: 0 auto;
   margin-top: 2rem;
@@ -129,6 +135,10 @@ export default {
   left: 50%;
   transform: translateX(-50%);
   padding: 1rem 2rem;
+}
+.write{
+  border: red 1px solid;
+
 }
 
 .router-btn {
