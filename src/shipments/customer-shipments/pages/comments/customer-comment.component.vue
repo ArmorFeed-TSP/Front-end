@@ -5,7 +5,7 @@
         <template #start>
           <pv-button
             label="Write review"
-            class="p-button-success mr-2"
+            class="p-button-error mr-2"
             @click="openNew"
           />
         </template>
