@@ -10,4 +10,7 @@ export class CustomerShipmentsApiService {
   getShipmentById(id) {
     return http.get(`/shipments/${id}`);
   }
+  getCustomerById(customerId) {
+    return http.get(`/customers/${customerId}`);
+  }
 }

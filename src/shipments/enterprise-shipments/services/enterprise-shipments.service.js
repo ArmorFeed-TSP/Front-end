@@ -13,4 +13,7 @@ export class EnterpriseShipmentsService {
     updateShipment(id, shipment) {
         return http.put(`/shipments/${id}`, shipment);
     }
+    getEnterpriseById(enterpriseId){
+        return http.get(`/enterprises/${enterpriseId}`);
+    }
 }

@@ -17,7 +17,7 @@
   ],
   "shipments": [
     {
-      "id": "00002518",
+      "id": "00002528",
       "customerId": 1,
       "enterpriseId": 1,
       "origin": "Amazonas",
@@ -27,17 +27,28 @@
       "status": "Finished"
     },
     {
+      "id": "00002532",
       "customerId": 1,
       "enterpriseId": 2,
       "origin": "Amazonas",
-      "destiny": "Apurimac",
-      "pickUpDate": "2022/5/10",
-      "deliveryDate": "2022/5/11",
-      "status": "Pending",
-      "id": "5QOSfJU"
+      "destiny": "Lima",
+      "pickUpDate": "25/10/2022",
+      "deliveryDate": "27/10/2022",
+      "status": "Finished"
     }
   ],
   "enterprises": [
+    {
+      "id": 1,
+      "name": "Sodimac S.A.C",
+      "ruc": "789 6543 2112",
+      "phoneNumber": "579 031 268",
+      "email": "blindadosac-789@gmail.com",
+      "priceBase": 12.5,
+      "factorWeight": 0.2,
+      "shippingTime": 48,
+      "score": 3.2
+    },
     {
       "id": 2,
       "name": "Blindados S.A.C",
@@ -47,8 +58,7 @@
       "priceBase": 12.5,
       "factorWeight": 0.2,
       "shippingTime": 48,
-      "score": 3.2,
-      "photo": "http://www.empresadeseguridad.pe/wp-content/uploads/2020/04/perfil-blindados.jpg"
+      "score": 3.2
     },
     {
       "id": 3,
@@ -59,8 +69,7 @@
       "priceBase": 12.3,
       "factorWeight": 0.3,
       "shippingTime": 72,
-      "score": 2.8,
-      "photo": "data:image/png;base64,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"
+      "score": 2.8
     }
   ],
   "customers": [
@@ -139,8 +148,7 @@
     {
       "id": 1,
       "shipmentId": 1,
-      "typeAddress": "origin",
-      "typeDomicile": "Department",
+      "typeAddress": "Department",
       "address": "dont know",
       "urbanization": "This urbanization",
       "reference": "This building"
@@ -148,67 +156,20 @@
     {
       "id": 2,
       "shipmentId": 1,
-      "typeAddress": "destiny",
-      "typeDomicile": "Department",
+      "typeAddress": "Department",
       "address": "dont know",
       "urbanization": "This urbanization",
       "reference": "This building"
-    },
-    {
-      "typeAddress": "origin",
-      "typeDomicile": "House",
-      "address": "asd",
-      "urbanization": "asd",
-      "reference": "asd",
-      "shipmentId": "5QOSfJU",
-      "id": 3
-    },
-    {
-      "typeAddress": "destiny",
-      "typeDomicile": "House",
-      "address": "asd",
-      "urbanization": "asd",
-      "reference": "asd",
-      "shipmentId": "5QOSfJU",
-      "id": 4
     }
   ],
   "payments": [
-    {
-      "department": "Ancash",
-      "typeAddress": "Department",
-      "address": "dont know",
-      "urbanization": "This urbanization",
-      "reference": "This building",
-      "id": 1
-    },
-    {
-      "department": "Amazonas",
-      "typeAddress": "Department",
-      "address": "njnidffvvjndkjnnbjdfjbdbk",
-      "urbanization": "kfsmvkmffmvmofmkkodfmofkmb",
-      "reference": "opfdvdfomokfmbkfmbodfmbkdkfmf",
-      "id": 2
-    },
-    {
-      "enterpriseId": 2,
-      "creditCard": "1234 3243 2434 3434",
-      "amount": 12.7,
-      "currency": "USD",
-      "date": "2022/5/10",
-      "shipmentId": "5QOSfJU",
-      "id": 3
-    }
-  ],
-  "transactions": [
     {
       "id": 1,
       "creditCard": 5106359056009527,
       "amount": 30,
       "currency": "soles",
       "date": "2022-04-08",
-      "shipmentId": "00002532",
-      "enterpriseId": 1
+      "shipmentId": "00002532"
     },
     {
       "id": 2,
@@ -216,17 +177,15 @@
       "amount": 80,
       "currency": "soles",
       "date": "2022-04-11",
-      "shipmentId": "00002531",
-      "enterpriseId": 2
+      "shipmentId": "00002531"
     },
     {
       "id": 3,
-      "creditCard": 348025428219123,
+      "creditCard":348025428219123,
       "amount": 54,
       "currency": "soles",
       "date": "2022-02-19",
-      "shipmentId": "00002530",
-      "enterpriseId": 1
+      "shipmentId": "00002530"
     },
     {
       "id": 4,
@@ -234,8 +193,7 @@
       "amount": 50,
       "currency": "soles",
       "date": "2022-03-21",
-      "shipmentId": "00002529",
-      "enterpriseId": 3
+      "shipmentId": "00002529"
     },
     {
       "id": 5,
@@ -243,8 +201,7 @@
       "amount": 30,
       "currency": "soles",
       "date": "2022-04-15",
-      "shipmentId": "00002528",
-      "enterpriseId": 1
+      "shipmentId": "00002528"
     },
     {
       "id": 6,
@@ -252,8 +209,7 @@
       "amount": 50,
       "currency": "soles",
       "date": "2022-01-03",
-      "shipmentId": "00002527",
-      "enterpriseId": 3
+      "shipmentId": "00002527"
     },
     {
       "id": 7,
@@ -261,8 +217,7 @@
       "amount": 80,
       "currency": "soles",
       "date": "2022-04-28",
-      "shipmentId": "00002526",
-      "enterpriseId": 2
+      "shipmentId": "00002526"
     },
     {
       "id": 8,
@@ -270,8 +225,7 @@
       "amount": 69,
       "currency": "soles",
       "date": "2022-02-20",
-      "shipmentId": "00002525",
-      "enterpriseId": 3
+      "shipmentId": "00002525"
     },
     {
       "id": 9,
@@ -279,8 +233,7 @@
       "amount": 120,
       "currency": "soles",
       "date": "2022-02-22",
-      "shipmentId": "00002524",
-      "enterpriseId": 4
+      "shipmentId": "00002524"
     },
     {
       "id": 10,
@@ -288,8 +241,7 @@
       "amount": 75,
       "currency": "soles",
       "date": "2022-03-30",
-      "shipmentId": "00002523",
-      "enterpriseId": 1
+      "shipmentId": "00002523"
     },
     {
       "id": 11,
@@ -297,8 +249,7 @@
       "amount": 100,
       "currency": "soles",
       "date": "2022-01-04",
-      "shipmentId": "00002522",
-      "enterpriseId": 3
+      "shipmentId": "00002522"
     },
     {
       "id": 12,
@@ -306,8 +257,7 @@
       "amount": 70,
       "currency": "soles",
       "date": "2022-01-23",
-      "shipmentId": "00002521",
-      "enterpriseId": 2
+      "shipmentId": "00002521"
     },
     {
       "id": 13,
@@ -315,17 +265,15 @@
       "amount": 93,
       "currency": "soles",
       "date": "2022-01-28",
-      "shipmentId": "00002520",
-      "enterpriseId": 1
+      "shipmentId": "00002520"
     },
     {
       "id": 14,
-      "creditCard": "4901033815303980",
+      "creditCard": 4901033815303980,
       "amount": 95,
       "currency": "dollars",
       "date": "2022-01-29",
-      "shipmentId": "00002519",
-      "enterpriseId": 3
+      "shipmentId": "00002519"
     },
     {
       "id": 15,
@@ -333,17 +281,7 @@
       "amount": 12,
       "currency": "soles",
       "date": "2022-01-30",
-      "shipmentId": "00002518",
-      "enterpriseId": 4
-    },
-    {
-      "enterpriseId": 2,
-      "creditCard": "1234 1242 3432 4324",
-      "amount": 12.7,
-      "currency": "USD",
-      "date": "2022/5/9",
-      "shipmentId": "ZutCGbZ",
-      "id": 16
+      "shipmentId": "00002518"
     }
   ],
   "users": [

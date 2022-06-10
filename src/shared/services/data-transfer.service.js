@@ -27,6 +27,10 @@ export class DataTransferService {
     this._enterpriseShipmentsIds.push(customerShipmentId);
   }
 
+  clearShipmentsIds(){
+    this._customerShipmentsIds = [];
+    this._enterpriseShipmentsIds = [];
+  }
 }
 
 const $dataTransfer = new DataTransferService();

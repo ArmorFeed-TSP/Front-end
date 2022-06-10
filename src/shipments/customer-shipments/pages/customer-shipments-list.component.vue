@@ -36,6 +36,7 @@ export default {
     this.customerShipmentsApiService.findByCustomerId(this.id).then(response => {
       this.customerShipments = response.data;
       this.currentCustomerShipments = response.data;
+      this.$dataTransfer.clearShipmentsIds();
       this.customerShipments.forEach( shipment => {
         this.$dataTransfer.addCustomerShipmentId(shipment.id);
       });
