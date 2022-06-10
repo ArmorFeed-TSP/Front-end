@@ -15,7 +15,7 @@
       </template>
       <template #end>
         <pv-button
-          v-if="this.userId"
+          v-if="this.userType"
           icon="pi pi-bell"
           @click="openNotification"
           class="p-button-rounded p-button-text"
@@ -26,7 +26,7 @@
           @click="toggle"
         ></pv-button>
         <pv-button
-          v-if="this.userId"
+          v-if="this.userType"
           class="p-button-rounded p-button-text"
           icon="pi pi-user"
           icon-pos="left"
@@ -43,7 +43,7 @@
           <pv-button class="ml-1" icon="pi pi-moon" label="Dark"></pv-button>
         </div>
         <pv-divider></pv-divider>
-        <div class="field" v-if="this.userId">
+        <div class="field" v-if="this.userType">
           <pv-button
             @click="logOut"
             icon="pi pi-power-off"
@@ -55,18 +55,22 @@
       </div>
     </pv-overlay-panel>
     <pv-overlay-panel ref="nt" style="width: 400px" :dismissable="true" el="el">
-        <Notifications></Notifications>
+      <Notifications></Notifications>
     </pv-overlay-panel>
   </div>
-  <div v-if="this.userId" class="flex justify-content-center">
-    <pv-tab-menu :model="navigationList" :exact="false" />
+  <div v-if="this.userType" class="flex justify-content-center">
+    <pv-tab-menu :model="navigation" :exact="false" />
   </div>
 </template>
 
 <script>
 import Notifications from "../../../notifications/pages/notifications.vue";
-import { CustomerShipmentsApiService } from "../../../shipments/customer-shipments/services/customer-shipments-api.service";
-import { EnterpriseShipmentsService } from "../../../shipments/enterprise-shipments/services/enterprise-shipments.service";
+import {
+  CustomerShipmentsApiService
+} from "../../../shipments/customer-shipments/services/customer-shipments-api.service";
+import {
+  EnterpriseShipmentsService
+} from "../../../shipments/enterprise-shipments/services/enterprise-shipments.service";
 
 export default {
   name: "navigation-shipment",
@@ -75,26 +79,11 @@ export default {
     return {
       activeTab: 0,
       isDark: null,
-      navigationEnterprise: [
-        {
-          label: "My shipments",
-          icon: "pi pi-fw pi-calendar",
-          to: `/enterprise/${this.user.id}/shipments`,
-        },
-        { label: "My Vehicles", icon: "pi pi-car", to: "/enterprise/"+ this.user.id +"/vehicles" },
-        { label: "My Payments", icon: "pi pi-money-bill", to: "/enterprise/"+ this.user.id +"/payments" },
-      ],
-      navigationCustomer: [
-        { label: "Quotation", icon: "pi pi-fw pi-home", to: "/customers/"+ this.user.id +"/quotations"},
-        { label: "My shipments", icon: "pi pi-fw pi-calendar", to: "/customers/" + this.user.id + "/shipments" },
-        { label: "My Payments", icon: "pi pi-money-bill", to: "/customers/" + this.user.id + "/payments" },
-      ],
       selectedTabs: {
         shipments: false,
-        quotations: false
-
+        quotations: false,
       },
-      user: null
+      user: null,
     };
   },
   methods: {
@@ -107,31 +96,25 @@ export default {
       this.$refs.nt.toggle(event);
     },
     async logOut() {
+      this.user = null;
       await localStorage.removeItem("auth");
       await this.$emit("sign-off");
       await this.$router.push({ name: "root" });
       this.$refs.op.hide();
     },
-    getAllShipmentsById(id){
+    getAllShipmentsById(id) {
       const customerShipmentsService = new CustomerShipmentsApiService();
-      customerShipmentsService.findByCustomerId(id).then( response => {
-        response.data.forEach( shipment => {
+      customerShipmentsService.findByCustomerId(id).then((response) => {
+        response.data.forEach((shipment) => {
           this.$dataTransfer.addCustomerShipmentId(shipment.id);
         });
       });
       const enterpriseShipmentsService = new EnterpriseShipmentsService();
-      enterpriseShipmentsService.getShipmentsById(id).then( response => {
-        response.data.forEach( shipment => {
+      enterpriseShipmentsService.getShipmentsById(id).then((response) => {
+        response.data.forEach((shipment) => {
           this.$dataTransfer.addEnterpriseShipmentId(shipment.id);
         });
       });
-    }
-  },
-  computed: {
-    navigationList() {
-      return this.userType === "customer"
-        ? this.navigationCustomer
-        : this.navigationEnterprise;
     },
   },
   props: {
@@ -139,13 +122,17 @@ export default {
     userId: Number,
     userName: String,
     userType: String,
+    navigation: Array,
   },
   mounted() {
-    this.activeTab = 1;
+    this.$nextTick(() => {
+      const auth = JSON.parse(localStorage.getItem("auth"));
+      if (auth) {
+        this.user = auth.user;
+      }
+      this.activeTab = 1;
+    });
   },
-  beforeCreate() {
-    this.user = JSON.parse(localStorage.getItem("auth")).user;
-  }
 };
 </script>
 
