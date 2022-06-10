@@ -116,6 +116,9 @@ export default {
         });
       });
     },
+    UserId() {
+      return (!this.user)? this.userId: this.user.id;
+    }
   },
   props: {
     items: Array,
