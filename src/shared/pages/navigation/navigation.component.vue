@@ -133,6 +133,9 @@ export default {
         ? this.navigationCustomer
         : this.navigationEnterprise;
     },
+    UserId() {
+      return (!this.user)? this.userId: this.user.id;
+    }
   },
   props: {
     items: Array,
@@ -144,7 +147,7 @@ export default {
     this.activeTab = 1;
   },
   beforeCreate() {
-    this.user = JSON.parse(localStorage.getItem("auth")).user;
+   this.user = localStorage.getItem("auth") || { id: 1 };
   }
 };
 </script>

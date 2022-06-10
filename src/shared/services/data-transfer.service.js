@@ -2,6 +2,15 @@ export class DataTransferService {
   constructor() {
     this._customerShipmentsIds = [];
     this._enterpriseShipmentsIds = [];
+    this._user = null;
+  }
+
+  get user() {
+    return this._userId;
+  }
+
+  set user(user) {
+    this._user = user;
   }
 
   get customerShipmentsIds() {

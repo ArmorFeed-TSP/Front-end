@@ -41,10 +41,14 @@
             <pv-button label="Sign In" type="submit"></pv-button>
           </div>
           <div class="text-center pt-2">
-            <router-link to="/" class="mt-0 no-underline">Forgot your password?</router-link>
+            <router-link to="/" class="mt-0 no-underline"
+              >Forgot your password?</router-link
+            >
             <p>
               Don't have an account?
-              <router-link class="no-underline" to="/sign-up">Click here.</router-link>
+              <router-link class="no-underline" to="/sign-up"
+                >Click here.</router-link
+              >
             </p>
           </div>
         </div>
@@ -87,6 +91,7 @@ export default {
         await SignInService.login(loginResource)
           .then((response) => {
             localStorage.setItem("auth", JSON.stringify(response.data));
+            this.$dataTransfer.user = response.data;
             this.$emit("user-logged");
           })
           .catch((error) => {
