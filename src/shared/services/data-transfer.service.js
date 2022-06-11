@@ -6,7 +6,7 @@ export class DataTransferService {
   }
 
   get user() {
-    return this._userId;
+    return this._user;
   }
 
   set user(user) {

@@ -35,7 +35,13 @@ const routes = [
     path: "/customers/:id/payments",
     name: "customer-payments",
     component: () => import("../payments/pages/payments-list.component.vue"),
-    props: true
+    props: { isCustomer: true }
+  },
+  {
+    path: "/enterprise/:id/payments",
+    name: "enterprise-payments",
+    component: () => import("../payments/pages/payments-list.component.vue"),
+    props: { isCustomer: false }
   },
   {
     path: "/enterprise/1/vehicles",
@@ -110,11 +116,6 @@ const routes = [
     name: "enterprise-shipment-detail",
     component: () => import("../shipments/enterprise-shipments/pages/enterprise-shipments-detail.component.vue"),
     props: true
-  },
-  {
-    path: "/enterprise/1/payments",
-    name: "enterprise-payments",
-    component: () => import("../payments/pages/payments-list.component.vue"),
   },
   {
     path: "/customers/:idCustomer/shipments/:idShipment/",

@@ -84,6 +84,9 @@ export default {
 
     //console.log(this.payments)
   },
+  props: {
+    isCustomer: Boolean
+  },
   methods: {
     getLongMonthName(date) {
       return this.monthNames[date.getMonth()] + "-" + date.getFullYear();
@@ -98,7 +101,7 @@ export default {
               (customer) => {
                 payment.contact = customer.data.name
                   //console.log(payment.contact)
-                this.contact='Customer'
+                this.contact='Customer';
               },
 
             )
@@ -118,12 +121,29 @@ export default {
       return payment;
     },
     getPaymentsByShipmentsId() {
-      this.$dataTransfer.customerShipmentsIds.forEach(
+      if(this.isCustomer) {
+        this.$dataTransfer.customerShipmentsIds.forEach(
+          (shipmentId) => {
+            this.paymentsService.findPaymentByShipmentId(shipmentId).then(
+              (payment) => {
+                this.payments.push(payment.data[0])
+                console.log(this.payments);
+                this.payments.forEach(
+                  (payment) =>
+                  {
+                    this.getDisplayablePayment(payment)}
+                );
+              }
+            );
+          }
+        );
+        return;
+      }
+      this.$dataTransfer.enterpriseShipmentsIds.forEach(
         (shipmentId) => {
           this.paymentsService.findPaymentByShipmentId(shipmentId).then(
             (payment) => {
-              this.payments.push(payment.data[0])
-              console.log(this.payments)
+              this.payments.push(payment.data[0]);
               this.payments.forEach(
                 (payment) =>
                 {

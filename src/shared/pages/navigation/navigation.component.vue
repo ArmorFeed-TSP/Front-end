@@ -143,11 +143,26 @@ export default {
     userName: String,
     userType: String,
   },
+  beforeCreate() {
+   this.user = JSON.parse(localStorage.getItem("auth")).user || {id: 1};
+  },
   mounted() {
     this.activeTab = 1;
-  },
-  beforeCreate() {
-   this.user = localStorage.getItem("auth") || { id: 1 };
+    this.user = JSON.parse(localStorage.getItem("auth")).user;
+    this.navigationEnterprise = [
+      {
+        label: "My shipments",
+        icon: "pi pi-fw pi-calendar",
+        to: `/enterprise/${this.user.id}/shipments`,
+      },
+      { label: "My Vehicles", icon: "pi pi-car", to: "/enterprise/"+ this.user.id +"/vehicles" },
+      { label: "My Payments", icon: "pi pi-money-bill", to: "/enterprise/"+ this.user.id +"/payments" },
+    ];
+    this.navigationCustomer = [
+      { label: "Quotation", icon: "pi pi-fw pi-home", to: "/customers/"+ this.user.id +"/quotations"},
+      { label: "My shipments", icon: "pi pi-fw pi-calendar", to: "/customers/" + this.user.id + "/shipments" },
+      { label: "My Payments", icon: "pi pi-money-bill", to: "/customers/" + this.user.id + "/payments" },
+    ];
   }
 };
 </script>
