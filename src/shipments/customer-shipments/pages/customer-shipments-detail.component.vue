@@ -1,6 +1,6 @@
 <template>
   <div class="detail-main-content" role="main">
-    <router-link to="./" class="no-underline"><pv-button label="Go back" icon="pi pi-chevron-left" class="p-button-text p-button-rounded router-btn"/></router-link>
+    <router-link :to="`/customers/${this.customerId}/shipments`" class="no-underline"><pv-button label="Go back" icon="pi pi-chevron-left" class="p-button-text p-button-rounded router-btn"/></router-link>
     <div class="grid-list" role="contentinfo">
       <pv-card class="card-info">
         <template #header>
@@ -49,9 +49,12 @@
           <div class="w-full flex flex-row justify-content-between flex-wrap">
             <p><span class="font-bold">Total weight: </span> 200 kg</p>
             <p><span class="font-bold">Total price: </span> $100.00</p>
+
           </div>
-          <pv-button label="Write a review" class="card-btn"></pv-button>
+          <div class="flex flex-column space-between align-items-center">
           <customer-comments></customer-comments>
+          </div>
+
         </template>
       </pv-card>
     </div>
@@ -60,7 +63,7 @@
     <template #header>
       <h3>Current Location</h3>
     </template>
-    <!-- Google Api content goes here -->
+    <customer-shipments-location/>
     <template #footer>
       <pv-button label="Ok" autofocus @click="dialogEnabled = !dialogEnabled"/>
     </template>
@@ -69,10 +72,12 @@
 
 <script>
 import { CustomerShipmentsApiService } from "../services/customer-shipments-api.service.js";
-import CustomerComments from "./customer-comment.component.vue";
+import CustomerComments from "./comments/customer-comment.component.vue";
+import CustomerShipmentsLocation from "./customer-shipments-location.vue";
+//linea 55 llamo a customer comments
 export default {
   name: "customer-shipments-detail",
-  components: {CustomerComments},
+  components: {CustomerComments, CustomerShipmentsLocation},
   data() {
     return {
       customerShipmentsApiService: null,
@@ -81,11 +86,13 @@ export default {
       customerShipment: {},
       currentColor: '#0712e8',
       customerShipmentEvents: ['Pending', 'In progress', 'Finished'],
-      dialogEnabled: false
+      dialogEnabled: false,
+      customerId: null
     }
   },
   created() {
-    this.shipmentId = this.$route.params.idShipment;
+    this.shipmentId = this.$route.params.id2;
+    this.customerId = this.$route.params.id;
     this.customerShipmentsApiService = new CustomerShipmentsApiService();
     this.customerShipmentsApiService.getShipmentById(this.shipmentId).then( response => {
       this.customerShipment = response.data;
@@ -121,7 +128,9 @@ export default {
   -moz-border-radius: 50%;
   border-radius: 50%;
 }
-
+.comment{
+  margin: 0 auto;
+}
 .card-btn {
   margin: 0 auto;
   margin-top: 2rem;
@@ -129,6 +138,10 @@ export default {
   left: 50%;
   transform: translateX(-50%);
   padding: 1rem 2rem;
+}
+.write{
+  border: red 1px solid;
+
 }
 
 .router-btn {

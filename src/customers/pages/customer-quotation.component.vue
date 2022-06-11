@@ -29,10 +29,11 @@ export default {
   name: "customer-quotation",
   data() {
     return {
+      userId: null,
       steps: [
         {
           label: "Quotation",
-          to: "/quotations",
+          to: "quotations",
         },
         {
           label: "Enterprise",
@@ -71,71 +72,89 @@ export default {
       for (let field in event.formData) {
         this.formObject[field] = event.formData[field];
       }
-      // Registered the address origin in the persistence
-      const originDetail = await this.createAddress(
-        this.formObject.originDetail
-      );
-      // Registered the address destination in the persistence
-      const destinationDetail = await this.createAddress(
-        this.formObject.destinationDetail
-      );
-      // Registered the payment in the persistence
-      const payment = await this.createPayment(this.formObject.payment);
-      // Create the object shipment
-      const shipment = this.createShipmentObject(
-        originDetail,
-        destinationDetail,
-        payment
-      );
-      // Registered shipment in the persistence
-      const shipmentRegistered = await this.createShipment(shipment);
-      // Verification ok
-      if (shipmentRegistered) {
-        this.$toast.add({
-          severity: "success",
-          summary: "Order submitted",
-          detail:
-            "New shipping order was registered from " +
-            this.formObject.origin +
-            " to " +
-            this.formObject.destination +
-            "",
-          life: 4000,
-        });
-        localStorage.removeItem("formObject");
-        await this.$router.push({ path: "/quotations" });
-        return;
-      }
-      // Verification error
-      this.$toast.add({
-        severity: "error",
-        summary: "Failed to register",
-        detail: "Registration could not be completed",
-        life: 4000,
-      });
+      //We record the information in persistence
+      //this.methodWithAPI();
+      this.methodWithoutAPI();
     },
-    async createShipment(shipment) {
-      return await ShipmentsService.create(shipment)
-        .then((response) => {
-          return response.data;
-        })
-        .catch((error) => {
-          this.errors.push(error);
-        });
+    methodWithAPI() {
+      const shipmentDto = this.createDtoShipment();
+      console.log(shipmentDto);
+      //this.createShipmentWitchAPI(shipmentDto);
     },
-    createShipmentObject(origin, destination, payment) {
-      return {
-        originId: origin.id,
-        originDepartment: origin.department,
-        destinationId: destination.id,
-        destinationDepartment: destination.department,
-        paymentId: payment.id,
-        status: this.formObject.status,
+    methodWithoutAPI() {
+      const shipment = {
+        customerId: this.userId,
+        enterpriseId: this.formObject.enterpriseId,
+        origin: this.formObject.origin,
+        destiny: this.formObject.destination,
         pickUpDate: this.formObject.pickUpDate,
         deliveryDate: this.formObject.deliveryDate,
+        status: this.formObject.status,
       };
+      const addressOrigin = this.formObject.originDetail;
+      const addressDestiny = this.formObject.destinationDetail;
+      const payment = this.formObject.payment;
+      this.createShipmentWithoutAPI(shipment, addressOrigin, addressDestiny, payment);
     },
-    async createAddress(address) {
+    async createShipmentWithoutAPI(shipment, addressOrigin, addressDestiny, payment) {
+      await ShipmentsService.create(shipment)
+        .then(async (response) => {
+          addressOrigin.shipmentId = response.data.id;
+          await this.createAddressWithoutAPI(addressOrigin);
+          payment.shipmentId = response.data.id;
+          await this.createPaymentWithoutAPI(payment);
+          addressDestiny.shipmentId = response.data.id;
+          await this.createAddressWithoutAPI(addressDestiny);
+          this.$toast.add({
+            severity: "success",
+            summary: "Order submitted",
+            detail:
+              "New shipping order was registered from " +
+              response.data.origin +
+              " to " +
+              response.data.destiny +
+              "",
+            life: 4000,
+          });
+          localStorage.removeItem("formObject");
+          await this.$router.push({ path: "quotations" });
+        })
+        .catch((error) => {
+          this.$toast.add({
+            severity: "error",
+            summary: "Failed order",
+            detail: "An error occurred: " + error.message(),
+            life: 4000,
+          });
+        });
+    },
+    async createShipmentWitchAPI(shipment) {
+      await ShipmentsService.create(shipment)
+        .then(async (response) => {
+          this.$toast.add({
+            severity: "success",
+            summary: "Order submitted",
+            detail:
+              "New shipping order was registered from " +
+              response.data.origin +
+              " to " +
+              response.data.destiny +
+              "",
+            life: 4000,
+          });
+          localStorage.removeItem("formObject");
+          await this.$router.push({ path: "quotations" });
+        })
+        .catch((error) => {
+          this.$toast.add({
+            severity: "error",
+            summary: "Failed order",
+            detail: "An error occurred: " + error.message(),
+            life: 4000,
+          });
+        });
+    },
+    async createAddressWithoutAPI(address) {
       return await AddressesService.create(address)
         .then((response) => {
           return response.data;
@@ -144,7 +163,7 @@ export default {
           this.errors.push(error);
         });
     },
-    async createPayment(payment) {
+    async createPaymentWithoutAPI(payment) {
       return await PaymentsService.create(payment)
         .then((response) => {
           return response.data;
@@ -153,6 +172,28 @@ export default {
           this.errors.push(error);
         });
     },
+    createDtoShipment() {
+      const addresses = [];
+      addresses.push(this.formObject.originDetail);
+      addresses.push(this.formObject.destinationDetail);
+      return {
+        customerId: this.userId,
+        enterpriseId: this.formObject.enterpriseId,
+        origin: this.formObject.origin,
+        destiny: this.formObject.destination,
+        pickUpDate: this.formObject.pickUpDate,
+        deliveryDate: this.formObject.deliveryDate,
+        status: this.formObject.status,
+        payment: this.formObject.payment,
+        addresses: addresses,
+      };
+    },
+  },
+  mounted() {
+    this.$nextTick(() => {
+      const auth = JSON.parse(localStorage.getItem("auth"));
+      this.userId = auth.user.id;
+    });
   },
 };
 </script>

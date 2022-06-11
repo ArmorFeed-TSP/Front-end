@@ -224,7 +224,7 @@ export default {
           weight: this.weight,
           width: this.width,
           height: this.height,
-          length: this.height,
+          length: this.length,
         },
         pageIndex: 0,
       });
@@ -232,13 +232,13 @@ export default {
     handleSubmit(isFormValid) {
       this.submitted = true;
       if (isFormValid) {
-        let weightDimensional = (this.height + this.witch + this.witch) / 5000;
+        let weightDimensional = (this.height + this.width + this.length) / 5000;
         let weight =
           weightDimensional > this.weight ? weightDimensional : this.weight;
         this.nextPage(weight);
       }
     },
-  },
+  }
 };
 </script>
 

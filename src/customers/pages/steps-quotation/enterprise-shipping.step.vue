@@ -60,7 +60,7 @@
               :sortOrder="sortOrder"
               :sortField="sortField"
             >
-              <pv-column field="name" header="Company">
+              <pv-column field="name" header="Enterprise">
                 <template #body="slotProps">
                   <div
                     class="inline-flex justify-content-center align-items-center"
@@ -87,7 +87,7 @@
               <pv-column field="ratingService" header="Rating Service">
                 <template #body="slotProps">
                   <pv-rating
-                    :modelValue="slotProps.data.ratingService"
+                    :modelValue="slotProps.data.score"
                     :readonly="true"
                     :cancel="false"
                   ></pv-rating>
@@ -220,7 +220,7 @@ export default {
             pickUpDate: this.getPickUpDate(),
             deliveryDate: this.enterprise.dateShipment,
             amount: this.enterprise.price,
-            status: "pending",
+            status: "Pending",
           },
           pageIndex: 1,
         });
@@ -285,8 +285,11 @@ export default {
     },
   },
   mounted() {
-    this.weight = this.getWeight();
-    this.getAllEnterprises();
+    this.$nextTick(() => {
+      this.formObject = JSON.parse(localStorage.getItem("formObject"));
+      this.weight = this.getWeight();
+      this.getAllEnterprises();
+    });
   }
 };
 </script>

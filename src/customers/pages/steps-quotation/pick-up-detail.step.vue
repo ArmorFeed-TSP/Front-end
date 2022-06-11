@@ -28,12 +28,12 @@
               <label for="type-address" class="font-bold">Address type</label>
               <pv-dropdown
                 id="type-address"
-                v-model="typeAddress"
-                :options="addressTypes"
+                v-model="typeDomicile"
+                :options="domicileTypes"
                 placeholder="Enter the address type"
               ></pv-dropdown>
               <small
-                v-show="!v$.typeAddress.$model && submitted"
+                v-show="!v$.typeDomicile.$model && submitted"
                 class="p-error"
                 >Type address is required.</small
               >
@@ -102,10 +102,10 @@ export default {
   data: () => {
     return {
       submitted: false,
-      addressTypes: ["Department", "House", "Condominium"],
+      domicileTypes: ["Department", "House", "Condominium"],
       dataObject: {},
       department: null,
-      typeAddress: null,
+      typeDomicile: null,
       address: null,
       urbanization: null,
       reference: null,
@@ -116,7 +116,7 @@ export default {
       department: {
         required,
       },
-      typeAddress: {
+      typeDomicile: {
         required,
       },
       address: {
@@ -133,8 +133,8 @@ export default {
   methods: {
     nextPage() {
       const originDetail = {
-        department: this.department,
-        typeAddress: this.typeAddress,
+        typeAddress: "origin",
+        typeDomicile: this.typeDomicile,
         address: this.address,
         urbanization: this.urbanization,
         reference: this.reference,

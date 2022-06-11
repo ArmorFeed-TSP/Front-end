@@ -22,6 +22,7 @@ import InputNumber from "primevue/inputnumber";
 import Rating from "primevue/rating";
 import Toast from "primevue/toast";
 import InputMask from "primevue/inputmask";
+import VueGoogleMaps from '@fawmi/vue-google-maps'
 
 //PrimeVue Styles
 import "/node_modules/primeflex/primeflex.css";
@@ -36,8 +37,11 @@ import Checkbox from "primevue/checkbox";
 import OverlayPanel from "primevue/overlaypanel";
 import Timeline from "primevue/timeline";
 import ScrollPanel from "primevue/scrollpanel";
+import $dataTransfer from "./shared/services/data-transfer.service";
 
 const app = createApp(App);
+
+app.config.globalProperties.$dataTransfer = $dataTransfer;
 
 app.use(router);
 
@@ -45,6 +49,12 @@ app.use(router);
 app.use(PrimeVue, { ripple: true });
 
 app.use(ToastService);
+
+app.use(VueGoogleMaps, {
+  load: {
+    key: '',
+  },
+})
 
 //PrimeVue Components
 app.component("pv-drop-down", Dropdown);

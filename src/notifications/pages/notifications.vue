@@ -8,7 +8,7 @@
           <div v-for="(notification, index) in currentNotifications" v-bind:key="index">
             <div class="flex align-items-center">
               <span class="font-bold font-medium text-900">{{notification.name}}</span>
-              <span class="ml-2 font-medium text-600">{{notification.content}}</span>
+              <span class="ml-2 font-medium text-600">{{notification.content + notification.status}}</span>
               <span class="ml-1 font-light text-400">{{notification.date}}</span>
             </div>
             <pv-divider></pv-divider>
@@ -42,6 +42,11 @@ export default {
     this.notificationService.getAll().then((response) => {
       this.notification = response.data;
       this.currentNotifications = this.notification;
+      this.notification.forEach(notification => {
+        this.notificationService.getShipmentById(notification.shipmentId).then(response => {
+          notification.status = response.data.status;
+        })
+      })
     });
   },
 

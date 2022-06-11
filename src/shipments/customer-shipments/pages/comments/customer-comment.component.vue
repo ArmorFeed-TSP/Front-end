@@ -1,35 +1,15 @@
 <template>
-  <div>
+  <div class="main">
     <div class="card">
       <pv-tool-bar class="mb-4">
         <template #start>
           <pv-button
             label="Write review"
-            class="p-button-success mr-2"
+            class="p-button-error mr-2"
             @click="openNew"
           />
         </template>
       </pv-tool-bar>
-      <pv-scroll-panel
-        class="scroll-comment"
-        style="width: 27rem; height: 170px"
-      >
-        <div v-if="displayBoxComment">
-          <pv-card v-for="(comment, index) in comments" v-bind:key="index" class="card-comment">
-            <template #title>
-              {{ comment.title }}
-            </template>
-            <template #content>
-              {{ comment.content }}
-            </template>
-          </pv-card>
-        </div>
-        <div v-else>
-          <pv-card>
-            <template #title> has no comments </template>
-          </pv-card>
-        </div>
-      </pv-scroll-panel>
       <pv-dialog
         v-model:visible="commentDialog"
         :style="{ width: '450px' }"
@@ -90,13 +70,13 @@
 </template>
 
 <script>
-import { CommentsApiService } from "../services/comments-api.service";
+import { CommentsApiService } from "../../services/comments-api.service";
+import { CustomerShipmentsApiService } from "../../services/customer-shipments-api.service";
+
 import { FilterMatchMode } from "primevue/api";
+
 export default {
   name: "customer-comments",
-  props: {
-    enterpriseId: Number,
-  },
   data() {
     return {
       comments: [],
@@ -110,20 +90,30 @@ export default {
       selectedComments: null,
       sizeComments: 0,
       displayBoxComment: true,
+      userId: null,
+      shipmentId: null,
+      enterprise:{},
+      customerShipmentsApiService: null,
+      customerShipment: {},
     };
   },
   created() {
-    this.commentsService = new CommentsApiService();
-    this.commentsService.getAll().then((response) => {
-      this.comments = response.data;
-      this.comments.forEach((comment) => this.getDisplayableComment(comment));
-      this.sizeComments = this.comments.length;
-      console.log(this.sizeComments, "size");
-      if (this.sizeComments === 0) {
-        this.displayBoxComment = false;
-      }
-    });
-    this.initFilters();
+    this.getCustomerId();
+    this.getEnterpriseId();
+      this.commentsService = new CommentsApiService();
+      this.commentsService.getAll().then((response) => {
+        this.comments = response.data;
+        this.comments.forEach((comment) => this.getDisplayableComment(comment));
+        this.sizeComments = this.comments.length;
+        console.log(this.sizeComments, "size");
+        if (this.sizeComments === 0) {
+          this.displayBoxComment = false;
+        }
+      });
+      this.initFilters();
+  },
+  mounted() {
+    this.shipmentId = this.$route.params.id2;
   },
   methods: {
     getDisplayableComment(comment) {
@@ -135,8 +125,25 @@ export default {
         id: displayableComment.id,
         title: displayableComment.title,
         content: displayableComment.content,
-        enterpriseId: displayableComment.enterpriseId,
+        shipmentId: displayableComment.shipmentId,
+        customerId: displayableComment.customerId,
       };
+    },
+    getEnterpriseId(){
+      this.shipmentId = this.$route.params.id2;
+      this.customerShipmentsApiService = new CustomerShipmentsApiService();
+      this.customerShipmentsApiService.getShipmentById(this.shipmentId).then( response => {
+        this.customerShipment = response.data;
+        this.customerShipmentsApiService.getEnterpriseById(this.customerShipment.enterpriseId).then( response => {
+          this.enterprise = response.data;
+        });
+      });
+    },
+    getCustomerId(){
+      const auth=JSON.parse(localStorage.getItem("auth"));
+      if(auth) {
+        this.userId = auth.user.id
+      }
     },
     openNew() {
       this.comment = {};
@@ -170,9 +177,10 @@ export default {
             });
         } else {
           this.comment.id = 0;
-          this.comment.enterpriseId = this.enterpriseId;
+          this.comment.shipmentId = this.shipmentId;
+          this.comment.customerId=this.userId;
           console.log(this.comment);
-          this.comment = this.getStorableComment(this.comment);
+          //this.comment = this.getStorableComment(this.comment);
           this.commentsService.create(this.comment).then((response) => {
             this.comment = this.getDisplayableComment(response.data);
             this.comments.push(this.comment);
@@ -200,11 +208,16 @@ export default {
 </script>
 
 <style scoped>
+.main{
+  width:300px;
+}
 .p-inputtext-lg {
   height: 200px;
+
 }
 .card-comment {
   margin: 1px 0;
+
 }
 .scroll-comment {
   margin: 5px;

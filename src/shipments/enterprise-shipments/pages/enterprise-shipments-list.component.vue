@@ -21,7 +21,7 @@
             @click="editStatus(slotProps.data)"
           />
           <router-link
-            :to="`/shipments/enterprise/shipmentDetail/${slotProps.data.id}`"
+            :to="`/enterprise/${this.id}/shipments/${slotProps.data.id}/shipment-detail`"
             ><pv-button icon="pi pi-eye" class="p-button-text p-button-rounded"
           /></router-link>
         </template>
@@ -31,7 +31,6 @@
       <template #header>
         <h3>Change actual state</h3>
       </template>
-      <shipments-status></shipments-status>
       <template #footer>
         <pv-button label="Submit" autofocus @click="showStatus" />
       </template>
@@ -130,16 +129,16 @@ export default {
   },
   created() {
     this.enterpriseShipmentsService = new EnterpriseShipmentsService();
-    this.enterpriseShipmentsService
-      .getShipmentsById(this.id)
-      .then((response) => {
+    this.enterpriseShipmentsService.getShipmentsById(this.id).then((response) => {
         this.shipments = response.data;
         this.currentShipments = this.shipments;
+        this.shipments.forEach( shipment => {
+          this.$dataTransfer.addEnterpriseShipmentId(shipment.id);
+        });
       });
   },
-
   props: {
-    enableListDialogs: Boolean,
+    id: Number
   },
   methods: {
     filterContent(status) {
@@ -171,14 +170,9 @@ export default {
         this.shipment.status = this.shipment.status.value
           ? this.shipment.status.value
           : this.shipment.status;
-        this.shipmentsService
-          .update(this.shipment.id, this.shipment)
-          .then((response) => {
-            this.shipments[this.findIndexById(response.data.id)] =
-              this.shipment;
-            //puedo agregar el toast si sale esta vaina
-            console.log(response);
-          });
+        this.enterpriseShipmentsService.updateShipment(this.shipment.id, this.shipment).then((response) => {
+            this.shipments[this.findIndexById(response.data.id)] = this.shipment;
+        });
       }
       this.statusEnabled = false;
       this.shipment = {};
