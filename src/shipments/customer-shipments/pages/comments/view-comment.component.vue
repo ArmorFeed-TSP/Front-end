@@ -4,7 +4,7 @@
       <pv-card
         v-for="(comment, index) in comments"
         v-bind:key="index"
-        class="card-comment"
+        class="card-comment mb-4"
       >
         <template #title>
           {{ comment.title }}

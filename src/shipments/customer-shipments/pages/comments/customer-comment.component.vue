@@ -113,7 +113,7 @@ export default {
       this.initFilters();
   },
   mounted() {
-    this.shipmentId = this.$route.params.idShipment;
+    this.shipmentId = this.$route.params.id2;
   },
   methods: {
     getDisplayableComment(comment) {
@@ -130,7 +130,7 @@ export default {
       };
     },
     getEnterpriseId(){
-      this.shipmentId = this.$route.params.idShipment;
+      this.shipmentId = this.$route.params.id2;
       this.customerShipmentsApiService = new CustomerShipmentsApiService();
       this.customerShipmentsApiService.getShipmentById(this.shipmentId).then( response => {
         this.customerShipment = response.data;
