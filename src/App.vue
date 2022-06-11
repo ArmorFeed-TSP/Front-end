@@ -19,6 +19,7 @@ export default {
         this.userId = auth.user.id;
         this.userType = auth.user.userType;
         this.userName = auth.user.name;
+        this.$dataTransfer.canDisplayNavigation = true;
         if (this.userType === "customer")
           this.$router.push({
             name: "customer-quotations",

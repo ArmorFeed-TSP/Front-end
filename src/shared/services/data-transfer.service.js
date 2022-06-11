@@ -3,6 +3,15 @@ export class DataTransferService {
     this._customerShipmentsIds = [];
     this._enterpriseShipmentsIds = [];
     this._user = null;
+    this._canDisplayNavigation = true;
+  }
+
+  get canDisplayNavigation() {
+    return this._canDisplayNavigation;
+  }
+
+  set canDisplayNavigation(canDisplayNavigation) {
+    this._canDisplayNavigation = canDisplayNavigation;
   }
 
   get user() {

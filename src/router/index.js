@@ -44,10 +44,10 @@ const routes = [
     props: { isCustomer: false }
   },
   {
-    path: "/enterprise/1/vehicles",
+    path: "/enterprise/:id/vehicles",
     name: "vehicles",
     component: () => import("../vehicles/pages/vehicle-list.component.vue"),
-    props: { enableListDialogs: true },
+    props: { enableListDialogs: true }
   },
   {
     path: "/customers/:id/quotations",

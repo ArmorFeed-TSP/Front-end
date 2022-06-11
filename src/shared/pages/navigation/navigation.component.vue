@@ -79,15 +79,15 @@ export default {
         {
           label: "My shipments",
           icon: "pi pi-fw pi-calendar",
-          to: `/enterprise/${this.user.id}/shipments`,
+          to: `/enterprise/0/shipments`,
         },
-        { label: "My Vehicles", icon: "pi pi-car", to: "/enterprise/"+ this.user.id +"/vehicles" },
-        { label: "My Payments", icon: "pi pi-money-bill", to: "/enterprise/"+ this.user.id +"/payments" },
+        { label: "My Vehicles", icon: "pi pi-car", to: "/enterprise/0/vehicles" },
+        { label: "My Payments", icon: "pi pi-money-bill", to: "/enterprise/0/payments" },
       ],
       navigationCustomer: [
-        { label: "Quotation", icon: "pi pi-fw pi-home", to: "/customers/"+ this.user.id +"/quotations"},
-        { label: "My shipments", icon: "pi pi-fw pi-calendar", to: "/customers/" + this.user.id + "/shipments" },
-        { label: "My Payments", icon: "pi pi-money-bill", to: "/customers/" + this.user.id + "/payments" },
+        { label: "Quotation", icon: "pi pi-fw pi-home", to: "/customers/0/quotations"},
+        { label: "My shipments", icon: "pi pi-fw pi-calendar", to: "/customers/0/shipments" },
+        { label: "My Payments", icon: "pi pi-money-bill", to: "/customers/0/payments" },
       ],
       selectedTabs: {
         shipments: false,
@@ -107,6 +107,7 @@ export default {
       this.$refs.nt.toggle(event);
     },
     async logOut() {
+      this.$dataTransfer.canDisplayNavigation = false;
       await localStorage.removeItem("auth");
       await this.$emit("sign-off");
       await this.$router.push({ name: "root" });
@@ -143,26 +144,25 @@ export default {
     userName: String,
     userType: String,
   },
-  beforeCreate() {
-   this.user = JSON.parse(localStorage.getItem("auth")).user || {id: 1};
-  },
-  mounted() {
-    this.activeTab = 1;
-    this.user = JSON.parse(localStorage.getItem("auth")).user;
-    this.navigationEnterprise = [
-      {
-        label: "My shipments",
-        icon: "pi pi-fw pi-calendar",
-        to: `/enterprise/${this.user.id}/shipments`,
-      },
-      { label: "My Vehicles", icon: "pi pi-car", to: "/enterprise/"+ this.user.id +"/vehicles" },
-      { label: "My Payments", icon: "pi pi-money-bill", to: "/enterprise/"+ this.user.id +"/payments" },
-    ];
-    this.navigationCustomer = [
-      { label: "Quotation", icon: "pi pi-fw pi-home", to: "/customers/"+ this.user.id +"/quotations"},
-      { label: "My shipments", icon: "pi pi-fw pi-calendar", to: "/customers/" + this.user.id + "/shipments" },
-      { label: "My Payments", icon: "pi pi-money-bill", to: "/customers/" + this.user.id + "/payments" },
-    ];
+  updated() {
+    if(this.$dataTransfer.canDisplayNavigation) {
+      this.activeTab = 1;
+      this.user = JSON.parse(localStorage.getItem("auth")).user;
+      this.navigationEnterprise = [
+        {
+          label: "My shipments",
+          icon: "pi pi-fw pi-calendar",
+          to: `/enterprise/${this.user.id}/shipments`,
+        },
+        { label: "My Vehicles", icon: "pi pi-car", to: "/enterprise/" + this.user.id + "/vehicles" },
+        { label: "My Payments", icon: "pi pi-money-bill", to: "/enterprise/" + this.user.id + "/payments" },
+      ];
+      this.navigationCustomer = [
+        { label: "Quotation", icon: "pi pi-fw pi-home", to: "/customers/" + this.user.id + "/quotations" },
+        { label: "My shipments", icon: "pi pi-fw pi-calendar", to: "/customers/" + this.user.id + "/shipments" },
+        { label: "My Payments", icon: "pi pi-money-bill", to: "/customers/" + this.user.id + "/payments" },
+      ];
+    }
   }
 };
 </script>
