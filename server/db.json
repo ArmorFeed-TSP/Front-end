@@ -379,22 +379,25 @@
     {
       "id": 1,
       "customerId": 1,
+      "shipmentId": "5QOSfJU",
       "name": "Ups S.A.C",
-      "content": "Shipment 00002520 is finished",
+      "content": "Shipment 5QOSfJU is ",
       "date": "16:30"
     },
     {
       "id": 2,
       "customerId": 1,
+      "shipmentId": "5QOSfJU",
       "name": "Ups S.A.C",
-      "content": "Shipment 00002520 in route",
+      "content": "Shipment 5QOSfJU is ",
       "date": "11:00"
     },
     {
       "id": 3,
       "enterpriseId": 1,
+      "shipmentId": "00002518",
       "name": "DHL Express Peru S.A.C",
-      "content": "Shipment 00002519 is finished",
+      "content": "Shipment 00002519 is ",
       "date": "Yesterday"
     }
   ],
