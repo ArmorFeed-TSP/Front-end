@@ -63,7 +63,7 @@
     <template #header>
       <h3>Current Location</h3>
     </template>
-    <!-- Google Api content goes here -->
+    <customer-shipments-location/>
     <template #footer>
       <pv-button label="Ok" autofocus @click="dialogEnabled = !dialogEnabled"/>
     </template>
@@ -73,11 +73,11 @@
 <script>
 import { CustomerShipmentsApiService } from "../services/customer-shipments-api.service.js";
 import CustomerComments from "./comments/customer-comment.component.vue";
-import ViewComments from "./comments/view-comment.component.vue";
+import CustomerShipmentsLocation from "./customer-shipments-location.vue";
 //linea 55 llamo a customer comments
 export default {
   name: "customer-shipments-detail",
-  components: {CustomerComments,ViewComments},
+  components: {CustomerComments, CustomerShipmentsLocation},
   data() {
     return {
       customerShipmentsApiService: null,

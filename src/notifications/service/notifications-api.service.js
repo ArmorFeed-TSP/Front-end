@@ -7,4 +7,7 @@ export class NotificationsApiService {
   create(data) {
     return http.post("/notifications", data);
   }
+  getShipmentById(id) {
+    return http.get(`/shipments/${id}`);
+  }
 }
