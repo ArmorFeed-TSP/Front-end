@@ -2,17 +2,10 @@
   "comments": [
     {
       "id": 1,
+      "title": "asd",
+      "content": "asd",
       "customerId": 1,
-      "enterpriseId": 1,
-      "title": "Title comment1",
-      "content": "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. p"
-    },
-    {
-      "id": 2,
-      "customerId": 1,
-      "enterpriseId": 1,
-      "title": "Title comment1",
-      "content": "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. p"
+      "shipmentId": "5QOSfJU"
     }
   ],
   "shipments": [
@@ -86,7 +79,7 @@
     },
     {
       "id": 2,
-      "enterpriseId": 1,
+      "enterpriseId": 2,
       "brand": "Chevrolet",
       "licensePlate": "DDE-251",
       "year": 2020,
@@ -96,7 +89,7 @@
     },
     {
       "id": 3,
-      "enterpriseId": 1,
+      "enterpriseId": 2,
       "brand": "Toyota",
       "licensePlate": "VET-965",
       "year": 2017,
@@ -106,7 +99,7 @@
     },
     {
       "id": 4,
-      "enterpriseId": 1,
+      "enterpriseId": 3,
       "brand": "Hyundai",
       "licensePlate": "SFF-232",
       "year": 2021,
@@ -116,7 +109,7 @@
     },
     {
       "id": 5,
-      "enterpriseId": 1,
+      "enterpriseId": 3,
       "brand": "Suzuki",
       "licensePlate": "WSA-332",
       "year": 2019,
@@ -126,7 +119,7 @@
     },
     {
       "id": 6,
-      "enterpriseId": 1,
+      "enterpriseId": 3,
       "brand": "Nissan",
       "licensePlate": "GTA-431",
       "year": 2021,
@@ -175,29 +168,13 @@
   ],
   "payments": [
     {
-      "department": "Ancash",
-      "typeAddress": "Department",
-      "address": "dont know",
-      "urbanization": "This urbanization",
-      "reference": "This building",
-      "id": 1
-    },
-    {
-      "department": "Amazonas",
-      "typeAddress": "Department",
-      "address": "njnidffvvjndkjnnbjdfjbdbk",
-      "urbanization": "kfsmvkmffmvmofmkkodfmofkmb",
-      "reference": "opfdvdfomokfmbkfmbodfmbkdkfmf",
-      "id": 2
-    },
-    {
-      "enterpriseId": 2,
-      "creditCard": "1234 3243 2434 3434",
-      "amount": 12.7,
-      "currency": "USD",
-      "date": "2022/5/10",
-      "shipmentId": "5QOSfJU",
-      "id": 3
+      "id": 1,
+      "creditCard": 5106359056009527,
+      "amount": 30,
+      "currency": "soles",
+      "date": "2022-04-08",
+      "shipmentId": "00002532",
+      "enterpriseId": 1
     }
   ],
   "transactions": [

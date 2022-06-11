@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import CustomerQuotation from "../customers/pages/customer-quotation.component.vue";
 
+
 const routes = [
   {
     path: "/",
@@ -8,13 +9,22 @@ const routes = [
     redirect: { name: "sign-in" },
   },
   {
-    path: "/comments",
+    path: "/customer/comments",
     name: "customer-comments",
-    component: () =>
-      import(
-        "../shipments/customer-shipments/pages/customer-comment.component.vue"
-      ),
-    props: { enableListDialogs: true },
+    component: () => import("../shipments/customer-shipments/pages/comments/customer-comment.component.vue"),
+    props: true,
+  },
+  {
+    path: "/enterprise/comments",
+    name: "view-comments",
+    component: () => import("../shipments/customer-shipments/pages/comments/view-comment.component.vue"),
+    props: true,
+  },
+  {
+    path: "/enterprise/:id/vehicles",
+    name: "vehicles",
+    component: () => import("../vehicles/pages/vehicle-list.component.vue"),
+    props: true,
   },
   {
     path: "/customers/:id/shipments",
@@ -37,12 +47,7 @@ const routes = [
     component: () => import("../payments/pages/payments-list.component.vue"),
     props: true
   },
-  {
-    path: "/enterprise/1/vehicles",
-    name: "vehicles",
-    component: () => import("../vehicles/pages/vehicle-list.component.vue"),
-    props: { enableListDialogs: true },
-  },
+
   {
     path: "/customers/:id/quotations",
     props: true,

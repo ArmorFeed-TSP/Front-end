@@ -13,4 +13,10 @@ export class CommentsApiService {
   delete(id) {
     return http.delete(`/comments/${id}`);
   }
+  getById(id) {
+    return http.get(`/comments/${id}`);
+  }
+  getCommentsByShipmentId(shipmentId) {
+    return http.get(`/comments?shipmentId=${shipmentId}`);
+  }
 }
