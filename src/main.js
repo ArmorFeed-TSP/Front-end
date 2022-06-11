@@ -22,6 +22,7 @@ import InputNumber from "primevue/inputnumber";
 import Rating from "primevue/rating";
 import Toast from "primevue/toast";
 import InputMask from "primevue/inputmask";
+import VueGoogleMaps from '@fawmi/vue-google-maps'
 
 //PrimeVue Styles
 import "/node_modules/primeflex/primeflex.css";
@@ -48,6 +49,12 @@ app.use(router);
 app.use(PrimeVue, { ripple: true });
 
 app.use(ToastService);
+
+app.use(VueGoogleMaps, {
+  load: {
+    key: '',
+  },
+})
 
 //PrimeVue Components
 app.component("pv-drop-down", Dropdown);

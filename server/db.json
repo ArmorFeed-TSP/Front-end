@@ -2,17 +2,10 @@
   "comments": [
     {
       "id": 1,
+      "title": "asd",
+      "content": "asd",
       "customerId": 1,
-      "enterpriseId": 1,
-      "title": "Title comment1",
-      "content": "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. p"
-    },
-    {
-      "id": 2,
-      "customerId": 1,
-      "enterpriseId": 1,
-      "title": "Title comment1",
-      "content": "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. p"
+      "shipmentId": "5QOSfJU"
     }
   ],
   "shipments": [
@@ -95,7 +88,7 @@
     },
     {
       "id": 2,
-      "enterpriseId": 1,
+      "enterpriseId": 2,
       "brand": "Chevrolet",
       "licensePlate": "DDE-251",
       "year": 2020,
@@ -105,7 +98,7 @@
     },
     {
       "id": 3,
-      "enterpriseId": 1,
+      "enterpriseId": 2,
       "brand": "Toyota",
       "licensePlate": "VET-965",
       "year": 2017,
@@ -115,7 +108,7 @@
     },
     {
       "id": 4,
-      "enterpriseId": 1,
+      "enterpriseId": 3,
       "brand": "Hyundai",
       "licensePlate": "SFF-232",
       "year": 2021,
@@ -125,7 +118,7 @@
     },
     {
       "id": 5,
-      "enterpriseId": 1,
+      "enterpriseId": 3,
       "brand": "Suzuki",
       "licensePlate": "WSA-332",
       "year": 2019,
@@ -135,7 +128,7 @@
     },
     {
       "id": 6,
-      "enterpriseId": 1,
+      "enterpriseId": 3,
       "brand": "Nissan",
       "licensePlate": "GTA-431",
       "year": 2021,
@@ -317,23 +310,58 @@
     {
       "id": 1,
       "customerId": 1,
-      "name": "Ups S.A.C",
-      "content": "Shipment 00002520 is finished",
+      "shipmentId": "00002528",
+      "name": "Blindados S.A.C",
+      "content": "Shipment 5QOSfJU is ",
       "date": "16:30"
     },
     {
       "id": 2,
       "customerId": 1,
-      "name": "Ups S.A.C",
-      "content": "Shipment 00002520 in route",
+      "shipmentId": "00002528",
+      "name": "Blindados S.A.C",
+      "content": "Shipment 5QOSfJU is ",
       "date": "11:00"
     },
     {
       "id": 3,
       "enterpriseId": 1,
-      "name": "DHL Express Peru S.A.C",
-      "content": "Shipment 00002519 is finished",
+      "shipmentId": "00002532",
+      "name": "Sodimac S.A.C",
+      "content": "Shipment 00002519 is ",
       "date": "Yesterday"
+    }
+  ],
+  "locations": [
+    {
+      "id": 1,
+      "lat": -12.090795,
+      "lng": -77.023148
+    },
+    {
+      "id": 2,
+      "lat": -12.096558,
+      "lng": -76.995193
+    },
+    {
+      "id": 3,
+      "lat": -12.103681,
+      "lng": -76.963425
+    },
+    {
+      "id": 4,
+      "lat": -12.058992,
+      "lng": -77.028072
+    },
+    {
+      "id": 5,
+      "lat": -12.071706,
+      "lng": -77.061959
+    },
+    {
+      "id": 6,
+      "lat": -12.051538,
+      "lng": -77.086465
     }
   ]
 }
