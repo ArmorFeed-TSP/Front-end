@@ -122,7 +122,7 @@ export default {
         id: displayableComment.id,
         title: displayableComment.title,
         content: displayableComment.content,
-        enterpriseId: displayableComment.enterpriseId,
+        shipmentId: displayableComment.shipmentId,
         customerId: displayableComment.customerId,
       };
     },
@@ -174,7 +174,7 @@ export default {
             });
         } else {
           this.comment.id = 0;
-          this.comment.enterpriseId =this.enterprise.id;
+          this.comment.shipmentId =this.shipmentId;
           this.comment.customerId=this.userId;
           console.log(this.comment);
           this.comment = this.getStorableComment(this.comment);

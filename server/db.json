@@ -13,6 +13,26 @@
       "content": "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. p",
       "customerId": 1,
       "enterpriseId": 3
+    },
+    {
+      "id": 3,
+      "title": "asda",
+      "content": "asdasd",
+      "enterpriseId": "00002518",
+      "customerId": 1
+    },
+    {
+      "id": 4,
+      "title": "asda",
+      "content": "asdasd",
+      "customerId": 1
+    },
+    {
+      "id": 5,
+      "title": "asdasd",
+      "content": "asdasd",
+      "shipmentId": "00002518",
+      "customerId": 1
     }
   ],
   "shipments": [
@@ -48,7 +68,7 @@
       "factorWeight": 0.2,
       "shippingTime": 48,
       "score": 3.2,
-      "photo":"http://www.empresadeseguridad.pe/wp-content/uploads/2020/04/perfil-blindados.jpf"
+      "photo": "http://www.empresadeseguridad.pe/wp-content/uploads/2020/04/perfil-blindados.jpf"
     },
     {
       "id": 3,
@@ -60,7 +80,7 @@
       "factorWeight": 0.3,
       "shippingTime": 72,
       "score": 2.8,
-      "photo":"http://www.empresadeseguridad.pe/wp-content/uploads/2020/04/perfil-blindados.jpf"
+      "photo": "http://www.empresadeseguridad.pe/wp-content/uploads/2020/04/perfil-blindados.jpf"
     }
   ],
   "customers": [
@@ -70,7 +90,7 @@
       "name": "Italo Silva S.A.C",
       "phoneNumber": "902 952 757",
       "ruc": "888 2651 4421",
-      "subscriptionPlan": 0,
+      "subscriptionPlan": 0
     }
   ],
   "vehicles": [
