@@ -12,4 +12,4 @@ test('renders correctly', () => {
   const existsFilters = wrapper.vm.filters !== undefined && Object.keys(wrapper.vm.filters).length >= 1;
   expect(existsColumns).toBe(true);
   expect(existsFilters).toBe(true);
-})
+});
