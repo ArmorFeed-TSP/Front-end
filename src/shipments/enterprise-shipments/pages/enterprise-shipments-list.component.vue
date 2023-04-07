@@ -1,44 +1,17 @@
 <template>
   <div class="my-7 flex flex-column">
     <pv-data-table
-      v-model:filters="filters"
-      :value="currentCustomerShipments"
+      :value="currentShipments"
       responsiveLayout="stack"
-      dataKey="id"
       :paginator="true"
       :rows="10"
-      :loading="tableIsLoading"
-      filterDisplay="menu"
     >
-      <template #empty>No shipments found</template>
-      <template #loading>Loading customer shipments. Please wait</template>
       <pv-column
         v-for="col in columns"
         :field="col.field"
         :header="col.header"
         :key="col.field"
-      >
-        <template #filter="{ filterModel, filterCallback }">
-          <pv-dropdown
-            v-if="col.field === 'status'"
-            v-model="filterModel.value"
-            @change="filterCallback()"
-            :options="statuses"
-            placeholder="Any"
-            class="p-column-filter"
-            style="min-width: 14rem"
-            :maxSelectedLabels="1"
-          ></pv-dropdown>
-          <pv-input-text
-            v-else
-            type="text"
-            v-model="filterModel.value"
-            @input="filterCallback()"
-            class="p-column-filter"
-            :placeholder="`Search by name - ${filterModel.matchMode}`"
-          ></pv-input-text>
-        </template>
-      </pv-column>
+      ></pv-column>
       <pv-column :exportable="false" style="min-width: 8rem">
         <template #body="slotProps">
           <pv-button icon="pi pi-car" class="p-button-text p-button-rounded" />
@@ -126,7 +99,6 @@
 
 <script>
 import { EnterpriseShipmentsService } from "../services/enterprise-shipments.service";
-import { FilterMatchMode } from "primevue/api";
 
 export default {
   name: "enterprise-shipments-list",
@@ -153,17 +125,6 @@ export default {
       selectedStatus: null,
       shipment: {},
       submitted: false,
-      tableIsLoading: true,
-      statuses: ["Pending", "In progress", "Finished"],
-      filters: {
-        'global': { value: null, matchMode: FilterMatchMode.CONTAINS },
-        'id': { value: null, matchMode: FilterMatchMode.EQUALS},
-        'origin': { value: null, matchMode: FilterMatchMode.CONTAINS},
-        'pickUpDate': { value: null, matchMode: FilterMatchMode.DATE_IS},
-        'destiny': { value: null, matchMode: FilterMatchMode.CONTAINS},
-        'deliveryDate': { value: null, matchMode: FilterMatchMode.CONTAINS},
-        'status': { value: null, matchMode: FilterMatchMode.EQUALS}
-      },
     };
   },
   created() {
@@ -174,7 +135,6 @@ export default {
         this.shipments.forEach( shipment => {
           this.$dataTransfer.addEnterpriseShipmentId(shipment.id);
         });
-        this.tableIsLoading = false;
       });
   },
   props: {
