@@ -93,6 +93,7 @@ export default {
   created() {
     const statuses = ["Pending", "In progress", "Finished"];
     this.customerShipmentsApiService = new CustomerShipmentsApiService();
+    return;
     this.customerShipmentsApiService
       .findByCustomerId(this.id)
       .then((response) => {

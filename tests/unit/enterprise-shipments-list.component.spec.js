@@ -1,5 +1,5 @@
-import { mount, shallowMount } from '@vue/test-utils'
-import CustomerShipmentsList from "../../src/shipments/customer-shipments/pages/customer-shipments-list.component.vue";
+import { shallowMount } from '@vue/test-utils'
+import EnterpriseShipmentsList from "../../src/shipments/enterprise-shipments/pages/enterprise-shipments-list.component.vue";
 import PrimeVue from 'primevue/config';
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/datatable';
@@ -9,9 +9,9 @@ import Dropdown from 'primevue/dropdown';
 import router from '../router/router';
 
 test('renders correctly', async () => {
-  router.push("/customers/2/shipments");
+  router.push("/enterprises/2/shipments");
   await router.isReady();
-  const wrapper = shallowMount(CustomerShipmentsList, {
+  const wrapper = shallowMount(EnterpriseShipmentsList, {
     props: {
       id: 2
     },
