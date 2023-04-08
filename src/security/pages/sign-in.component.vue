@@ -63,7 +63,6 @@ import { useVuelidate } from "@vuelidate/core";
 import SignInService from "../../shared/services/sign-in.service";
 export default {
   name: "sign-in",
-  components: { PvInputText },
   setup: () => ({ v$: useVuelidate() }),
   data() {
     return {
@@ -100,6 +99,26 @@ export default {
             console.log(error.message)
           });
       }
+      /*
+        await SignInService.login(loginResource)
+          .then((response) => {
+            localStorage.setItem("auth", JSON.stringify(response.data));
+            this.$dataTransfer.user = response.data;
+            this.$emit("user-logged");
+          })
+          .catch((error) => {
+            if (error.request.status === 400) {
+              this.notFound = true;
+              this.submitted = false;
+              this.password = "";
+              document.getElementById("password").focus();
+            } else if (
+              error.request.status === 0 ||
+              error.request.status === 500
+            )
+              alert("Service not available");
+            else alert("An error has occurred, contact the area in charge");
+          });*/
     },
     loginDto() {
       return {
@@ -113,25 +132,25 @@ export default {
 
 <style>
 .bg-sign-in {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #e5eced;
-  height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #e5eced;
+    height: 100%;
 }
 .sign-in {
-  width: 100%;
-  max-width: 500px;
-  min-height: calc(100vh - 208px);
-  padding: 40px 40px;
-  height: 100%;
-  margin: 30px 10px;
-  border-radius: 5px;
-  box-shadow: -1px 1px 5px 5px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 500px;
+    min-height: calc(100vh - 208px);
+    padding: 40px 40px;
+    height: 100%;
+    margin: 30px 10px;
+    border-radius: 5px;
+    box-shadow: -1px 1px 5px 5px rgba(0, 0, 0, 0.3);
 }
 @media (min-width: 720px) {
-  .sign-in {
-    padding: 40px 67px;
-  }
+    .sign-in {
+        padding: 40px 67px;
+    }
 }
 </style>
