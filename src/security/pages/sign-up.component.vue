@@ -226,7 +226,6 @@ import { useVuelidate } from "@vuelidate/core";
 import SignUpService from "../../shared/services/sign-up.service.js";
 export default {
   name: "sign-up",
-  components: { PvCheckbox, PvDivider, PvPassword, PvInputMask, PvInputNumber, PvInputText, PvDropDown },
   setup: () => ({ v$: useVuelidate() }),
   data: () => {
     return {
@@ -387,36 +386,36 @@ export default {
 
 <style scoped>
 .bg-sign-up {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #e5eced;
-  height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #e5eced;
+    height: 100%;
 }
 .sign-up {
-  width: 100%;
-  max-width: 500px;
-  min-height: calc(100vh - 80px - 67px);
-  padding: 40px 40px;
-  height: 100%;
-  margin: 30px 10px;
-  border-radius: 5px;
-  box-shadow: -1px 1px 5px 3px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 500px;
+    min-height: calc(100vh - 80px - 67px);
+    padding: 40px 40px;
+    height: 100%;
+    margin: 30px 10px;
+    border-radius: 5px;
+    box-shadow: -1px 1px 5px 3px rgba(0, 0, 0, 0.2);
 }
 @media (min-width: 720px) {
-  .sign-up {
-    padding: 40px 67px;
-  }
-  .email-style:hover {
-    text-decoration: underline;
-    cursor: pointer;
-  }
-  .success-color {
-    color: #28a745;
-    text-align: center;
-    padding: 2px 2px;
-    border-style: dashed;
-    border-width: 3px;
-  }
+    .sign-up {
+        padding: 40px 67px;
+    }
+    .email-style:hover {
+        text-decoration: underline;
+        cursor: pointer;
+    }
+    .success-color {
+        color: #28a745;
+        text-align: center;
+        padding: 2px 2px;
+        border-style: dashed;
+        border-width: 3px;
+    }
 }
 </style>
