@@ -174,39 +174,13 @@ export default {
       length: null,
       width: null,
       height: null,
-      departments: [
-        "Amazonas",
-        "Ancash",
-        "Apurimac",
-        "Arequipa",
-        "Ayacucho",
-        "Cajamarca",
-        "Callao",
-        "Cusco",
-        "Huancavelica",
-        "Huanuco",
-        "Ica",
-        "Junín",
-        "La Libertad",
-        "Lambayeque",
-        "Lima",
-        "Loreto",
-        "Madre de Dios",
-        "Moquegua",
-        "Pasco",
-        "Piura",
-        "Puno",
-        "San Martín",
-        "Tacna",
-        "Tumbes",
-        "Ucayali",
-      ],
       packageTypes:[
         "Componentes Electronico",
         "Documentacion",
         "Miselanium",
       ],
       packageType:"",
+      departments: [],
     };
   },
   validations() {
@@ -237,7 +211,47 @@ export default {
       }
     };
   },
+  created() {
+    this.getTokenAndDepartments();
+
+  },
   methods: {
+    getTokenAndDepartments() {
+    fetch("https://www.universal-tutorial.com/api/getaccesstoken", {
+      headers: {
+        "Accept": "application/json",
+        "api-token": "Cl2AlebkLSSWAvcRolpYARgzGAzlh_yAckEc5PRaLjUl8O8b61TqDQjXhjH-81hB7ZU",
+        "user-email": "jesu102012@gmail.com"
+      }
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log("Token received");
+        console.log(data);
+        this.getDepartments(data.auth_token);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  },
+
+  getDepartments(authToken) {
+    fetch("https://www.universal-tutorial.com/api/states/Peru", {
+      headers: {
+        "Authorization": `Bearer ${authToken}`,
+        "Accept": "application/json"
+      }
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log("Departments received");
+        console.log(data);
+        this.departments = data.map(state => state.state_name);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  },
     nextPage() {
       this.$emit("next-page", {
         formData: {
