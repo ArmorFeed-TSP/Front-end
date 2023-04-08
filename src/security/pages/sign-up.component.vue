@@ -79,7 +79,19 @@
                 {{ v$.email.required.$message.replace("Value", "Email") }}
               </small>
             </div>
-
+            <div class="field mx-2">
+              <pv-password v-model="password" placeholder="Password" class="w-full"></pv-password>
+              <span v-if="v$.password.$error && submitted">
+                <span id="email-error" v-for="(error, index) of v$.password.$errors" :key="index">
+                  <small class="p-error">
+                  {{ error.$message }}
+                  </small>
+                </span>
+              </span>
+              <small v-else-if="(v$.password.$invalid && submitted) || v$.password.$pending.$response" class="p-error">
+                {{ v$.password.required.$message.replace("Value", "Password") }}
+              </small>
+            </div>
           </div>
         </div>
       </form>
