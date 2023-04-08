@@ -6,18 +6,24 @@
         <div class="p-fluid">
           <div class="field">
             <p v-if="notFound" class="text-lg line-height-3 p-error">
-              The account or password is incorrect. If you don´t remember the account,
-              <router-link class="no-underline" to="">
-                reset it now.
-              </router-link>
+              The account or password is incorrect. If you don't remember the
+              account,
+              <router-link class="no-underline" to=""
+              >reset it now.</router-link
+              >
             </p>
             <div class="p-float-label p-input-icon-right">
-              <i class="pi pi-envelope"/>
-              <pv-input-text id="email" v-model="v$.email.$model" aria-describedby="email-error" placeholder="Email"></pv-input-text>
+              <i class="pi pi-envelope" />
+              <pv-input-text
+                id="email"
+                v-model="v$.email.$model"
+                aria-describedby="email-error"
+                placeholder="Email"
+              ></pv-input-text>
             </div>
-            <small v-show="!v$.email.$model && submitted" class="p-error">
-              Enter the email please.
-            </small>
+            <small v-show="!v$.email.$model && submitted" class="p-error"
+            >Enter the email please.</small
+            >
           </div>
           <div class="field mb-2">
             <pv-password
@@ -25,23 +31,23 @@
               placeholder="Password"
               v-model="password"
               :feedback="false"
-              :class="{'p-error':submitted}"
+              :class="{ 'p-error': submitted }"
             ></pv-password>
-            <small v-show="!v$.password.$model && submitted" class="p-error">
-              Enter the password please.
-            </small>
+            <small v-show="!v$.password.$model && submitted" class="p-error"
+            >Enter the password please.</small
+            >
           </div>
           <div class="field pt-4">
             <pv-button label="Sign In" type="submit"></pv-button>
           </div>
           <div class="text-center pt-2">
             <router-link to="/" class="mt-0 no-underline"
-              >Forgot your password?</router-link
+            >Forgot your password?</router-link
             >
             <p>
               Don't have an account?
               <router-link class="no-underline" to="/sign-up"
-                >Click here.</router-link
+              >Click here.</router-link
               >
             </p>
           </div>
