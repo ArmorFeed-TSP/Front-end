@@ -92,6 +92,31 @@
                 {{ v$.password.required.$message.replace("Value", "Password") }}
               </small>
             </div>
+            <div class="field mx-2">
+              <pv-password class="w-full" placeholder="Password repeat." v-model="passwordRepeat">
+                <template #footer>
+                  <pv-divider></pv-divider>
+                  <div v-if="passwordMatches && password != null" class="flex align-items-center">
+                    <i class="pi pi-check mr-2"></i>
+                    <p class="">
+                      The passwords match.
+                    </p>
+                  </div>
+                  <div v-else-if="!passwordMatches && password != null" class="flex align-items-center">
+                    <i class="pi pi-times mr-2 p-error"></i>
+                    <p class="p-error">
+                      Passwords do not match.
+                    </p>
+                  </div>
+                </template>
+              </pv-password>
+              <small v-show="!v$.passwordRepeat.$model && submitted" class="p-error">
+                Password is required.
+              </small>
+              <p v-if="notMatch" class="p-error">
+                Passwords do not match
+              </p>
+            </div>
           </div>
         </div>
       </form>
@@ -105,7 +130,7 @@ import { useVuelidate } from "@vuelidate/core";
 import SignUpService from "../../shared/services/sign-up.service.js";
 export default {
   name: "sign-up",
-  components: { PvInputMask, PvInputNumber, PvInputText, PvDropDown },
+  components: { PvDivider, PvPassword, PvInputMask, PvInputNumber, PvInputText, PvDropDown },
   setup: () => ({ v$: useVuelidate() }),
   data: () => {
     return {
