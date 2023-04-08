@@ -97,28 +97,14 @@ export default {
           .catch((error) => {
             document.getElementById("password").focus();
             console.log(error.message)
+            if (error.request.status === 0 || error.request.status === 500) {
+              alert("Service not available");
+            }
+            else {
+              alert("An error has occurred, contact the area in charge")
+            }
           });
       }
-      /*
-        await SignInService.login(loginResource)
-          .then((response) => {
-            localStorage.setItem("auth", JSON.stringify(response.data));
-            this.$dataTransfer.user = response.data;
-            this.$emit("user-logged");
-          })
-          .catch((error) => {
-            if (error.request.status === 400) {
-              this.notFound = true;
-              this.submitted = false;
-              this.password = "";
-              document.getElementById("password").focus();
-            } else if (
-              error.request.status === 0 ||
-              error.request.status === 500
-            )
-              alert("Service not available");
-            else alert("An error has occurred, contact the area in charge");
-          });*/
     },
     loginDto() {
       return {
