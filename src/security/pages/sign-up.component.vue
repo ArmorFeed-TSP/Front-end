@@ -24,7 +24,24 @@
         </div>
       </div>
       <form v-else @submit.prevent="handleSubmit(!v$.$invalid)">
-
+        <div class="p-fluid">
+          <div class="field mx-2">
+            <pv-drop-down :options="userTypes" optionLabel="label" optionValue="type" v-model="userType" placeholder="I want to..."></pv-drop-down>
+            <small v-show="!v$.userType.$model && submitted" class="p-error">
+              This field is required.
+            </small>
+          </div>
+          <div class="field mx-2">
+            <pv-input-text v-model="name" placeholder="Name"></pv-input-text>
+            <small v-show="!v$.name.$model && submitted" class="p-error">
+              Name is required.
+            </small>
+          </div>
+          <div class="field mx-2" v-if="userType === 'enterprise'">
+            <pv-input-number class="mb-2" v-model="priceBase" placeholder="Price base" mode="decimal" :minFractionDigits="2"></pv-input-number>
+            <pv-input-number class="mb-2" v-model="factorWeight" placeholder="Factor weight" mode="decimal" :minFractionDigits="2"></pv-input-number>
+          </div>
+        </div>
       </form>
     </div>
   </div>
@@ -36,7 +53,7 @@ import { useVuelidate } from "@vuelidate/core";
 import SignUpService from "../../shared/services/sign-up.service.js";
 export default {
   name: "sign-up",
-  components: { PvDropDown },
+  components: { PvInputNumber, PvInputText, PvDropDown },
   setup: () => ({ v$: useVuelidate() }),
   data: () => {
     return {
