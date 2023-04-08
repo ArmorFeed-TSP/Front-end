@@ -39,6 +39,20 @@
               >Destination is required.</small
             >
           </div>
+          <div class="field m-2">
+            <label for="Package type" class="font-bold">Package type</label>
+            <pv-dropdown
+              id="Package type"
+              :options="packagetypes"
+              v-model="packagetype"
+              placeholder="Select the type of package"
+              :class="{ 'p-invalid': v$.destination.$invalid && submitted }"
+            >
+            </pv-dropdown>
+            <small v-show="!v$.destination.$model && submitted" class="p-error"
+              >Destination is required.</small
+            >
+          </div>
           <div class="md:flex">
             <div class="field m-2 md:w-full">
               <label for="quantity" class="font-bold">Quantity (Units)</label>
@@ -187,6 +201,12 @@ export default {
         "Tumbes",
         "Ucayali",
       ],
+      packagetypes:[
+        "Componentes Electronico",
+        "Documentacion",
+        "Miselanium",
+      ],
+      packagetype:"",
     };
   },
   validations() {
