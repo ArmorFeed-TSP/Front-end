@@ -43,8 +43,8 @@
             <label for="Package type" class="font-bold">Package type</label>
             <pv-dropdown
               id="Package type"
-              :options="packagetypes"
-              v-model="packagetype"
+              :options="packageTypes"
+              v-model="packageType"
               placeholder="Select the type of package"
               :class="{ 'p-invalid': v$.destination.$invalid && submitted }"
             >
@@ -201,12 +201,12 @@ export default {
         "Tumbes",
         "Ucayali",
       ],
-      packagetypes:[
+      packageTypes:[
         "Componentes Electronico",
         "Documentacion",
         "Miselanium",
       ],
-      packagetype:"",
+      packageType:"",
     };
   },
   validations() {
@@ -248,7 +248,7 @@ export default {
           width: this.width,
           height: this.height,
           length: this.length,
-          packageType: this.packagetype
+          packageType: this.packageType
         },
         pageIndex: 0,
       });
