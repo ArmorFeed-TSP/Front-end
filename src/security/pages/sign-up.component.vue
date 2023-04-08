@@ -41,6 +41,15 @@
             <pv-input-number class="mb-2" v-model="priceBase" placeholder="Price base" mode="decimal" :minFractionDigits="2"></pv-input-number>
             <pv-input-number class="mb-2" v-model="factorWeight" placeholder="Factor weight" mode="decimal" :minFractionDigits="2"></pv-input-number>
           </div>
+          <div class="field mx-2" v-else-if="userType === 'customer'">
+            <pv-input-text v-model="lastname" placeholder="Lastname"></pv-input-text>
+          </div>
+          <div class="field mx-2">
+            <pv-input-text v-model="description" placeholder="Description"></pv-input-text>
+          </div>
+          <div class="field mx-2">
+            <pv-input-text v-model="photo" placeholder="Photo"></pv-input-text>
+          </div>
         </div>
       </form>
     </div>
