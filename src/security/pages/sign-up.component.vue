@@ -117,6 +117,12 @@
                 Passwords do not match
               </p>
             </div>
+            <div class="field-checkbox m-2 my-4">
+              <pv-checkbox id="accept" name="accept" value="Accept" v-model="v$.accept.$model" :class="{ 'p-invalid': v$.accept.$invalid && submitted }" />
+              <label for="accept" :class="{ 'p-error': v$.accept.$invalid && submitted }">
+                I agree to the terms and conditions*
+              </label>
+            </div>
           </div>
         </div>
       </form>
@@ -130,7 +136,7 @@ import { useVuelidate } from "@vuelidate/core";
 import SignUpService from "../../shared/services/sign-up.service.js";
 export default {
   name: "sign-up",
-  components: { PvDivider, PvPassword, PvInputMask, PvInputNumber, PvInputText, PvDropDown },
+  components: { PvCheckbox, PvDivider, PvPassword, PvInputMask, PvInputNumber, PvInputText, PvDropDown },
   setup: () => ({ v$: useVuelidate() }),
   data: () => {
     return {
