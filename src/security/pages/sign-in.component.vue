@@ -98,7 +98,7 @@ export default {
             document.getElementById("password").focus();
             console.log(error.message)
             if (error.request.status === 0 || error.request.status === 500) {
-              alert("Service not available");
+              alert("Email is not valid");
             } else {
               alert("An error has occurred, contact the area in charge");
             }
