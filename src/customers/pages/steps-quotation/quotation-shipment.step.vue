@@ -232,6 +232,9 @@ export default {
       height: {
         required,
       },
+      packageType: {
+        required
+      }
     };
   },
   methods: {
@@ -245,6 +248,7 @@ export default {
           width: this.width,
           height: this.height,
           length: this.length,
+          packageType: this.packagetype
         },
         pageIndex: 0,
       });
