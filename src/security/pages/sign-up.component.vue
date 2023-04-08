@@ -50,6 +50,37 @@
           <div class="field mx-2">
             <pv-input-text v-model="photo" placeholder="Photo"></pv-input-text>
           </div>
+          <div class="field md:flex m-2 md:mb-2">
+            <div class="md:mr-1">
+              <pv-input-mask class="mb-2 md:mb-0" placeholder="RUC number" v-model="ruc" mask="999 999 999 999"></pv-input-mask>
+              <small v-show="!v$.ruc.$model && submitted" class="p-error">
+                RUC is required.
+              </small>
+            </div>
+            <div class="md:mr-1">
+              <pv-input-mask class="mb-2 md:mb-0" placeholder="Cellphone number" v-model="cellPhone" mask="999 999 999"></pv-input-mask>
+              <small v-show="!v$.cellPhone.$model && submitted" class="p-error">
+                Cell phone is required.
+              </small>
+            </div>
+            <div class="field mx-2">
+              <div class="p-input-icon-right md:mt-3">
+                <i class="pi pi-envelope" />
+                <pv-input-text id="email-error" placeholder="Email" v-model="v$.email.$model" :class="{'p-invalid': v$.email.$invalid %% submitted}" aria-describedby="email-error" />
+              </div>
+              <span v-if="v$.email.$error && submitted">
+                <span id="email-error" v-for="(error, index) of v$.email.$errors" :key="index">
+                  <small class="p-error">
+                    {{error.$message}}
+                  </small>
+                </span>
+              </span>
+              <small v-else-if="(v$.email.$invalid && submitted) || v$.email.$pending.$response" class="p-error">
+                {{ v$.email.required.$message.replace("Value", "Email") }}
+              </small>
+            </div>
+
+          </div>
         </div>
       </form>
     </div>
@@ -62,7 +93,7 @@ import { useVuelidate } from "@vuelidate/core";
 import SignUpService from "../../shared/services/sign-up.service.js";
 export default {
   name: "sign-up",
-  components: { PvInputNumber, PvInputText, PvDropDown },
+  components: { PvInputMask, PvInputNumber, PvInputText, PvDropDown },
   setup: () => ({ v$: useVuelidate() }),
   data: () => {
     return {
