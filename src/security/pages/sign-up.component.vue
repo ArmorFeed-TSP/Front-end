@@ -123,6 +123,10 @@
                 I agree to the terms and conditions*
               </label>
             </div>
+            <div class="field mx-2 md:flex">
+              <pv-button label="Come back" class="mb-2 md:mb-0 md:mr-2 p-button-info" @click="goToSignIn"></pv-button>
+              <pv-button label="Sign up" type="submit" class="p-button-success"></pv-button>
+            </div>
           </div>
         </div>
       </form>
