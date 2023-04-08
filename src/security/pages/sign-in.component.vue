@@ -20,7 +20,13 @@
             </small>
           </div>
           <div class="field mb-2">
-            <pv-password id="password" placeholder="Password" v-model="password":feedback="false":class="{'p-error':submitted}"></pv-password>
+            <pv-password
+              id="password"
+              placeholder="Password"
+              v-model="password"
+              :feedback="false"
+              :class="{'p-error':submitted}"
+            ></pv-password>
             <small v-show="!v$.password.$model && submitted" class="p-error">
               Enter the password please.
             </small>
