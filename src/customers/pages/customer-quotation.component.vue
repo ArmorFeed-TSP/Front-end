@@ -97,6 +97,7 @@ export default {
         destinyReference: this.formObject.destinationDetail.reference,
         pickUpDate: this.formObject.pickUpDate,
         deliveryDate: this.formObject.deliveryDate,
+        packageType: this.formObject.packageType,
         status: 0,
       };
       const payment = this.formObject.payment;
