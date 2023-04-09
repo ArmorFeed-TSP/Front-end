@@ -33,15 +33,15 @@
               v-model="userType"
               placeholder="I want..."
             ></pv-dropdown>
-            <small v-show="!v$.userType.$model && submitted" class="p-error"
-              >There field is required.</small
-            >
+            <small v-show="!v$.userType.$model && submitted" class="p-error">
+              There field is required.
+            </small>
           </div>
           <div class="field mx-2">
             <pv-input-text v-model="name" placeholder="Name"></pv-input-text>
-            <small v-show="!v$.name.$model && submitted" class="p-error"
-              >Name is required.</small
-            >
+            <small v-show="!v$.name.$model && submitted" class="p-error">
+              Name is required.
+            </small>
           </div>
           <div class="field mx-2" v-if="userType === 'enterprise'">
             <pv-input-number
@@ -86,9 +86,9 @@
                 v-model="ruc"
                 mask="999 999 999 999"
               ></pv-input-mask>
-              <small v-show="!v$.ruc.$model && submitted" class="p-error"
-                >RUC is required.</small
-              >
+              <small v-show="!v$.ruc.$model && submitted" class="p-error">
+                RUC is required.
+              </small>
             </div>
             <div class="md:ml-1">
               <pv-input-mask
@@ -97,9 +97,9 @@
                 v-model="cellPhone"
                 mask="999 999 999"
               ></pv-input-mask>
-              <small v-show="!v$.cellPhone.$model && submitted" class="p-error"
-                >Cell phone is required.</small
-              >
+              <small v-show="!v$.cellPhone.$model && submitted" class="p-error">
+                Cell phone is required.
+              </small>
             </div>
           </div>
           <div class="field mx-2">
@@ -127,7 +127,7 @@
                 (v$.email.$invalid && submitted) || v$.email.$pending.$response
               "
               class="p-error"
-              >{{ v$.email.required.$message.replace("Value", "Email") }}</small
+            >{{ v$.email.required.$message.replace("Value", "Email") }}</small
             >
           </div>
           <div class="field mx-2">
@@ -152,7 +152,7 @@
                 v$.password.$pending.$response
               "
               class="p-error"
-              >{{
+            >{{
                 v$.password.required.$message.replace("Value", "Password")
               }}</small
             >
@@ -184,7 +184,7 @@
             <small
               v-show="!v$.passwordRepeat.$model && submitted"
               class="p-error"
-              >Password is required.</small
+            >Password is required.</small
             >
             <p v-if="notMatch" class="p-error">Passwords do not match.</p>
           </div>
@@ -199,7 +199,7 @@
             <label
               for="accept"
               :class="{ 'p-error': v$.accept.$invalid && submitted }"
-              >I agree to the terms and conditions*</label
+            >I agree to the terms and conditions*</label
             >
           </div>
           <div class="field mx-2 md:flex">
@@ -386,36 +386,36 @@ export default {
 
 <style scoped>
 .bg-sign-up {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #e5eced;
-  height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #e5eced;
+    height: 100%;
 }
 .sign-up {
-  width: 100%;
-  max-width: 500px;
-  min-height: calc(100vh - 80px - 67px);
-  padding: 40px 40px;
-  height: 100%;
-  margin: 30px 10px;
-  border-radius: 5px;
-  box-shadow: -1px 1px 5px 3px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 500px;
+    min-height: calc(100vh - 80px - 67px);
+    padding: 40px 40px;
+    height: 100%;
+    margin: 30px 10px;
+    border-radius: 5px;
+    box-shadow: -1px 1px 5px 3px rgba(0, 0, 0, 0.2);
 }
 @media (min-width: 720px) {
-  .sign-up {
-    padding: 40px 67px;
-  }
-  .email-style:hover {
-    text-decoration: underline;
-    cursor: pointer;
-  }
-  .success-color {
-    color: #28a745;
-    text-align: center;
-    padding: 2px 2px;
-    border-style: dashed;
-    border-width: 3px;
-  }
+    .sign-up {
+        padding: 40px 67px;
+    }
+    .email-style:hover {
+        text-decoration: underline;
+        cursor: pointer;
+    }
+    .success-color {
+        color: #28a745;
+        text-align: center;
+        padding: 2px 2px;
+        border-style: dashed;
+        border-width: 3px;
+    }
 }
 </style>

@@ -8,9 +8,9 @@
             <p v-if="notFound" class="text-lg line-height-3 p-error">
               The account or password is incorrect. If you don't remember the
               account,
-              <router-link class="no-underline" to=""
-                >reset it now.</router-link
-              >
+              <router-link class="no-underline" to="">
+                reset it now.
+              </router-link>
             </p>
             <div class="p-float-label p-input-icon-right">
               <i class="pi pi-envelope" />
@@ -21,9 +21,9 @@
                 placeholder="Email"
               ></pv-input-text>
             </div>
-            <small v-show="!v$.email.$model && submitted" class="p-error"
-              >Enter the email please.</small
-            >
+            <small v-show="!v$.email.$model && submitted" class="p-error">
+              Enter the email please.
+            </small>
           </div>
           <div class="field mb-2">
             <pv-password
@@ -33,22 +33,22 @@
               :feedback="false"
               :class="{ 'p-error': submitted }"
             ></pv-password>
-            <small v-show="!v$.password.$model && submitted" class="p-error"
-              >Enter the password please.</small
-            >
+            <small v-show="!v$.password.$model && submitted" class="p-error">
+              Enter the password please.
+            </small>
           </div>
           <div class="field pt-4">
             <pv-button label="Sign In" type="submit"></pv-button>
           </div>
           <div class="text-center pt-2">
-            <router-link to="/" class="mt-0 no-underline"
-              >Forgot your password?</router-link
-            >
+            <router-link to="/" class="mt-0 no-underline">
+              Forgot your password?
+            </router-link>
             <p>
               Don't have an account?
-              <router-link class="no-underline" to="/sign-up"
-                >Click here.</router-link
-              >
+              <router-link class="no-underline" to="/sign-up">
+                Click here.
+              </router-link>
             </p>
           </div>
         </div>
@@ -97,6 +97,11 @@ export default {
           .catch((error) => {
             document.getElementById("password").focus();
             console.log(error.message)
+            if (error.request.status === 0 || error.request.status === 500) {
+              alert("Email is not valid");
+            } else {
+              alert("An error has occurred, contact the area in charge");
+            }
           });
       }
       /*
@@ -132,25 +137,25 @@ export default {
 
 <style>
 .bg-sign-in {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #e5eced;
-  height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #e5eced;
+    height: 100%;
 }
 .sign-in {
-  width: 100%;
-  max-width: 500px;
-  min-height: calc(100vh - 208px);
-  padding: 40px 40px;
-  height: 100%;
-  margin: 30px 10px;
-  border-radius: 5px;
-  box-shadow: -1px 1px 5px 5px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 500px;
+    min-height: calc(100vh - 208px);
+    padding: 40px 40px;
+    height: 100%;
+    margin: 30px 10px;
+    border-radius: 5px;
+    box-shadow: -1px 1px 5px 5px rgba(0, 0, 0, 0.3);
 }
 @media (min-width: 720px) {
-  .sign-in {
-    padding: 40px 67px;
-  }
+    .sign-in {
+        padding: 40px 67px;
+    }
 }
 </style>
