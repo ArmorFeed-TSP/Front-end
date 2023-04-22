@@ -50,6 +50,7 @@
               placeholder="Price Base"
               mode="decimal"
               :minFractionDigits="2"
+              v-pv-tooltip.focus="`Enter the price base you'll tax for your services. \n (i.e. 12.5)`"
             ></pv-input-number>
             <pv-input-number
               class="mb-2"
@@ -57,10 +58,12 @@
               placeholder="Factor Weight"
               mode="decimal"
               :minFractionDigits="2"
+              v-pv-tooltip.focus="`Enter the factor to calculate the price according to the weight/dimensions. \n (i.e. 0.2)`"
             ></pv-input-number>
             <pv-input-number
               v-model="shippingTime"
               placeholder="Shipping Time"
+              v-pv-tooltip.focus="`Enter an estimate on the shipping time in hours.`"
             ></pv-input-number>
           </div>
           <div class="field mx-2" v-else-if="userType === 'customer'">
@@ -73,10 +76,15 @@
             <pv-input-text
               v-model="description"
               placeholder="Description"
+              v-pv-tooltip.focus="`Enter a brief description of your business/services.`"
             ></pv-input-text>
           </div>
           <div class="field mx-2">
-            <pv-input-text v-model="photo" placeholder="Photo"></pv-input-text>
+            <pv-input-text
+                    v-model="photo"
+                    placeholder="Photo"
+                    v-pv-tooltip.focus="`Paste here the URL to your Profile Picture`"
+            ></pv-input-text>
           </div>
           <div class="field md:flex m-2 md:mb-2">
             <div class="md:mr-1">

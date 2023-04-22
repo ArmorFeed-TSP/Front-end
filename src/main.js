@@ -40,6 +40,7 @@ import OverlayPanel from "primevue/overlaypanel";
 import Timeline from "primevue/timeline";
 import ScrollPanel from "primevue/scrollpanel";
 import $dataTransfer from "./shared/services/data-transfer.service";
+import Tooltip from "primevue/tooltip";
 
 const app = createApp(App);
 
@@ -88,4 +89,5 @@ app.component("pv-overlay-panel", OverlayPanel);
 app.component("pv-timeline", Timeline);
 app.component("pv-scroll-panel", ScrollPanel);
 app.component("pv-multiselect", MultiSelect);
+app.directive("pv-tooltip", Tooltip);
 app.mount("#app");
