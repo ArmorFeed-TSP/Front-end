@@ -74,7 +74,13 @@
           ></pv-column>
           <pv-column
             field="vehicleType"
-            header="Vehicle Status"
+            header="Vehicle Type"
+            :sortable="true"
+            style="min-width: 16rem"
+          ></pv-column>
+          <pv-column
+            field="currentState"
+            header="Current State"
             :sortable="true"
             style="min-width: 16rem"
           ></pv-column>
