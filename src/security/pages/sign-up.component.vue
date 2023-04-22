@@ -33,6 +33,13 @@
               v-model="userType"
               placeholder="I want..."
             ></pv-dropdown>
+              <div class="card flex justify-content-center">
+                  <pv-button icon="pi pi-info-circle" text rounded aria-label="User types information." @click="showDialog" />
+                  <pv-dialog v-model:visible="visible" modal header="User types" :style="{ width: '50vw' }">
+                      <p> Request shipments: You are a customer. </p>
+                      <p> Make shipments: You are a server. </p>
+                  </pv-dialog>
+              </div>
             <small v-show="!v$.userType.$model && submitted" class="p-error">
               There field is required.
             </small>
@@ -277,6 +284,7 @@ export default {
       factorWeight: null,
       shippingTime: null,
       lastname: null,
+      visible: false,
     };
   },
   computed: {
@@ -400,6 +408,9 @@ export default {
       this.password = null;
       this.passwordRepeat = null;
       this.accept = null;
+    },
+    showDialog() {
+      this.visible = true;
     },
   },
 };

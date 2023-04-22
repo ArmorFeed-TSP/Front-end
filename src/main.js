@@ -24,6 +24,7 @@ import Toast from "primevue/toast";
 import InputMask from "primevue/inputmask";
 import VueGoogleMaps from '@fawmi/vue-google-maps'
 import MultiSelect from 'primevue/multiselect';
+import Tooltip from "primevue/tooltip";
 import Store from "./store";
 
 //PrimeVue Styles
@@ -40,7 +41,7 @@ import OverlayPanel from "primevue/overlaypanel";
 import Timeline from "primevue/timeline";
 import ScrollPanel from "primevue/scrollpanel";
 import $dataTransfer from "./shared/services/data-transfer.service";
-import Tooltip from "primevue/tooltip";
+
 
 const app = createApp(App);
 
