@@ -208,11 +208,12 @@
               class="mb-2 md:mb-0 md:mr-2 p-button-info"
               @click="goToSignIn"
             ></pv-button>
-            <pv-button
-              label="Sign Up"
+            <pv-toast />
+            <pv-button 
+              @click="createNewUser" 
+              label="Sing Up" 
               type="submit"
-              class="p-button-success"
-            ></pv-button>
+              class="p-button-success" />
           </div>
         </div>
       </form>
@@ -224,8 +225,10 @@
 import { required, email } from "@vuelidate/validators";
 import { useVuelidate } from "@vuelidate/core";
 import SignUpService from "../../shared/services/sign-up.service.js";
+import { useToast } from "primevue/usetoast";
 export default {
   name: "sign-up",
+  components:{ useToast },
   setup: () => ({ v$: useVuelidate() }),
   data: () => {
     return {
@@ -315,6 +318,7 @@ export default {
     },
     createNewUser() {
       if (this.userType === "customer") {
+        this.showSucces();
         return {
           email: this.email,
           password: this.password,
@@ -327,7 +331,9 @@ export default {
           subscriptionPlan: 0,
         };
       }
-      return {
+      if (this.userType === "enterprise"){
+        this.showSucces();
+        return {
         email: this.email,
         password: this.password,
         name: this.name,
@@ -339,7 +345,9 @@ export default {
         description: this.description,
         photo: this.photo,
         score: 0,
-      };
+        };
+      }
+      this.showFail();
     },
     async handleSubmit(isFormValid) {
       this.submitted = true;
@@ -379,6 +387,12 @@ export default {
       this.password = null;
       this.passwordRepeat = null;
       this.accept = null;
+    },
+    showSucces() {
+      this.$toast.add({ severity: 'success', summary: 'Account Created', detail: 'confirmation email has been sent' , life: 4000});
+    },
+    showFail() {
+      this.$toast.add({ severity: 'error', summary: 'Failed Creation', detail: 'There is another account with the same details / Fields not filled' , life: 4000});
     },
   },
 };
