@@ -4,6 +4,7 @@ export class DataTransferService {
     this._enterpriseShipmentsIds = [];
     this._user = null;
     this._canDisplayNavigation = true;
+    this.selectedVehicle = null;
   }
 
   get canDisplayNavigation() {
