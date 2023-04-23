@@ -24,6 +24,7 @@ import Toast from "primevue/toast";
 import InputMask from "primevue/inputmask";
 import VueGoogleMaps from '@fawmi/vue-google-maps'
 import MultiSelect from 'primevue/multiselect';
+import Tooltip from "primevue/tooltip";
 import Store from "./store";
 
 //PrimeVue Styles
@@ -40,6 +41,7 @@ import OverlayPanel from "primevue/overlaypanel";
 import Timeline from "primevue/timeline";
 import ScrollPanel from "primevue/scrollpanel";
 import $dataTransfer from "./shared/services/data-transfer.service";
+
 
 const app = createApp(App);
 
@@ -88,4 +90,5 @@ app.component("pv-overlay-panel", OverlayPanel);
 app.component("pv-timeline", Timeline);
 app.component("pv-scroll-panel", ScrollPanel);
 app.component("pv-multiselect", MultiSelect);
+app.directive("pv-tooltip", Tooltip);
 app.mount("#app");
