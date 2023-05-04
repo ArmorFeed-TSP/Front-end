@@ -1,4 +1,5 @@
 <template>
+  <pv-toast/>
   <div class="container">
     <div class="flex flex-column space-between align-items-center">
       <div class="my-7 flex flex-column" style="max-width: 65rem; width: 100%; margin: 0 auto; min-height: 90vh">
@@ -48,6 +49,20 @@
             :sortable="true"
             style="min-width: 16rem"
           ></pv-column>
+          <pv-column
+            field="image"
+            header="Image"
+            :sortable="false"
+            style="min-width: 16rem"
+          >
+            <template #body="slotProps">
+              <img 
+              :src="`${slotProps.data.image}`" 
+              alt="Vehicle Image"
+              class="w-6rem shadow-2 border-round"
+              />
+            </template>
+          </pv-column>
           <pv-column
             field="licensePlate"
             header="License Plate"
@@ -165,6 +180,18 @@
               </span>
             </div>
             <div class="field">
+              <div class="card flex justify-content-center">
+                <pv-file-upload
+                  mode="basic"
+                  name="demo[]"
+                  url="/api/upload"
+                  accept="image/*"
+                  customUpload
+                  @uploader="uploadImage"
+                />
+              </div>
+            </div>
+            <div class="field">
               <span class="p-float-label">
                 <pv-calendar
 
@@ -279,6 +306,7 @@
 <script>
 import { FilterMatchMode } from "primevue/api";
 import { VehiclesApiService } from "../services/vehicle-api.service";
+import { Base64Manager } from "../../shared/services/base64-uploader.service";
 export default {
   name: "vehicle-list",
   components: {},
@@ -303,6 +331,8 @@ export default {
         { type: "Occupied", code: "OCCUPIED" },
         { type: "In maintenance", code: "IN_MAINTENANCE"}
       ],
+      imageUploader: new Base64Manager(),
+      imageDataHandler: { data: null }
     };
   },
 
@@ -319,6 +349,7 @@ export default {
         this.vehicles = response.data;
         this.vehicles.forEach((vehicle) => this.getDisplayableVehicle(vehicle));
         console.log("created");
+        console.log(this.vehicles);
       });
     this.initFilters();
   },
@@ -335,6 +366,7 @@ export default {
         year: displayableVehicle.year,
         model: displayableVehicle.model,
         maintenanceDate: displayableVehicle.maintenanceDate,
+        image: this.imageDataHandler.data,
         currentState: displayableVehicle.currentState,
         enterpriseId: displayableVehicle.enterpriseId,
       };
@@ -352,6 +384,15 @@ export default {
       return this.vehicles.findIndex((vehicle) => vehicle.id === id);
     },
     saveVehicle() {
+      if(this.imageDataHandler.data === null) {
+        this.$toast.add({
+          severity: "error",
+          summary: "Is missing some field",
+          detail: "You must upload a image",
+          life: 3000,
+        });
+        return;
+      }
       this.submitted = true;
       if (this.vehicle.brand.trim()) {
         if (this.vehicle.id) {
@@ -368,12 +409,13 @@ export default {
                 life: 3000,
               });
               console.log(response);
+              this.imageDataHandler = { data: null};
             });
         } else {
           this.vehicle.id = 0;
           this.vehicle.enterpriseId = this.userId;
-          console.log(this.vehicle);
           this.vehicle = this.getStorableVehicle(this.vehicle);
+          console.log(this.vehicle);
           this.vehiclesService.create(this.vehicle).then((response) => {
             this.vehicle = this.getDisplayableVehicle(response.data);
             this.vehicles.push(this.vehicle);
@@ -384,6 +426,7 @@ export default {
               life: 3000,
             });
             console.log(response);
+            this.imageDataHandler = { data: null};
           });
         }
         this.vehicleDialog = false;
@@ -429,6 +472,9 @@ export default {
         global: { value: null, matchMode: FilterMatchMode.CONTAINS },
       };
     },
+    async uploadImage(event) {
+     await this.imageUploader.upload(event, this.imageDataHandler);
+    }
   },
 };
 </script>
