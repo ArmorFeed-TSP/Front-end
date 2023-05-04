@@ -301,6 +301,7 @@
 </template>
 
 <script>
+import emailjs from 'emailjs-com';
 import { required, email } from "@vuelidate/validators";
 import { useVuelidate } from "@vuelidate/core";
 import SignUpService from "../../shared/services/sign-up.service.js";
@@ -393,6 +394,7 @@ export default {
     goToSignIn() {
       this.isConfirm = false;
       this.resetForm();
+      this.sendEmail();
       this.$router.push({ name: "sign-in" });
     },
     createNewUser() {
@@ -467,6 +469,23 @@ export default {
     },
     showTermsAndConditions() {
       this.visibleTC = true;
+    },
+    sendEmail(e) {
+      try {
+        emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', e.target,
+        'YOUR_USER_ID', {
+          name: this.name,
+          email: this.email,
+          message: "welcome to the ArmorFeed family. This email confirms that your account was successfully created."
+        })
+
+      } catch(error) {
+          console.log({error})
+      }
+      // Reset form field
+      this.name = ''
+      this.email = ''
+      this.message = ''
     },
   },
 };
