@@ -357,7 +357,6 @@ export default {
         console.log(this.vehicles);
       });
     this.initFilters();
-    this.imageUploader = new Base64Manager();
   },
   methods: {
     getDisplayableVehicle(vehicle) {
@@ -372,12 +371,8 @@ export default {
         year: displayableVehicle.year,
         model: displayableVehicle.model,
         maintenanceDate: displayableVehicle.maintenanceDate,
-<<<<<<< Updated upstream
-        vehicleType: displayableVehicle.vehicleType,
-=======
         image: this.imageDataHandler.data,
         currentState: displayableVehicle.currentState,
->>>>>>> Stashed changes
         enterpriseId: displayableVehicle.enterpriseId,
       };
     },
