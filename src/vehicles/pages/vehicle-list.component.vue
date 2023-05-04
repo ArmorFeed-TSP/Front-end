@@ -88,12 +88,6 @@
             style="min-width: 16rem"
           ></pv-column>
           <pv-column
-            field="vehicleType"
-            header="Vehicle Type"
-            :sortable="true"
-            style="min-width: 16rem"
-          ></pv-column>
-          <pv-column
             field="currentState"
             header="Current State"
             :sortable="true"
@@ -218,7 +212,7 @@
             </div>
             <div class="field">
               <pv-dropdown
-                v-model="vehicle.vehicleType"
+                v-model="vehicle.currentState"
                 :options="types"
                 optionLabel="type"
                 optionValue="code"
@@ -333,8 +327,9 @@ export default {
       selectedType: null,
       userId: null,
       types: [
-        { type: "In use", code: "In use" },
-        { type: "Free", code: "Free" },
+        { type: "Available", code: "AVAILABLE" },
+        { type: "Occupied", code: "OCCUPIED" },
+        { type: "In maintenance", code: "IN_MAINTENANCE"}
       ],
       imageUploader: new Base64Manager(),
       imageDataHandler: { data: null }
