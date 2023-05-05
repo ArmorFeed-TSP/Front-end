@@ -126,26 +126,6 @@
         <pv-button label="Ok" autofocus @click="showDialog" />
       </template>
     </pv-dialog>
-      <pv-dialog v-model:visible="confirmEnabled">
-          <template #header>
-              <h3>Confirm Status Change</h3>
-          </template>
-          <template #footer>
-              <pv-button
-                      :label="'Cancel'.toUpperCase()"
-                      icon="pi pi-times"
-                      class="p-button-text"
-                      @click="hideConfirmDialog"
-              />
-              <pv-button
-                      :label="'Save'.toUpperCase()"
-                      icon="pi pi-check"
-                      class="p-button-text"
-                      @click="saveShipment"
-              />
-          </template>
-          <div>Are you sure you want to change the shipment status to "{{ shipment.status }}"?</div>
-      </pv-dialog>
   </div>
 </template>
 
@@ -175,7 +155,6 @@ export default {
       currentShipments: [],
       dialogEnabled: false,
       statusEnabled: false,
-      confirmEnabled: false,
       statusses: [
         { label: "Pending", value: "Pending" },
         { label: "Finished", value: "Finished" },
@@ -283,15 +262,11 @@ export default {
       this.statusEnabled = false;
       this.shipment = {};
       window.location.reload();
-      this.confirmEnabled = true;
     },
     editStatus(shipment) {
       this.shipment = {...shipment};
       console.log(this.shipment);
       this.statusEnabled = !this.statusEnabled;
-    },
-    hideConfirmDialog() {
-      this.confirmEnabled = false;
     },
   },
 };
