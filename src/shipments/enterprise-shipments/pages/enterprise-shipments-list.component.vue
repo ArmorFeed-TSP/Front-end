@@ -1,8 +1,9 @@
 <template>
+  <pv-toast/>
   <div class="my-7 flex flex-column">
     <pv-data-table
       v-model:filters="filters"
-      :value="currentCustomerShipments"
+      :value="currentShipments"
       responsiveLayout="stack"
       dataKey="id"
       :paginator="true"
@@ -86,7 +87,7 @@
             <div v-else-if="slotProps.value && !slotProps.value.value">
               <span
                 :class="
-                  'shipment-badge status-' + slotProps.value.toLowerCase()
+                  'shipment-badge status-' + slotProps.value
                 "
                 >{{ slotProps.value }}</span
               >
@@ -95,6 +96,10 @@
           </template>
         </pv-dropdown>
       </div>
+      <EnterpriseShipmentsVehicleAllocationComponent 
+        v-if="selectAvailableVehicle"
+        :enterpriseId="this.id"
+      ></EnterpriseShipmentsVehicleAllocationComponent>
       <template #footer>
         <pv-button
           :label="'Cancel'.toUpperCase()"
@@ -127,9 +132,14 @@
 <script>
 import { EnterpriseShipmentsService } from "../services/enterprise-shipments.service";
 import { FilterMatchMode } from "primevue/api";
+import EnterpriseShipmentsVehicleAllocationComponent from "./enterprise-shipments-vehicle-allocation.component.vue";
+import { VehiclesApiService } from "../../../vehicles/services/vehicle-api.service";
 
 export default {
   name: "enterprise-shipments-list",
+  components: {
+    EnterpriseShipmentsVehicleAllocationComponent
+  },
   data() {
     return {
       enterpriseShipmentsService: null,
@@ -163,14 +173,14 @@ export default {
         'destiny': { value: null, matchMode: FilterMatchMode.CONTAINS},
         'deliveryDate': { value: null, matchMode: FilterMatchMode.CONTAINS},
         'status': { value: null, matchMode: FilterMatchMode.EQUALS}
-      },
+      }
     };
   },
   created() {
     this.enterpriseShipmentsService = new EnterpriseShipmentsService();
     this.enterpriseShipmentsService.getShipmentsById(this.id).then((response) => {
-        this.shipments = response.data;
-        this.currentShipments = this.shipments;
+        this.shipments = structuredClone(response.data);
+        this.currentShipments = structuredClone(response.data);
         this.shipments.forEach( shipment => {
           this.$dataTransfer.addEnterpriseShipmentId(shipment.id);
         });
@@ -179,6 +189,13 @@ export default {
   },
   props: {
     id: Number
+  },
+  computed: {
+    selectAvailableVehicle: {
+      get() {
+        return this.shipment.status.value === 'In progress';
+      }
+    }
   },
   methods: {
     filterContent(status) {
@@ -203,13 +220,41 @@ export default {
     findIndexById(id) {
       return this.shipments.findIndex((shipment) => shipment.id === id);
     },
+    updateVehicle() {
+      // Change vehicle current status to occupied
+      this.$dataTransfer.selectedVehicle.currentState = "OCCUPIED";
+        const vehiclesApiService = new VehiclesApiService();
+        console.log(this.$dataTransfer.selectedVehicle);
+        vehiclesApiService.update(this.$dataTransfer.selectedVehicle.id, this.$dataTransfer.selectedVehicle)
+          .then(res => {
+            this.$toast.add({ severity: 'success', summary: 'Success', detail: 'The vehicle was successfully linked to the shipment', life: 3000 });
+            this.$dataTransfer.selectedVehicle = null;
+          })
+          .catch(reason => {
+            this.$toast.add({ severity: 'error', summary: 'Service Error', detail: 'Something went wrong trying to put the data', life: 3000 });
+            this.$dataTransfer.selectedVehicle = null;
+          });
+    },
     saveShipment() {
       this.submitted = true;
+      const d = new Map();
+      d.set("Pending", 0);
+      d.set("In progress", 1);
+      d.set("Finished", 2);
       if (this.shipment.id) {
         //this.shipment = this.getStorableShipment(this.shipment);
         this.shipment.status = this.shipment.status.value
           ? this.shipment.status.value
           : this.shipment.status;
+        this.shipment.status = d.get(this.shipment.status);
+        if(this.$dataTransfer.selectedVehicle === null && this.shipment.status === 1) {
+          this.$toast.add({ severity: 'info', summary: 'Some data is missing', detail: 'You have to select an available vehicle', life: 3000 })
+          return;
+        };
+
+        if(this.shipment.status === 1) {
+          this.updateVehicle();
+        }
         this.enterpriseShipmentsService.updateShipment(this.shipment.id, this.shipment).then((response) => {
             this.shipments[this.findIndexById(response.data.id)] = this.shipment;
         });
@@ -219,8 +264,7 @@ export default {
       window.location.reload();
     },
     editStatus(shipment) {
-      console.log(shipment);
-      this.shipment = { ...shipment };
+      this.shipment = {...shipment};
       console.log(this.shipment);
       this.statusEnabled = !this.statusEnabled;
     },
