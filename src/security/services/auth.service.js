@@ -11,6 +11,7 @@ class AuthService {
   }
   logout() {
     localStorage.removeItem("auth");
+    localStorage.removeItem("type");
   }
   registerCustomer(user) {
     return userService.signUpCustomer(user);

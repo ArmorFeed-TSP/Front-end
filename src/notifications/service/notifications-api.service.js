@@ -10,4 +10,10 @@ export class NotificationsApiService {
   getShipmentById(id) {
     return http.get(`/shipments/${id}`);
   }
+  getNotificationsByEnterpriseId(enterpriseId) {
+    return http.get(`/notifications/enterprises/${enterpriseId}`);
+  }
+  getNotificationsByCustomerId(customerId) {
+    return http.get(`/notifications/customers/${customerId}`)
+  }
 }

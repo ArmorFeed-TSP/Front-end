@@ -5,7 +5,7 @@
         <div class="p-3 h-full flex flex-column" style="border-radius: 6px">
           <div class="text-900 font-medium text-xl mb-2">Notifications</div>
           <hr class="my-3 mx-0 border-top-1 border-none surface-border" />
-          <div v-for="(notification, index) in currentNotifications" v-bind:key="index">
+          <div v-for="(notification, index) in notification" v-bind:key="index">
             <div class="flex align-items-center">
               <span class="font-bold font-medium text-900">{{notification.name}}</span>
               <span class="ml-2 font-medium text-600">{{notification.content + notification.status}}</span>
@@ -34,7 +34,7 @@ export default {
         {field: 'content', header: 'Content'},
         {field: 'date', header: 'Date'},
       ],
-      currentNotifications: [],
+      currentNotifications: []
     }
   },
   created() {
@@ -48,7 +48,25 @@ export default {
         })
       })
     });
+    if(localStorage.getItem("type") === "customer") {
+      getNotificationsByCustomerId(localStorage.getItem("auth").id);
+      return;
+    }
+    getNotificationsByEnterpriseId(localStorage.getItem("auth").id);
   },
-
+  methods: {
+    getNotificationsByCustomerId(customerId) {
+      this.notificationService.getNotificationsByCustomerId(customerId)
+        .then( response => {
+          this.notification = response.data;
+        });
+    },
+    getNotificationsByEnterpriseId(enterpriseId) {
+      this.notificationService.getNotificationsByEnterpriseId(enterpriseId)
+        .then( response => {
+          this.notification = response.data;
+        })
+    }
+  }
 }
 </script>
