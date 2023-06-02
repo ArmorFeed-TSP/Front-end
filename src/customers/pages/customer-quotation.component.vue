@@ -124,7 +124,7 @@ export default {
           });
           this.notificationService.create({
             title: "New Shipment",
-            description: "A new shipment was asigned to you",
+            description: `A new shipment with code ${response.data.id} was asigned to you`,
             sender: "CUSTOMER",
             enterpriseId: shipment.enterpriseId,
             customerId: shipment.customerId
