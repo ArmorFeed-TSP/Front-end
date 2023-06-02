@@ -11,6 +11,7 @@ class UserService {
       .post(`${this.endPointCustomer}/sign-in`, loginResource)
       .then((response) => {
         response.data.userType = "customer";
+        localStorage.setItem("type", "customer");
         return response;
       })
       .catch(() => {
@@ -22,6 +23,7 @@ class UserService {
           )
           .then((response) => {
             response.data.userType = "enterprise";
+            localStorage.setItem("type", "enterprise")
             return response;
           });
       });

@@ -24,6 +24,7 @@
 import AddressesService from "../services/addresses.service";
 import ShipmentsService from "../services/shipments.service";
 import PaymentsService from "../services/payments.service";
+import { NotificationsApiService } from "../../notifications/service/notifications-api.service";
 
 export default {
   name: "customer-quotation",
@@ -54,6 +55,7 @@ export default {
       ],
       formObject: {},
       errors: [],
+      notificationService: new NotificationsApiService()
     };
   },
   methods: {
@@ -119,6 +121,13 @@ export default {
               response.data.destiny +
               "",
             life: 4000,
+          });
+          this.notificationService.create({
+            title: "New Shipment",
+            description: `A new shipment with code ${response.data.id} was asigned to you`,
+            sender: "CUSTOMER",
+            enterpriseId: shipment.enterpriseId,
+            customerId: shipment.customerId
           });
           localStorage.removeItem("formObject");
           await this.$router.push({ path: "quotations" });
