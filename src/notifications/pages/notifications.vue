@@ -5,11 +5,10 @@
         <div class="p-3 h-full flex flex-column" style="border-radius: 6px">
           <div class="text-900 font-medium text-xl mb-2">Notifications</div>
           <hr class="my-3 mx-0 border-top-1 border-none surface-border" />
-          <div v-for="(notification, index) in currentNotifications" v-bind:key="index">
+          <div v-for="(notification, index) in notification" v-bind:key="index">
             <div class="flex align-items-center">
-              <span class="font-bold font-medium text-900">{{notification.name}}</span>
-              <span class="ml-2 font-medium text-600">{{notification.content + notification.status}}</span>
-              <span class="ml-1 font-light text-400">{{notification.date}}</span>
+              <span class="font-bold font-medium text-900">{{notification.title}}</span>
+              <span class="ml-2 font-medium text-600">{{notification.description}}</span>
             </div>
             <pv-divider></pv-divider>
           </div>
@@ -34,21 +33,33 @@ export default {
         {field: 'content', header: 'Content'},
         {field: 'date', header: 'Date'},
       ],
-      currentNotifications: [],
+      currentNotifications: []
     }
   },
   created() {
     this.notificationService = new NotificationsApiService();
-    this.notificationService.getAll().then((response) => {
-      this.notification = response.data;
-      this.currentNotifications = this.notification;
-      this.notification.forEach(notification => {
-        this.notificationService.getShipmentById(notification.shipmentId).then(response => {
-          notification.status = response.data.status;
-        })
-      })
-    });
+    const user = JSON.parse(localStorage.getItem("auth"));
+    if(localStorage.getItem("type") === "customer") {
+      this.getNotificationsByCustomerId(user.id);
+      return;
+    }
+    this.getNotificationsByEnterpriseId(user.id);
   },
-
+  methods: {
+    getNotificationsByCustomerId(customerId) {
+      this.notificationService.getNotificationsByCustomerId(customerId)
+        .then( response => {
+          this.notification = response.data;
+          console.log(response.data);
+        });
+    },
+    getNotificationsByEnterpriseId(enterpriseId) {
+      this.notificationService.getNotificationsByEnterpriseId(enterpriseId)
+        .then( response => {
+          this.notification = response.data;
+          console.log(response.data);
+        })
+    }
+  }
 }
 </script>

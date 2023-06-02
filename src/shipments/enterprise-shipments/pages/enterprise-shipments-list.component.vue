@@ -154,6 +154,7 @@ import { EnterpriseShipmentsService } from "../services/enterprise-shipments.ser
 import { FilterMatchMode } from "primevue/api";
 import EnterpriseShipmentsVehicleAllocationComponent from "./enterprise-shipments-vehicle-allocation.component.vue";
 import { VehiclesApiService } from "../../../vehicles/services/vehicle-api.service";
+import { NotificationsApiService } from "../../../notifications/service/notifications-api.service";
 
 export default {
   name: "enterprise-shipments-list",
@@ -194,7 +195,8 @@ export default {
         'destiny': { value: null, matchMode: FilterMatchMode.CONTAINS},
         'deliveryDate': { value: null, matchMode: FilterMatchMode.CONTAINS},
         'status': { value: null, matchMode: FilterMatchMode.EQUALS}
-      }
+      },
+      notificationService : new NotificationsApiService()
     };
   },
   created() {
@@ -268,6 +270,7 @@ export default {
           ? this.shipment.status.value
           : this.shipment.status;
         this.shipment.status = d.get(this.shipment.status);
+        console.log(this.$dataTransfer.selectedVehicle);
         if(this.$dataTransfer.selectedVehicle === null && this.shipment.status === 1) {
           this.$toast.add({ severity: 'info', summary: 'Some data is missing', detail: 'You have to select an available vehicle', life: 3000 })
           return;
@@ -278,6 +281,17 @@ export default {
         }
         this.enterpriseShipmentsService.updateShipment(this.shipment.id, this.shipment).then((response) => {
             this.shipments[this.findIndexById(response.data.id)] = this.shipment;
+            this.notificationService.create({
+              title: "Shipment status was updated",
+              description: `Shipment, with code ${response.data.id}, status was updated. Check it now`,
+              sender: "ENTERPRISE",
+              enterpriseId: response.data.enterpriseId,
+              customerId: response.data.customerId
+            }).then( response => {
+              console.log(response);
+            }).catch( error => {
+              console.log(error);
+            });
         });
       }
       this.statusEnabled = false;
