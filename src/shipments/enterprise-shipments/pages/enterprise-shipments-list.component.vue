@@ -154,6 +154,7 @@ import { EnterpriseShipmentsService } from "../services/enterprise-shipments.ser
 import { FilterMatchMode } from "primevue/api";
 import EnterpriseShipmentsVehicleAllocationComponent from "./enterprise-shipments-vehicle-allocation.component.vue";
 import { VehiclesApiService } from "../../../vehicles/services/vehicle-api.service";
+import { NotificationsApiService } from "../../../notifications/service/notifications-api.service";
 
 export default {
   name: "enterprise-shipments-list",
@@ -194,7 +195,8 @@ export default {
         'destiny': { value: null, matchMode: FilterMatchMode.CONTAINS},
         'deliveryDate': { value: null, matchMode: FilterMatchMode.CONTAINS},
         'status': { value: null, matchMode: FilterMatchMode.EQUALS}
-      }
+      },
+      notificationService : new NotificationsApiService()
     };
   },
   created() {
@@ -278,6 +280,13 @@ export default {
         }
         this.enterpriseShipmentsService.updateShipment(this.shipment.id, this.shipment).then((response) => {
             this.shipments[this.findIndexById(response.data.id)] = this.shipment;
+            this.notificationService.create({
+              title: "Shipment status was updated",
+              description: "Shipment status was updated. Check it now",
+              sender: "ENTERPRISE",
+              enterpriseId: shipment.enterpriseId,
+              customerId: shipment.customerId
+            });
         });
       }
       this.statusEnabled = false;
