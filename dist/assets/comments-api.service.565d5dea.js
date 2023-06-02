@@ -1,1 +1,0 @@
-import{h as t}from"./index.06d337ed.js";class s{getAll(){return t.get("/comments")}create(e){return t.post("/comments",e)}update(e,m){return t.put(`/comments/${e}`,m)}delete(e){return t.delete(`/comments/${e}`)}getById(e){return t.get(`/comments/${e}`)}getCommentsByShipmentId(e){return t.get(`/shipment/${e}/comments`)}}export{s as C};
