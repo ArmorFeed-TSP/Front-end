@@ -111,7 +111,7 @@
           :label="'Save'.toUpperCase()"
           icon="pi pi-check"
           class="p-button-text"
-          @click="saveShipment"
+          @click="confirmEnabled = true"
         />
       </template>
     </pv-dialog>
