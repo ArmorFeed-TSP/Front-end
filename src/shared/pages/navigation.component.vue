@@ -53,8 +53,12 @@
         <h3>Settings</h3>
         <pv-divider></pv-divider>
         <div class="field flex">
-          <pv-button class="mr-1" icon="pi pi-sun" label="Light"></pv-button>
-          <pv-button class="ml-1" icon="pi pi-moon" label="Dark"></pv-button>
+          <pv-button 
+          class="mr-1" 
+          icon="pi pi-sun" 
+          label="Light"
+          @click="alternarModoOscuro"
+          ></pv-button>
         </div>
       </div>
     </pv-overlay-panel>
@@ -78,7 +82,6 @@ export default {
   data() {
     return {
       activeTab: 0,
-      isDark: null,
       navigationEnterprise: [
         {
           label: "My shipments",
@@ -158,6 +161,9 @@ export default {
     UserId() {
       return !this.user ? this.userId : this.user.id;
     },
+    alternarModoOscuro() {
+      this.$emit('cambio-modo-oscuro');
+    }
   },
   props: {
     items: Array,

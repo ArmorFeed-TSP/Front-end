@@ -11,6 +11,7 @@ export default {
       userName: "User Name",
       userType: null,
       navigation: null,
+      modoOscuro: false
     };
   },
   methods: {
@@ -73,6 +74,9 @@ export default {
       this.userType = null;
       this.userName = "User Name";
     },
+    alternarModoOscuro() {
+      this.modoOscuro = !this.modoOscuro;
+    },
   },
 
   mounted() {
@@ -81,7 +85,7 @@ export default {
 };
 </script>
 <template>
-  <div class="w-full">
+  <div v-bind:class="{ 'modo-oscuro': modoOscuro }">
     <app-navigation
       v-bind:user-id="userId"
       v-bind:user-type="userType"
@@ -89,6 +93,7 @@ export default {
       v-bind:navigation="navigation"
       :paramActiveTab="0"
       v-on:sign-off="signOff"
+      @cambio-modo-oscuro="alternarModoOscuro"
     ></app-navigation>
     <router-view v-on:user-logged="userLogged"></router-view>
     <app-footer></app-footer>
@@ -97,5 +102,9 @@ export default {
 <style>
 body {
   margin: 0 0;
+}
+.modo-oscuro {
+  background-color: #212121;
+  color: #ffffff;
 }
 </style>
