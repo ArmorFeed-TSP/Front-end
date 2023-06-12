@@ -12,6 +12,11 @@
         </div>
         <pv-divider/>
         <div class="flex flex-column gap-2">
+            <label for="withoutgrouping" class="font-bold block mb-2">Ruc</label>
+            <pv-input-number v-model="ruc" inputId="withoutgrouping" :useGrouping="false"/>
+        </div>
+        <pv-divider/>
+        <div class="flex flex-column gap-2">
             <label for="withoutgrouping" class="font-bold block mb-2">Phone Number</label>
             <pv-input-number v-model="phoneNumber" inputId="withoutgrouping" :useGrouping="false"/>
         </div>
@@ -116,7 +121,6 @@ export default {
     validations() {
         return {
             name: { required },
-            photo: { required },
             ruc: { 
                 required, 
                 minLength: minLength(11),
@@ -125,10 +129,6 @@ export default {
             email: { 
                 required,
                 validateEmail: this.validateEmail
-            },
-            password: {
-                password: { required },
-                confirm: { required }
             },
             phoneNumber: {
                 required,
