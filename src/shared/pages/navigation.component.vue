@@ -31,23 +31,10 @@
           icon="pi pi-user"
           icon-pos="left"
           :label="this.userName"
-          @click="toggleUser"
+          @click="profileDisplayable = true"
         ></pv-button>
       </template>
     </pv-tool-bar>
-    <pv-overlay-panel
-      ref="user"
-      style="width: 200px"
-      :dismissable="true"
-      el="el"
-    >
-      <pv-button
-        @click="logOut"
-        icon="pi pi-power-off"
-        class="p-button-text p-button-danger w-full"
-        label="Log Out"
-      ></pv-button>
-    </pv-overlay-panel>
     <pv-overlay-panel ref="op" style="width: 300px" :dismissable="true" el="el">
       <div class="p-fluid">
         <h3>Settings</h3>
@@ -65,16 +52,20 @@
   <div v-if="this.userType" class="flex justify-content-center">
     <pv-tab-menu :model="navigation" :exact="false" />
   </div>
+  <pv-dialog v-model:visible="profileDisplayable">
+    <profile-component @logout="logOut"/>
+  </pv-dialog>
 </template>
 
 <script>
 import Notifications from "../../notifications/pages/notifications.vue";
 import { CustomerShipmentsApiService } from "../../shipments/customer-shipments/services/customer-shipments-api.service";
 import { EnterpriseShipmentsService } from "../../shipments/enterprise-shipments/services/enterprise-shipments.service";
+import ProfileComponent from "./profile.component.vue";
 
 export default {
   name: "navigation-shipment",
-  components: { Notifications },
+  components: { Notifications, ProfileComponent },
   data() {
     return {
       activeTab: 0,
@@ -118,6 +109,7 @@ export default {
         quotations: false,
       },
       user: null,
+      profileDisplayable: false
     };
   },
   watch: {
@@ -152,6 +144,7 @@ export default {
       await this.$emit("sign-off");
       await this.$router.push({ name: "root" });
       this.$refs.op.hide();
+      this.profileDisplayable = false;
     },
     getAllShipmentsById(id) {
       const customerShipmentsService = new CustomerShipmentsApiService();
@@ -222,7 +215,7 @@ export default {
     this.$nextTick(() => {
       const auth = JSON.parse(localStorage.getItem("auth"));
       if (auth) {
-        this.user = auth.user;
+        this.user = auth;
       }
       this.activeTab = 1;
     });
