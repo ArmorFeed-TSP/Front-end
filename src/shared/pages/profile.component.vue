@@ -6,7 +6,7 @@
         <edit-profile-customer-component v-if="editFormDisplayed" @user-updated="updateData" @cancel-changes="cancelChanges"/>
     </div>
     <div v-else>
-        <edit-profile-enterprise-component v-if="editFormDisplayed" @user-updated="updateData"/>
+        <edit-profile-enterprise-component v-if="editFormDisplayed" @user-updated="updateData" @cancel-changes="cancelChanges"/>
     </div>
     <pv-divider/>
     <pv-button
@@ -71,7 +71,13 @@ export default {
     transform: translateX(-50%);
 }
 .profile-container {
+    width: 50rem;
     padding: 0 5rem;
+}
+@media (max-width: 1000px) {
+    .profile-container {
+        width: 30rem;
+    }
 }
 .profile-data-card {
     

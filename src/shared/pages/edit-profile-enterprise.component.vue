@@ -161,20 +161,31 @@ export default {
                 this.$toast.add({ severity: 'info', summary: 'Submit invalid', detail: 'There exists one or more fields which have invalida values' , life: 3000});
                 return;
             }
+            console.log(this.user);
+            console.log(this.user.id);
             this.profileApiService.updateEnterpriseById(this.user.id, this.getUserDto())
                 .then( response => {
-                    this.$toast.add({
-                        severity: "success",
-                        summary: "Success",
-                        detail: "Enterprises Successfully updated",
-                        life: 3000,
-                    });
-                    this.profileApiService.getEnterpriseById(this.id)
-                        .then( response => {
-                            localStorage.setItem("auth", JSON.stringify(response));
-                            this.$emit("user-updated");
+                        this.$toast.add({
+                            severity: "success",
+                            summary: "Success",
+                            detail: "Enterprises Successfully updated",
+                            life: 3000,
+                        })
+                        this.profileApiService.getEnterpriseById(this.user.id)
+                            .then( response => {
+                                localStorage.setItem("auth", JSON.stringify(response));
+                                this.$emit("user-updated");
+                            });
+                    },
+                    reason => {
+                        this.$toast.add({
+                            severity: "error",
+                            summary: "Service Error",
+                            detail: "And Error occured while trying to update the user",
+                            life: 3000,
                         });
-                })
+                    }
+                )
                 .catch( error => {
                     this.$toast.add({
                         severity: "error",
@@ -190,6 +201,9 @@ export default {
         },
         logOut() {
             this.$emit("logout");
+        },
+        cancelChanges() {
+            this.$emit("cancel-changes");
         }
     },
     validations() {
@@ -228,5 +242,9 @@ export default {
 }
 .edit-profile-title {
     text-align: center;
+}
+.invalid {
+    color: rgb(255, 0, 0);
+    margin-top: 1rem;
 }
 </style>

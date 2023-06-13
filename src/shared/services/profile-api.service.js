@@ -11,6 +11,6 @@ export class ProfileApiService {
         return http.get(`/customers/${id}`);
     }
     getEnterpriseById(id) {
-        return http.get(`/customers/${id}`);
+        return http.get(`/enterprises/${id}`);
     }
 }
