@@ -121,7 +121,7 @@
       </template>
       <img
         src="https://www.esedeerre.com/wp-content/uploads/2012/06/geolocalizacion-google-maps.jpg"
-      />
+       alt="Google map"/>
       <template #footer>
         <pv-button label="Ok" autofocus @click="showDialog" />
       </template>
@@ -153,8 +153,8 @@
 import { EnterpriseShipmentsService } from "../services/enterprise-shipments.service";
 import { FilterMatchMode } from "primevue/api";
 import EnterpriseShipmentsVehicleAllocationComponent from "./enterprise-shipments-vehicle-allocation.component.vue";
-import { VehiclesApiService } from "../../../vehicles/services/vehicle-api.service";
-import { NotificationsApiService } from "../../../notifications/service/notifications-api.service";
+import { VehiclesApiService } from "@/vehicles/services/vehicle-api.service";
+import { NotificationsApiService } from "@/notifications/service/notifications-api.service";
 
 export default {
   name: "enterprise-shipments-list",
@@ -201,6 +201,7 @@ export default {
   },
   created() {
     this.enterpriseShipmentsService = new EnterpriseShipmentsService();
+    this.notificationService = new NotificationsApiService();
     this.enterpriseShipmentsService.getShipmentsById(this.id).then((response) => {
         this.shipments = structuredClone(response.data);
         this.currentShipments = structuredClone(response.data);
@@ -216,7 +217,8 @@ export default {
   computed: {
     selectAvailableVehicle: {
       get() {
-        return this.shipment.status.value === 'In progress';
+        /*return this.shipment.status.value === 'In progress';*/
+        return this.shipment.status && this.shipment.status.value === 'In progress';
       }
     }
   },
@@ -258,6 +260,15 @@ export default {
             this.$dataTransfer.selectedVehicle = null;
           });
     },
+    handleMissingVehicle() {
+      this.$toast.add({
+        severity: 'info',
+        summary: 'Some data is missing',
+        detail: 'You have to select an available vehicle',
+        life: 3000
+      });
+    },
+
     saveShipment() {
       this.submitted = true;
       const d = new Map();
@@ -270,15 +281,16 @@ export default {
           ? this.shipment.status.value
           : this.shipment.status;
         this.shipment.status = d.get(this.shipment.status);
-        console.log(this.$dataTransfer.selectedVehicle);
-        if(this.$dataTransfer.selectedVehicle === null && this.shipment.status === 1) {
-          this.$toast.add({ severity: 'info', summary: 'Some data is missing', detail: 'You have to select an available vehicle', life: 3000 })
+
+        if (this.$dataTransfer.selectedVehicle === null && this.shipment.status === 1) {
+          this.handleMissingVehicle();
           return;
-        };
+        }
 
         if(this.shipment.status === 1) {
           this.updateVehicle();
         }
+
         this.enterpriseShipmentsService.updateShipment(this.shipment.id, this.shipment).then((response) => {
             this.shipments[this.findIndexById(response.data.id)] = this.shipment;
             this.notificationService.create({
