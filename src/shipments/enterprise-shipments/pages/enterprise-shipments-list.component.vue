@@ -40,20 +40,52 @@
           ></pv-input-text>
         </template>
       </pv-column>
-      <pv-column :exportable="false" style="min-width: 8rem">
+      <pv-column :exportable="false" style="min-width: 8rem" header="Actions">
         <template #body="slotProps">
           <pv-button icon="pi pi-car" class="p-button-text p-button-rounded" />
-          <pv-button
-            icon="pi pi-pencil"
-            class="p-button-text p-button-rounded"
-            @click="editStatus(slotProps.data)"
-          />
           <router-link
             :to="`/enterprise/${this.id}/shipments/${slotProps.data.id}/shipment-detail`"
             ><pv-button icon="pi pi-eye" class="p-button-text p-button-rounded"
           /></router-link>
         </template>
       </pv-column>
+      <pv-column :exportable="false" style="min-width: 8rem" header="Status">
+        <template #body="slotProps">
+          <div v-if="slotProps.data.status === '0'">
+            <p>Pending</p>
+          </div>
+          <div v-else-if="slotProps.data.status === '1'">
+            <p>In progress</p>
+          </div>
+          <div v-else>
+            <p>Finished</p>
+          </div>
+        </template>
+      </pv-column>
+      <pv-column :exportable="false" style="min-width: 8rem" header="Next phase">
+        <template #body="slotProps">
+          <div v-if="slotProps.data.status === '0'">
+            <pv-button
+                label="Start Delivery"
+                icon="pi pi-play"
+                class="p-button-text p-button-rounded"
+                @click="startDelivery(slotProps.data)"
+            />
+          </div>
+          <div v-else-if="slotProps.data.status === '1'">
+            <pv-button
+                label="Finish Shipment"
+                icon="pi pi-check"
+                class="p-button-text p-button-rounded"
+                @click="finishShipment(slotProps.data)"
+            />
+          </div>
+          <div v-else>
+            --
+          </div>
+        </template>
+      </pv-column>
+
     </pv-data-table>
     <pv-dialog v-model:visible="statusEnabled">
       <template #header>
