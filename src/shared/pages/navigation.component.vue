@@ -53,8 +53,8 @@
         <h3>Settings</h3>
         <pv-divider></pv-divider>
         <div class="field flex">
-          <pv-button class="mr-1" icon="pi pi-sun" label="Light"></pv-button>
-          <pv-button class="ml-1" icon="pi pi-moon" label="Dark"></pv-button>
+          <pv-button class="mr-1" icon="pi pi-sun" label="Light" v-on:click="setDarkMode(false)"></pv-button>
+         <pv-button class="ml-1" icon="pi pi-moon" label="Dark" v-on:click="setDarkMode(true)"></pv-button>
         </div>
       </div>
     </pv-overlay-panel>
@@ -120,7 +120,19 @@ export default {
       user: null,
     };
   },
+  watch: {
+  '$store.state.darkMode'(newValue) {
+    if (newValue) {
+      document.body.style.backgroundColor = 'rgba(63, 81, 181, 0.92)';
+    } else {
+      document.body.style.backgroundColor = 'white';
+    }
+  }
+},
   methods: {
+    setDarkMode(isDark) {
+    this.$store.commit('setDarkMode', isDark);
+  },
     toggle(event) {
       event.preventDefault();
       this.$refs.op.toggle(event);
@@ -227,4 +239,9 @@ export default {
 .logo {
   height: 45px;
 }
+.dark-theme .p-toolbar {
+  background-color: #555 !important;
+  color: #fff !important;
+}
+
 </style>
