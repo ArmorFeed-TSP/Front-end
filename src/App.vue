@@ -98,4 +98,8 @@ export default {
 body {
   margin: 0 0;
 }
+.modo-oscuro {
+  background-color: #212121 !important;
+  color: #ffffff !important;
+}
 </style>

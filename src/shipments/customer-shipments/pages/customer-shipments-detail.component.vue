@@ -51,7 +51,7 @@
             <p><span class="font-bold">Total price: </span> $100.00</p>
 
           </div>
-          <div class="flex flex-column space-between align-items-center">
+          <div class="flex flex-column align-items-center">
           <customer-comments></customer-comments>
           </div>
 

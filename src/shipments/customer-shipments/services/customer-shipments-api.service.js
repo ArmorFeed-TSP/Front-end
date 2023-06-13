@@ -13,4 +13,7 @@ export class CustomerShipmentsApiService {
   getCustomerById(customerId) {
     return http.get(`/customers/${customerId}`);
   }
+  deleteCustomerById(customerId) {
+    http.delete(`/customers/${customerId}`);
+  }
 }

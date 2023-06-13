@@ -227,4 +227,8 @@ export default {
 .logo {
   height: 45px;
 }
+.modo-oscuro {
+  background-color: #212121;
+  color: #ffffff;
+}
 </style>
