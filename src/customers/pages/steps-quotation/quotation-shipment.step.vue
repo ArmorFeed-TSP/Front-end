@@ -19,12 +19,24 @@
               :options="departments"
               id="origin"
               placeholder="Select the department origin"
+              @input="updateMap"
             >
             </pv-dropdown>
             <small v-show="!v$.origin.$model && submitted" class="p-error"
               >Origin is required.</small
             >
           </div>
+
+          <!--
+             <GoogleMap
+               :center="mapCenter"
+               :zoom="7"
+               map-type-id="terrain"
+               style="width: 1px; height: 1px"
+             >
+             </GoogleMap>
+            -->
+
           <div class="field m-2">
             <label for="destination" class="font-bold">Destination</label>
             <pv-dropdown
@@ -161,6 +173,8 @@
 <script>
 import { required } from "@vuelidate/validators";
 import { useVuelidate } from "@vuelidate/core";
+import { GoogleMap } from "@fawmi/vue-google-maps";
+
 export default {
   name: "step-quotation",
   setup: () => ({ v$: useVuelidate() }),
@@ -174,12 +188,8 @@ export default {
       length: null,
       width: null,
       height: null,
-      packageTypes:[
-        "Componentes Electronico",
-        "Documentacion",
-        "Miselanium",
-      ],
-      packageType:"",
+      packageTypes: ["Componentes Electronico", "Documentacion", "Miselanium"],
+      packageType: "",
       departments: [],
     };
   },
@@ -207,51 +217,51 @@ export default {
         required,
       },
       packageType: {
-        required
-      }
+        required,
+      },
     };
   },
   created() {
     this.getTokenAndDepartments();
-
   },
   methods: {
     getTokenAndDepartments() {
-    fetch("https://www.universal-tutorial.com/api/getaccesstoken", {
-      headers: {
-        "Accept": "application/json",
-        "api-token": "Cl2AlebkLSSWAvcRolpYARgzGAzlh_yAckEc5PRaLjUl8O8b61TqDQjXhjH-81hB7ZU",
-        "user-email": "jesu102012@gmail.com"
-      }
-    })
-      .then(response => response.json())
-      .then(data => {
-        console.log("Token received");
-        console.log(data);
-        this.getDepartments(data.auth_token);
+      fetch("https://www.universal-tutorial.com/api/getaccesstoken", {
+        headers: {
+          Accept: "application/json",
+          "api-token":
+            "Cl2AlebkLSSWAvcRolpYARgzGAzlh_yAckEc5PRaLjUl8O8b61TqDQjXhjH-81hB7ZU",
+          "user-email": "jesu102012@gmail.com",
+        },
       })
-      .catch(error => {
-        console.error(error);
-      });
-  },
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("Token received");
+          console.log(data);
+          this.getDepartments(data.auth_token);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    },
 
-  getDepartments(authToken) {
-    fetch("https://www.universal-tutorial.com/api/states/Peru", {
-      headers: {
-        "Authorization": `Bearer ${authToken}`,
-        "Accept": "application/json"
-      }
-    })
-      .then(response => response.json())
-      .then(data => {
-        console.log("Departments received");
-        console.log(data);
-        this.departments = data.map(state => state.state_name);
+    getDepartments(authToken) {
+      fetch("https://www.universal-tutorial.com/api/states/Peru", {
+        headers: {
+          Authorization: `Bearer ${authToken}`,
+          Accept: "application/json",
+        },
       })
-      .catch(error => {
-        console.error(error);
-      });
-  },
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("Departments received");
+          console.log(data);
+          this.departments = data.map((state) => state.state_name);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    },
     nextPage() {
       this.$emit("next-page", {
         formData: {
@@ -262,7 +272,7 @@ export default {
           width: this.width,
           height: this.height,
           length: this.length,
-          packageType: this.packageType
+          packageType: this.packageType,
         },
         pageIndex: 0,
       });
@@ -276,7 +286,7 @@ export default {
         this.nextPage(weight);
       }
     },
-  }
+  },
 };
 </script>
 
