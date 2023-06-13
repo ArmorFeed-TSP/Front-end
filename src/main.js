@@ -59,7 +59,8 @@ app.use(Store);
 
 app.use(VueGoogleMaps, {
   load: {
-    key: '',
+    key: 'AIzaSyA8xdufgmQTM5MyfYgqxA0l1eCzYoSxLwA',
+    libraries: 'places',
   },
 })
 
