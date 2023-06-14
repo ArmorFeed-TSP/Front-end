@@ -41,6 +41,11 @@
               class="p-error"
               >Credit card owner is required.</small
             >
+            <small
+              v-show="!v$.creditCardOwner.noTildes && submitted"
+              class="p-error"
+              >Credit card owner must not contain tildes.</small
+            >
           </div>
           <div class="field m-2">
             <pv-input-mask
@@ -53,6 +58,11 @@
               v-show="!v$.creditCardNumber.$model && submitted"
               class="p-error"
               >Credit card number is required.</small
+            >
+            <small
+              v-show="!v$.creditCardNumber.validLength && submitted"
+              class="p-error"
+              >Credit card number must be 16 digits long.</small
             >
           </div>
           <div class="field flex">
@@ -83,6 +93,13 @@
                 class="p-error"
                 >Expiration is required.</small
               >
+              <small
+                v-show="
+                  !v$.creditCardExpiration.validExpirationDate && submitted
+                "
+                class="p-error"
+                >Expiration date must be in the future.</small
+              >
             </div>
           </div>
           <div class="flex justify-content-between my-2">
@@ -108,7 +125,7 @@
 </template>
 
 <script>
-import { required } from "@vuelidate/validators";
+import { required, helpers } from "@vuelidate/validators";
 import { useVuelidate } from "@vuelidate/core";
 export default {
   name: "payment-shipment",
@@ -127,15 +144,37 @@ export default {
     return {
       creditCardOwner: {
         required,
+        noTildes: helpers.withMessage("Credit card owner invalid", (value) => {
+          if (value === null || value === "") return true;
+          return !/[áéíóúÁÉÍÓÚ]/.test(value);
+        })
       },
       creditCardNumber: {
         required,
+        validLength: helpers.withMessage("Credit card number must have 16 digits", (value) => {
+          if (value === null || value === "") return true;
+          console.log(value, value.length);
+          return value.length === 19;
+        })
       },
       creditCardCvv: {
         required,
+        validLength: helpers.withMessage("CVV must have 3 digits", (value) => {
+          if (value === null || value === "") return true;
+          console.log(value, value.length);
+          return value.toString().length === 3;
+        }),
       },
       creditCardExpiration: {
         required,
+        validExpirationDate: helpers.withMessage("Expiration Date invalid", (value) => {
+          if (value === null || value === "") return true;
+          const [month, year] = value.split("/");
+          const expirationDate = new Date(`20${year}-${month}-01`);
+          const currentDate = new Date();
+          currentDate.setHours(0, 0, 0, 0);
+          return expirationDate >= currentDate;
+        }),
       },
     };
   },
@@ -144,7 +183,7 @@ export default {
       const payment = {
         amount: this.formObject.amount,
         currency: "USD",
-        paymentDate: this.formObject.pickUpDate
+        paymentDate: this.formObject.pickUpDate,
       };
       this.$emit("complete", {
         formData: {
@@ -155,8 +194,9 @@ export default {
     prevPage() {
       this.$emit("prev-page", { pageIndex: 4 });
     },
-    handleSubmit(isFormValid) {
+    async handleSubmit(isFormValid) {
       this.submitted = true;
+      console.log(this.v$);
       if (isFormValid) {
         this.complete();
       }

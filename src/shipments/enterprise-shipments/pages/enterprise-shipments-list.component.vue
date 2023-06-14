@@ -40,21 +40,120 @@
           ></pv-input-text>
         </template>
       </pv-column>
-      <pv-column :exportable="false" style="min-width: 8rem">
+      <pv-column :exportable="false" style="min-width: 8rem" header="Status">
+        <template #body="slotProps">
+          <div v-if="slotProps.data.status === '0'">
+            <p>Pending</p>
+          </div>
+          <div v-else-if="slotProps.data.status === '1'">
+            <p>In progress</p>
+          </div>
+          <div v-else>
+            <p>Finished</p>
+          </div>
+        </template>
+      </pv-column>
+      <pv-column :exportable="false" style="min-width: 8rem" header="Actions">
         <template #body="slotProps">
           <pv-button icon="pi pi-car" class="p-button-text p-button-rounded" />
-          <pv-button
-            icon="pi pi-pencil"
-            class="p-button-text p-button-rounded"
-            @click="editStatus(slotProps.data)"
-          />
+          <!-- Admin control to reset status -->
+          <!-- <pv-button icon="pi pi-pencil" class="p-button-text p-button-rounded" @click="editStatus(slotProps.data)" /> -->
           <router-link
-            :to="`/enterprise/${this.id}/shipments/${slotProps.data.id}/shipment-detail`"
-            ><pv-button icon="pi pi-eye" class="p-button-text p-button-rounded"
+              :to="`/enterprise/${this.id}/shipments/${slotProps.data.id}/shipment-detail`"
+          ><pv-button icon="pi pi-eye" class="p-button-text p-button-rounded"
           /></router-link>
         </template>
       </pv-column>
+      <pv-column :exportable="false" style="min-width: 8rem" header="Next phase">
+        <template #body="slotProps">
+          <div v-if="slotProps.data.status === '0'">
+            <pv-button
+                label="Start Delivery"
+                icon="pi pi-play"
+                class="p-button-text p-button-rounded"
+                @click="startDelivery(slotProps.data)"
+            />
+          </div>
+          <div v-else-if="slotProps.data.status === '1'">
+            <pv-button
+                label="Finish Shipment"
+                icon="pi pi-check"
+                class="p-button-text p-button-rounded"
+                @click="finishShipment(slotProps.data)"
+            />
+          </div>
+          <div v-else>
+            --
+          </div>
+        </template>
+      </pv-column>
+
     </pv-data-table>
+
+    <!-- Update status: From Pending to In progress -->
+    <pv-dialog v-model:visible="startStatusEnabled">
+      <template #header>
+        <h3>Select a vehicle</h3>
+      </template>
+      <EnterpriseShipmentsVehicleAllocationComponent :enterprise-id="this.id"></EnterpriseShipmentsVehicleAllocationComponent>
+      <template #footer>
+        <pv-button label="Cancel" icon="pi pi-times" @click="startHideStatusDialog" />
+        <pv-button label="Submit" icon="pi pi-check" @click="startConfirmEnabled = true; shipment.status = 'In progress'" />
+      </template>
+    </pv-dialog>
+    <pv-dialog v-model:visible="startConfirmEnabled">
+      <template #header>
+        <h3>Confirm Status Change</h3>
+      </template>
+      <template #footer>
+        <pv-button
+            :label="'Cancel'.toUpperCase()"
+            icon="pi pi-times"
+            class="p-button-text"
+            @click="startHideConfirmDialog"
+        />
+        <pv-button
+            :label="'Save'.toUpperCase()"
+            icon="pi pi-check"
+            class="p-button-text"
+            @click="saveShipment"
+        />
+      </template>
+      <div>Are you sure you want to change the shipment status to <strong>{{ shipment.status }}</strong>?</div>
+    </pv-dialog>
+
+    <!-- Update status: From In progress to Finished -->
+    <pv-dialog v-model:visible="finishStatusEnabled">
+      <template #header>
+        <h3>Click on Submit to change this shipment status to <strong>Finished</strong></h3>
+      </template>
+      <template #footer>
+        <pv-button label="Cancel" icon="pi pi-times" @click="finishHideStatusDialog" />
+        <pv-button label="Submit" icon="pi pi-check" @click="finishConfirmEnabled = true; shipment.status = 'Finished'" />
+      </template>
+    </pv-dialog>
+    <pv-dialog v-model:visible="finishConfirmEnabled">
+      <template #header>
+        <h3>Confirm Status Change</h3>
+      </template>
+      <template #footer>
+        <pv-button
+            :label="'Cancel'.toUpperCase()"
+            icon="pi pi-times"
+            class="p-button-text"
+            @click="finishHideConfirmDialog"
+        />
+        <pv-button
+            :label="'Save'.toUpperCase()"
+            icon="pi pi-check"
+            class="p-button-text"
+            @click="saveShipment"
+        />
+      </template>
+      <div>Are you sure you want to change the shipment status to {{ shipment.status }} ?</div>
+    </pv-dialog>
+
+    <!-- (Admin control) Reset status -->
     <pv-dialog v-model:visible="statusEnabled">
       <template #header>
         <h3>Change actual state</h3>
@@ -121,7 +220,7 @@
       </template>
       <img
         src="https://www.esedeerre.com/wp-content/uploads/2012/06/geolocalizacion-google-maps.jpg"
-      />
+       alt="Google map"/>
       <template #footer>
         <pv-button label="Ok" autofocus @click="showDialog" />
       </template>
@@ -144,7 +243,7 @@
                       @click="saveShipment"
               />
           </template>
-          <div>Are you sure you want to change the shipment status to "{{ shipment.status }}"?</div>
+          <div>Are you sure you want to change the shipment status to {{ shipment.status }}?</div>
       </pv-dialog>
   </div>
 </template>
@@ -153,8 +252,8 @@
 import { EnterpriseShipmentsService } from "../services/enterprise-shipments.service";
 import { FilterMatchMode } from "primevue/api";
 import EnterpriseShipmentsVehicleAllocationComponent from "./enterprise-shipments-vehicle-allocation.component.vue";
-import { VehiclesApiService } from "../../../vehicles/services/vehicle-api.service";
-import { NotificationsApiService } from "../../../notifications/service/notifications-api.service";
+import { VehiclesApiService } from "@/vehicles/services/vehicle-api.service";
+import { NotificationsApiService } from "@/notifications/service/notifications-api.service";
 
 export default {
   name: "enterprise-shipments-list",
@@ -171,12 +270,21 @@ export default {
         { field: "pickUpDate", header: "Pick Up Date" },
         { field: "destiny", header: "Destiny" },
         { field: "deliveryDate", header: "Delivery Date" },
-        { field: "status", header: "Status" },
+        { field: "status", header: "Status ID" },
       ],
       currentShipments: [],
       dialogEnabled: false,
       statusEnabled: false,
       confirmEnabled: false,
+
+      startStatusEnabled: false,
+      startConfirmEnabled: false,
+      startSubmitted: false,
+
+      finishStatusEnabled: false,
+      finishConfirmEnabled: false,
+      finishSubmitted: false,
+
       statusses: [
         { label: "Pending", value: "Pending" },
         { label: "Finished", value: "Finished" },
@@ -196,11 +304,12 @@ export default {
         'deliveryDate': { value: null, matchMode: FilterMatchMode.CONTAINS},
         'status': { value: null, matchMode: FilterMatchMode.EQUALS}
       },
-      notificationService : new NotificationsApiService()
+      notificationService : new NotificationsApiService(),
     };
   },
   created() {
     this.enterpriseShipmentsService = new EnterpriseShipmentsService();
+    this.notificationService = new NotificationsApiService();
     this.enterpriseShipmentsService.getShipmentsById(this.id).then((response) => {
         this.shipments = structuredClone(response.data);
         this.currentShipments = structuredClone(response.data);
@@ -216,7 +325,8 @@ export default {
   computed: {
     selectAvailableVehicle: {
       get() {
-        return this.shipment.status.value === 'In progress';
+        /*return this.shipment.status.value === 'In progress';*/
+        return this.shipment.status && this.shipment.status.value === 'In progress';
       }
     }
   },
@@ -258,6 +368,15 @@ export default {
             this.$dataTransfer.selectedVehicle = null;
           });
     },
+    handleMissingVehicle() {
+      this.$toast.add({
+        severity: 'info',
+        summary: 'Some data is missing',
+        detail: 'You have to select an available vehicle',
+        life: 3000
+      });
+    },
+
     saveShipment() {
       this.submitted = true;
       const d = new Map();
@@ -270,15 +389,16 @@ export default {
           ? this.shipment.status.value
           : this.shipment.status;
         this.shipment.status = d.get(this.shipment.status);
-        console.log(this.$dataTransfer.selectedVehicle);
-        if(this.$dataTransfer.selectedVehicle === null && this.shipment.status === 1) {
-          this.$toast.add({ severity: 'info', summary: 'Some data is missing', detail: 'You have to select an available vehicle', life: 3000 })
+
+        if (this.$dataTransfer.selectedVehicle === null && this.shipment.status === 1) {
+          this.handleMissingVehicle();
           return;
-        };
+        }
 
         if(this.shipment.status === 1) {
           this.updateVehicle();
         }
+
         this.enterpriseShipmentsService.updateShipment(this.shipment.id, this.shipment).then((response) => {
             this.shipments[this.findIndexById(response.data.id)] = this.shipment;
             this.notificationService.create({
@@ -306,6 +426,33 @@ export default {
     },
     hideConfirmDialog() {
       this.confirmEnabled = false;
+    },
+
+    // my changes
+    startDelivery(shipment) {
+      this.shipment = {...shipment};
+      this.startStatusEnabled = !this.startStatusEnabled;
+    },
+    finishShipment(shipment) {
+      this.shipment = {...shipment};
+      console.log(this.shipment);
+      this.finishStatusEnabled = !this.finishStatusEnabled;
+    },
+
+    startHideConfirmDialog() {
+      this.startConfirmEnabled = false;
+    },
+    finishHideConfirmDialog() {
+      this.finishConfirmEnabled = false;
+    },
+
+    startHideStatusDialog() {
+      this.startStatusEnabled = false;
+      this.startSubmitted = false;
+    },
+    finishHideStatusDialog() {
+      this.finishStatusEnabled = false;
+      this.finishSubmitted = false;
     },
   },
 };

@@ -8,6 +8,11 @@
             class="p-button-error mr-2"
             @click="openNew"
           />
+          <pv-button
+            label="Abort Shipment"
+            icon="pi pi-times" severity="danger" aria-label="Cancel"
+            @click="abort"
+          />
         </template>
       </pv-tool-bar>
       <pv-dialog
@@ -65,6 +70,30 @@
           />
         </template>
       </pv-dialog>
+      <pv-dialog
+        v-model:visible="abortShipmentDialog"
+        :style="{ width: '300px' }"
+        header="Alert"
+        :modal="true"
+        class="p-fluid">
+        <p class="mb-5">
+          Are you sure you want to abort the shipment? 
+        </p>
+        <template #footer>
+          <pv-button
+            :label="'No'.toUpperCase()"
+            icon="pi pi-times"
+            class="p-button-text"
+            @click="hideDialog"
+          />
+          <pv-button
+            :label="'Yes'.toUpperCase()"
+            icon="pi pi-check"
+            class="p-button-text"
+            @click="deleteShipment"
+          />
+        </template>
+      </pv-dialog>
     </div>
   </div>
 </template>
@@ -95,6 +124,7 @@ export default {
       enterprise:{},
       customerShipmentsApiService: null,
       customerShipment: {},
+      abortShipmentDialog: false,
     };
   },
   created() {
@@ -150,8 +180,12 @@ export default {
       this.submitted = false;
       this.commentDialog = true;
     },
+    abort(){
+      this.abortShipmentDialog = true;
+    },
     hideDialog() {
       this.commentDialog = false;
+      this.abortShipmentDialog = false;
       this.submitted = false;
     },
     findIndexById(id) {
@@ -197,7 +231,12 @@ export default {
         this.comment = {};
       }
     },
-
+    deleteShipment(){
+      this.shipmentId = this.$route.params.id2;
+      this.customerShipmentsApiService = new CustomerShipmentsApiService();
+      this.customerShipmentsApiService.deleteShipmentById(this.shipmentId);
+      this.abortShipmentDialog = false;
+    },
     initFilters() {
       this.filters = {
         global: { value: null, matchMode: FilterMatchMode.CONTAINS },
