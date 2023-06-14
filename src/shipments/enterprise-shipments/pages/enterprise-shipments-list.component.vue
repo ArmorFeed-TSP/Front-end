@@ -40,15 +40,6 @@
           ></pv-input-text>
         </template>
       </pv-column>
-      <pv-column :exportable="false" style="min-width: 8rem" header="Actions">
-        <template #body="slotProps">
-          <pv-button icon="pi pi-car" class="p-button-text p-button-rounded" />
-          <router-link
-            :to="`/enterprise/${this.id}/shipments/${slotProps.data.id}/shipment-detail`"
-            ><pv-button icon="pi pi-eye" class="p-button-text p-button-rounded"
-          /></router-link>
-        </template>
-      </pv-column>
       <pv-column :exportable="false" style="min-width: 8rem" header="Status">
         <template #body="slotProps">
           <div v-if="slotProps.data.status === '0'">
@@ -60,6 +51,17 @@
           <div v-else>
             <p>Finished</p>
           </div>
+        </template>
+      </pv-column>
+      <pv-column :exportable="false" style="min-width: 8rem" header="Actions">
+        <template #body="slotProps">
+          <pv-button icon="pi pi-car" class="p-button-text p-button-rounded" />
+          <!-- Admin control to reset status -->
+          <!-- <pv-button icon="pi pi-pencil" class="p-button-text p-button-rounded" @click="editStatus(slotProps.data)" /> -->
+          <router-link
+              :to="`/enterprise/${this.id}/shipments/${slotProps.data.id}/shipment-detail`"
+          ><pv-button icon="pi pi-eye" class="p-button-text p-button-rounded"
+          /></router-link>
         </template>
       </pv-column>
       <pv-column :exportable="false" style="min-width: 8rem" header="Next phase">
@@ -87,6 +89,71 @@
       </pv-column>
 
     </pv-data-table>
+
+    <!-- Update status: From Pending to In progress -->
+    <pv-dialog v-model:visible="startStatusEnabled">
+      <template #header>
+        <h3>Select a vehicle</h3>
+      </template>
+      <EnterpriseShipmentsVehicleAllocationComponent :enterprise-id="this.id"></EnterpriseShipmentsVehicleAllocationComponent>
+      <template #footer>
+        <pv-button label="Cancel" icon="pi pi-times" @click="startHideStatusDialog" />
+        <pv-button label="Submit" icon="pi pi-check" @click="startConfirmEnabled = true; shipment.status = 'In progress'" />
+      </template>
+    </pv-dialog>
+    <pv-dialog v-model:visible="startConfirmEnabled">
+      <template #header>
+        <h3>Confirm Status Change</h3>
+      </template>
+      <template #footer>
+        <pv-button
+            :label="'Cancel'.toUpperCase()"
+            icon="pi pi-times"
+            class="p-button-text"
+            @click="startHideConfirmDialog"
+        />
+        <pv-button
+            :label="'Save'.toUpperCase()"
+            icon="pi pi-check"
+            class="p-button-text"
+            @click="saveShipment"
+        />
+      </template>
+      <div>Are you sure you want to change the shipment status to <strong>{{ shipment.status }}</strong>?</div>
+    </pv-dialog>
+
+    <!-- Update status: From In progress to Finished -->
+    <pv-dialog v-model:visible="finishStatusEnabled">
+      <template #header>
+        <h3>Click on Submit to change this shipment status to <strong>Finished</strong></h3>
+      </template>
+      <template #footer>
+        <pv-button label="Cancel" icon="pi pi-times" @click="finishHideStatusDialog" />
+        <pv-button label="Submit" icon="pi pi-check" @click="finishConfirmEnabled = true; shipment.status = 'Finished'" />
+      </template>
+    </pv-dialog>
+    <pv-dialog v-model:visible="finishConfirmEnabled">
+      <template #header>
+        <h3>Confirm Status Change</h3>
+      </template>
+      <template #footer>
+        <pv-button
+            :label="'Cancel'.toUpperCase()"
+            icon="pi pi-times"
+            class="p-button-text"
+            @click="finishHideConfirmDialog"
+        />
+        <pv-button
+            :label="'Save'.toUpperCase()"
+            icon="pi pi-check"
+            class="p-button-text"
+            @click="saveShipment"
+        />
+      </template>
+      <div>Are you sure you want to change the shipment status to {{ shipment.status }} ?</div>
+    </pv-dialog>
+
+    <!-- (Admin control) Reset status -->
     <pv-dialog v-model:visible="statusEnabled">
       <template #header>
         <h3>Change actual state</h3>
@@ -176,7 +243,7 @@
                       @click="saveShipment"
               />
           </template>
-          <div>Are you sure you want to change the shipment status to "{{ shipment.status }}"?</div>
+          <div>Are you sure you want to change the shipment status to {{ shipment.status }}?</div>
       </pv-dialog>
   </div>
 </template>
@@ -203,12 +270,21 @@ export default {
         { field: "pickUpDate", header: "Pick Up Date" },
         { field: "destiny", header: "Destiny" },
         { field: "deliveryDate", header: "Delivery Date" },
-        { field: "status", header: "Status" },
+        { field: "status", header: "Status ID" },
       ],
       currentShipments: [],
       dialogEnabled: false,
       statusEnabled: false,
       confirmEnabled: false,
+
+      startStatusEnabled: false,
+      startConfirmEnabled: false,
+      startSubmitted: false,
+
+      finishStatusEnabled: false,
+      finishConfirmEnabled: false,
+      finishSubmitted: false,
+
       statusses: [
         { label: "Pending", value: "Pending" },
         { label: "Finished", value: "Finished" },
@@ -228,7 +304,7 @@ export default {
         'deliveryDate': { value: null, matchMode: FilterMatchMode.CONTAINS},
         'status': { value: null, matchMode: FilterMatchMode.EQUALS}
       },
-      notificationService : new NotificationsApiService()
+      notificationService : new NotificationsApiService(),
     };
   },
   created() {
@@ -350,6 +426,33 @@ export default {
     },
     hideConfirmDialog() {
       this.confirmEnabled = false;
+    },
+
+    // my changes
+    startDelivery(shipment) {
+      this.shipment = {...shipment};
+      this.startStatusEnabled = !this.startStatusEnabled;
+    },
+    finishShipment(shipment) {
+      this.shipment = {...shipment};
+      console.log(this.shipment);
+      this.finishStatusEnabled = !this.finishStatusEnabled;
+    },
+
+    startHideConfirmDialog() {
+      this.startConfirmEnabled = false;
+    },
+    finishHideConfirmDialog() {
+      this.finishConfirmEnabled = false;
+    },
+
+    startHideStatusDialog() {
+      this.startStatusEnabled = false;
+      this.startSubmitted = false;
+    },
+    finishHideStatusDialog() {
+      this.finishStatusEnabled = false;
+      this.finishSubmitted = false;
     },
   },
 };
