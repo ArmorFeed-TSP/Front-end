@@ -234,7 +234,7 @@ export default {
     deleteShipment(){
       this.shipmentId = this.$route.params.id2;
       this.customerShipmentsApiService = new CustomerShipmentsApiService();
-      this.customerShipmentsApiService.deleteCustomerById(this.shipmentId);
+      this.customerShipmentsApiService.deleteShipmentById(this.shipmentId);
       this.abortShipmentDialog = false;
     },
     initFilters() {

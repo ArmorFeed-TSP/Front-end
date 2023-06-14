@@ -31,30 +31,17 @@
           icon="pi pi-user"
           icon-pos="left"
           :label="this.userName"
-          @click="toggleUser"
+          @click="profileDisplayable = true"
         ></pv-button>
       </template>
     </pv-tool-bar>
-    <pv-overlay-panel
-      ref="user"
-      style="width: 200px"
-      :dismissable="true"
-      el="el"
-    >
-      <pv-button
-        @click="logOut"
-        icon="pi pi-power-off"
-        class="p-button-text p-button-danger w-full"
-        label="Log Out"
-      ></pv-button>
-    </pv-overlay-panel>
     <pv-overlay-panel ref="op" style="width: 300px" :dismissable="true" el="el">
       <div class="p-fluid">
         <h3>Settings</h3>
         <pv-divider></pv-divider>
         <div class="field flex">
-          <pv-button class="mr-1" icon="pi pi-sun" label="Light"></pv-button>
-          <pv-button class="ml-1" icon="pi pi-moon" label="Dark"></pv-button>
+          <pv-button class="mr-1" icon="pi pi-sun" label="Light" v-on:click="setDarkMode(false)"></pv-button>
+         <pv-button class="ml-1" icon="pi pi-moon" label="Dark" v-on:click="setDarkMode(true)"></pv-button>
         </div>
       </div>
     </pv-overlay-panel>
@@ -65,16 +52,20 @@
   <div v-if="this.userType" class="flex justify-content-center">
     <pv-tab-menu :model="navigation" :exact="false" />
   </div>
+  <pv-dialog v-model:visible="profileDisplayable">
+    <profile-component @logout="logOut"/>
+  </pv-dialog>
 </template>
 
 <script>
 import Notifications from "../../notifications/pages/notifications.vue";
 import { CustomerShipmentsApiService } from "../../shipments/customer-shipments/services/customer-shipments-api.service";
 import { EnterpriseShipmentsService } from "../../shipments/enterprise-shipments/services/enterprise-shipments.service";
+import ProfileComponent from "./profile.component.vue";
 
 export default {
   name: "navigation-shipment",
-  components: { Notifications },
+  components: { Notifications, ProfileComponent },
   data() {
     return {
       activeTab: 0,
@@ -118,9 +109,22 @@ export default {
         quotations: false,
       },
       user: null,
+      profileDisplayable: false
     };
   },
+  watch: {
+  '$store.state.darkMode'(newValue) {
+    if (newValue) {
+      document.body.style.backgroundColor = 'rgba(63, 81, 181, 0.92)';
+    } else {
+      document.body.style.backgroundColor = 'white';
+    }
+  }
+},
   methods: {
+    setDarkMode(isDark) {
+    this.$store.commit('setDarkMode', isDark);
+  },
     toggle(event) {
       event.preventDefault();
       this.$refs.op.toggle(event);
@@ -140,6 +144,7 @@ export default {
       await this.$emit("sign-off");
       await this.$router.push({ name: "root" });
       this.$refs.op.hide();
+      this.profileDisplayable = false;
     },
     getAllShipmentsById(id) {
       const customerShipmentsService = new CustomerShipmentsApiService();
@@ -210,7 +215,7 @@ export default {
     this.$nextTick(() => {
       const auth = JSON.parse(localStorage.getItem("auth"));
       if (auth) {
-        this.user = auth.user;
+        this.user = auth;
       }
       this.activeTab = 1;
     });
@@ -227,8 +232,16 @@ export default {
 .logo {
   height: 45px;
 }
+<<<<<<< HEAD
 .modo-oscuro {
   background-color: #212121;
   color: #ffffff;
 }
+=======
+.dark-theme .p-toolbar {
+  background-color: #555 !important;
+  color: #fff !important;
+}
+
+>>>>>>> 423f4d76965607dc4103197d2635850b906ef615
 </style>
