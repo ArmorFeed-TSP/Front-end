@@ -41,6 +41,11 @@
               class="p-error"
               >Credit card owner is required.</small
             >
+            <small
+              v-show="!v$.creditCardOwner.noTildes && submitted"
+              class="p-error"
+              >Credit card owner must not contain tildes.</small
+            >
           </div>
           <div class="field m-2">
             <pv-input-mask
@@ -53,6 +58,11 @@
               v-show="!v$.creditCardNumber.$model && submitted"
               class="p-error"
               >Credit card number is required.</small
+            >
+            <small
+              v-show="!v$.creditCardNumber.validLength && submitted"
+              class="p-error"
+              >Credit card number must be 16 digits long.</small
             >
           </div>
           <div class="field flex">
@@ -82,6 +92,13 @@
                 v-show="!v$.creditCardExpiration.$model && submitted"
                 class="p-error"
                 >Expiration is required.</small
+              >
+              <small
+                v-show="
+                  !v$.creditCardExpiration.validExpirationDate && submitted
+                "
+                class="p-error"
+                >Expiration date must be in the future.</small
               >
             </div>
           </div>
@@ -127,15 +144,35 @@ export default {
     return {
       creditCardOwner: {
         required,
+        noTildes(value) {
+          if (value === null || value === "") return true;
+          return !/[áéíóúÁÉÍÓÚ]/.test(value);
+        },
       },
       creditCardNumber: {
         required,
+        validLength(value) {
+          if (value === null || value === "") return true;
+          return value.length === 16;
+        },
       },
       creditCardCvv: {
         required,
+        validLength(value) {
+          if (value === null || value === "") return true;
+          return value.length === 3;
+        },
       },
       creditCardExpiration: {
         required,
+        validExpirationDate(value) {
+          if (value === null || value === "") return true;
+          const [month, year] = value.split("/");
+          const expirationDate = new Date(`20${year}-${month}-01`);
+          const currentDate = new Date();
+          currentDate.setHours(0, 0, 0, 0);
+          return expirationDate >= currentDate;
+        },
       },
     };
   },
@@ -144,7 +181,7 @@ export default {
       const payment = {
         amount: this.formObject.amount,
         currency: "USD",
-        paymentDate: this.formObject.pickUpDate
+        paymentDate: this.formObject.pickUpDate,
       };
       this.$emit("complete", {
         formData: {
