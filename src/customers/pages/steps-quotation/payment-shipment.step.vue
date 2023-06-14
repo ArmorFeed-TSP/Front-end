@@ -125,7 +125,7 @@
 </template>
 
 <script>
-import { required } from "@vuelidate/validators";
+import { required, helpers } from "@vuelidate/validators";
 import { useVuelidate } from "@vuelidate/core";
 export default {
   name: "payment-shipment",
@@ -144,35 +144,37 @@ export default {
     return {
       creditCardOwner: {
         required,
-        noTildes(value) {
+        noTildes: helpers.withMessage("Credit card owner invalid", (value) => {
           if (value === null || value === "") return true;
           return !/[áéíóúÁÉÍÓÚ]/.test(value);
-        },
+        })
       },
       creditCardNumber: {
         required,
-        validLength(value) {
+        validLength: helpers.withMessage("Credit card number must have 16 digits", (value) => {
           if (value === null || value === "") return true;
-          return value.length === 16;
-        },
+          console.log(value, value.length);
+          return value.length === 19;
+        })
       },
       creditCardCvv: {
         required,
-        validLength(value) {
+        validLength: helpers.withMessage("CVV must have 3 digits", (value) => {
           if (value === null || value === "") return true;
-          return value.length === 3;
-        },
+          console.log(value, value.length);
+          return value.toString().length === 3;
+        }),
       },
       creditCardExpiration: {
         required,
-        validExpirationDate(value) {
+        validExpirationDate: helpers.withMessage("Expiration Date invalid", (value) => {
           if (value === null || value === "") return true;
           const [month, year] = value.split("/");
           const expirationDate = new Date(`20${year}-${month}-01`);
           const currentDate = new Date();
           currentDate.setHours(0, 0, 0, 0);
           return expirationDate >= currentDate;
-        },
+        }),
       },
     };
   },
@@ -192,8 +194,9 @@ export default {
     prevPage() {
       this.$emit("prev-page", { pageIndex: 4 });
     },
-    handleSubmit(isFormValid) {
+    async handleSubmit(isFormValid) {
       this.submitted = true;
+      console.log(this.v$);
       if (isFormValid) {
         this.complete();
       }
