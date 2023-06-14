@@ -86,14 +86,14 @@
               v-pv-tooltip.focus="`Enter a brief description of your business/services.`"
             ></pv-input-text>
           </div>
-          <div class="field md:flex m-2">
-            <h2 class="text-center mb-2 mt-2 md:mb-2"><span class="font-bold">Photo: </span></h2>
+          <div class="field md:flex m-2 md:mb-2">
+            <h2 class="text-center mb-2 mt-2"><span class="font-bold">Photo: </span></h2>
             <pv-file-upload
             mode="basic"
             name="demo[]"
-            url="/api/upload"
-            accept="image/*"
-            chooseLabel="Upload"
+            url="./upload.php"
+            accept="image/*" :maxFileSize="1000000"
+            chooseLabel="Upload" :auto="true"
             customUpload
             @uploader="uploadImage"
             />
