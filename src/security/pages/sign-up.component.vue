@@ -86,12 +86,17 @@
               v-pv-tooltip.focus="`Enter a brief description of your business/services.`"
             ></pv-input-text>
           </div>
-          <div class="field mx-2">
-            <pv-input-text
-                    v-model="photo"
-                    placeholder="Photo"
-                    v-pv-tooltip.focus="`Paste here the URL to your Profile Picture`"
-            ></pv-input-text>
+          <div class="field md:flex m-2">
+            <h2 class="text-center mb-2 mt-2 md:mb-2"><span class="font-bold">Photo: </span></h2>
+            <pv-file-upload
+            mode="basic"
+            name="demo[]"
+            url="/api/upload"
+            accept="image/*"
+            chooseLabel="Upload"
+            customUpload
+            @uploader="uploadImage"
+            />
           </div>
           <div class="field md:flex m-2 md:mb-2">
             <div class="md:mr-1">
@@ -306,6 +311,7 @@ import { required, email } from "@vuelidate/validators";
 import { useVuelidate } from "@vuelidate/core";
 import SignUpService from "../../shared/services/sign-up.service.js";
 import { useToast } from "primevue/usetoast";
+import { Base64Manager } from '../../shared/services/base64-uploader.service';
 export default {
   name: "sign-up",
   components:{ useToast },
@@ -341,6 +347,8 @@ export default {
       lastname: null,
       visible: false,
       visibleTC: false,
+      imageConverter: new Base64Manager(),
+      imageDataHandler: { data: null },
     };
   },
   computed: {
@@ -408,7 +416,7 @@ export default {
           ruc: this.ruc.split(" ").join(""),
           phoneNumber: this.cellPhone.split(" ").join(""),
           description: this.description,
-          photo: this.photo,
+          photo: this.imageDataHandler.data,
           lastname: this.lastname,
           subscriptionPlan: 0,
         };
@@ -425,7 +433,7 @@ export default {
         factorWeight: this.factorWeight,
         shippingTime: this.shippingTime,
         description: this.description,
-        photo: this.photo,
+        photo: this.imageDataHandler.data,
         score: 0,
         };
       }
@@ -481,6 +489,9 @@ export default {
     },
     showFail() {
       this.$toast.add({ severity: 'error', summary: 'Failed Creation', detail: 'There is another account with the same details / Fields not filled' , life: 4000});
+    },
+    async uploadImage(event) {
+      await this.imageConverter.upload(event, this.imageDataHandler);
     },
   },
 };
