@@ -212,8 +212,9 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .bg-armor-feed {
   background-color: #e5eced;
+  /*background-color: #3a3535 !important;*/
 }
 </style>

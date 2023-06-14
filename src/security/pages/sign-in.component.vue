@@ -32,7 +32,12 @@
               v-model="password"
               :feedback="false"
               :class="{ 'p-error': submitted }"
+              @keydown="checkCapsLock"
+              @input="checkCapsLock"
             ></pv-password>
+            <small v-show="isCapsLockOn && !submitted" class="p-error">
+              Caps Lock is on
+            </small>
             <small v-show="!v$.password.$model && submitted" class="p-error">
               Enter the password please.
             </small>
@@ -70,6 +75,7 @@ export default {
       submitted: false,
       password: null,
       notFound: false,
+      isCapsLockOn: false,
     };
   },
   validations() {
@@ -131,6 +137,9 @@ export default {
         password: this.password,
       };
     },
+    checkCapsLock(event) {
+        this.isCapsLockOn = event.getModifierState("CapsLock");
+    }
   },
 };
 </script>
