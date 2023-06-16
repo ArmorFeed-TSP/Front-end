@@ -16,4 +16,7 @@ export class EnterpriseShipmentsService {
     getEnterpriseById(enterpriseId){
         return http.get(`/enterprises/${enterpriseId}`);
     }
+    deleteEnterpriseById(enterpriseId){
+        http.delete(`/enterprises/${enterpriseId}`);
+    }
 }
