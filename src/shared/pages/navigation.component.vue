@@ -232,16 +232,13 @@ export default {
 .logo {
   height: 45px;
 }
-<<<<<<< HEAD
 .modo-oscuro {
   background-color: #212121;
   color: #ffffff;
 }
-=======
 .dark-theme .p-toolbar {
   background-color: #555 !important;
   color: #fff !important;
 }
 
->>>>>>> 423f4d76965607dc4103197d2635850b906ef615
 </style>
