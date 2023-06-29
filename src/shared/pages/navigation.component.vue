@@ -242,4 +242,12 @@ export default {
 .logo {
   height: 45px;
 }
+.modo-oscuro {
+  background-color: #212121;
+  color: #ffffff;
+}
+.dark-theme .p-toolbar {
+  background-color: #555 !important;
+  color: #fff !important;
+}
 </style>
