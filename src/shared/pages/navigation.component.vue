@@ -240,5 +240,4 @@ export default {
   background-color: #555 !important;
   color: #fff !important;
 }
-
 </style>
