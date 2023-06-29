@@ -59,8 +59,8 @@
 
 <script>
 import Notifications from "../../notifications/pages/notifications.vue";
-import { CustomerShipmentsApiService } from "../../shipments/customer-shipments/services/customer-shipments-api.service";
-import { EnterpriseShipmentsService } from "../../shipments/enterprise-shipments/services/enterprise-shipments.service";
+import { CustomerShipmentsApiService } from "@/shipments/customer-shipments/services/customer-shipments-api.service";
+import { EnterpriseShipmentsService } from "@/shipments/enterprise-shipments/services/enterprise-shipments.service";
 import ProfileComponent from "./profile.component.vue";
 
 export default {
@@ -87,9 +87,9 @@ export default {
           to: "/enterprise/0/payments",
         },
         {
-          label: "Shipments ",
-          icon: "pi pi-money-bill",
-          to: "/enterprise/0/payments",
+          label: "My Shipment Drivers",
+          icon: "pi pi-car",
+          to: "/enterprise/0/shipment-drivers",
         }
       ],
       navigationCustomer: [
@@ -196,6 +196,11 @@ export default {
           icon: "pi pi-money-bill",
           to: "/enterprise/" + this.user.id + "/payments",
         },
+        {
+          label: "My Shipment Drivers",
+          icon: "pi pi-car",
+          to: "/enterprise/" + this.user.id + "/shipment-drivers",
+        }
       ];
       this.navigationCustomer = [
         {

@@ -5,6 +5,7 @@ class UserService {
   constructor() {
     this.endPointCustomer = "/customers";
     this.endPointEnterprise = "/enterprises";
+    this.endPointShipmentDriver = "/shipmentdriver";
   }
   signIn(loginResource) {
     return http
@@ -25,7 +26,15 @@ class UserService {
             response.data.userType = "enterprise";
             localStorage.setItem("type", "enterprise")
             return response;
-          });
+          })
+            .catch(() => {
+              return http.post(`$(this.endPointShipmentDriver)/sign-in`, loginResource, authHeader())
+                .then((response) => {
+                    response.data.userType = "shipmentdriver";
+                    localStorage.setItem("type", "shipmentdriver");
+                    return response;
+                })
+            });
       });
   }
   signUpCustomer(signUpResource) {
@@ -33,6 +42,9 @@ class UserService {
   }
   signUpEnterprise(signUpResource) {
     return http.post(`${this.endPointEnterprise}/sign-up`, signUpResource);
+  }
+  signUpShipmentDriver(signUpResource) {
+    return http.post(`${this.endPointShipmentDriver}/sign-up`, signUpResource);
   }
 }
 
