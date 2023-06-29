@@ -86,6 +86,11 @@ export default {
           icon: "pi pi-money-bill",
           to: "/enterprise/0/payments",
         },
+        {
+          label: "Shipments ",
+          icon: "pi pi-money-bill",
+          to: "/enterprise/0/payments",
+        }
       ],
       navigationCustomer: [
         {

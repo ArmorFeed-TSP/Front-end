@@ -90,164 +90,36 @@
 
     </pv-data-table>
 
-    <!-- Update status: From Pending to In progress -->
-    <pv-dialog v-model:visible="startStatusEnabled">
-      <template #header>
-        <h3>Select a vehicle</h3>
-      </template>
-      <EnterpriseShipmentsVehicleAllocationComponent :enterprise-id="this.id"></EnterpriseShipmentsVehicleAllocationComponent>
-      <template #footer>
-        <pv-button label="Cancel" icon="pi pi-times" @click="startHideStatusDialog" />
-        <pv-button label="Submit" icon="pi pi-check" @click="startConfirmEnabled = true; shipment.status = 'In progress'" />
-      </template>
-    </pv-dialog>
-    <pv-dialog v-model:visible="startConfirmEnabled">
-      <template #header>
-        <h3>Confirm Status Change</h3>
-      </template>
-      <template #footer>
-        <pv-button
-            :label="'Cancel'.toUpperCase()"
-            icon="pi pi-times"
-            class="p-button-text"
-            @click="startHideConfirmDialog"
-        />
-        <pv-button
-            :label="'Save'.toUpperCase()"
-            icon="pi pi-check"
-            class="p-button-text"
-            @click="saveShipment"
-        />
-      </template>
-      <div>Are you sure you want to change the shipment status to <strong>{{ shipment.status }}</strong>?</div>
-    </pv-dialog>
-
-    <!-- Update status: From In progress to Finished -->
-    <pv-dialog v-model:visible="finishStatusEnabled">
-      <template #header>
-        <h3>Click on Submit to change this shipment status to <strong>Finished</strong></h3>
-      </template>
-      <template #footer>
-        <pv-button label="Cancel" icon="pi pi-times" @click="finishHideStatusDialog" />
-        <pv-button label="Submit" icon="pi pi-check" @click="finishConfirmEnabled = true; shipment.status = 'Finished'" />
-      </template>
-    </pv-dialog>
-    <pv-dialog v-model:visible="finishConfirmEnabled">
-      <template #header>
-        <h3>Confirm Status Change</h3>
-      </template>
-      <template #footer>
-        <pv-button
-            :label="'Cancel'.toUpperCase()"
-            icon="pi pi-times"
-            class="p-button-text"
-            @click="finishHideConfirmDialog"
-        />
-        <pv-button
-            :label="'Save'.toUpperCase()"
-            icon="pi pi-check"
-            class="p-button-text"
-            @click="saveShipment"
-        />
-      </template>
-      <div>Are you sure you want to change the shipment status to {{ shipment.status }} ?</div>
-    </pv-dialog>
-
-    <!-- (Admin control) Reset status -->
-    <pv-dialog v-model:visible="statusEnabled">
-      <template #header>
-        <h3>Change actual state</h3>
-      </template>
-      <template #footer>
-        <pv-button label="Submit" autofocus @click="showStatus" />
-      </template>
-    </pv-dialog>
+    <!-- Update status dialog -->
     <pv-dialog
-      v-model:visible="statusEnabled"
-      :style="{ widht: '450px' }"
-      header="Status information"
-      :modal="true"
-      class="p-fluid"
+      v-model="displayDialog"
+      :style="{ width: '450px' }"
+      :closable="false"
+      :dismissable-mask="false"
     >
-      <div class="field">
-        <pv-dropdown
-          id="status"
-          v-model="shipment.status"
-          :options="statusses"
-          optionLabel="label"
-          placeholder="Select a new status"
-        >
-          <template #value="slotProps">
-            <div v-if="slotProps.value && slotProps.value.value">
-              <span :class="'shipment-badge status-' + slotProps.value.value">{{
-                slotProps.value.label
-              }}</span>
-            </div>
-            <div v-else-if="slotProps.value && !slotProps.value.value">
-              <span
-                :class="
-                  'shipment-badge status-' + slotProps.value
-                "
-                >{{ slotProps.value }}</span
-              >
-            </div>
-            <span v-else>{{ slotProps.placeholder }}</span>
-          </template>
-        </pv-dropdown>
-      </div>
-      <EnterpriseShipmentsVehicleAllocationComponent 
-        v-if="selectAvailableVehicle"
-        :enterpriseId="this.id"
-      ></EnterpriseShipmentsVehicleAllocationComponent>
-      <template #footer>
-        <pv-button
-          :label="'Cancel'.toUpperCase()"
-          icon="pi pi-times"
-          class="p-button-text"
-          @click="hideStatusDialog"
-        />
-        <pv-button
-          :label="'Save'.toUpperCase()"
-          icon="pi pi-check"
-          class="p-button-text"
-          @click="confirmEnabled = true"
-        />
-      </template>
-    </pv-dialog>
-    <pv-dialog v-model:visible="dialogEnabled">
       <template #header>
-        <h3>Current Location</h3>
+        <div class="p-d-flex p-ai-center">
+          <i class="pi pi-exclamation-triangle p-mr-2" style="font-size: 2rem; color: var(--warning-color)"></i>
+          <h4>Update Status</h4>
+        </div>
       </template>
-      <img
-        src="https://www.esedeerre.com/wp-content/uploads/2012/06/geolocalizacion-google-maps.jpg"
-       alt="Google map"/>
+      <template #content>
+        <div class="p-d-flex p-ai-center p-dir-col">
+          <div>
+            <p>Are you sure you want to update the status of the shipment to:</p>
+            <p class="p-text-bold">{{ statusLabel }}</p>
+          </div>
+        </div>
+      </template>
       <template #footer>
-        <pv-button label="Ok" autofocus @click="showDialog" />
+        <div class="p-d-flex p-jc-between">
+          <pv-button label="Cancel" @click="cancelStatusUpdate" />
+          <pv-button label="Update" @click="confirmStatusUpdate" class="p-button-warning" />
+        </div>
       </template>
     </pv-dialog>
-      <pv-dialog v-model:visible="confirmEnabled">
-          <template #header>
-              <h3>Confirm Status Change</h3>
-          </template>
-          <template #footer>
-              <pv-button
-                      :label="'Cancel'.toUpperCase()"
-                      icon="pi pi-times"
-                      class="p-button-text"
-                      @click="hideConfirmDialog"
-              />
-              <pv-button
-                      :label="'Save'.toUpperCase()"
-                      icon="pi pi-check"
-                      class="p-button-text"
-                      @click="saveShipment"
-              />
-          </template>
-          <div>Are you sure you want to change the shipment status to {{ shipment.status }}?</div>
-      </pv-dialog>
   </div>
 </template>
-
 <script>
 import { EnterpriseShipmentsService } from "../services/enterprise-shipments.service";
 import { FilterMatchMode } from "primevue/api";

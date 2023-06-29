@@ -60,6 +60,11 @@ export default {
               icon: "pi pi-money-bill",
               to: "/enterprise/" + this.userId + "/payments",
             },
+            {
+              label: "Shipments ",
+              icon: "pi pi-money-bill",
+              to: "/enterprise/" + this.userId + "/payments",
+            },
           ];
           this.$router.push({
             name: "enterprise-shipments",
