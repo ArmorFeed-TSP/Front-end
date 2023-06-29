@@ -86,6 +86,11 @@ export default {
           icon: "pi pi-money-bill",
           to: "/enterprise/0/payments",
         },
+        {
+          label: "My Shipment Drivers",
+          icon: "pi pi-car",
+          to: "/enterprise/0/shipment-drivers",
+        }
       ],
       navigationCustomer: [
         {
@@ -191,6 +196,11 @@ export default {
           icon: "pi pi-money-bill",
           to: "/enterprise/" + this.user.id + "/payments",
         },
+        {
+          label: "My Shipment Drivers",
+          icon: "pi pi-car",
+          to: "/enterprise/" + this.user.id + "/shipment-drivers",
+        }
       ];
       this.navigationCustomer = [
         {
