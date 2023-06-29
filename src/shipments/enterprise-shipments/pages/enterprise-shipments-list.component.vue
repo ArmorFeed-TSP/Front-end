@@ -183,13 +183,13 @@ export default {
     this.enterpriseShipmentsService = new EnterpriseShipmentsService();
     this.notificationService = new NotificationsApiService();
     this.enterpriseShipmentsService.getShipmentsById(this.id).then((response) => {
-        this.shipments = structuredClone(response.data);
-        this.currentShipments = structuredClone(response.data);
-        this.shipments.forEach( shipment => {
-          this.$dataTransfer.addEnterpriseShipmentId(shipment.id);
-        });
-        this.tableIsLoading = false;
+      this.shipments = structuredClone(response.data);
+      this.currentShipments = structuredClone(response.data);
+      this.shipments.forEach( shipment => {
+        this.$dataTransfer.addEnterpriseShipmentId(shipment.id);
       });
+      this.tableIsLoading = false;
+    });
   },
   props: {
     id: Number
@@ -228,17 +228,17 @@ export default {
     updateVehicle() {
       // Change vehicle current status to occupied
       this.$dataTransfer.selectedVehicle.currentState = "OCCUPIED";
-        const vehiclesApiService = new VehiclesApiService();
-        console.log(this.$dataTransfer.selectedVehicle);
-        vehiclesApiService.update(this.$dataTransfer.selectedVehicle.id, this.$dataTransfer.selectedVehicle)
-          .then(res => {
-            this.$toast.add({ severity: 'success', summary: 'Success', detail: 'The vehicle was successfully linked to the shipment', life: 3000 });
-            this.$dataTransfer.selectedVehicle = null;
-          })
-          .catch(reason => {
-            this.$toast.add({ severity: 'error', summary: 'Service Error', detail: 'Something went wrong trying to put the data', life: 3000 });
-            this.$dataTransfer.selectedVehicle = null;
-          });
+      const vehiclesApiService = new VehiclesApiService();
+      console.log(this.$dataTransfer.selectedVehicle);
+      vehiclesApiService.update(this.$dataTransfer.selectedVehicle.id, this.$dataTransfer.selectedVehicle)
+        .then(res => {
+          this.$toast.add({ severity: 'success', summary: 'Success', detail: 'The vehicle was successfully linked to the shipment', life: 3000 });
+          this.$dataTransfer.selectedVehicle = null;
+        })
+        .catch(reason => {
+          this.$toast.add({ severity: 'error', summary: 'Service Error', detail: 'Something went wrong trying to put the data', life: 3000 });
+          this.$dataTransfer.selectedVehicle = null;
+        });
     },
     handleMissingVehicle() {
       this.$toast.add({
@@ -248,7 +248,6 @@ export default {
         life: 3000
       });
     },
-
     saveShipment() {
       this.submitted = true;
       const d = new Map();
@@ -272,18 +271,18 @@ export default {
         }
 
         this.enterpriseShipmentsService.updateShipment(this.shipment.id, this.shipment).then((response) => {
-            this.shipments[this.findIndexById(response.data.id)] = this.shipment;
-            this.notificationService.create({
-              title: "Shipment status was updated",
-              description: `Shipment, with code ${response.data.id}, status was updated. Check it now`,
-              sender: "ENTERPRISE",
-              enterpriseId: response.data.enterpriseId,
-              customerId: response.data.customerId
-            }).then( response => {
-              console.log(response);
-            }).catch( error => {
-              console.log(error);
-            });
+          this.shipments[this.findIndexById(response.data.id)] = this.shipment;
+          this.notificationService.create({
+            title: "Shipment status was updated",
+            description: `Shipment, with code ${response.data.id}, status was updated. Check it now`,
+            sender: "ENTERPRISE",
+            enterpriseId: response.data.enterpriseId,
+            customerId: response.data.customerId
+          }).then( response => {
+            console.log(response);
+          }).catch( error => {
+            console.log(error);
+          });
         });
       }
       this.statusEnabled = false;
@@ -299,8 +298,6 @@ export default {
     hideConfirmDialog() {
       this.confirmEnabled = false;
     },
-
-    // my changes
     startDelivery(shipment) {
       this.shipment = {...shipment};
       this.startStatusEnabled = !this.startStatusEnabled;
@@ -310,14 +307,12 @@ export default {
       console.log(this.shipment);
       this.finishStatusEnabled = !this.finishStatusEnabled;
     },
-
     startHideConfirmDialog() {
       this.startConfirmEnabled = false;
     },
     finishHideConfirmDialog() {
       this.finishConfirmEnabled = false;
     },
-
     startHideStatusDialog() {
       this.startStatusEnabled = false;
       this.startSubmitted = false;
@@ -325,6 +320,37 @@ export default {
     finishHideStatusDialog() {
       this.finishStatusEnabled = false;
       this.finishSubmitted = false;
+    },
+    async fetchShipments() {
+      await delay(2000);
+      const response = await Promise.resolve({
+        data: [
+          { id: 1, name: 'Envío 1', status: 'En tránsito' },
+          { id: 2, name: 'Envío 2', status: 'Entregado' },
+          { id: 3, name: 'Envío 3', status: 'En tránsito' },
+          { id: 4, name: 'Envío 4', status: 'Pendiente' },
+          { id: 5, name: 'Envío 5', status: 'Entregado' }
+        ]
+      });
+      return response.data;
+    },
+    async updateShipmentStatus(shipmentId, newStatus) {
+      await delay(1500);
+      const response = await Promise.resolve({
+        success: true,
+        message: 'Estado de envío actualizado exitosamente'
+      });
+      return response;
+    },
+    async fetchShipmentDetails(shipmentId) {
+      await delay(1000);
+      const response = await Promise.resolve({
+        data: { id: shipmentId, name: 'Envío ' + shipmentId, status: 'En tránsito' }
+      });
+      return response.data;
+    },
+    delay(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
     },
   },
 };
