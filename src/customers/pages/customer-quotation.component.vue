@@ -1,8 +1,6 @@
 <template>
   <div class="bg-armor-feed">
-    <div
-      style="max-width: 45rem; width: 100%; margin: 0 auto; min-height: 90vh"
-    >
+    <div style="max-width: 45rem; width: 100%; margin: 0 auto; min-height: 90vh">
       <pv-step :model="steps" :exact="false"></pv-step>
       <router-view
         v-slot="{ Component }"
@@ -69,19 +67,19 @@ export default {
     prevPage(event) {
       this.$router.push(this.steps[event.pageIndex - 1].to);
     },
-    async complete(event) {
+    complete(event) {
       // Registered the last payment
       for (let field in event.formData) {
         this.formObject[field] = event.formData[field];
       }
-      //We record the information in persistence
-      //this.methodWithAPI();
+      // We record the information in persistence
+      // this.methodWithAPI();
       this.methodWithoutAPI();
     },
     methodWithAPI() {
       const shipmentDto = this.createDtoShipment();
       console.log(shipmentDto);
-      //this.createShipmentWitchAPI(shipmentDto);
+      // this.createShipmentWitchAPI(shipmentDto);
     },
     methodWithoutAPI() {
       const shipment = {
@@ -118,16 +116,15 @@ export default {
               "New shipping order was registered from " +
               response.data.origin +
               " to " +
-              response.data.destiny +
-              "",
+              response.data.destiny,
             life: 4000,
           });
           this.notificationService.create({
             title: "New Shipment",
-            description: `A new shipment with code ${response.data.id} was asigned to you`,
+            description: `A new shipment with code ${response.data.id} was assigned to you`,
             sender: "CUSTOMER",
             enterpriseId: shipment.enterpriseId,
-            customerId: shipment.customerId
+            customerId: shipment.customerId,
           });
           localStorage.removeItem("formObject");
           await this.$router.push({ path: "quotations" });
@@ -152,8 +149,7 @@ export default {
               "New shipping order was registered from " +
               response.data.origin +
               " to " +
-              response.data.destiny +
-              "",
+              response.data.destiny,
             life: 4000,
           });
           localStorage.removeItem("formObject");
