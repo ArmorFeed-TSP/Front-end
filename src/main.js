@@ -30,10 +30,8 @@ import Store from "./store";
 //PrimeVue Styles
 import "/node_modules/primeflex/primeflex.css";
 
-//import "primevue/resources/themes/mdc-dark-indigo/theme.css";
+import "primevue/resources/themes/mdc-dark-indigo/theme.css";
 import "primevue/resources/themes/md-light-indigo/theme.css";
-//import "primevue/resources/themes/mdc-dark-deeppurple/theme.css";
-//import "primevue/resources/themes/arya-blue/theme.css";
 import "primevue/resources/primevue.min.css";
 import "primeicons/primeicons.css";
 import Password from "primevue/password";
