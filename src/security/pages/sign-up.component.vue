@@ -311,7 +311,7 @@ import { required, email } from "@vuelidate/validators";
 import { useVuelidate } from "@vuelidate/core";
 import SignUpService from "../../shared/services/sign-up.service.js";
 import { useToast } from "primevue/usetoast";
-import { Base64Manager } from '../../shared/services/base64-uploader.service';
+import { Base64Manager } from '@/shared/services/base64-uploader.service';
 export default {
   name: "sign-up",
   components:{ useToast },
@@ -327,6 +327,10 @@ export default {
           label: "Make shipments",
           type: "enterprise",
         },
+        {
+          label: "Deliver shipments",
+          type: "shipment-driver",
+        }
       ],
       isConfirm: false,
       submitted: false,
@@ -437,6 +441,19 @@ export default {
         score: 0,
         };
       }
+      if (this.userType === "shipment-driver") {
+        this.showSucces();
+        return {
+          name: this.name,
+          lastname: this.lastname,
+          photo: this.imageDataHandler.data,
+          ruc: this.ruc.split(" ").join(""),
+          phoneNumber: this.cellPhone.split(" ").join(""),
+          description: this.description,
+          email: this.email,
+          password: this.password,
+        };
+      }
       this.showFail();
     },
     async handleSubmit(isFormValid) {
@@ -462,8 +479,15 @@ export default {
                 this.resetForm();
                 console.log(response.data);
               });
+          } else if (this.userType === "shipment-driver") {
+            this.$store
+              .dispatch("auth/registerShipmentDriver", newUser)
+              .then((response) => {
+                this.isConfirm = true;
+                this.resetForm();
+                console.log(response.data);
+              });
           }
-          // this.signUpUser(newUser);
         } else this.notMatch = true;
       }
     },
