@@ -24,6 +24,7 @@ import Toast from "primevue/toast";
 import InputMask from "primevue/inputmask";
 import VueGoogleMaps from '@fawmi/vue-google-maps'
 import MultiSelect from 'primevue/multiselect';
+import Skeleton from "primevue/skeleton";
 import Tooltip from "primevue/tooltip";
 import Store from "./store";
 
@@ -94,5 +95,6 @@ app.component("pv-timeline", Timeline);
 app.component("pv-scroll-panel", ScrollPanel);
 app.component("pv-multiselect", MultiSelect);
 app.component("pv-file-upload", FileUpload);
+app.component("pv-skeleton", Skeleton);
 app.directive("pv-tooltip", Tooltip);
 app.mount("#app");
