@@ -59,8 +59,8 @@
 
 <script>
 import Notifications from "../../notifications/pages/notifications.vue";
-import { CustomerShipmentsApiService } from "../../shipments/customer-shipments/services/customer-shipments-api.service";
-import { EnterpriseShipmentsService } from "../../shipments/enterprise-shipments/services/enterprise-shipments.service";
+import { CustomerShipmentsApiService } from "@/shipments/customer-shipments/services/customer-shipments-api.service";
+import { EnterpriseShipmentsService } from "@/shipments/enterprise-shipments/services/enterprise-shipments.service";
 import ProfileComponent from "./profile.component.vue";
 
 export default {

@@ -311,7 +311,7 @@ import { required, email } from "@vuelidate/validators";
 import { useVuelidate } from "@vuelidate/core";
 import SignUpService from "../../shared/services/sign-up.service.js";
 import { useToast } from "primevue/usetoast";
-import { Base64Manager } from '../../shared/services/base64-uploader.service';
+import { Base64Manager } from '@/shared/services/base64-uploader.service';
 export default {
   name: "sign-up",
   components:{ useToast },
