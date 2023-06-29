@@ -3,7 +3,7 @@ import {EnterpriseShipmentsService} from "@/shipments/enterprise-shipments/servi
 import { EnterpriseShipmentDriverApiService } from "@/shipment-driver/enterprise-shipment-drivers/services/EnterpriseShipmentDriverApiService";
 
 export default {
-  name: "enterprise-shipment-driver-shipment-list"
+  name: "enterprise-shipment-driver-shipment-list",
   data() {
     return {
       availableShipments: [],

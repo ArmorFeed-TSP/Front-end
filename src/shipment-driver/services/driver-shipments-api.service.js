@@ -1,4 +1,4 @@
-import http from '../http-common';
+import http from "src/shared/services/http-common.js";
 
 export class DriverShipmentsApiService {
     findShipmentsByShipmentDriverId(shipmentDriverId) {
